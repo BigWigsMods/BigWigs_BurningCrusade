@@ -6,7 +6,6 @@ local mod, CL = BigWigs:NewBoss("High King Maulgar", 776)
 if not mod then return end
 --Maulgar, Krosh Firehand (Mage), Olm the Summoner (Warlock), Kiggler the Crazed (Shaman), Blindeye the Seer (Priest)
 mod:RegisterEnableMob(18831, 18832, 18834, 18835, 18836)
-mod.otherMenu = 3
 
 --------------------------------------------------------------------------------
 -- Localization

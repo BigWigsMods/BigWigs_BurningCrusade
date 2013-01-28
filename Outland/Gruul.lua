@@ -5,7 +5,6 @@
 local mod, CL = BigWigs:NewBoss("Gruul the Dragonkiller", 776)
 if not mod then return end
 mod:RegisterEnableMob(19044)
-mod.otherMenu = 3
 
 --------------------------------------------------------------------------------
 -- Localization
