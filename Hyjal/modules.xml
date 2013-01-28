@@ -1,0 +1,12 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="Anetheron.lua"/>
+<Script file="Archimonde.lua"/>
+<Script file="Azgalor.lua"/>
+<!--<Script file="HyjalSummit.lua"/>-->
+<Script file="Kazrogal.lua"/>
+<Script file="Winterchill.lua"/>
+
+</Ui>
+
