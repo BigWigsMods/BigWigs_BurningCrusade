@@ -71,11 +71,11 @@ end
 function mod:WeakenedRemoved(_, spellId)
 	self:Message(spellId, L["weak_warning2"], "Attention", nil, "Info")
 	self:CancelDelayedMessage(L["weak_warning1"])
-	self:SendMessage("BigWigs_StopBar", self, L["weak_bar"])
+	self:StopBar(L["weak_bar"])
 end
 
 function mod:SacrificeRemoved(player, spellId, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(player))
+	self:StopBar(CL["other"]:format(player))
 	self:PrimaryIcon(spellId)
 end
 

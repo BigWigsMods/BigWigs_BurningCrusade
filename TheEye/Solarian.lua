@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("High Astromancer Solarian", 782)
+local mod = BigWigs:NewBoss("High Astromancer Solarian", 782)
 if not mod then return end
 mod:RegisterEnableMob(18805)
 
@@ -70,21 +70,21 @@ end
 -- Event Handlers
 --
 
-function mod:Wrath(player, spellId)
-	self:TargetMessage(spellId, L["wrath_other"], player, "Attention", spellId)
-	self:PrimaryIcon(spellId, player)
-	self:Bar(spellId, CL["other"]:format(L["wrath_other"], player), 6, spellId)
-	if UnitIsUnit("player", player) then
-		self:OpenProximity(10, spellId)
+function mod:Wrath(args)
+	self:TargetMessage(args.spellId, L["wrath_other"], args.destName, "Attention", args.spellId)
+	self:PrimaryIcon(args.spellId, args.destName)
+	self:TargetBar(args.spellId, L["wrath_other"], args.destName, 6, args.spellId)
+	if UnitIsUnit("player", args.destName) then
+		self:OpenProximity(args.spellId, 10)
 	else
-		self:Whisper(spellId, player, L["wrath_other"])
+		self:Whisper(args.spellId, args.destName, L["wrath_other"])
 	end
 end
 
-function mod:WrathRemove(player, spellId)
-	self:PrimaryIcon(spellId)
-	if UnitIsUnit("player", player) then
-		self:CloseProximity(spellId)
+function mod:WrathRemove(args)
+	self:PrimaryIcon(args.spellId)
+	if UnitIsUnit("player", args.destName) then
+		self:CloseProximity(args.spellId)
 	end
 end
 
@@ -101,7 +101,7 @@ end
 function mod:Phase2()
 	self:Message("phase", L["phase2_message"], "Important")
 	self:CancelAllTimers()
-	self:SendMessage("BigWigs_StopBar", self, L["split_bar"])
+	self:StopBar(L["split_bar"])
 end
 
 function mod:Split()

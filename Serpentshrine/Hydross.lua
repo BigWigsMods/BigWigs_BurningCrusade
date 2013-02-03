@@ -69,7 +69,7 @@ function mod:OnEngage()
 	allowed = true
 	self:Bar("mark", (debuffBar):format(curPerc, cleanName), 15, 38215)
 	self:Berserk(600)
-	self:OpenProximity(10, 38235)
+	self:OpenProximity(38235, 10)
 end
 
 --------------------------------------------------------------------------------
@@ -98,8 +98,8 @@ function mod:Sludge(player, spellId, _, _, spellName)
 end
 
 function mod:Mark(_, spellId, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, (debuffBar):format(curPerc, poisonName))
-	self:SendMessage("BigWigs_StopBar", self, (debuffBar):format(curPerc, cleanName))
+	self:StopBar((debuffBar):format(curPerc, poisonName))
+	self:StopBar((debuffBar):format(curPerc, cleanName))
 	self:Message("mark", L["debuff_warn"]:format(curPerc), "Important", spellId, "Alert")
 	if spellId == 38215 or spellId == 38219 then
 		curPerc = 25
@@ -125,19 +125,19 @@ do
 			last = time
 			if stance == 1 then
 				stance = 2
-				self:SendMessage("BigWigs_StopBar", self, (debuffBar):format(curPerc, cleanName))
+				self:StopBar((debuffBar):format(curPerc, cleanName))
 				curPerc = 10
 				self:Message("stance", L["poison_stance"], "Important", 38219)
 				self:Bar("mark", (debuffBar):format(curPerc, poisonName), 15, 38219)
 				self:CloseProximity(38235)
 			else
 				stance = 1
-				self:SendMessage("BigWigs_StopBar", self, (debuffBar):format(curPerc, poisonName))
+				self:StopBar((debuffBar):format(curPerc, poisonName))
 				curPerc = 10
 				self:PrimaryIcon(38246)
 				self:Message("stance", L["water_stance"], "Important", 38215)
 				self:Bar("mark", (debuffBar):format(curPerc, cleanName), 15, 38215)
-				self:OpenProximity(10, 38235)
+				self:OpenProximity(38235, 10)
 			end
 		end
 	end

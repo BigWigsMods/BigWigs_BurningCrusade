@@ -44,7 +44,7 @@ function mod:OnEngage()
 	self:Message(29511, L["engage_message"], "Attention")
 	self:DelayedMessage(29511, 33, L["repentance_warning"], "Urgent", nil, "Alarm")
 	self:Bar(29511, "~"..GetSpellInfo(29511), 33, 29511)
-	self:OpenProximity(10)
+	self:OpenProximity("proximity", 10)
 end
 
 --------------------------------------------------------------------------------

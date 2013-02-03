@@ -33,29 +33,27 @@ end
 -- Event Handlers
 --
 
-function mod:Swarm(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Attention", spellId)
-	self:Bar(spellId, "~"..spellName, 11, spellId)
+function mod:Swarm(args)
+	self:Message(args.spellId, args.spellName, "Attention", args.spellId)
+	self:Bar(args.spellId, "~"..args.spellName, 11, args.spellId)
 end
 
 do
-	local function clearIcon()
-		mod:PrimaryIcon(31299)
-	end
-	local function infernoCheck(sGUID)
+	local function infernoCheck(sGUID, spellId)
 		local mobId = mod:GetUnitIdByGUID(sGUID)
 		if mobId then
 			local target = UnitName(mobId.."target")
 			if not target then return end
-			mod:TargetMessage(31299, GetSpellInfo(31299), target, "Important", 31299, "Alert")
-			mod:PrimaryIcon(31299, target)
-			mod:ScheduleTimer(clearIcon, 5)
+			mod:TargetMessage(spellId, spellId, target, "Important", spellId, "Alert")
+			mod:PrimaryIcon(spellId, target)
+			mod:ScheduleTimer("PrimaryIcon", 5, spellId)
 		end
 	end
-	function mod:Inferno(_, spellId, _, _, spellName, _, _, _, _, _, sGUID)
-		self:DelayedMessage(spellId, 45, CL["soon"]:format(spellName), "Positive", spellId)
-		self:Bar(spellId, "~"..spellName, 50, spellId)
-		self:ScheduleTimer(infernoCheck, 0.7, sGUID)
+
+	function mod:Inferno(args)
+		self:DelayedMessage(args.spellId, 45, CL["soon"]:format(args.spellName), "Positive", args.spellId)
+		self:Bar(args.spellId, "~"..args.spellName, 50, args.spellId)
+		self:ScheduleTimer(infernoCheck, 0.7, args.sourceGUID, args.spellId)
 	end
 end
 

@@ -126,9 +126,9 @@ do
 	end
 	function mod:Phase()
 		local ww = GetSpellInfo(37640)
-		self:SendMessage("BigWigs_StopBar", self, CL["cast"]:format(ww))
-		self:SendMessage("BigWigs_StopBar", self, "~"..ww)
-		self:SendMessage("BigWigs_StopBar", self, L["demon_nextbar"])
+		self:StopBar(CL["cast"]:format(ww))
+		self:StopBar("~"..ww)
+		self:StopBar(L["demon_nextbar"])
 		self:CancelAllTimers()
 
 		self:Message("phase", L["phase_demon"], "Attention")
@@ -141,11 +141,11 @@ do
 end
 
 function mod:Image()
-	self:CancelTimer(demonTimer, true)
+	self:CancelTimer(demonTimer)
 	self:CancelDelayedMessage(L["phase_normalsoon"])
 	self:CancelDelayedMessage(L["phase_demonsoon"])
-	self:SendMessage("BigWigs_StopBar", self, L["demon_bar"])
-	self:SendMessage("BigWigs_StopBar", self, L["demon_nextbar"])
+	self:StopBar(L["demon_bar"])
+	self:StopBar(L["demon_nextbar"])
 	self:Message("image", L["image_message"], "Important")
 end
 

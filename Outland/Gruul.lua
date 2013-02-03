@@ -59,7 +59,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:OpenProximity(15)
+	self:OpenProximity("proximity", 15)
 
 	self:Message("grasp", L["engage_message"]:format(self.displayName), "Attention")
 	self:DelayedMessage("grasp", 30, L["grasp_warning"], "Urgent")

@@ -91,7 +91,7 @@ end
 function mod:Air()
 	local fear = GetSpellInfo(36922)
 	self:CancelDelayedMessage(CL["soon"]:format(fear))
-	self:SendMessage("BigWigs_StopBar", self, "~"..fear)
+	self:StopBar("~"..fear)
 
 	self:Message("phase", L["airphase_message"], "Attention", "INV_Misc_Head_Dragon_01", "Info")
 	self:Bar("phase", L["landphase_message"], 57, "INV_Misc_Head_Dragon_01")

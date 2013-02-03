@@ -85,7 +85,7 @@ end
 
 function mod:DevotionRemoved(unit)
 	if not UnitIsPlayer(unit) then
-		self:SendMessage("BigWigs_StopBar", self, L["buff2_message"])
+		self:StopBar(L["buff2_message"])
 	end
 end
 
@@ -98,7 +98,7 @@ end
 
 function mod:DaringRemoved(unit)
 	if not UnitIsPlayer(unit) then
-		self:SendMessage("BigWigs_StopBar", self, L["buff1_message"])
+		self:StopBar(L["buff1_message"])
 	end
 end
 

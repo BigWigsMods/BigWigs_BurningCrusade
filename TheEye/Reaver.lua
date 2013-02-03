@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Void Reaver", 782)
+local mod = BigWigs:NewBoss("Void Reaver", 782)
 if not mod then return end
 mod:RegisterEnableMob(19516)
 
@@ -45,20 +45,20 @@ end
 -- Event Handlers
 --
 
-function mod:KnockAway(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Positive", spellId)
-	self:Bar(spellId, "~"..spellName, 20, spellId)
+function mod:KnockAway(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Positive", args.spellId)
+	self:Bar(args.spellId, "~"..args.spellName, 20, args.spellId)
 end
 
-function mod:Pounding(_, spellId, _, _, spellName)
-	self:Bar(spellId, "~"..spellName, 13, spellId)
+function mod:Pounding(args)
+	self:Bar(args.spellId, "~"..args.spellName, 13, args.spellId)
 end
 
-function mod:Orb(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Attention", spellId)
-	self:PrimaryIcon(spellId, player)
-	if UnitIsUnit("player", player) then
-		self:Say(spellId, CL["say"]:format(spellName))
+function mod:Orb(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
+	self:PrimaryIcon(args.spellId, args.destName)
+	if UnitIsUnit("player", args.destName) then
+		self:Say(args.spellId)
 	end
 end
 

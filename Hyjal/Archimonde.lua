@@ -45,8 +45,8 @@ end
 
 function mod:OnEngage()
 	self:Berserk(600)
-	self:OpenProximity(15, 32014)
-	local fear = GetSpellInfo(31970)
+	self:OpenProximity(32014, 15)
+	local fear = self:SpellName(31970)
 	self:Bar(31970, "~"..fear, 40, 31970)
 	self:DelayedMessage(31970, 40, CL["soon"]:format(fear), "Urgent", 31970)
 end
@@ -55,23 +55,20 @@ end
 -- Event Handlers
 --
 
-function mod:Grip(player, spellId)
-	self:TargetMessage(spellId, L["grip_other"], player, "Attention", spellId, "Alert")
+function mod:Grip(args)
+	self:TargetMessage(args.spellId, L["grip_other"], args.destName, "Attention", args.spellId, "Alert")
 end
 
-function mod:Fear(_, spellId, _, _, spellName)
-	self:Bar(spellId, "~"..spellName, 41.5, spellId)
-	self:Message(spellId, L["fear_message"], "Important", spellId)
-	self:DelayedMessage(spellId, 41.5, CL["soon"]:format(spellName), "Urgent")
+function mod:Fear(args)
+	self:Bar(args.spellId, "~"..args.spellName, 41.5, args.spellId)
+	self:Message(args.spellId, L["fear_message"], "Important", args.spellId)
+	self:DelayedMessage(args.spellId, 41.5, CL["soon"]:format(args.spellName), "Urgent")
 end
 
 do
 	local fired, timer = 0, nil
 
-	local function clearIcon()
-		mod:PrimaryIcon(32014)
-	end
-	local function burstCheck(sGUID)
+	local function burstCheck(sGUID, spellId)
 		fired = fired + 1
 		local mobId = mod:GetUnitIdByGUID(sGUID)
 		local player
@@ -79,29 +76,27 @@ do
 			player = UnitName(mobId.."target")
 		end
 		if player and not UnitDetailedThreatSituation(mobId.."target", mobId) then
-			mod:CancelTimer(timer, true)
+			mod:CancelTimer(timer)
 			timer = nil
-			local burst = GetSpellInfo(32014)
-			mod:TargetMessage(32014, burst, player, "Important", 32014, "Long")
-			mod:PrimaryIcon(32014, player)
-			mod:ScheduleTimer(clearIcon, 5)
+			mod:TargetMessage(spellId, spellId, player, "Important", spellId, "Long") -- Air Burst
+			mod:PrimaryIcon(spellId, player)
+			mod:ScheduleTimer("PrimaryIcon", 5, spellId)
 			if UnitIsUnit(player, "player") then
-				self:Say(32014, CL["say"]:format(burst))
+				self:Say(spellId)
 			end
 			return
 		end
 		-- 14 == 1.4sec
 		-- Safety check if the unit doesn't exist
 		if fired > 13 then
-			mod:CancelTimer(timer, true)
+			mod:CancelTimer(timer)
 			timer = nil
 		end
 	end
-	function mod:Burst(...)
+	function mod:Burst(args)
 		fired = 0
-		local sGUID = select(11, ...)
 		if not timer then
-			timer = self:ScheduleRepeatingTimer(burstCheck, 0.1, sGUID)
+			timer = self:ScheduleRepeatingTimer(burstCheck, 0.1, args.sourceGUID, args.spellId)
 		end
 	end
 end
@@ -109,7 +104,7 @@ end
 function mod:ProtectionOfElune()
 	self:CancelAllTimers()
 	self:PrimaryIcon(32014)
-	self:SendMessage("BigWigs_StopBar", self, "~"..GetSpellInfo(31970))
+	self:StopBar("~"..self:SpellName(31970)) -- Fear
 	-- Use berserk instead of making a toggle option for this.
 	self:Bar("berserk", L["killable"], 36, "achievement_boss_archimonde-")
 end

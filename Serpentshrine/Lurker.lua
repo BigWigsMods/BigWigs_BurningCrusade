@@ -68,7 +68,7 @@ function mod:OnEngage()
 	self:DelayedMessage("spout", 34, L["spout_warning"], "Attention")
 	self:Bar("spout", L["spout_bar"], 37, "INV_Weapon_Rifle_02")
 
-	self:OpenProximity(10)
+	self:OpenProximity("proximity", 10)
 end
 
 --------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ function mod:RAID_BOSS_EMOTE(_, _, unit)
 		self:Bar("spout", L["spout_bar"], 50, "Spell_Frost_ChillingBlast")
 		self:Message("spout", L["spout_message"], "Important", nil, "Alert", nil, 37433)
 		self:DelayedMessage("spout", 47, L["spout_warning"], "Attention")
-		self:SendMessage("BigWigs_StopBar", self, "~"..GetSpellInfo(37660))
+		self:StopBar("~"..GetSpellInfo(37660))
 	end
 end
 
@@ -106,8 +106,8 @@ do
 			self:CancelAllTimers()
 			timer = nil
 			self:CloseProximity()
-			self:SendMessage("BigWigs_StopBar", self, L["spout_bar"])
-			self:SendMessage("BigWigs_StopBar", self, "~"..GetSpellInfo(37660))
+			self:StopBar(L["spout_bar"])
+			self:StopBar("~"..GetSpellInfo(37660))
 			self:ScheduleTimer("LurkerUp", 60)
 
 			local ewarn = L["emerge_warning"]
@@ -136,7 +136,7 @@ function mod:LurkerUp()
 	self:DelayedMessage("dive", 85, (dwarn):format(5), "Urgent", nil, "Alarm")
 	self:Bar("dive", L["dive_bar"], 90, "Spell_Frost_ArcticWinds")
 
-	self:OpenProximity(10)
+	self:OpenProximity("proximity", 10)
 	self:ScheduleRepeatingTimer("CheckForWipe", 20)
 end
 

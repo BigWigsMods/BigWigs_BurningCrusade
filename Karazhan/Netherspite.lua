@@ -71,7 +71,7 @@ function mod:Netherbreath(_, spellId, _, _, spellName)
 end
 
 function mod:Phase1()
-	self:SendMessage("BigWigs_StopBar", self, "<"..GetSpellInfo(38523)..">")
+	self:StopBar("<"..GetSpellInfo(38523)..">")
 	self:Message("phase", L["phase1_message"], "Important", "Spell_ChargePositive")
 	self:Bar("phase", L["phase2_bar"], 58, "Spell_ChargePositive")
 end

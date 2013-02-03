@@ -38,23 +38,23 @@ end
 -- Event Handlers
 --
 
-function mod:FlamePatch(player, spellId, _, _, spellName)
-	if UnitIsUnit("player", player) then
-		self:LocalMessage(spellId, CL["underyou"]:format(spellName), "Personal", spellId, "Alarm")
+function mod:FlamePatch(args)
+	if UnitIsUnit("player", args.destName) then
+		self:LocalMessage(args.spellId, CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
 	end
 end
 
-function mod:Armor(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Long")
-	self:Bar(spellId, CL["other"]:format(spellName, player), 60, spellId)
-	self:PrimaryIcon(spellId, player)
+function mod:Armor(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId, "Long")
+	self:TargetBar(args.spellId, args.spellName, args.destName, 60, args.spellId)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 do
 	local timer = nil
 	function mod:ScanForAlar()
 		if not self:GetUnitIdByGUID(19514) then
-			local diveBomb = GetSpellInfo(35181)
+			local diveBomb = self:SpellName(35181)
 			if not first then
 				first = true
 			else
@@ -62,7 +62,7 @@ do
 			end
 			self:DelayedMessage(35181, 47, CL["soon"]:format(diveBomb), "Important")
 			self:Bar(35181, "~"..diveBomb, 52, 35181)
-			self:CancelTimer(timer, true)
+			self:CancelTimer(timer)
 			timer = nil
 			self:ScheduleTimer("ScanForAlar", 25)
 			return

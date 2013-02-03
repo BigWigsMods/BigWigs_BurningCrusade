@@ -121,9 +121,9 @@ end
 function mod:Phase3()
 	self:PrimaryIcon("loot")
 	self:CancelAllTimers()
-	self:SendMessage("BigWigs_StopBar", self, L["elemental_bar"])
-	self:SendMessage("BigWigs_StopBar", self, L["strider_bar"])
-	self:SendMessage("BigWigs_StopBar", self, L["naga_bar"])
+	self:StopBar(L["elemental_bar"])
+	self:StopBar(L["strider_bar"])
+	self:StopBar(L["naga_bar"])
 	self:Message("phase", L["phase3_message"], "Important", nil, "Alarm")
 	self:Berserk(240, true)
 end
@@ -133,7 +133,7 @@ function mod:Charge(player, spellId, _, _, spellName)
 	self:PrimaryIcon(spellId, player)
 	self:Bar(spellId, CL["other"]:format(spellName, player), 20, spellId)
 	if UnitIsUnit(player, "player") then
-		self:OpenProximity(10, spellId)
+		self:OpenProximity(spellId, 10)
 	end
 end
 
@@ -141,7 +141,7 @@ function mod:ChargeRemoved(player, spellId, _, _, spellName)
 	if UnitIsUnit(player, "player") then
 		self:CloseProximity(spellId)
 	end
-	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
+	self:StopBar(CL["other"]:format(spellName, player))
 end
 
 --It seems that looting the core no longer stuns the player, this isn't fired. (v4.2)

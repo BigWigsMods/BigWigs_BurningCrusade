@@ -46,24 +46,24 @@ end
 -- Event Handlers
 --
 
-function mod:RainOfFire(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(spellId, CL["you"]:format(spellName), "Urgent", spellId, "Alarm")
+function mod:RainOfFire(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Urgent", args.spellId, "Alarm")
 	end
 end
 
-function mod:Howl(_, spellId)
-	self:Message(spellId, L["howl_message"], "Important", spellId)
-	self:Bar(spellId, L["howl_bar"], 16, spellId)
-	self:DelayedMessage(spellId, 15, CL["soon"]:format(L["howl_message"]), "Important")
+function mod:Howl(args)
+	self:Message(args.spellId, L["howl_message"], "Important", args.spellId)
+	self:Bar(args.spellId, L["howl_bar"], 16, args.spellId)
+	self:DelayedMessage(args.spellId, 15, CL["soon"]:format(L["howl_message"]), "Important")
 end
 
-function mod:Doom(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Attention", spellId, "Alert")
-	self:Bar(spellId, CL["other"]:format(spellName, player), 19, spellId)
-	self:PrimaryIcon(spellId, player)
-	if UnitIsUnit(player, "player") then
-		self:FlashShake(spellId)
+function mod:Doom(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId, "Alert")
+	self:TargetBar(args.spellId, args.spellName, args.destName, 19, args.spellId)
+	self:PrimaryIcon(args.spellId, args.destName)
+	if UnitIsUnit(args.destName, "player") then
+		self:FlashShake(args.spellId)
 	end
 end
 

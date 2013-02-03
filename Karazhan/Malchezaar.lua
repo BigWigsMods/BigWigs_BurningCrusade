@@ -113,7 +113,7 @@ function mod:Phase3()
 	self:Message("phase", L["phase3_message"], "Positive", "achievement_boss_princemalchezaar_02")
 	local enfeeble = GetSpellInfo(30843)
 	self:CancelDelayedMessage(CL["custom_sec"]:format(enfeeble, 5))
-	self:SendMessage("BigWigs_StopBar", self, enfeeble)
+	self:StopBar(enfeeble)
 	nova = true
 end
 

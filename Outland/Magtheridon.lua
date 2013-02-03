@@ -124,12 +124,12 @@ function mod:Banished(_, spellId)
 	self:Message("banish", L["banish_message"], "Important", spellId, "Info")
 	self:Bar("banish", L["banish_bar"], 10, spellId)
 	local nova = GetSpellInfo(30616)
-	self:SendMessage("BigWigs_StopBar", self, CL["cast"]:format(nova))
+	self:StopBar(CL["cast"]:format(nova))
 end
 
 function mod:BanishRemoved(_, spellId)
 	self:Message("banish", L["banish_over_message"], "Attention", spellId)
-	self:SendMessage("BigWigs_StopBar", self, L["banish_bar"])
+	self:StopBar(L["banish_bar"])
 end
 
 function mod:Start()
@@ -138,7 +138,7 @@ function mod:Start()
 	self:DelayedMessage(30616, 56, CL["soon"]:format(nova), "Urgent")
 	self:Berserk(1200)
 
-	self:SendMessage("BigWigs_StopBar", self, L["escape_bar"])
+	self:StopBar(L["escape_bar"])
 	self:CancelDelayedMessage(L["escape_warning2"])
 	self:CancelDelayedMessage(L["escape_warning3"])
 	self:CancelDelayedMessage(L["escape_warning4"])

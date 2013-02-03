@@ -46,7 +46,7 @@ end
 
 function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-	self:OpenProximity(10)
+	self:OpenProximity("proximity", 10)
 
 	self:Message("earthquake", L["engage_message"], "Attention")
 	self:Bar("earthquake", "~"..GetSpellInfo(32686), 30, 32686)

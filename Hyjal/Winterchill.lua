@@ -33,15 +33,15 @@ end
 -- Event Handlers
 --
 
-function mod:Icebolt(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Alert")
-	self:PrimaryIcon(spellId, player)
+function mod:Icebolt(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId, "Alert")
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:DeathAndDecay(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(spellId, CL["underyou"]:format(spellName), "Personal", spellId, "Alarm")
-		self:FlashShake(spellId)
+function mod:DeathAndDecay(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:LocalMessage(args.spellId, CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+		self:FlashShake(args.spellId)
 	end
 end
 

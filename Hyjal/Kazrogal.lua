@@ -50,28 +50,28 @@ end
 -- Event Handlers
 --
 
-function mod:MarkCast(_, spellId, _, _, spellName)
+function mod:MarkCast(args)
 	local time = 45 - (count * 5)
 	if time < 5 then time = 5 end
-	self:Message(spellId, ("%s (%d)"):format(spellName, count), "Attention", spellId)
+	self:Message(args.spellId, ("%s (%d)"):format(args.spellName, count), "Attention", args.spellId)
 	count = count + 1
-	self:Bar(spellId, L["mark_bar"]:format(count), time, spellId)
-	self:DelayedMessage(spellId, time - 5, L["mark_warn"], "Positive")
+	self:Bar(args.spellId, L["mark_bar"]:format(count), time, args.spellId)
+	self:DelayedMessage(args.spellId, time - 5, L["mark_warn"], "Positive")
 end
 
-function mod:Mark(player, spellId)
-	if UnitIsUnit(player, "player") then
+function mod:Mark(args)
+	if UnitIsUnit(args.destName, "player") then
 		local power = UnitPower("player", 0)
 		if power > 0 and power < 4000 then
-			self:OpenProximity(15, spellId)
-			self:FlashShake(spellId)
+			self:OpenProximity(args.spellId, 15)
+			self:FlashShake(args.spellId)
 		end
 	end
 end
 
-function mod:MarkRemoved(player, spellId)
-	if UnitIsUnit(player, "player") then
-		self:CloseProximity(spellId)
+function mod:MarkRemoved(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:CloseProximity(args.spellId)
 	end
 end
 

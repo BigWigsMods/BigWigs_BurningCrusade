@@ -76,7 +76,7 @@ function mod:Meteor(_, spellId)
 end
 
 function mod:BurnRemove(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
+	self:StopBar(CL["other"]:format(spellName, player))
 end
 
 function mod:BurnResist(player, spellId)

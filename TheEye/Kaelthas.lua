@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Kael'thas Sunstrider", 782)
+local mod = BigWigs:NewBoss("Kael'thas Sunstrider", 782)
 if not mod then return end
 --Kael'thas Sunstrider, Thaladred the Darkener, Master Engineer Telonicus, Grand Astromancer Capernian, Lord Sanguinar
 mod:RegisterEnableMob(19622, 20064, 20063, 20062, 20060)
@@ -100,7 +100,8 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
-	self:Death("Deaths", 19622, 21272, 21270, 21269, 21271, 21268, 21273, 21274)
+	self:Death("Win", 19622)
+	self:Death("AddDeaths", 21272, 21270, 21269, 21271, 21268, 21273, 21274)
 end
 
 function mod:OnEngage()
@@ -113,49 +114,49 @@ end
 -- Event Handlers
 --
 
-function mod:Conflag(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Attention", spellId)
-	self:Bar(spellId, CL["other"]:format(spellName, player), 10, spellId)
+function mod:Conflag(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
+	self:TargetBar(args.spellId, args.spellName, args.destName, 10, args.spellId)
 end
 
-function mod:Toy(player, spellId, _, _, spellName)
+function mod:Toy(args)
 	if phase < 3 then
-		self:TargetMessage(spellId, spellName, player, "Attention", spellId)
-		self:Bar(spellId, CL["other"]:format(spellName, player), 60, spellId)
+		self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
+		self:TargetBar(args.spellId, args.spellName, args.destName, 60, args.spellId)
 	end
 end
 
-function mod:ToyRemoved(player, _, _, _, spellName)
-	self:SendMessage("BigWigs_StopBar", self, CL["other"]:format(spellName, player))
+function mod:ToyRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
 do
 	local scheduled = nil
-	local function mcWarn(spellName)
-		mod:TargetMessage("mc", spellName, MCd, "Important", 36797, "Alert")
+	local function mcWarn(spellName, spellId)
+		mod:TargetMessage("mc", spellName, MCd, "Important", spellId, "Alert")
 		scheduled = nil
 	end
-	function mod:MC(player, spellId, _, _, spellName)
-		MCd[#MCd + 1] = player
+	function mod:MC(args)
+		MCd[#MCd + 1] = args.destName
 		if not scheduled then
 			scheduled = true
-			self:ScheduleTimer(mcWarn, 0.5, spellName)
+			self:ScheduleTimer(mcWarn, 0.5, args.spellName, args.spellId)
 		end
 	end
 end
 
-function mod:FearCast(_, spellId)
-	self:Message(spellId, L["fear_soon_message"], "Urgent", spellId)
+function mod:FearCast(args)
+	self:Message(args.spellId, L["fear_soon_message"], "Urgent", args.spellId)
 end
 
 do
 	local last = 0
-	function mod:Fear(_, spellId)
+	function mod:Fear(args)
 		local time = GetTime()
 		if (time - last) > 5 then
 			last = time
-			self:Message(spellId, L["fear_message"], "Attention", spellId)
-			self:Bar(spellId, L["fear_bar"], 30, spellId)
+			self:Message(args.spellId, L["fear_message"], "Attention", args.spellId)
+			self:Bar(args.spellId, L["fear_bar"], 30, args.spellId)
 		end
 	end
 end
@@ -166,17 +167,13 @@ function mod:Phoenix()
 	self:DelayedMessage("rebirth", 40, L["rebirth_warning"], "Attention")
 end
 
-function mod:GravityLapse(_, spellId, _, _, spellName)
-	self:Message("phase", spellName, "Important", spellId)
-	self:Bar("phase", spellName, 90, spellId)
+function mod:GravityLapse(args)
+	self:Message("phase", args.spellName, "Important", args.spellId)
+	self:Bar("phase", args.spellName, 90, args.spellId)
 end
 
-function mod:Deaths(mobId, _, unit)
-	if mobId == 19622 then
-		self:Win()
-	else
-		self:Message("phase", L["dead_message"]:format(unit), "Attention")
-	end
+function mod:AddDeaths(args)
+	self:Message("phase", L["dead_message"]:format(args.destName), "Attention")
 end
 
 function mod:Pyro()
@@ -187,7 +184,7 @@ end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg, _, _, _, player)
 	if msg:find(L["gaze_trigger"]) then
-		self:Bar("gaze", CL["other"]:format(L["gaze"], player), 9, "Spell_Shadow_EvilEye")
+		self:TargetBar("gaze", L["gaze"], player, 9, "Spell_Shadow_EvilEye")
 		self:TargetMessage("gaze", L["gaze"], player, "Important")
 		self:PrimaryIcon("gaze", player)
 	end
@@ -200,12 +197,12 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 		self:Message("phase", L["sanguinar"], "Positive")
 		self:Bar("phase", L["sanguinar"], 13, "Spell_Shadow_Charm")
 		self:PrimaryIcon("gaze")
-		self:SendMessage("BigWigs_StopBar", self, L["gaze_bar"])
+		self:StopBar(L["gaze_bar"])
 	elseif msg == L["capernian_inc_trigger"] then
 		self:Message("phase", L["capernian"], "Positive")
 		self:Bar("phase", L["capernian"], 7, "Spell_Shadow_Charm")
-		self:OpenProximity(10)
-		self:SendMessage("BigWigs_StopBar", self, L["fear_bar"])
+		self:OpenProximity("proximity", 10)
+		self:StopBar(L["fear_bar"])
 	elseif msg == L["telonicus_inc_trigger"] then
 		self:Message("phase", L["telonicus"], "Positive")
 		self:Bar("phase", L["telonicus"], 8, "Spell_Shadow_Charm")
@@ -224,11 +221,11 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 		self:Message("phase", L["phase4_message"], "Positive")
 		self:Bar("pyro", L["pyro"], 60, "Spell_Fire_Fireball02")
 		self:DelayedMessage("pyro", 55, L["pyro_warning"], "Attention")
-		self:SendMessage("BigWigs_StopBar", self, L["phase4_bar"])
+		self:StopBar(L["phase4_bar"])
 	elseif msg == L["flying_trigger"] then
 		phase = 5
 		self:CancelDelayedMessage(L["pyro_warning"])
-		self:SendMessage("BigWigs_StopBar", self, L["pyro"])
+		self:StopBar(L["pyro"])
 		self:Message("phase", L["flying_message"], "Attention")
 		self:Bar("phase", L["gravity_bar"], 60, "Spell_Nature_UnrelentingStorm")
 	end

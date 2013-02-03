@@ -42,7 +42,7 @@ end
 
 function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
-	self:OpenProximity(10)
+	self:OpenProximity("proximity", 10)
 	self:Berserk(600)
 	local evocation = GetSpellInfo(30254)
 	self:Bar(30254, "~"..evocation, 109, 30254)
@@ -72,8 +72,8 @@ function mod:Infusion(_, spellId, _, _, spellName)
 
 	self:CancelAllTimers()
 	local evocation = GetSpellInfo(30254)
-	self:SendMessage("BigWigs_StopBar", self, "~"..evocation)
-	self:SendMessage("BigWigs_StopBar", self, CL["cast"]:format(evocation))
+	self:StopBar("~"..evocation)
+	self:StopBar(CL["cast"]:format(evocation))
 end
 
 function mod:UNIT_HEALTH_FREQUENT(_, unit)
