@@ -47,12 +47,12 @@ if L then
 	L.naga_bar = "~Naga"
 	L.naga_soon_message = "Naga soon!"
 
-	L.barrier = GetSpellInfo(38112)
+	L.barrier = mod:SpellName(38112)
 	L.barrier_desc = "Alert when the barriers go down."
 	L.barrier_icon = 38112
 	L.barrier_down_message = "Barrier %d/4 down!"
 
-	L.loot = GetItemInfo(31088)
+	L.loot = mod:SpellName(31088)
 	L.loot_desc = "Warn who loots the Tainted Cores."
 	L.loot_icon = 38132
 end
@@ -95,7 +95,8 @@ function mod:OnBossEnable()
 	)
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
-	self:Death("Deaths", 21212, 22009) -- Vashj, Tainted Elemental
+	self:Death("Win", 21212)
+	self:Death("ElementalDeath", 22009) -- Tainted Elemental
 end
 
 function mod:OnEngage()
@@ -128,43 +129,39 @@ function mod:Phase3()
 	self:Berserk(240, true)
 end
 
-function mod:Charge(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Alert")
-	self:PrimaryIcon(spellId, player)
-	self:Bar(spellId, CL["other"]:format(spellName, player), 20, spellId)
-	if UnitIsUnit(player, "player") then
-		self:OpenProximity(spellId, 10)
+function mod:Charge(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId, "Alert")
+	self:PrimaryIcon(args.spellId, args.destName)
+	self:TargetBar(args.spellId, args.spellName, args.destName, 20, args.spellId)
+	if UnitIsUnit(args.destName, "player") then
+		self:OpenProximity(args.spellId, 10)
 	end
 end
 
-function mod:ChargeRemoved(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:CloseProximity(spellId)
+function mod:ChargeRemoved(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:CloseProximity(args.spellId)
 	end
-	self:StopBar(CL["other"]:format(spellName, player))
+	self:StopBar(args.spellName, args.destName)
 end
 
 --It seems that looting the core no longer stuns the player, this isn't fired. (v4.2)
-function mod:LootUpdate(player, spellId)
-	self:TargetMessage("loot", L["loot"], player, "Positive", spellId, "Info")
-	self:PrimaryIcon("loot", player)
+function mod:LootUpdate(args)
+	self:TargetMessage("loot", L["loot"], args.destName, "Positive", args.spellId, "Info")
+	self:PrimaryIcon("loot", args.destName)
 end
 
 --It seems that there is no longer any events for barrier removal. (v4.2)
-function mod:BarrierRemove(_, spellId)
+function mod:BarrierRemove(args)
 	shieldsFaded = shieldsFaded + 1
 	if shieldsFaded < 4 then
-		self:Message("barrier", L["barrier_down_message"]:format(shieldsFaded), "Attention", spellId)
+		self:Message("barrier", L["barrier_down_message"]:format(shieldsFaded), "Attention", args.spellId)
 	end
 end
 
-function mod:Deaths(mobId)
-	if mobId == 22009 then
-		self:Bar("elemental", L["elemental_bar"], 53, 38132)
-		self:DelayedMessage("elemental", 48, L["elemental_soon_message"], "Important")
-	else
-		self:Win()
-	end
+function mod:ElementalDeath()
+	self:Bar("elemental", L["elemental_bar"], 53, 38132)
+	self:DelayedMessage("elemental", 48, L["elemental_soon_message"], "Important")
 end
 
 do

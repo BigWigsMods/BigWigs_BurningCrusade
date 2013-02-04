@@ -44,7 +44,7 @@ if L then
 	L.banish_over_message = "Banish Fades!"
 	L.banish_bar = "<Banished>"
 
-	L.exhaust = GetSpellInfo(44032)
+	L.exhaust = self:SpellName(44032)
 	L.exhaust_desc = "Timer bars for Mind Exhaustion on players."
 	L.exhaust_icon = 44032
 	L.exhaust_bar = "[%s] Exhausted"
@@ -106,8 +106,8 @@ function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
 	end
 end
 
-function mod:Exhaustion(player, spellId)
-	self:Bar("exhaust", L["exhaust_bar"]:format(player), 30, spellId)
+function mod:Exhaustion(args)
+	self:Bar("exhaust", L["exhaust_bar"]:format(args.destName), 30, args.spellId)
 end
 
 function mod:Abyssal()
@@ -115,25 +115,25 @@ function mod:Abyssal()
 	abycount = abycount + 1
 end
 
-function mod:Heal(_, spellId)
-	self:Message("heal", L["heal_message"], "Urgent", spellId, "Alarm")
-	self:Bar("heal", L["heal_message"], 2, spellId)
+function mod:Heal(args)
+	self:Message("heal", L["heal_message"], "Urgent", args.spellId, "Alarm")
+	self:Bar("heal", L["heal_message"], 2, args.spellId)
 end
 
-function mod:Banished(_, spellId)
-	self:Message("banish", L["banish_message"], "Important", spellId, "Info")
-	self:Bar("banish", L["banish_bar"], 10, spellId)
-	local nova = GetSpellInfo(30616)
+function mod:Banished(args)
+	self:Message("banish", L["banish_message"], "Important", args.spellId, "Info")
+	self:Bar("banish", L["banish_bar"], 10, args.spellId)
+	local nova = self:SpellName(30616)
 	self:StopBar(CL["cast"]:format(nova))
 end
 
-function mod:BanishRemoved(_, spellId)
-	self:Message("banish", L["banish_over_message"], "Attention", spellId)
+function mod:BanishRemoved(args)
+	self:Message("banish", L["banish_over_message"], "Attention", args.spellId)
 	self:StopBar(L["banish_bar"])
 end
 
 function mod:Start()
-	local nova = GetSpellInfo(30616)
+	local nova = self:SpellName(30616)
 	self:Bar(30616, "~"..nova, 58, 30616)
 	self:DelayedMessage(30616, 56, CL["soon"]:format(nova), "Urgent")
 	self:Berserk(1200)
@@ -145,16 +145,16 @@ function mod:Start()
 	self:CancelDelayedMessage(L["escape_warning5"])
 end
 
-function mod:Nova(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Positive", spellId)
-	self:Bar(spellId, "~"..spellName, 51, spellId)
-	self:Bar(spellId, CL["cast"]:format(spellName), 12, spellId)
-	self:DelayedMessage(spellId, 48, CL["soon"]:format(spellName), "Urgent")
+function mod:Nova(args)
+	self:Message(args.spellId, args.spellName, "Positive", args.spellId)
+	self:Bar(args.spellId, "~"..args.spellName, 51, args.spellId)
+	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 12, args.spellId)
+	self:DelayedMessage(args.spellId, 48, CL["soon"]:format(args.spellName), "Urgent")
 end
 
-function mod:Debris(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(spellId, CL["you"]:format(spellName), "Important", spellId, "Alert")
+function mod:Debris(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Important", args.spellId, "Alert")
 	end
 end
 
@@ -166,7 +166,7 @@ function mod:UNIT_HEALTH_FREQUENT(_, unit)
 	if unit == "target" and self:GetCID(UnitGUID(unit)) == 17257 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 37 then
-			local debris = GetSpellInfo(36449)
+			local debris = self:SpellName(36449)
 			self:Message(36449, CL["soon"]:format(debris), "Positive")
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 		end

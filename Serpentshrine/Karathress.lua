@@ -56,15 +56,15 @@ end
 -- Event Handlers
 --
 
-function mod:Heal(_, spellId)
-	self:Message(spellId, L["heal_message"], "Important", spellId, "Long")
+function mod:Heal(args)
+	self:Message(args.spellId, L["heal_message"], "Important", args.spellId, "Long")
 end
 
-function mod:Totem(_, spellId, source)
-	if source == self.displayName then
-		self:Message("totem", L["totem_message2"], "Urgent", spellId, "Alarm")
+function mod:Totem(args)
+	if self:GetCID(args.sourceGUID) == 21214 then
+		self:Message("totem", L["totem_message2"], "Urgent", args.spellId, "Alarm")
 	else
-		self:Message("totem", L["totem_message1"], "Attention", spellId)
+		self:Message("totem", L["totem_message1"], "Attention", args.spellId)
 	end
 end
 

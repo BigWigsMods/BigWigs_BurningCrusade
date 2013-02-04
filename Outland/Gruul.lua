@@ -63,7 +63,7 @@ function mod:OnEngage()
 
 	self:Message("grasp", L["engage_message"]:format(self.displayName), "Attention")
 	self:DelayedMessage("grasp", 30, L["grasp_warning"], "Urgent")
-	self:Bar("grasp", "~"..GetSpellInfo(33525), 33, 33525)
+	self:Bar("grasp", "~"..self:SpellName(33525), 33, 33525) -- Ground Slam
 
 	self:DelayedMessage(36297, 97, L["silence_warning"], "Urgent")
 	self:Bar(36297, L["silence_bar"], 102, 36297)
@@ -75,39 +75,39 @@ end
 -- Event Handlers
 --
 
-function mod:CaveIn(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(spellId, CL["you"]:format(spellName), "Personal", spellId, "Alarm")
-		self:FlashShake(spellId)
+function mod:CaveIn(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+		self:FlashShake(args.spellId)
 	end
 end
 
-function mod:Grow(_, spellId, _, _, _, stack)
-	stack = stack or 1
-	self:Message("grow", L["grow_message"]:format(stack), "Important", spellId)
+function mod:Grow(args)
+	local stack = args.amount or 1
+	self:Message("grow", L["grow_message"]:format(stack), "Important", args.spellId)
 	stack = stack + 1
 	if stack < 31 then
-		self:Bar("grow", L["grow_bar"]:format(stack), 30, spellId)
+		self:Bar("grow", L["grow_bar"]:format(stack), 30, args.spellId)
 	else
 		stack = 1
-		self:Bar("grow", L["grow_bar"]:format(stack), 300, spellId)
+		self:Bar("grow", L["grow_bar"]:format(stack), 300, args.spellId)
 	end
 end
 
-function mod:Silence(_, spellId)
-	self:Message(spellId, L["silence_message"], "Attention", spellId)
-	self:DelayedMessage(spellId, 28, L["silence_warning"], "Urgent")
-	self:Bar(spellId, L["silence_bar"], 31, spellId)
+function mod:Silence(args)
+	self:Message(args.spellId, L["silence_message"], "Attention", args.spellId)
+	self:DelayedMessage(args.spellId, 28, L["silence_warning"], "Urgent")
+	self:Bar(args.spellId, L["silence_bar"], 31, args.spellId)
 end
 
-function mod:Shatter(_, spellId, _, _, spellName)
-	self:Message("grasp", spellName, "Positive", spellId)
+function mod:Shatter(args)
+	self:Message("grasp", args.spellName, "Positive", args.spellId)
 	self:DelayedMessage("grasp", 56, L["grasp_warning"], "Urgent")
-	self:Bar("grasp", "~"..GetSpellInfo(33525), 62, 33525)
+	self:Bar("grasp", "~"..self:SpellName(33525), 62, 33525)
 end
 
-function mod:Slam(_, spellId)
-	self:Message("grasp", L["grasp_message"], "Attention", spellId)
-	self:Bar("grasp", GetSpellInfo(33654), 10, 33654)
+function mod:Slam(args)
+	self:Message("grasp", L["grasp_message"], "Attention", args.spellId)
+	self:Bar("grasp", 33654, 10, 33654) -- Shatter
 end
 

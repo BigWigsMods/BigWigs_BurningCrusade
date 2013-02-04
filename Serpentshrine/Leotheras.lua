@@ -93,29 +93,29 @@ do
 		mod:TargetMessage("whisper", L["whisper_message"], beDemon, "Attention", 37676)
 		scheduled = nil
 	end
-	function mod:Whisper(player, spellId)
-		beDemon[#beDemon + 1] = player
+	function mod:Whisper(args)
+		beDemon[#beDemon + 1] = args.destName
 		if not scheduled then
 			scheduled = true
-			self:Bar("whisper", L["whisper_bar"], 30, spellId)
+			self:Bar("whisper", L["whisper_bar"], 30, args.spellId)
 			self:ScheduleTimer(demonWarn, 0.3)
 		end
 	end
 end
 
-function mod:Whirlwind(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Important", spellId, "Alert")
-	self:Bar(spellId, CL["cast"]:format(spellName), 12, spellId)
+function mod:Whirlwind(args)
+	self:Message(args.spellId, args.spellName, "Important", args.spellId, "Alert")
+	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 12, args.spellId)
 end
 
 function mod:WhirlwindBar()
-	local ww = GetSpellInfo(37640)
+	local ww = self:SpellName(37640)
 	self:Bar(37640, "~"..ww, 15, 37640)
 	self:DelayedMessage(37640, 14, CL["soon"]:format(ww), "Attention")
 end
 
-function mod:Madness(player, spellId)
-	self:TargetMessage("mindcontrol", L["mindcontrol_warning"], player, "Urgent", spellId, "Alert")
+function mod:Madness(args)
+	self:TargetMessage("mindcontrol", L["mindcontrol_warning"], args.destName, "Urgent", args.spellId, "Alert")
 end
 
 do
@@ -125,7 +125,7 @@ do
 		mod:Bar("phase", L["demon_nextbar"], 45, "Spell_Shadow_Metamorphosis")
 	end
 	function mod:Phase()
-		local ww = GetSpellInfo(37640)
+		local ww = self:SpellName(37640)
 		self:StopBar(CL["cast"]:format(ww))
 		self:StopBar("~"..ww)
 		self:StopBar(L["demon_nextbar"])

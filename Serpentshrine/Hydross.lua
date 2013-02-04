@@ -11,8 +11,8 @@ local curPerc = 10
 local stance = 1
 local allowed = nil
 local debuffBar = "%d%% - %s"
-local poisonName = GetSpellInfo(38219)
-local cleanName = GetSpellInfo(38215)
+local poisonName = mod:SpellName(38219)
+local cleanName = mod:SpellName(38215)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -39,9 +39,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {
-		"stance", "mark", {38246, "ICON"}, {38235, "PROXIMITY"}, "berserk", "bosskill"
-	}
+	return {"stance", "mark", {38246, "ICON"}, {38235, "PROXIMITY"}, "berserk", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -78,41 +76,41 @@ end
 
 do
 	local scheduled = nil
-	local function tombWarn(spellName)
-		mod:TargetMessage(38235, spellName, inTomb, "Attention", 38235)
+	local function tombWarn(spellName, spellId)
+		mod:TargetMessage(spellId, spellName, inTomb, "Attention", spellId)
 		scheduled = nil
 	end
-	function mod:Tomb(player, _, _, _, spellName)
-		inTomb[#inTomb + 1] = player
+	function mod:Tomb(args)
+		inTomb[#inTomb + 1] = args.destName
 		if not scheduled then
 			scheduled = true
-			self:ScheduleTimer(tombWarn, 0.3, spellName)
+			self:ScheduleTimer(tombWarn, 0.3, args.spellName, args.spellId)
 		end
 	end
 end
 
-function mod:Sludge(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Attention", spellId)
-	self:Bar(spellId, CL["other"]:format(spellName, player), 24, spellId)
-	self:PrimaryIcon(spellId, player)
+function mod:Sludge(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
+	self:TargetBar(args.spellId, args.spellName, args.destName, 24, args.spellId)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:Mark(_, spellId, _, _, spellName)
+function mod:Mark(args)
 	self:StopBar((debuffBar):format(curPerc, poisonName))
 	self:StopBar((debuffBar):format(curPerc, cleanName))
-	self:Message("mark", L["debuff_warn"]:format(curPerc), "Important", spellId, "Alert")
-	if spellId == 38215 or spellId == 38219 then
+	self:Message("mark", L["debuff_warn"]:format(curPerc), "Important", args.spellId, "Alert")
+	if args.spellId == 38215 or args.spellId == 38219 then
 		curPerc = 25
-	elseif spellId == 38216 or spellId == 38220 then
+	elseif args.spellId == 38216 or args.spellId == 38220 then
 		curPerc = 50
-	elseif spellId == 38217 or spellId == 38221 then
+	elseif args.spellId == 38217 or args.spellId == 38221 then
 		curPerc = 100
-	elseif spellId == 38218 or spellId == 38222 then
+	elseif args.spellId == 38218 or args.spellId == 38222 then
 		curPerc = 250
-	elseif spellId == 38231 or spellId == 38230 then
+	elseif args.spellId == 38231 or args.spellId == 38230 then
 		curPerc = 500
 	end
-	self:Bar("mark", (debuffBar):format(curPerc, spellName), 15, spellId)
+	self:Bar("mark", (debuffBar):format(curPerc, args.spellName), 15, args.spellId)
 end
 
 do

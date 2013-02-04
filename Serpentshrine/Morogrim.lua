@@ -76,19 +76,19 @@ do
 		mod:TargetMessage(37850, spellName, inGrave, "Important", 37850, "Alert")
 		scheduled = nil
 	end
-	function mod:Grave(player, _, _, _, spellName)
-		inGrave[#inGrave + 1] = player
+	function mod:Grave(args)
+		inGrave[#inGrave + 1] = args.destName
 		if not scheduled then
 			scheduled = true
 			self:Bar(37850, L["grave_nextbar"], 28.5, 37850)
 			self:Bar(37850, L["grave_bar"], 4.5, 37850)
-			self:ScheduleTimer(graveWarn, 0.4, spellName)
+			self:ScheduleTimer(graveWarn, 0.4, args.spellName)
 		end
 	end
 end
 
-function mod:Tidal(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId, "Alarm")
+function mod:Tidal(args)
+	self:Message(args.spellId, args.spellName, "Urgent", args.spellId, "Alarm")
 end
 
 function mod:Murlocs()

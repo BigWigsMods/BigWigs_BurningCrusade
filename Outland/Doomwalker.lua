@@ -49,11 +49,11 @@ function mod:OnEngage()
 	self:OpenProximity("proximity", 10)
 
 	self:Message("earthquake", L["engage_message"], "Attention")
-	self:Bar("earthquake", "~"..GetSpellInfo(32686), 30, 32686)
+	self:Bar("earthquake", "~"..L["earthquake"], 30, 32686)
 
-	local overrun = GetSpellInfo(32637)
-	self:Bar("overrun", "~"..overrun, 26, 32637)
-	self:DelayedMessage("overrun", 24, CL["soon"]:format(overrun), "Attention")
+	local overrun = self:SpellName(32637)
+	self:Bar("overrun", "~"..L["overrun"], 26, 32637)
+	self:DelayedMessage("overrun", 24, CL["soon"]:format(L["overrun"]), "Attention")
 end
 
 --------------------------------------------------------------------------------
@@ -62,32 +62,32 @@ end
 
 do
 	local prev = 0
-	function mod:Overrun(_, spellId, _, _, spellName)
+	function mod:Overrun(args)
 		local t = GetTime()
 		if (t-prev) > 20 then
 			prev = t
-			self:Message("overrun", spellName, "Important", spellId)
-			self:Bar("overrun", "~"..spellName, 30, spellId)
-			self:DelayedMessage("overrun", 28, CL["soon"]:format(spellName), "Attention")
+			self:Message("overrun", args.spellName, "Important", args.spellId)
+			self:Bar("overrun", "~"..args.spellName, 30, args.spellId)
+			self:DelayedMessage("overrun", 28, CL["soon"]:format(args.spellName), "Attention")
 		end
 	end
 end
 
-function mod:Earthquake(_, spellId, _, _, spellName)
-	self:Message("earthquake", spellName, "Important", spellId)
-	self:DelayedMessage("overrun", 65, CL["soon"]:format(spellName), "Attention")
-	self:Bar("earthquake", "~"..spellName, 70, spellId)
+function mod:Earthquake(args)
+	self:Message("earthquake", args.spellName, "Important", args.spellId)
+	self:DelayedMessage("overrun", 65, CL["soon"]:format(args.spellName), "Attention")
+	self:Bar("earthquake", "~"..args.spellName, 70, args.spellId)
 end
 
-function mod:Frenzy(_, spellId, _, _, spellName)
-	self:Message(spellId, "20% - "..spellName, "Important", spellId, "Alarm")
+function mod:Frenzy(args)
+	self:Message(args.spellId, "20% - "..args.spellName, "Important", args.spellId, "Alarm")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(_, unit)
 	if unit == "target" and self:GetCID(UnitGUID(unit)) == 17711 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 20 and hp < 27 then
-			self:Message(33653, CL["soon"]:format(GetSpellInfo(33653)), "Urgent")
+			self:Message(33653, CL["soon"]:format(self:SpellName(33653)), "Urgent") -- Frenzy
 			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
 		end
 	end

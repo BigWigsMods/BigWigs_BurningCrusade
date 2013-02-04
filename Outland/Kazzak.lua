@@ -29,9 +29,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {
-		{32960, "FLASHSHAKE"}, 21063, "berserk", "bosskill"
-	}
+	return {{32960, "FLASHSHAKE"}, 21063, "berserk", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -54,22 +52,22 @@ end
 -- Event Handlers
 --
 
-function mod:Mark(player, spellId, _, _, spellName)
-	if UnitIsUnit("player", player) then
-		self:LocalMessage(spellId, CL["you"]:format(spellName), "Personal", spellId, "Alarm")
-		self:FlashShake(spellId)
+function mod:Mark(args)
+	if UnitIsUnit("player", args.destName) then
+		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+		self:FlashShake(args.spellId)
 	end
 end
 
-function mod:Twisted(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Attention", spellId)
+function mod:Twisted(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
 end
 
-function mod:Frenzy(_, spellId)
-	self:Message("berserk", L["enrage_message"], "Important", spellId, "Alert")
+function mod:Frenzy(args)
+	self:Message("berserk", L["enrage_message"], "Important", args.spellId, "Alert")
 	self:DelayedMessage("berserk", 10, L["enrage_finished"], "Positive")
-	self:Bar("berserk", L["enraged_bar"], 10, spellId)
+	self:Bar("berserk", L["enraged_bar"], 10, args.spellId)
 	self:DelayedMessage("berserk", 49, L["enrage_warning2"], "Urgent")
-	self:Bar("berserk", L["enrage_bar"], 60, spellId)
+	self:Bar("berserk", L["enrage_bar"], 60, args.spellId)
 end
 

@@ -49,7 +49,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "Whirl", 37363)
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("RAID_BOSS_EMOTE")
+	self:Emote("Spout", self.displayName)
 
 	self:Death("Win", 21217)
 end
@@ -63,7 +63,7 @@ function mod:OnEngage()
 	self:DelayedMessage("dive", 85, (dwarn):format(5), "Urgent", nil, "Alarm")
 	self:Bar("dive", L["dive_bar"], 90, "Spell_Frost_ArcticWinds")
 
-	self:Bar(37660, "~"..GetSpellInfo(37660), 17, 37660)
+	self:Bar(37660, "~"..self:SpellName(37660), 17, 37660) -- Whirl
 
 	self:DelayedMessage("spout", 34, L["spout_warning"], "Attention")
 	self:Bar("spout", L["spout_bar"], 37, "INV_Weapon_Rifle_02")
@@ -77,25 +77,23 @@ end
 
 do
 	local last = 0
-	function mod:Whirl(_, _, _, _, spellName)
+	function mod:Whirl(args)
 		local time = GetTime()
 		if (time - last) > 10 then
 			last = time
-			self:Bar(37660, "~"..spellName, 17, 37660)
+			self:Bar(37660, "~"..args.spellName, 17, 37660)
 		end
 	end
 end
 
-function mod:RAID_BOSS_EMOTE(_, _, unit)
-	if unit == self.displayName then
-		self:ScanForLurker()
-		self:CheckForWipe()
-		self:Bar("spout", L["spout_message"], 20, "Spell_Frost_ChillingBlast")
-		self:Bar("spout", L["spout_bar"], 50, "Spell_Frost_ChillingBlast")
-		self:Message("spout", L["spout_message"], "Important", nil, "Alert", nil, 37433)
-		self:DelayedMessage("spout", 47, L["spout_warning"], "Attention")
-		self:StopBar("~"..GetSpellInfo(37660))
-	end
+function mod:Spout(_, unit)
+	self:ScanForLurker()
+	self:CheckForWipe()
+	self:Bar("spout", L["spout_message"], 20, "Spell_Frost_ChillingBlast")
+	self:Bar("spout", L["spout_bar"], 50, "Spell_Frost_ChillingBlast")
+	self:Message("spout", L["spout_message"], "Important", nil, "Alert", nil, 37433)
+	self:DelayedMessage("spout", 47, L["spout_warning"], "Attention")
+	self:StopBar("~"..self:SpellName(37660)) -- Whirl
 end
 
 do
@@ -107,7 +105,7 @@ do
 			timer = nil
 			self:CloseProximity()
 			self:StopBar(L["spout_bar"])
-			self:StopBar("~"..GetSpellInfo(37660))
+			self:StopBar("~"..self:SpellName(37660)) -- Whirl
 			self:ScheduleTimer("LurkerUp", 60)
 
 			local ewarn = L["emerge_warning"]
