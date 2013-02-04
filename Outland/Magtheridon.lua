@@ -85,7 +85,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	abycount = 1
 
 	self:Message("escape", L["escape_warning1"]:format(self.displayName), "Attention", 20589)
@@ -162,13 +162,13 @@ function mod:DebrisInc()
 	self:Message(36449, L["debris_message"], "Positive", 36449)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unit)
-	if unit == "target" and self:GetCID(UnitGUID(unit)) == 17257 then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:GetCID(UnitGUID(unit)) == 17257 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 37 then
 			local debris = self:SpellName(36449)
 			self:Message(36449, CL["soon"]:format(debris), "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
 end

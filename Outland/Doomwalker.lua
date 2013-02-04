@@ -45,7 +45,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	self:OpenProximity("proximity", 10)
 
 	self:Message("earthquake", L["engage_message"], "Attention")
@@ -83,12 +83,12 @@ function mod:Frenzy(args)
 	self:Message(args.spellId, "20% - "..args.spellName, "Important", args.spellId, "Alarm")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unit)
-	if unit == "target" and self:GetCID(UnitGUID(unit)) == 17711 then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:GetCID(UnitGUID(unit)) == 17711 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 20 and hp < 27 then
 			self:Message(33653, CL["soon"]:format(self:SpellName(33653)), "Urgent") -- Frenzy
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
 end

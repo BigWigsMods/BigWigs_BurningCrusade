@@ -64,7 +64,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
 	self:Message(33238, L["whirlwind_warning"], "Attention", 33238)
 	local ww = self:SpellName(33238)
@@ -111,13 +111,13 @@ function mod:Flurry(args)
 	self:Message(args.spellId, "50% - "..args.spellName, "Important", args.spellId)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unit)
-	if unit == "target" and self:GetCID(UnitGUID(unit)) == 18831 then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:GetCID(UnitGUID(unit)) == 18831 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 50 and hp < 57 then
 			local flurry = self:SpellName(33232)
 			self:Message(33232, CL["soon"]:format(flurry), "Positive", 33232)
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
 end

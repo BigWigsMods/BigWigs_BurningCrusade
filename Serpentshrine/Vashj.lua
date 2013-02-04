@@ -100,7 +100,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	shieldsFaded = 0
 	self:Message("phase", L["engage_message"], "Attention")
 end
@@ -201,12 +201,12 @@ function mod:RepeatNaga()
 	self:ScheduleTimer("RepeatNaga", 47.5)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unit)
-	if unit == "target" and self:GetCID(UnitGUID(unit)) == 21212 then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:GetCID(UnitGUID(unit)) == 21212 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 70 and hp < 76 then
 			self:Message("phase", L["phase2_soon_message"], "Attention")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
 end

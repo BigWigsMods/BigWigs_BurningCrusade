@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	self:Message(L["engage_message"]:format(self.displayName), "Attention")
 
 	local vanish = GetSpellInfo(29448)
@@ -68,12 +68,12 @@ function mod:Vanish(_, spellId)
 	self:DelayedMessage(spellId, 30, CL["soon"]:format(spellName), "Attention")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unit)
-	if unit == "target" and self:GetCID(UnitGUID(unit)) == 15687 then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:GetCID(UnitGUID(unit)) == 15687 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 36 then
 			self:Message(37023, CL["soon"]:format(GetSpellInfo(37023)), "Positive", nil, "Info")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 		end
 	end
 end

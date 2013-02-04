@@ -59,7 +59,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
 	self:Message("murloc", L["murloc_engaged"]:format(self.displayName), "Positive")
 	self:Bar("murloc", L["murloc_bar"], 40, 42365)
@@ -102,12 +102,12 @@ function mod:Globules()
 	self:Bar("globules", L["globules_bar"], 36, "INV_Elemental_Primal_Water")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unit)
-	if unit == "target" and self:GetCID(UnitGUID(unit)) == 21213 then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:GetCID(UnitGUID(unit)) == 21213 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 25 and hp < 30 then
 			self:Message("globules", L["globules_warning"], "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
 end

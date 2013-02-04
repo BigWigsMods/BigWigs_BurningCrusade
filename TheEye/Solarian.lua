@@ -59,7 +59,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
 	self:Message("phase", L["phase1_message"], "Positive")
 	self:Bar("phase", L["split_bar"], 50, "Spell_Shadow_SealOfKings")
@@ -88,12 +88,12 @@ function mod:WrathRemove(args)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unit)
-	if unit == "target" and self:GetCID(UnitGUID(unit)) == 18805 then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:GetCID(UnitGUID(unit)) == 18805 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 21 and hp < 25 then
 			self:Message("phase", L["phase2_warning"], "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
 end

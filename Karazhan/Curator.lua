@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("UNIT_HEALTH_FREQUENT")
+	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	self:OpenProximity("proximity", 10)
 	self:Berserk(600)
 	local evocation = GetSpellInfo(30254)
@@ -76,12 +76,12 @@ function mod:Infusion(_, spellId, _, _, spellName)
 	self:StopBar(CL["cast"]:format(evocation))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(_, unit)
-	if unit == "target" and self:GetCID(UnitGUID(unit)) == 15691 then
+function mod:UNIT_HEALTH_FREQUENT(unit)
+	if self:GetCID(UnitGUID(unit)) == 15691 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
 			self:Message(30403, CL["soon"]:format(GetSpellInfo(30403)), "Positive")
-			self:UnregisterEvent("UNIT_HEALTH_FREQUENT")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
 end
