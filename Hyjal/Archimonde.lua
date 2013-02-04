@@ -82,7 +82,7 @@ do
 			mod:PrimaryIcon(spellId, player)
 			mod:ScheduleTimer("PrimaryIcon", 5, spellId)
 			if UnitIsUnit(player, "player") then
-				self:Say(spellId)
+				mod:Say(spellId)
 			end
 			return
 		end
