@@ -44,7 +44,7 @@ if L then
 	L.banish_over_message = "Banish Fades!"
 	L.banish_bar = "<Banished>"
 
-	L.exhaust = self:SpellName(44032)
+	L.exhaust = mod:SpellName(44032)
 	L.exhaust_desc = "Timer bars for Mind Exhaustion on players."
 	L.exhaust_icon = 44032
 	L.exhaust_bar = "[%s] Exhausted"
