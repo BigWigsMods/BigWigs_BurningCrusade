@@ -15,11 +15,11 @@ if L then
 	L.engage_trigger = "Do not proceed. You will be eliminated."
 	L.engage_message = "Doomwalker engaged, Earthquake in ~30sec!"
 
-	L.overrun = GetSpellInfo(32637)
+	L.overrun = mod:SpellName(32637)
 	L.overrun_desc = "Doomwalker will randomly charge someone, knocking them back. Doomwalker will also reset his threat table."
 	L.overrun_icon = 32637
 
-	L.earthquake = GetSpellInfo(32686)
+	L.earthquake = mod:SpellName(32686)
 	L.earthquake_desc = "Doomwalker channels an Earthquake doing 2000 damage every 2 seconds, lasting 8 seconds, and stunning players in his proximity."
 	L.earthquake_icon = 32686
 end

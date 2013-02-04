@@ -80,24 +80,24 @@ do
 		mod:TargetMessage(30004, spellName, inWreath, "Important", 29946, "Long")
 		scheduled = nil
 	end
-	function mod:FlameWreath(player, _, _, _, spellName)
-		inWreath[#inWreath + 1] = player
+	function mod:FlameWreath(args.destName, _, _, _, args.spellName)
+		inWreath[#inWreath + 1] = args.destName
 		if not scheduled then
 			scheduled = true
 			self:Bar(30004, L["flame_bar"], 21, 29946)
-			self:ScheduleTimer(wreathWarn, 0.4, spellName)
+			self:ScheduleTimer(wreathWarn, 0.4, args.spellName)
 		end
 	end
 end
 
-function mod:FlameWreathStart(_, spellId, _, _, spellName)
-	self:Message(spellId, CL["cast"]:format(spellName), "Important", spellId, "Alarm")
-	self:Bar(spellId, CL["cast"]:format(spellName), 5, spellId)
+function mod:FlameWreathStart(args)
+	self:Message(args.spellId, CL["cast"]:format(args.spellName), "Important", args.spellId, "Alarm")
+	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 5, args.spellId)
 end
 
-function mod:Blizzard(_, spellId)
-	self:Message("blizzard", L["blizzard_message"], "Attention", spellId)
-	self:Bar("blizzard", L["blizzard_message"], 36, spellId)
+function mod:Blizzard(args)
+	self:Message("blizzard", L["blizzard_message"], "Attention", args.spellId)
+	self:Bar("blizzard", L["blizzard_message"], 36, args.spellId)
 end
 
 function mod:Drinking()

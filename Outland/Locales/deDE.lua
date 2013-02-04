@@ -4,10 +4,8 @@ if L then
 	L.engage_trigger = "Fahren Sie nicht fort. Sie werden eliminiert." --check
 	L.engage_message = "Verdammniswandler angegriffen, Erdbeben in ~30sek!"
 
-	L.overrun = GetSpellInfo(32637)
 	L.overrun_desc = "Warnt, wenn Verdammniswandler \195\156berrennen benutzt."
 
-	L.earthquake = GetSpellInfo(32686)
 	L.earthquake_desc = "Warnt wenn Verdammniswandler Erdbeben benutzt."
 end
 
@@ -93,7 +91,6 @@ if L then
 	L.banish_over_message = "Verbannen verblasst!"
 	L.banish_bar = "<Verbannt>"
 
-	L.exhaust = GetSpellInfo(44032)
 	L.exhaust_desc = "Timer f\195\188r Gedankenersch\195\182pfung"
 	L.exhaust_bar = "[%s] ersch\195\182pft"
 

@@ -4,10 +4,8 @@ if L then
 	L.engage_trigger = "No continuéis. Seréis eliminados."
 	L.engage_message = "¡Caminante del Destino en combate, Terremoto en ~30 seg!"
 
-	L.overrun = GetSpellInfo(32637)
 	L.overrun_desc = "Avisar cuando Caminante del Destino utiliza Infestar."
 
-	L.earthquake = GetSpellInfo(32686)
 	L.earthquake_desc = "Avisar cuando Caminante del Destino utiliza Terremoto."
 end
 
@@ -94,7 +92,6 @@ if L then
 	L.banish_over_message = "¡Desterrar se desvanece!"
 	L.banish_bar = "<Desterrado>"
 
-	L.exhaust = GetSpellInfo(44032)
 	L.exhaust_desc = "Temporizadores para Extenuación mental en jugadores."
 	L.exhaust_bar = "[%s] Extenuación mental"
 

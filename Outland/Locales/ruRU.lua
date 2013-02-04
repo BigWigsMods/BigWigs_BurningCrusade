@@ -4,10 +4,8 @@ if L then
 	L.engage_trigger = "Не продолжайте. Вы будете уничтожены."
 	L.engage_message = "Doomwalker engaged, Earthquake in ~30sec!"
 
-	L.overrun = GetSpellInfo(32637)
 	L.overrun_desc = "Alert when Doomwalker uses his Overrun ability."
 
-	L.earthquake = GetSpellInfo(32686)
 	L.earthquake_desc = "Alert when Doomwalker uses his Earthquake ability."
 end
 
@@ -86,7 +84,6 @@ if L then
 	L.banish_over_message = "Изгнание рассеялось!"
 	L.banish_bar = "<Изгнан>"
 
-	L.exhaust = GetSpellInfo(44032)
 	L.exhaust_desc = "Таймеры для Изнурение разума на игроках."
 	L.exhaust_bar = "[%s] изнурённый"
 

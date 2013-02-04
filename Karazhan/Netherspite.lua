@@ -60,18 +60,18 @@ end
 -- Event Handlers
 --
 
-function mod:VoidZone(_, spellId)
-	self:Message(spellId, L["voidzone_warn"]:format(voidcount), "Attention", spellId)
+function mod:VoidZone(args)
+	self:Message(args.spellId, L["voidzone_warn"]:format(voidcount), "Attention", args.spellId)
 	voidcount = voidcount + 1
 end
 
-function mod:Netherbreath(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId)
-	self:Bar(spellId, "<"..spellName..">", 2.5, spellId)
+function mod:Netherbreath(args)
+	self:Message(args.spellId, args.spellName, "Urgent", args.spellId)
+	self:Bar(args.spellId, "<"..args.spellName..">", 2.5, args.spellId)
 end
 
 function mod:Phase1()
-	self:StopBar("<"..GetSpellInfo(38523)..">")
+	self:StopBar("<"..self:SpellName(38523)..">")
 	self:Message("phase", L["phase1_message"], "Important", "Spell_ChargePositive")
 	self:Bar("phase", L["phase2_bar"], 58, "Spell_ChargePositive")
 end

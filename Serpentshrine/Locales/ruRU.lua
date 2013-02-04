@@ -82,11 +82,9 @@ if L then
 	L.naga_bar = "Нага появляется"
 	L.naga_soon_message = "Скоро Нага!"
 
-	L.barrier = GetSpellInfo(38112)
 	L.barrier_desc = "Предупреждать о разрушении барьеров."
 	L.barrier_down_message = "Барьер %d/4 разрушен!"
 
-	L.loot = GetItemInfo(31088)
 	L.loot_desc = "Показывать, кто взял Порченую магму."
 end
 

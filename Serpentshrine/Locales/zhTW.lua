@@ -136,11 +136,9 @@ if L then
 	L.naga_bar = "盤牙精英計時"
 	L.naga_soon_message = "盤牙精英即將出現!中央坦克注意!"
 
-	L.barrier = GetSpellInfo(38112)
 	L.barrier_desc = "當瓦許女士的魔法屏障消失時警示"
 	L.barrier_down_message = "魔法屏障 %d/4 解除!"
 
-	L.loot = GetItemInfo(31088)
 	L.loot_desc = "提示誰拾取了受污染的核心"
 end
 

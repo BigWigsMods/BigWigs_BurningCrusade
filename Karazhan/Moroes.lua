@@ -44,7 +44,7 @@ function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	self:Message(L["engage_message"]:format(self.displayName), "Attention")
 
-	local vanish = GetSpellInfo(29448)
+	local vanish = self:SpellName(29448)
 	self:Bar(29448, "~"..vanish, 35, 29448)
 	self:DelayedMessage(29448, 30, CL["soon"]:format(vanish), "Attention")
 end
@@ -53,26 +53,26 @@ end
 -- Event Handlers
 --
 
-function mod:Garrote(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Attention", spellId)
-	self:PrimaryIcon(spellId, player)
+function mod:Garrote(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:Frenzy(_, spellId, _, _, spellName)
-	self:IfMessage(spellId, "30% - "..spellName, "Important", spellId, "Alarm")
+function mod:Frenzy(args)
+	self:Message(args.spellId, "30% - "..args.spellName, "Important", args.spellId, "Alarm")
 end
 
-function mod:Vanish(_, spellId)
-	self:Message(spellId, spellName, "Urgent", spellId, "Alert")
-	self:Bar(spellId, "~"..spellName, 35, spellId)
-	self:DelayedMessage(spellId, 30, CL["soon"]:format(spellName), "Attention")
+function mod:Vanish(args)
+	self:Message(args.spellId, args.spellName, "Urgent", args.spellId, "Alert")
+	self:Bar(args.spellId, "~"..args.spellName, 35, args.spellId)
+	self:DelayedMessage(args.spellId, 30, CL["soon"]:format(args.spellName), "Attention")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	if self:GetCID(UnitGUID(unit)) == 15687 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 36 then
-			self:Message(37023, CL["soon"]:format(GetSpellInfo(37023)), "Positive", nil, "Info")
+			self:Message(37023, CL["soon"]:format(self:SpellName(37023)), "Positive", nil, "Info")
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 		end
 	end

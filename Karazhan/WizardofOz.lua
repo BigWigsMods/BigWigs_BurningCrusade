@@ -61,8 +61,8 @@ end
 -- Event Handlers
 --
 
-function mod:ChainLightning(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId)
-	self:Bar(spellId, "<"..spellName..">", 2, spellId)
+function mod:ChainLightning(args)
+	self:Message(args.spellId, args.spellName, "Urgent", args.spellId)
+	self:Bar(args.spellId, "<"..args.spellName..">", 2, args.spellId)
 end
 

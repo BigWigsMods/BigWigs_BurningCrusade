@@ -43,7 +43,7 @@ end
 function mod:OnEngage()
 	self:Message(29511, L["engage_message"], "Attention")
 	self:DelayedMessage(29511, 33, L["repentance_warning"], "Urgent", nil, "Alarm")
-	self:Bar(29511, "~"..GetSpellInfo(29511), 33, 29511)
+	self:Bar(29511, "~"..self:SpellName(29511), 33, 29511)
 	self:OpenProximity("proximity", 10)
 end
 
@@ -51,15 +51,15 @@ end
 -- Event Handlers
 --
 
-function mod:HolyFire(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Important", spellId)
-	self:PrimaryIcon(spellId, player)
+function mod:HolyFire(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:Repentance(_, spellId, _, _, spellName)
-	self:Message(spellId, L["repentance_message"], "Important", spellId)
-	self:Bar(spellId, "<"..spellName..">", 12, spellId)
-	self:DelayedMessage(spellId, 33, L["repentance_warning"], "Urgent", nil, "Alarm")
-	self:Bar(spellId, "~"..spellName, 33, spellId)
+function mod:Repentance(args)
+	self:Message(args.spellId, L["repentance_message"], "Important", args.spellId)
+	self:Bar(args.spellId, "<"..args.spellName..">", 12, args.spellId)
+	self:DelayedMessage(args.spellId, 33, L["repentance_warning"], "Urgent", nil, "Alarm")
+	self:Bar(args.spellId, "~"..args.spellName, 33, args.spellId)
 end
 

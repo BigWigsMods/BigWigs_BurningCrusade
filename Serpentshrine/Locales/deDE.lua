@@ -132,11 +132,9 @@ if L then
 	L.naga_bar = "Naga Elite kommt"
 	L.naga_soon_message = "Naga Elite bald!"
 
-	L.barrier = GetSpellInfo(38112)
 	L.barrier_desc = "Alarmiert, wenn die Barrieren in Phase 2 zerstört werden."
 	L.barrier_down_message = "Barriere %d/4 zerstört!"
 
-	L.loot = GetItemInfo(31088)
 	L.loot_desc = "Warnt, wer einen Besudelten Kern lootet."
 end
 

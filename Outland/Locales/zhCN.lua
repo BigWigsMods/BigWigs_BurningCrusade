@@ -4,10 +4,8 @@ if L then
 	L.engage_trigger = "停止前进。否则你们将被消灭。"
 	L.engage_message = "末日行者激活！约30秒后，发动地震术！"
 
-	L.overrun = GetSpellInfo(32637)
 	L.overrun_desc = "当施放泛滥技能时发出警报。"
 
-	L.earthquake = GetSpellInfo(32686)
 	L.earthquake_desc = "当施放地震术时发出警告。"
 end
 
@@ -94,7 +92,6 @@ if L then
 	L.banish_over_message = "放逐消失！"
 	L.banish_bar = "<放逐中>"
 
-	L.exhaust = GetSpellInfo(44032)
 	L.exhaust_desc = "心灵疲惫记时条。"
 	L.exhaust_bar = "心灵疲惫：%s"
 

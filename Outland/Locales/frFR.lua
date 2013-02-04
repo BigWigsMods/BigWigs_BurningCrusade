@@ -4,10 +4,8 @@ if L then
 	L.engage_trigger = "Cessez toute activité. Vous allez être éliminés."
 	L.engage_message = "Marche-funeste engagé, Séisme dans ~30 sec. !"
 
-	L.overrun = GetSpellInfo(32637)
 	L.overrun_desc = "Prévient quand Marche-funeste utilise sa capacité Renversement."
 
-	L.earthquake = GetSpellInfo(32686)
 	L.earthquake_desc = "Prévient quand Marche-funeste utilise sa capacité Séisme."
 end
 
@@ -94,7 +92,6 @@ if L then
 	L.banish_over_message = "Fin du ban !"
 	L.banish_bar = "<Banni>"
 
-	L.exhaust = GetSpellInfo(44032)
 	L.exhaust_desc = "Barre temporelles pour l'Epuisement d'esprit des joueurs."
 	L.exhaust_bar = "[%s] épuisé"
 

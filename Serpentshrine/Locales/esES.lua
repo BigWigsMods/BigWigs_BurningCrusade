@@ -132,11 +132,9 @@ if L then
 	L.naga_bar = "~Élite Naga"
 	L.naga_soon_message = "Élite Colmillo Torcido en breve"
 
-	L.barrier = GetSpellInfo(38112)
 	L.barrier_desc = "Avisar cuand caen las Barreras mágicas."
 	L.barrier_down_message = "¡Barrera %d/4 caída!"
 
-	L.loot = GetItemInfo(31088)
 	L.loot_desc = "Avisar quién despoja Núcleos máculos."
 end
 

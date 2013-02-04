@@ -132,11 +132,9 @@ if L then
 	L.naga_bar = "<精英 来临>"
 	L.naga_soon_message = "盘牙精英 即将出现！"
 
-	L.barrier = GetSpellInfo(38112)
 	L.barrier_desc = "当护盾击碎发出警报。"
 	L.barrier_down_message = "护盾 - %d/4 击碎！"
 
-	L.loot = GetItemInfo(31088)
 	L.loot_desc = "对拾取了污染之核的队友发出警报。"
 end
 

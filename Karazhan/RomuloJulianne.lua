@@ -68,36 +68,36 @@ end
 -- Event Handlers
 --
 
-function mod:Poison(player, spellId)
-	self:TargetMessage(spellId, L["poison_message"], player, "Important", spellId)
+function mod:Poison(args)
+	self:TargetMessage(args.spellId, L["poison_message"], args.destName, "Important", args.spellId)
 end
 
-function mod:Heal(player, spellId)
-	self:Message("heal", L["heal_message"], "Urgent", spellId)
+function mod:Heal(args)
+	self:Message("heal", L["heal_message"], "Urgent", args.spellId)
 end
 
-function mod:Devotion(unit, spellId)
-	if not UnitIsPlayer(unit) then
-		self:Message("buff", L["buff2_message"], "Attention", spellId)
-		self:Bar("buff", L["buff2_message"], 10, spellId)
+function mod:Devotion(args)
+	if not UnitIsPlayer(args.destName) then
+		self:Message("buff", L["buff2_message"], "Attention", args.spellId)
+		self:Bar("buff", L["buff2_message"], 10, args.spellId)
 	end
 end
 
-function mod:DevotionRemoved(unit)
-	if not UnitIsPlayer(unit) then
+function mod:DevotionRemoved(args)
+	if not UnitIsPlayer(args.destName) then
 		self:StopBar(L["buff2_message"])
 	end
 end
 
-function mod:Daring(unit, spellId)
-	if not UnitIsPlayer(unit) then
-		self:Message("buff", L["buff1_message"], "Attention", spellId)
-		self:Bar("buff", L["buff1_message"], 8, spellId)
+function mod:Daring(args)
+	if not UnitIsPlayer(args.destName) then
+		self:Message("buff", L["buff1_message"], "Attention", args.spellId)
+		self:Bar("buff", L["buff1_message"], 8, args.spellId)
 	end
 end
 
-function mod:DaringRemoved(unit)
-	if not UnitIsPlayer(unit) then
+function mod:DaringRemoved(args)
+	if not UnitIsPlayer(args.destName) then
 		self:StopBar(L["buff1_message"])
 	end
 end

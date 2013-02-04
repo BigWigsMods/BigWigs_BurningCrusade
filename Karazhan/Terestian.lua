@@ -54,28 +54,28 @@ end
 -- Event Handlers
 --
 
-function mod:Sacrifice(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Attention", spellId)
-	self:Bar(spellId, CL["other"]:format(spellName, player), 30, spellId)
-	self:DelayedMessage(spellId, 40, CL["soon"]:format(spellName), "Urgent")
-	self:Bar(spellId, "~"..spellName, 42, spellId)
-	self:PrimaryIcon(spellId, player)
+function mod:Sacrifice(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
+	self:TargetBar(args.spellId, args.spellName, args.destName, 30, args.spellId)
+	self:DelayedMessage(args.spellId, 40, CL["soon"]:format(args.spellName), "Urgent")
+	self:Bar(args.spellId, "~"..args.spellName, 42, args.spellId)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 
-function mod:Weakened(_, spellId)
-	self:Message("weak", L["weak_message"], "Important", spellId, "Alarm")
+function mod:Weakened(args)
+	self:Message("weak", L["weak_message"], "Important", args.spellId, "Alarm")
 	self:DelayedMessage("weak", 40, L["weak_warning1"], "Attention")
-	self:Bar("weak", L["weak_bar"], 45, spellId)
+	self:Bar("weak", L["weak_bar"], 45, args.spellId)
 end
 
-function mod:WeakenedRemoved(_, spellId)
-	self:Message(spellId, L["weak_warning2"], "Attention", nil, "Info")
+function mod:WeakenedRemoved(args)
+	self:Message(args.spellId, L["weak_warning2"], "Attention", nil, "Info")
 	self:CancelDelayedMessage(L["weak_warning1"])
 	self:StopBar(L["weak_bar"])
 end
 
-function mod:SacrificeRemoved(player, spellId, _, _, spellName)
-	self:StopBar(CL["other"]:format(player))
-	self:PrimaryIcon(spellId)
+function mod:SacrificeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+	self:PrimaryIcon(args.spellId, args.destName)
 end
 

@@ -41,8 +41,8 @@ end
 -- Event Handlers
 --
 
-function mod:Curse(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Attention", spellId)
+function mod:Curse(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)

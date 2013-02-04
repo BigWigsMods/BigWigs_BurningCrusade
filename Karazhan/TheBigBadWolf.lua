@@ -36,10 +36,10 @@ end
 -- Event Handlers
 --
 
-function mod:Riding(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Attention", spellId, "Long")
-	self:Whisper(spellId, player, spellName)
-	self:PrimaryIcon(spellId, player)
-	self:Bar(spellId, L["riding_bar"]:format(player), 20, spellId)
+function mod:Riding(args)
+	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId, "Long")
+	self:Whisper(args.spellId, args.destName, args.spellName)
+	self:PrimaryIcon(args.spellId, args.destName)
+	self:Bar(args.spellId, L["riding_bar"]:format(args.destName), 20, args.spellId)
 end
 

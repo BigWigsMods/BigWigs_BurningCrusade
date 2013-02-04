@@ -63,9 +63,8 @@ function mod:OnEngage()
 	nova = nil
 	self:Message("phase", L["phase1_message"], "Positive", "achievement_boss_princemalchezaar_02")
 
-	local enfeeble = GetSpellInfo(30843)
-	self:DelayedMessage(30843, 25, CL["custom_sec"]:format(enfeeble, 5), "Attention")
-	self:Bar(30843, enfeeble, 30, 30843)
+	self:DelayedMessage(30843, 25, CL["custom_sec"]:format(self:SpellName(30843), 5), "Attention")
+	self:Bar(30843, 30843, 30, 30843) -- Enfeeble
 end
 
 function mod:OnWipe()
@@ -76,26 +75,26 @@ end
 -- Event Handlers
 --
 
-function mod:Enfeeble(player, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Important", spellId)
-	self:DelayedMessage(spellId, 25, CL["custom_sec"]:format(spellName, 5), "Urgent")
-	self:Bar(spellId, spellName, 30, spellId)
-	self:Bar(30852, GetSpellInfo(30852), 5, 30852)
+function mod:Enfeeble(args)
+	self:Message(args.spellId, args.spellName, "Important", args.spellId)
+	self:DelayedMessage(args.spellId, 25, CL["custom_sec"]:format(args.spellName, 5), "Urgent")
+	self:Bar(args.spellId, args.spellName, 30, args.spellId)
+	self:Bar(30852, 30852, 5, 30852) -- Shadow Nova
 end
 
-function mod:SelfEnfeeble(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(spellId, CL["you"]:format(spellName), "Personal", spellId, "Alarm")
-		self:Bar(spellId, CL["you"]:format(spellName), 7, spellId)
+function mod:SelfEnfeeble(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+		self:TargetBar(args.spellId, args.spellName, args.destName, 7, args.spellId)
 	end
 end
 
-function mod:Nova(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Important", spellId, "Info")
-	self:Bar(spellId, "<"..spellName..">", 2, spellId)
+function mod:Nova(args)
+	self:Message(args.spellId, args.spellName, "Important", args.spellId, "Info")
+	self:Bar(args.spellId, "<"..args.spellName..">", 2, args.spellId)
 	if nova then
-		self:Bar(spellId, spellName, 20, spellId)
-		self:DelayedMessage(spellId, 15, CL["soon"]:format(spellName), "Attention")
+		self:Bar(args.spellId, args.spellName, 20, args.spellId)
+		self:DelayedMessage(args.spellId, 15, CL["soon"]:format(args.spellName), "Attention")
 	end
 end
 
@@ -111,9 +110,8 @@ end
 
 function mod:Phase3()
 	self:Message("phase", L["phase3_message"], "Positive", "achievement_boss_princemalchezaar_02")
-	local enfeeble = GetSpellInfo(30843)
-	self:CancelDelayedMessage(CL["custom_sec"]:format(enfeeble, 5))
-	self:StopBar(enfeeble)
+	self:CancelDelayedMessage(CL["custom_sec"]:format(self:SpellName(30843), 5))
+	self:StopBar(30843) -- Enfeeble
 	nova = true
 end
 

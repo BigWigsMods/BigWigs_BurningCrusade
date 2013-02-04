@@ -53,7 +53,7 @@ end
 
 function mod:OnEngage()
 	local spellId = 36922
-	local fear = GetSpellInfo(spellId)
+	local fear = self:SpellName(spellId)
 	self:Message(spellId, CL["custom_start_s"]:format(self.displayName, fear, 35), "Positive")
 	self:Bar(spellId, "~"..fear, 35, spellId)
 	self:DelayedMessage(spellId, 33, CL["soon"]:format(fear), "Positive")
@@ -63,23 +63,23 @@ end
 -- Event Handlers
 --
 
-function mod:Fear(_, spellId, _, _, spellName)
-	self:Bar(spellId, "<"..spellName..">", 2.5, spellId)
-	self:Message(spellId, spellName, "Positive", spellId)
-	self:Bar(spellId, "~"..spellName, 37, spellId)
-	self:DelayedMessage(spellId, 35, CL["soon"]:format(spellName), "Positive")
+function mod:Fear(args)
+	self:Bar(args.spellId, "<"..args.spellName..">", 2.5, args.spellId)
+	self:Message(args.spellId, args.spellName, "Positive", args.spellId)
+	self:Bar(args.spellId, "~"..args.spellName, 37, args.spellId)
+	self:DelayedMessage(args.spellId, 35, CL["soon"]:format(args.spellName), "Positive")
 end
 
-function mod:CharredEarth(player, spellId, _, _, spellName)
-	if UnitIsUnit(player, "player") then
-		self:LocalMessage(spellId, CL["underyou"]:format(spellName), "Personal", spellId, "Alarm")
-		self:FlashShake(spellId)
+function mod:CharredEarth(args)
+	if UnitIsUnit(args.destName, "player") then
+		self:LocalMessage(args.spellId, CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+		self:FlashShake(args.spellId)
 	end
 end
 
-function mod:Bones(_, spellId, _, _, spellName)
-	self:Message(spellId, spellName, "Urgent", spellId)
-	self:Bar(spellId, "<"..spellName..">", 11, spellId)
+function mod:Bones(args)
+	self:Message(args.spellId, args.spellName, "Urgent", args.spellId)
+	self:Bar(args.spellId, "<"..args.spellName..">", 11, args.spellId)
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
@@ -89,7 +89,7 @@ function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
 end
 
 function mod:Air()
-	local fear = GetSpellInfo(36922)
+	local fear = self:SpellName(36922)
 	self:CancelDelayedMessage(CL["soon"]:format(fear))
 	self:StopBar("~"..fear)
 

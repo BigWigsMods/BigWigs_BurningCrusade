@@ -132,11 +132,9 @@ if L then
 	L.naga_bar = "Prochain naga"
 	L.naga_soon_message = "Naga imminent !"
 
-	L.barrier = GetSpellInfo(38112)
 	L.barrier_desc = "Prévient quand les barrières se dissipent."
 	L.barrier_down_message = "Barrière %d/4 dissipée !"
 
-	L.loot = GetItemInfo(31088)
 	L.loot_desc = "Prévient quand un joueur ramasse un Noyau contaminé."
 end
 

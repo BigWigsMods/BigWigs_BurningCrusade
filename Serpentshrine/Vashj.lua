@@ -52,7 +52,7 @@ if L then
 	L.barrier_icon = 38112
 	L.barrier_down_message = "Barrier %d/4 down!"
 
-	L.loot = mod:SpellName(31088)
+	L.loot = GetItemInfo(31088)
 	L.loot_desc = "Warn who loots the Tainted Cores."
 	L.loot_icon = 38132
 end

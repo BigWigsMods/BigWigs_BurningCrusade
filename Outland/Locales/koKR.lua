@@ -4,10 +4,8 @@ if L then
 	L.engage_trigger = "접근 금지. 너희는 제거될 것이다."
 	L.engage_message = "파멸의 절단기 전투 개시, 약 30초 이내 지진!"
 
-	L.overrun = GetSpellInfo(32637)
 	L.overrun_desc = "파멸의 절단기의 괴멸 사용 가능 시 경고합니다."
 
-	L.earthquake = GetSpellInfo(32686)
 	L.earthquake_desc = "파멸의 절단기의 지진 사용 가능 시 경고합니다."
 end
 
@@ -94,7 +92,6 @@ if L then
 	L.banish_over_message = "추방 종료!"
 	L.banish_bar = "<추방됨>"
 
-	L.exhaust = GetSpellInfo(44032)
 	L.exhaust_desc = "정신 방출에 걸린 플레이어에 대한 타이머 바입니다."
 	L.exhaust_bar = "[%s] 정신 방출"
 

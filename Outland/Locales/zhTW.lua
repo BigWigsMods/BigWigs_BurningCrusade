@@ -4,10 +4,8 @@ if L then
 	L.engage_trigger = "別在繼續下去。你將會被消除的。"
 	L.engage_message = "與厄運行者進入戰鬥，30 秒後發動地震!"
 
-	L.overrun = GetSpellInfo(32637)
 	L.overrun_desc = "當厄運行者發動 超越 技能時發出警報"
 
-	L.earthquake = GetSpellInfo(32686)
 	L.earthquake_desc = "當厄運行者發動地震術時發出警報"
 end
 
@@ -94,7 +92,6 @@ if L then
 	L.banish_over_message = "驅逐效果消失!"
 	L.banish_bar = "<驅逐中>"
 
-	L.exhaust = GetSpellInfo(44032)
 	L.exhaust_desc = "玩家中心靈耗損時計時器"
 	L.exhaust_bar = "心靈耗損: [%s]"
 
