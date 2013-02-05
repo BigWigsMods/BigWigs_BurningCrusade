@@ -12,7 +12,7 @@ mod:RegisterEnableMob(17767)
 
 function mod:GetOptions()
 	return {
-		{31258, "FLASHSHAKE"}, {31249, "ICON"}, "berserk", "bosskill"
+		{31258, "FLASH"}, {31249, "ICON"}, "berserk", "bosskill"
 	}
 end
 
@@ -41,7 +41,7 @@ end
 function mod:DeathAndDecay(args)
 	if UnitIsUnit(args.destName, "player") then
 		self:LocalMessage(args.spellId, CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
-		self:FlashShake(args.spellId)
+		self:Flash(args.spellId)
 	end
 end
 

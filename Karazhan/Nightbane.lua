@@ -31,7 +31,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"phase", 36922, {30129, "FLASHSHAKE"}, 37098, "bosskill"
+		"phase", 36922, {30129, "FLASH"}, 37098, "bosskill"
 	}
 end
 
@@ -73,7 +73,7 @@ end
 function mod:CharredEarth(args)
 	if UnitIsUnit(args.destName, "player") then
 		self:LocalMessage(args.spellId, CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
-		self:FlashShake(args.spellId)
+		self:Flash(args.spellId)
 	end
 end
 

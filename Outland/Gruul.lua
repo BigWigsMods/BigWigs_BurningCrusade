@@ -39,7 +39,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"grasp", "grow", {36240, "FLASHSHAKE"}, 36297, "proximity", "bosskill"
+		"grasp", "grow", {36240, "FLASH"}, 36297, "proximity", "bosskill"
 	}
 end
 
@@ -78,7 +78,7 @@ end
 function mod:CaveIn(args)
 	if UnitIsUnit(args.destName, "player") then
 		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Personal", args.spellId, "Alarm")
-		self:FlashShake(args.spellId)
+		self:Flash(args.spellId)
 	end
 end
 

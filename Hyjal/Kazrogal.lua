@@ -25,7 +25,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{31447, "PROXIMITY", "FLASHSHAKE"}, "bosskill"
+		{31447, "PROXIMITY", "FLASH"}, "bosskill"
 	}
 end
 
@@ -64,7 +64,7 @@ function mod:Mark(args)
 		local power = UnitPower("player", 0)
 		if power > 0 and power < 4000 then
 			self:OpenProximity(args.spellId, 15)
-			self:FlashShake(args.spellId)
+			self:Flash(args.spellId)
 		end
 	end
 end

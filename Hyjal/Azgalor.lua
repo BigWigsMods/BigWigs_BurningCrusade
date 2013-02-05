@@ -23,7 +23,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{31347, "ICON", "FLASHSHAKE"}, 31344, 31340, "berserk", "bosskill"
+		{31347, "ICON", "FLASH"}, 31344, 31340, "berserk", "bosskill"
 	}
 end
 
@@ -63,7 +63,7 @@ function mod:Doom(args)
 	self:TargetBar(args.spellId, args.spellName, args.destName, 19, args.spellId)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if UnitIsUnit(args.destName, "player") then
-		self:FlashShake(args.spellId)
+		self:Flash(args.spellId)
 	end
 end
 

@@ -29,7 +29,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {{32960, "FLASHSHAKE"}, 21063, "berserk", "bosskill"}
+	return {{32960, "FLASH"}, 21063, "berserk", "bosskill"}
 end
 
 function mod:OnBossEnable()
@@ -55,7 +55,7 @@ end
 function mod:Mark(args)
 	if UnitIsUnit("player", args.destName) then
 		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Personal", args.spellId, "Alarm")
-		self:FlashShake(args.spellId)
+		self:Flash(args.spellId)
 	end
 end
 
