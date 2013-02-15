@@ -123,7 +123,7 @@ do
 end
 
 function mod:UNIT_MANA(unit)
-	if self:GetCID(UnitGUID(unit)) == 16524 then
+	if self:MobId(UnitGUID(unit)) == 16524 then
 		local mana = UnitPower(unit, 0)
 		if mana > 33000 and mana < 37000 then
 			self:Message("drink", L["drink_warning"], "Urgent", nil, "Alert")
@@ -133,7 +133,7 @@ function mod:UNIT_MANA(unit)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 16524 then
+	if self:MobId(UnitGUID(unit)) == 16524 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 40 and hp < 46 then
 			self:Message("adds", L["adds_warning"], "Urgent", nil, "Alert")

@@ -77,7 +77,7 @@ function mod:Infusion(args)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 15691 then
+	if self:MobId(UnitGUID(unit)) == 15691 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
 			self:Message(30403, CL["soon"]:format(self:SpellName(30403)), "Positive") -- Arcane Infusion

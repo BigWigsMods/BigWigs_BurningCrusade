@@ -81,7 +81,7 @@ function mod:Shield(args)
 end
 
 function mod:SpellShield(args)
-	if self:GetCID(args.destGUID) == 18832 then
+	if self:MobId(args.destGUID) == 18832 then
 		self:Message(args.spellId, L["spellshield_message"], "Attention", args.spellId, "Info")
 		self:Bar(args.spellId, args.spellName, 30, args.spellId)
 	end
@@ -112,7 +112,7 @@ function mod:Flurry(args)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 18831 then
+	if self:MobId(UnitGUID(unit)) == 18831 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 50 and hp < 57 then
 			local flurry = self:SpellName(33232)

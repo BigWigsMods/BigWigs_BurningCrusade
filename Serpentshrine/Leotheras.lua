@@ -150,7 +150,7 @@ function mod:Image()
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 21215 then
+	if self:MobId(UnitGUID(unit)) == 21215 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
 			self:Message("image", L["image_warning"], "Urgent")

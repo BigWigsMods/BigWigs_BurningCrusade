@@ -163,7 +163,7 @@ function mod:DebrisInc()
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 17257 then
+	if self:MobId(UnitGUID(unit)) == 17257 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 37 then
 			local debris = self:SpellName(36449)

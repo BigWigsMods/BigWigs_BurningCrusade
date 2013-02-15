@@ -103,7 +103,7 @@ function mod:Globules()
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 21213 then
+	if self:MobId(UnitGUID(unit)) == 21213 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 25 and hp < 30 then
 			self:Message("globules", L["globules_warning"], "Positive")

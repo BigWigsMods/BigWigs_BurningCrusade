@@ -202,7 +202,7 @@ function mod:RepeatNaga()
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 21212 then
+	if self:MobId(UnitGUID(unit)) == 21212 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 70 and hp < 76 then
 			self:Message("phase", L["phase2_soon_message"], "Attention")

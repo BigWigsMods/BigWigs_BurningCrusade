@@ -84,7 +84,7 @@ function mod:Frenzy(args)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 17711 then
+	if self:MobId(UnitGUID(unit)) == 17711 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 20 and hp < 27 then
 			self:Message(33653, CL["soon"]:format(self:SpellName(33653)), "Urgent") -- Frenzy

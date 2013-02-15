@@ -61,7 +61,7 @@ function mod:Heal(args)
 end
 
 function mod:Totem(args)
-	if self:GetCID(args.sourceGUID) == 21214 then
+	if self:MobId(args.sourceGUID) == 21214 then
 		self:Message("totem", L["totem_message2"], "Urgent", args.spellId, "Alarm")
 	else
 		self:Message("totem", L["totem_message1"], "Attention", args.spellId)

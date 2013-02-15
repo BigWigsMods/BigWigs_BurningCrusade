@@ -89,7 +89,7 @@ function mod:WrathRemove(args)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 18805 then
+	if self:MobId(UnitGUID(unit)) == 18805 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 21 and hp < 25 then
 			self:Message("phase", L["phase2_warning"], "Positive")

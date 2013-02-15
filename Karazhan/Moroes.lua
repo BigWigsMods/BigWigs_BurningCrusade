@@ -69,7 +69,7 @@ function mod:Vanish(args)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
-	if self:GetCID(UnitGUID(unit)) == 15687 then
+	if self:MobId(UnitGUID(unit)) == 15687 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 36 then
 			self:Message(37023, CL["soon"]:format(self:SpellName(37023)), "Positive", nil, "Info")
