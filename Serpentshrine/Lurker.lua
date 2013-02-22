@@ -55,18 +55,18 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("dive", L["engage_warning"]:format(self.displayName), "Attention")
+	self:Message("dive", "Attention", nil, L["engage_warning"]:format(self.displayName), false)
 	local dwarn = L["dive_warning"]
-	self:DelayedMessage("dive", 30, (dwarn):format(60), "Positive")
-	self:DelayedMessage("dive", 60, (dwarn):format(30), "Positive")
-	self:DelayedMessage("dive", 80, (dwarn):format(10), "Positive")
-	self:DelayedMessage("dive", 85, (dwarn):format(5), "Urgent", nil, "Alarm")
-	self:Bar("dive", L["dive_bar"], 90, "Spell_Frost_ArcticWinds")
+	self:DelayedMessage("dive", 30, "Positive", (dwarn):format(60))
+	self:DelayedMessage("dive", 60, "Positive", (dwarn):format(30))
+	self:DelayedMessage("dive", 80, "Positive", (dwarn):format(10))
+	self:DelayedMessage("dive", 85, "Urgent", (dwarn):format(5), false, "Alarm")
+	self:Bar("dive", 90, L["dive_bar"], "Spell_Frost_ArcticWinds")
 
-	self:Bar(37660, "~"..self:SpellName(37660), 17, 37660) -- Whirl
+	self:CDBar(37660, 17) -- Whirl
 
-	self:DelayedMessage("spout", 34, L["spout_warning"], "Attention")
-	self:Bar("spout", L["spout_bar"], 37, "INV_Weapon_Rifle_02")
+	self:DelayedMessage("spout", 34, "Attention", L["spout_warning"])
+	self:Bar("spout", 37, L["spout_bar"], "INV_Weapon_Rifle_02")
 
 	self:OpenProximity("proximity", 10)
 end
@@ -77,23 +77,23 @@ end
 
 do
 	local last = 0
-	function mod:Whirl(args)
+	function mod:Whirl()
 		local time = GetTime()
 		if (time - last) > 10 then
 			last = time
-			self:Bar(37660, "~"..args.spellName, 17, 37660)
+			self:CDBar(37660, 17)
 		end
 	end
 end
 
-function mod:Spout(_, unit)
+function mod:Spout()
 	self:ScanForLurker()
 	self:CheckForWipe()
-	self:Bar("spout", L["spout_message"], 20, "Spell_Frost_ChillingBlast")
-	self:Bar("spout", L["spout_bar"], 50, "Spell_Frost_ChillingBlast")
-	self:Message("spout", L["spout_message"], "Important", nil, "Alert", nil, 37433)
-	self:DelayedMessage("spout", 47, L["spout_warning"], "Attention")
-	self:StopBar("~"..self:SpellName(37660)) -- Whirl
+	self:Bar("spout", 20, L["spout_message"], "Spell_Frost_ChillingBlast")
+	self:Bar("spout", 50, L["spout_bar"], "Spell_Frost_ChillingBlast")
+	self:Message("spout", "Important", "Alert", L["spout_message"], 37433)
+	self:DelayedMessage("spout", 47, "Attention", L["spout_warning"])
+	self:StopBar(37660) -- Whirl
 end
 
 do
@@ -105,19 +105,19 @@ do
 			timer = nil
 			self:CloseProximity()
 			self:StopBar(L["spout_bar"])
-			self:StopBar("~"..self:SpellName(37660)) -- Whirl
+			self:StopBar(37660) -- Whirl
 			self:ScheduleTimer("LurkerUp", 60)
 
 			local ewarn = L["emerge_warning"]
-			self:Message("dive", L["dive_message"], "Attention")
-			self:DelayedMessage("dive", 30, (ewarn):format(30), "Positive")
-			self:DelayedMessage("dive", 50, (ewarn):format(10), "Positive")
-			self:DelayedMessage("dive", 55, (ewarn):format(5), "Urgent", nil, "Alert")
-			self:DelayedMessage("dive", 60, L["emerge_message"], "Attention")
-			self:Bar("dive", L["emerge_bar"], 60, "Spell_Frost_Stun")
+			self:Message("dive", "Attention", nil, L["dive_message"], false)
+			self:DelayedMessage("dive", 30, "Positive", (ewarn):format(30))
+			self:DelayedMessage("dive", 50, "Positive", (ewarn):format(10))
+			self:DelayedMessage("dive", 55, "Urgent", (ewarn):format(5), false, "Alert")
+			self:DelayedMessage("dive", 60, "Attention", L["emerge_message"])
+			self:Bar("dive", 60, L["emerge_bar"], "Spell_Frost_Stun")
 
-			self:Bar("spout", L["spout_bar"], 63, "Spell_Frost_ChillingBlast")
-			self:DelayedMessage("spout", 60, L["spout_warning"], "Attention")
+			self:Bar("spout", 63, L["spout_bar"], "Spell_Frost_ChillingBlast")
+			self:DelayedMessage("spout", 60, "Attention", L["spout_warning"])
 			return
 		end
 		if not timer then
@@ -128,11 +128,11 @@ end
 
 function mod:LurkerUp()
 	local dwarn = L["dive_warning"]
-	self:DelayedMessage("dive", 30, (dwarn):format(60), "Positive")
-	self:DelayedMessage("dive", 60, (dwarn):format(30), "Positive")
-	self:DelayedMessage("dive", 80, (dwarn):format(10), "Positive")
-	self:DelayedMessage("dive", 85, (dwarn):format(5), "Urgent", nil, "Alarm")
-	self:Bar("dive", L["dive_bar"], 90, "Spell_Frost_ArcticWinds")
+	self:DelayedMessage("dive", 30, "Positive", (dwarn):format(60))
+	self:DelayedMessage("dive", 60, "Positive", (dwarn):format(30))
+	self:DelayedMessage("dive", 80, "Positive", (dwarn):format(10))
+	self:DelayedMessage("dive", 85, "Urgent", (dwarn):format(5), false, "Alarm")
+	self:Bar("dive", 90, L["dive_bar"], "Spell_Frost_ArcticWinds")
 
 	self:OpenProximity("proximity", 10)
 	self:ScheduleRepeatingTimer("CheckForWipe", 20)

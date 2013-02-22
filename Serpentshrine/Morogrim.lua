@@ -61,9 +61,9 @@ end
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
-	self:Message("murloc", L["murloc_engaged"]:format(self.displayName), "Positive")
-	self:Bar("murloc", L["murloc_bar"], 40, 42365)
-	self:Bar(37850, L["grave_nextbar"], 20, 37850)
+	self:Message("murloc", "Positive", nil, L["murloc_engaged"]:format(self.displayName), false)
+	self:Bar("murloc", 40, L["murloc_bar"], 42365)
+	self:Bar(37850, 20, L["grave_nextbar"])
 end
 
 --------------------------------------------------------------------------------
@@ -72,41 +72,41 @@ end
 
 do
 	local scheduled = nil
-	local function graveWarn(spellName)
-		mod:TargetMessage(37850, spellName, inGrave, "Important", 37850, "Alert")
+	local function graveWarn()
+		mod:TargetMessage(37850, inGrave, "Important", "Alert")
 		scheduled = nil
 	end
 	function mod:Grave(args)
 		inGrave[#inGrave + 1] = args.destName
 		if not scheduled then
 			scheduled = true
-			self:Bar(37850, L["grave_nextbar"], 28.5, 37850)
-			self:Bar(37850, L["grave_bar"], 4.5, 37850)
-			self:ScheduleTimer(graveWarn, 0.4, args.spellName)
+			self:Bar(37850, 28.5, L["grave_nextbar"])
+			self:Bar(37850, 4.5, L["grave_bar"])
+			self:ScheduleTimer(graveWarn, 0.4)
 		end
 	end
 end
 
 function mod:Tidal(args)
-	self:Message(args.spellId, args.spellName, "Urgent", args.spellId, "Alarm")
+	self:Message(args.spellId, "Urgent", "Alarm")
 end
 
 function mod:Murlocs()
-	self:Message("murloc", L["murloc_message"], "Positive", 42365)
-	self:Bar("murloc", L["murloc_bar"], 51, 42365)
-	self:DelayedMessage("murloc", 49, L["murloc_soon_message"], "Attention")
+	self:Message("murloc", "Positive", nil, L["murloc_message"], 42365)
+	self:Bar("murloc", 51, L["murloc_bar"], 42365)
+	self:DelayedMessage("murloc", 49, "Attention", L["murloc_soon_message"])
 end
 
 function mod:Globules()
-	self:Message("globules", L["globules_message"], "Important", nil, "Alert")
-	self:Bar("globules", L["globules_bar"], 36, "INV_Elemental_Primal_Water")
+	self:Message("globules", "Important", "Alert", L["globules_message"], false)
+	self:Bar("globules", 36, L["globules_bar"], "INV_Elemental_Primal_Water")
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	if self:MobId(UnitGUID(unit)) == 21213 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 25 and hp < 30 then
-			self:Message("globules", L["globules_warning"], "Positive")
+			self:Message("globules", "Positive", nil, L["globules_warning"], false)
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end

@@ -46,16 +46,16 @@ end
 --
 
 function mod:KnockAway(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Positive", args.spellId)
-	self:Bar(args.spellId, "~"..args.spellName, 20, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Positive", "Alarm")
+	self:CDBar(args.spellId, 20)
 end
 
 function mod:Pounding(args)
-	self:Bar(args.spellId, "~"..args.spellName, 13, args.spellId)
+	self:CDBar(args.spellId, 13)
 end
 
 function mod:Orb(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	if UnitIsUnit("player", args.destName) then
 		self:Say(args.spellId)

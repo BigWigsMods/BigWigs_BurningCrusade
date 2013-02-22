@@ -40,13 +40,13 @@ end
 
 function mod:FlamePatch(args)
 	if UnitIsUnit("player", args.destName) then
-		self:LocalMessage(args.spellId, CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+		self:Message(args.spellId, "Personal", "Alarm", CL["underyou"]:format(args.spellName))
 	end
 end
 
 function mod:Armor(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId, "Long")
-	self:TargetBar(args.spellId, args.spellName, args.destName, 60, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Important", "Long")
+	self:TargetBar(args.spellId, 60, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -58,10 +58,10 @@ do
 			if not first then
 				first = true
 			else
-				self:Message(35181, diveBomb, "Urgent", 35181, "Alarm")
+				self:Message(35181, "Urgent", "Alert")
 			end
-			self:DelayedMessage(35181, 47, CL["soon"]:format(diveBomb), "Important")
-			self:Bar(35181, "~"..diveBomb, 52, 35181)
+			self:DelayedMessage(35181, 47, "Important", CL["soon"]:format(diveBomb))
+			self:CDBar(35181, 52)
 			self:CancelTimer(timer)
 			timer = nil
 			self:ScheduleTimer("ScanForAlar", 25)

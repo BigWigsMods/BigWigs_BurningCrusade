@@ -66,10 +66,9 @@ end
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
-	self:Message(33238, L["whirlwind_warning"], "Attention", 33238)
-	local ww = self:SpellName(33238)
-	self:DelayedMessage(33238, 54, CL["soon"]:format(ww), "Urgent")
-	self:Bar(33238, "~"..ww, 59, 33238)
+	self:Message(33238, "Attention", nil, L["whirlwind_warning"])
+	self:DelayedMessage(33238, 54, "Urgent", CL["soon"]:format(self:SpellName(33238))) -- Whirlwind
+	self:CDBar(33238, 59) -- Whirlwind
 end
 
 --------------------------------------------------------------------------------
@@ -77,38 +76,38 @@ end
 --
 
 function mod:Shield(args)
-	self:Message(args.spellId, L["shield_message"], "Important", args.spellId)
+	self:Message(args.spellId, "Important", nil, L["shield_message"])
 end
 
 function mod:SpellShield(args)
 	if self:MobId(args.destGUID) == 18832 then
-		self:Message(args.spellId, L["spellshield_message"], "Attention", args.spellId, "Info")
-		self:Bar(args.spellId, args.spellName, 30, args.spellId)
+		self:Message(args.spellId, "Attention", "Info", L["spellshield_message"])
+		self:Bar(args.spellId, 30)
 	end
 end
 
 function mod:Whirlwind(args)
-	self:Message(args.spellId, L["whirlwind_message"], "Important", args.spellId)
-	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 15, args.spellId)
-	self:DelayedMessage(args.spellId, 55, CL["soon"]:format(args.spellName), "Urgent")
-	self:Bar(args.spellId, "~"..args.spellName, 60, args.spellId)
+	self:Message(args.spellId, "Important", nil, L["whirlwind_message"])
+	self:Bar(args.spellId, 15, CL["cast"]:format(args.spellName))
+	self:DelayedMessage(args.spellId, 55, "Urgent", CL["soon"]:format(args.spellName))
+	self:CDBar(args.spellId, 60)
 end
 
 function mod:Summon(args)
-	self:Message(args.spellId, L["summon_message"], "Attention", args.spellId, "Long")
-	self:Bar(args.spellId, L["summon_bar"], 50, args.spellId)
+	self:Message(args.spellId, "Attention", "Long", L["summon_message"])
+	self:Bar(args.spellId, 50, L["summon_bar"])
 end
 
 function mod:Prayer(args)
-	self:Message(args.spellId, L["heal_message"], "Important", args.spellId, "Alarm")
+	self:Message(args.spellId, "Important", "Alarm", L["heal_message"])
 end
 
 function mod:Smash(args)
-	self:Bar(args.spellId, "~"..args.spellName, 10, args.spellId)
+	self:CDBar(args.spellId, 10)
 end
 
 function mod:Flurry(args)
-	self:Message(args.spellId, "50% - "..args.spellName, "Important", args.spellId)
+	self:Message(args.spellId, "Important", nil, "50% - "..args.spellName)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
@@ -116,7 +115,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 50 and hp < 57 then
 			local flurry = self:SpellName(33232)
-			self:Message(33232, CL["soon"]:format(flurry), "Positive", 33232)
+			self:Message(33232, "Positive", nil, CL["soon"]:format(flurry))
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end

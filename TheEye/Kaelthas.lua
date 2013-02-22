@@ -105,8 +105,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar("phase", L["thaladred"], 32, "Spell_Shadow_Charm")
-	self:Message("phase", L["engage_message"], "Positive")
+	self:Bar("phase", 32, L["thaladred"], "Spell_Shadow_Charm")
+	self:Message("phase", "Positive", nil, L["engage_message"], false)
 	phase = 1
 end
 
@@ -115,14 +115,14 @@ end
 --
 
 function mod:Conflag(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
-	self:TargetBar(args.spellId, args.spellName, args.destName, 10, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetBar(args.spellId, 10, args.destName)
 end
 
 function mod:Toy(args)
 	if phase < 3 then
-		self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
-		self:TargetBar(args.spellId, args.spellName, args.destName, 60, args.spellId)
+		self:TargetMessage(args.spellId, args.destName, "Attention")
+		self:TargetBar(args.spellId, 60, args.destName)
 	end
 end
 
@@ -132,21 +132,21 @@ end
 
 do
 	local scheduled = nil
-	local function mcWarn(spellName, spellId)
-		mod:TargetMessage("mc", spellName, MCd, "Important", spellId, "Alert")
+	local function mcWarn(spellId)
+		mod:TargetMessage("mc", MCd, "Important", "Alert", spellId)
 		scheduled = nil
 	end
 	function mod:MC(args)
 		MCd[#MCd + 1] = args.destName
 		if not scheduled then
 			scheduled = true
-			self:ScheduleTimer(mcWarn, 0.5, args.spellName, args.spellId)
+			self:ScheduleTimer(mcWarn, 0.5, args.spellId)
 		end
 	end
 end
 
 function mod:FearCast(args)
-	self:Message(args.spellId, L["fear_soon_message"], "Urgent", args.spellId)
+	self:Message(args.spellId, "Urgent", nil, L["fear_soon_message"])
 end
 
 do
@@ -155,79 +155,79 @@ do
 		local time = GetTime()
 		if (time - last) > 5 then
 			last = time
-			self:Message(args.spellId, L["fear_message"], "Attention", args.spellId)
-			self:Bar(args.spellId, L["fear_bar"], 30, args.spellId)
+			self:Message(args.spellId, "Attention", nil, L["fear_message"])
+			self:Bar(args.spellId, 30, L["fear_bar"])
 		end
 	end
 end
 
 function mod:Phoenix()
-	self:Message("rebirth", L["rebirth"], "Urgent")
-	self:Bar("rebirth", L["rebirth_bar"], 45, "Spell_Fire_Burnout")
-	self:DelayedMessage("rebirth", 40, L["rebirth_warning"], "Attention")
+	self:Message("rebirth", "Urgent", nil, L["rebirth"])
+	self:Bar("rebirth", 45, L["rebirth_bar"], "Spell_Fire_Burnout")
+	self:DelayedMessage("rebirth", 40, "Attention", L["rebirth_warning"])
 end
 
 function mod:GravityLapse(args)
-	self:Message("phase", args.spellName, "Important", args.spellId)
-	self:Bar("phase", args.spellName, 90, args.spellId)
+	self:Message("phase", "Important", nil, args.spellId)
+	self:Bar("phase", 90, args.spellId)
 end
 
 function mod:AddDeaths(args)
-	self:Message("phase", L["dead_message"]:format(args.destName), "Attention")
+	self:Message("phase", "Attention", nil, L["dead_message"]:format(args.destName))
 end
 
 function mod:Pyro()
-	self:Bar("pyro", L["pyro"], 60, "Spell_Fire_Fireball02")
-	self:Message("pyro", L["pyro_message"], "Positive")
-	self:DelayedMessage("pyro", 55, L["pyro_warning"], "Attention")
+	self:Bar("pyro", 60, L["pyro"], "Spell_Fire_Fireball02")
+	self:Message("pyro", "Positive", nil, L["pyro_message"])
+	self:DelayedMessage("pyro", 55, "Attention", L["pyro_warning"])
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg, _, _, _, player)
 	if msg:find(L["gaze_trigger"]) then
-		self:TargetBar("gaze", L["gaze"], player, 9, "Spell_Shadow_EvilEye")
-		self:TargetMessage("gaze", L["gaze"], player, "Important")
+		self:TargetBar("gaze", 9, player, L["gaze"], "Spell_Shadow_EvilEye")
+		self:TargetMessage("gaze", player, "Important", nil, L["gaze"], "Spell_Shadow_EvilEye")
 		self:PrimaryIcon("gaze", player)
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L["thaladred_inc_trigger"] then
-		self:Message("phase", L["thaladred"], "Positive")
+		self:Message("phase", "Positive", nil, L["thaladred"], false)
 	elseif msg == L["sanguinar_inc_trigger"] then
-		self:Message("phase", L["sanguinar"], "Positive")
-		self:Bar("phase", L["sanguinar"], 13, "Spell_Shadow_Charm")
+		self:Message("phase", "Positive", nil, L["sanguinar"], false)
+		self:Bar("phase", 13, L["sanguinar"], "Spell_Shadow_Charm")
 		self:PrimaryIcon("gaze")
 		self:StopBar(L["gaze_bar"])
 	elseif msg == L["capernian_inc_trigger"] then
-		self:Message("phase", L["capernian"], "Positive")
-		self:Bar("phase", L["capernian"], 7, "Spell_Shadow_Charm")
+		self:Message("phase", "Positive", nil, L["capernian"], false)
+		self:Bar("phase", 7, L["capernian"], "Spell_Shadow_Charm")
 		self:OpenProximity("proximity", 10)
 		self:StopBar(L["fear_bar"])
 	elseif msg == L["telonicus_inc_trigger"] then
-		self:Message("phase", L["telonicus"], "Positive")
-		self:Bar("phase", L["telonicus"], 8, "Spell_Shadow_Charm")
+		self:Message("phase", "Positive", nil, L["telonicus"], false)
+		self:Bar("phase", 8, L["telonicus"], "Spell_Shadow_Charm")
 		self:CloseProximity()
 	elseif msg == L["weapons_inc_trigger"] then
 		phase = 2
-		self:Message("phase", L["weapons_inc_message"], "Positive")
-		self:Bar("phase", L["revive_bar"], 95, "Spell_Holy_ReviveChampion")
-		self:DelayedMessage("phase", 90, L["revive_warning"], "Attention")
+		self:Message("phase", "Positive", nil, L["weapons_inc_message"], false)
+		self:Bar("phase", 95, L["revive_bar"], "Spell_Holy_ReviveChampion")
+		self:DelayedMessage("phase", 90, "Attention", L["revive_warning"])
 	elseif msg == L["phase3_trigger"] then
 		phase = 3
-		self:Message("phase", L["phase3_message"], "Positive")
-		self:Bar("phase", L["phase4_bar"], 180, "Spell_ChargePositive")
+		self:Message("phase", "Positive", nil, L["phase3_message"] false)
+		self:Bar("phase", 180, L["phase4_bar"], "Spell_ChargePositive")
 	elseif msg == L["phase4_trigger"] then
 		phase = 4
-		self:Message("phase", L["phase4_message"], "Positive")
-		self:Bar("pyro", L["pyro"], 60, "Spell_Fire_Fireball02")
-		self:DelayedMessage("pyro", 55, L["pyro_warning"], "Attention")
+		self:Message("phase", "Positive", nil, L["phase4_message"], false)
+		self:Bar("pyro", 60, L["pyro"], "Spell_Fire_Fireball02")
+		self:DelayedMessage("pyro", 55, "Attention", L["pyro_warning"])
 		self:StopBar(L["phase4_bar"])
 	elseif msg == L["flying_trigger"] then
 		phase = 5
 		self:CancelDelayedMessage(L["pyro_warning"])
 		self:StopBar(L["pyro"])
-		self:Message("phase", L["flying_message"], "Attention")
-		self:Bar("phase", L["gravity_bar"], 60, "Spell_Nature_UnrelentingStorm")
+		self:Message("phase", "Attention", nil, L["flying_message"], false)
+		self:Bar("phase", 60, L["gravity_bar"], "Spell_Nature_UnrelentingStorm")
 	end
 end
 

@@ -77,8 +77,8 @@ function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	demonTimer = nil
 
-	self:DelayedMessage("phase", 55, L["phase_demonsoon"], "Urgent")
-	self:Bar("phase", L["demon_nextbar"], 60, "Spell_Shadow_Metamorphosis")
+	self:DelayedMessage("phase", 55, "Urgent", L["phase_demonsoon"])
+	self:Bar("phase", 60, L["demon_nextbar"], "Spell_Shadow_Metamorphosis")
 	self:Berserk(600)
 	self:WhirlwindBar()
 end
@@ -89,52 +89,50 @@ end
 
 do
 	local scheduled = nil
-	local function demonWarn()
-		mod:TargetMessage("whisper", L["whisper_message"], beDemon, "Attention", 37676)
+	local function demonWarn(spellId)
+		mod:TargetMessage("whisper", beDemon, "Attention", nil, L["whisper_message"], spellId)
 		scheduled = nil
 	end
 	function mod:Whisper(args)
 		beDemon[#beDemon + 1] = args.destName
 		if not scheduled then
 			scheduled = true
-			self:Bar("whisper", L["whisper_bar"], 30, args.spellId)
-			self:ScheduleTimer(demonWarn, 0.3)
+			self:Bar("whisper", 30, L["whisper_bar"], args.spellId)
+			self:ScheduleTimer(demonWarn, 0.3, args.spellId)
 		end
 	end
 end
 
 function mod:Whirlwind(args)
-	self:Message(args.spellId, args.spellName, "Important", args.spellId, "Alert")
-	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 12, args.spellId)
+	self:Message(args.spellId, "Important", "Alert")
+	self:Bar(args.spellId, 12, CL["cast"]:format(args.spellName))
 end
 
 function mod:WhirlwindBar()
-	local ww = self:SpellName(37640)
-	self:Bar(37640, "~"..ww, 15, 37640)
-	self:DelayedMessage(37640, 14, CL["soon"]:format(ww), "Attention")
+	self:CDBar(37640, 15)
+	self:DelayedMessage(37640, 14, "Attention", CL["soon"]:format(self:SpellName(37640)))
 end
 
 function mod:Madness(args)
-	self:TargetMessage("mindcontrol", L["mindcontrol_warning"], args.destName, "Urgent", args.spellId, "Alert")
+	self:TargetMessage("mindcontrol", args.destName, "Urgent", "Alert", L["mindcontrol_warning"], args.spellId)
 end
 
 do
 	local function demonSoon()
-		mod:Message("phase", L["phase_normal"], "Important")
-		mod:DelayedMessage("phase", 40, L["phase_demonsoon"], "Urgent")
-		mod:Bar("phase", L["demon_nextbar"], 45, "Spell_Shadow_Metamorphosis")
+		mod:Message("phase", "Important", nil, L["phase_normal"], false)
+		mod:DelayedMessage("phase", 40, "Urgent", L["phase_demonsoon"])
+		mod:Bar("phase", 45, L["demon_nextbar"], "Spell_Shadow_Metamorphosis")
 	end
 	function mod:Phase()
-		local ww = self:SpellName(37640)
-		self:StopBar(CL["cast"]:format(ww))
-		self:StopBar("~"..ww)
+		self:StopBar(CL["cast"]:format(self:SpellName(37640)))
+		self:StopBar(37640)
 		self:StopBar(L["demon_nextbar"])
 		self:CancelAllTimers()
 
-		self:Message("phase", L["phase_demon"], "Attention")
-		self:DelayedMessage("phase", 55, L["phase_normalsoon"], "Important")
-		self:Bar("whisper", L["whisper_soon"], 23, 37676)
-		self:Bar("phase", L["demon_bar"], 60, "Spell_Shadow_Metamorphosis")
+		self:Message("phase", "Attention", nil, L["phase_demon"], false)
+		self:DelayedMessage("phase", 55, "Important", L["phase_normalsoon"])
+		self:Bar("whisper", 23, L["whisper_soon"], 37676)
+		self:Bar("phase", 60, L["demon_bar"], "Spell_Shadow_Metamorphosis")
 		demonTimer = self:ScheduleTimer(demonSoon, 60)
 		self:ScheduleTimer("WhirlwindBar", 60)
 	end
@@ -146,14 +144,14 @@ function mod:Image()
 	self:CancelDelayedMessage(L["phase_demonsoon"])
 	self:StopBar(L["demon_bar"])
 	self:StopBar(L["demon_nextbar"])
-	self:Message("image", L["image_message"], "Important")
+	self:Message("image", "Important", nil, L["image_message"], false)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
 	if self:MobId(UnitGUID(unit)) == 21215 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
-			self:Message("image", L["image_warning"], "Urgent")
+			self:Message("image", "Urgent", nil, L["image_warning"], false)
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end

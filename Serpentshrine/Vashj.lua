@@ -102,7 +102,7 @@ end
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	shieldsFaded = 0
-	self:Message("phase", L["engage_message"], "Attention")
+	self:Message("phase", "Attention", nil, L["engage_message"], false)
 end
 
 --------------------------------------------------------------------------------
@@ -112,9 +112,9 @@ end
 function mod:Phase2()
 	self:PrimaryIcon(38280)
 	shieldsFaded = 0
-	self:Message("phase", L["phase2_message"], "Important", nil, "Alarm")
-	self:Bar("elemental", L["elemental_bar"], 53, 38132)
-	self:DelayedMessage("elemental", 48, L["elemental_soon_message"], "Important")
+	self:Message("phase", "Important", "Alarm", L["phase2_message"], false)
+	self:Bar("elemental", 53, L["elemental_bar"], 38132)
+	self:DelayedMessage("elemental", 48, "Important", L["elemental_soon_message"])
 	self:RepeatStrider()
 	self:RepeatNaga()
 end
@@ -125,14 +125,14 @@ function mod:Phase3()
 	self:StopBar(L["elemental_bar"])
 	self:StopBar(L["strider_bar"])
 	self:StopBar(L["naga_bar"])
-	self:Message("phase", L["phase3_message"], "Important", nil, "Alarm")
+	self:Message("phase", "Important", "Alarm", L["phase3_message"], false)
 	self:Berserk(240, true)
 end
 
 function mod:Charge(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId, "Alert")
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:TargetBar(args.spellId, args.spellName, args.destName, 20, args.spellId)
+	self:TargetBar(args.spellId, 20, args.destName)
 	if UnitIsUnit(args.destName, "player") then
 		self:OpenProximity(args.spellId, 10)
 	end
@@ -147,7 +147,7 @@ end
 
 --It seems that looting the core no longer stuns the player, this isn't fired. (v4.2)
 function mod:LootUpdate(args)
-	self:TargetMessage("loot", L["loot"], args.destName, "Positive", args.spellId, "Info")
+	self:TargetMessage("loot", args.destName, "Positive", "Info", L["loot"], args.spellId)
 	self:PrimaryIcon("loot", args.destName)
 end
 
@@ -155,13 +155,13 @@ end
 function mod:BarrierRemove(args)
 	shieldsFaded = shieldsFaded + 1
 	if shieldsFaded < 4 then
-		self:Message("barrier", L["barrier_down_message"]:format(shieldsFaded), "Attention", args.spellId)
+		self:Message("barrier", "Attention", nil, L["barrier_down_message"]:format(shieldsFaded), args.spellId)
 	end
 end
 
 function mod:ElementalDeath()
-	self:Bar("elemental", L["elemental_bar"], 53, 38132)
-	self:DelayedMessage("elemental", 48, L["elemental_soon_message"], "Important")
+	self:Bar("elemental", 53, L["elemental_bar"], 38132)
+	self:DelayedMessage("elemental", 48, "Important", L["elemental_soon_message"])
 end
 
 do
@@ -190,14 +190,14 @@ do
 end
 
 function mod:RepeatStrider()
-	self:Bar("strider", L["strider_bar"], 63, "Spell_Nature_AstralRecal")
-	self:DelayedMessage("strider", 58, L["strider_soon_message"], "Attention")
+	self:Bar("strider", 63, L["strider_bar"], "Spell_Nature_AstralRecal")
+	self:DelayedMessage("strider", 58, "Attention", L["strider_soon_message"])
 	self:ScheduleTimer("RepeatStrider", 63)
 end
 
 function mod:RepeatNaga()
-	self:Bar("naga", L["naga_bar"], 47.5, "INV_Misc_MonsterHead_02")
-	self:DelayedMessage("naga", 42.5, L["naga_soon_message"], "Attention")
+	self:Bar("naga", 47.5, L["naga_bar"], "INV_Misc_MonsterHead_02")
+	self:DelayedMessage("naga", 42.5, "Attention", L["naga_soon_message"])
 	self:ScheduleTimer("RepeatNaga", 47.5)
 end
 
@@ -205,7 +205,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	if self:MobId(UnitGUID(unit)) == 21212 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 70 and hp < 76 then
-			self:Message("phase", L["phase2_soon_message"], "Attention")
+			self:Message("phase", "Attention", nil, L["phase2_soon_message"], false)
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
@@ -213,7 +213,7 @@ end
 
 function mod:OnSync(sync, rest, nick)
 	if sync == "VashjLoot" and rest then
-		self:TargetMessage("loot", L["loot"], rest, "Positive", 38132, "Info")
+		self:TargetMessage("loot", rest, "Positive", "Info", L["loot"], 38132, true)
 		self:PrimaryIcon("loot", rest)
 	end
 end

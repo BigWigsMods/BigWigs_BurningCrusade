@@ -65,7 +65,7 @@ function mod:OnEngage()
 	curPerc = 10
 	stance = 1
 	allowed = true
-	self:Bar("mark", (debuffBar):format(curPerc, cleanName), 15, 38215)
+	self:Bar("mark", 15, (debuffBar):format(curPerc, cleanName), 38215)
 	self:Berserk(600)
 	self:OpenProximity(38235, 10)
 end
@@ -76,41 +76,43 @@ end
 
 do
 	local scheduled = nil
-	local function tombWarn(spellName, spellId)
-		mod:TargetMessage(spellId, spellName, inTomb, "Attention", spellId)
+	local function tombWarn(spellId)
+		mod:TargetMessage(spellId, inTomb, "Attention")
 		scheduled = nil
 	end
 	function mod:Tomb(args)
 		inTomb[#inTomb + 1] = args.destName
 		if not scheduled then
 			scheduled = true
-			self:ScheduleTimer(tombWarn, 0.3, args.spellName, args.spellId)
+			self:ScheduleTimer(tombWarn, 0.3, args.spellId)
 		end
 	end
 end
 
 function mod:Sludge(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
-	self:TargetBar(args.spellId, args.spellName, args.destName, 24, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetBar(args.spellId, 24, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 function mod:Mark(args)
 	self:StopBar((debuffBar):format(curPerc, poisonName))
 	self:StopBar((debuffBar):format(curPerc, cleanName))
-	self:Message("mark", L["debuff_warn"]:format(curPerc), "Important", args.spellId, "Alert")
-	if args.spellId == 38215 or args.spellId == 38219 then
+
+	local spellId = args.spellId
+	self:Message("mark", "Important", "Alert", L["debuff_warn"]:format(curPerc), spellId)
+	if spellId == 38215 or spellId == 38219 then
 		curPerc = 25
-	elseif args.spellId == 38216 or args.spellId == 38220 then
+	elseif spellId == 38216 or spellId == 38220 then
 		curPerc = 50
-	elseif args.spellId == 38217 or args.spellId == 38221 then
+	elseif spellId == 38217 or spellId == 38221 then
 		curPerc = 100
-	elseif args.spellId == 38218 or args.spellId == 38222 then
+	elseif spellId == 38218 or spellId == 38222 then
 		curPerc = 250
-	elseif args.spellId == 38231 or args.spellId == 38230 then
+	elseif spellId == 38231 or spellId == 38230 then
 		curPerc = 500
 	end
-	self:Bar("mark", (debuffBar):format(curPerc, args.spellName), 15, args.spellId)
+	self:Bar("mark", 15, (debuffBar):format(curPerc, args.spellName), spellId)
 end
 
 do
@@ -125,16 +127,16 @@ do
 				stance = 2
 				self:StopBar((debuffBar):format(curPerc, cleanName))
 				curPerc = 10
-				self:Message("stance", L["poison_stance"], "Important", 38219)
-				self:Bar("mark", (debuffBar):format(curPerc, poisonName), 15, 38219)
+				self:Message("stance", "Important", nil, L["poison_stance"], 38219)
+				self:Bar("mark", 15, (debuffBar):format(curPerc, poisonName), 38219)
 				self:CloseProximity(38235)
 			else
 				stance = 1
 				self:StopBar((debuffBar):format(curPerc, poisonName))
 				curPerc = 10
 				self:PrimaryIcon(38246)
-				self:Message("stance", L["water_stance"], "Important", 38215)
-				self:Bar("mark", (debuffBar):format(curPerc, cleanName), 15, 38215)
+				self:Message("stance", "Important", nil, L["water_stance"], 38215)
+				self:Bar("mark", 15, (debuffBar):format(curPerc, cleanName), 38215)
 				self:OpenProximity(38235, 10)
 			end
 		end

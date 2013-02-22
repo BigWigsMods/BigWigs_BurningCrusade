@@ -43,9 +43,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("berserk", L["enrage_warning1"]:format(self.displayName), "Attention")
-	self:DelayedMessage("berserk", 49, L["enrage_warning2"], "Urgent")
-	self:Bar("berserk", L["enrage_bar"], 60, 32964)
+	self:Message("berserk", "Attention", nil, L["enrage_warning1"]:format(self.displayName), false)
+	self:DelayedMessage("berserk", 49, "Urgent", L["enrage_warning2"])
+	self:Bar("berserk", 60, L["enrage_bar"], 32964)
 end
 
 --------------------------------------------------------------------------------
@@ -54,20 +54,20 @@ end
 
 function mod:Mark(args)
 	if UnitIsUnit("player", args.destName) then
-		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+		self:LocalMessage(args.spellId, "Personal", "Alarm", CL["you"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:Twisted(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
 end
 
 function mod:Frenzy(args)
-	self:Message("berserk", L["enrage_message"], "Important", args.spellId, "Alert")
-	self:DelayedMessage("berserk", 10, L["enrage_finished"], "Positive")
-	self:Bar("berserk", L["enraged_bar"], 10, args.spellId)
-	self:DelayedMessage("berserk", 49, L["enrage_warning2"], "Urgent")
-	self:Bar("berserk", L["enrage_bar"], 60, args.spellId)
+	self:Message("berserk", "Important", "Alert", L["enrage_message"], args.spellId)
+	self:DelayedMessage("berserk", 10, "Positive", L["enrage_finished"])
+	self:Bar("berserk", 10, L["enraged_bar"], args.spellId)
+	self:DelayedMessage("berserk", 49, "Urgent", L["enrage_warning2"])
+	self:Bar("berserk", 60, L["enrage_bar"], args.spellId)
 end
 

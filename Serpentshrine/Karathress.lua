@@ -57,14 +57,14 @@ end
 --
 
 function mod:Heal(args)
-	self:Message(args.spellId, L["heal_message"], "Important", args.spellId, "Long")
+	self:Message(args.spellId, "Important", "Long", L["heal_message"])
 end
 
 function mod:Totem(args)
 	if self:MobId(args.sourceGUID) == 21214 then
-		self:Message("totem", L["totem_message2"], "Urgent", args.spellId, "Alarm")
+		self:Message("totem", "Urgent", "Alarm", L["totem_message2"], args.spellId)
 	else
-		self:Message("totem", L["totem_message1"], "Attention", args.spellId)
+		self:Message("totem", "Attention", nil, L["totem_message1"], args.spellId)
 	end
 end
 

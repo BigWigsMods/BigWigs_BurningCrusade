@@ -88,12 +88,12 @@ function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	abycount = 1
 
-	self:Message("escape", L["escape_warning1"]:format(self.displayName), "Attention", 20589)
-	self:Bar("escape", L["escape_bar"], 120, 20589)
-	self:DelayedMessage("escape", 60, L["escape_warning2"], "Positive")
-	self:DelayedMessage("escape", 90, L["escape_warning3"], "Attention")
-	self:DelayedMessage("escape", 110, L["escape_warning4"], "Urgent")
-	self:DelayedMessage("escape", 117, L["escape_warning5"], "Urgent", nil, "Long")
+	self:Message("escape", "Attention", nil, L["escape_warning1"]:format(self.displayName), 20589)
+	self:Bar("escape", 120, L["escape_bar"], 20589)
+	self:DelayedMessage("escape", 60, "Positive", L["escape_warning2"])
+	self:DelayedMessage("escape", 90, "Attention", L["escape_warning3"])
+	self:DelayedMessage("escape", 110, "Urgent", L["escape_warning4"])
+	self:DelayedMessage("escape", 117, "Urgent", L["escape_warning5"], false, "Long")
 end
 
 --------------------------------------------------------------------------------
@@ -107,35 +107,33 @@ function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
 end
 
 function mod:Exhaustion(args)
-	self:Bar("exhaust", L["exhaust_bar"]:format(args.destName), 30, args.spellId)
+	self:Bar("exhaust", 30, L["exhaust_bar"]:format(args.destName), args.spellId)
 end
 
 function mod:Abyssal()
-	self:Message("abyssal", L["abyssal_message"]:format(abycount), "Attention", 30511)
+	self:Message("abyssal", "Attention", nil, L["abyssal_message"]:format(abycount), 30511)
 	abycount = abycount + 1
 end
 
 function mod:Heal(args)
-	self:Message("heal", L["heal_message"], "Urgent", args.spellId, "Alarm")
-	self:Bar("heal", L["heal_message"], 2, args.spellId)
+	self:Message("heal", "Urgent", "Alarm", L["heal_message"], args.spellId)
+	self:Bar("heal", 2, L["heal_message"], args.spellId)
 end
 
 function mod:Banished(args)
-	self:Message("banish", L["banish_message"], "Important", args.spellId, "Info")
-	self:Bar("banish", L["banish_bar"], 10, args.spellId)
-	local nova = self:SpellName(30616)
-	self:StopBar(CL["cast"]:format(nova))
+	self:Message("banish", "Important", "Info", L["banish_message"], args.spellId)
+	self:Bar("banish", 10, L["banish_bar"], args.spellId)
+	self:StopBar(CL["cast"]:format(self:SpellName(30616))) -- Blast Nova
 end
 
 function mod:BanishRemoved(args)
-	self:Message("banish", L["banish_over_message"], "Attention", args.spellId)
+	self:Message("banish", "Attention", nil, L["banish_over_message"], args.spellId)
 	self:StopBar(L["banish_bar"])
 end
 
 function mod:Start()
-	local nova = self:SpellName(30616)
-	self:Bar(30616, "~"..nova, 58, 30616)
-	self:DelayedMessage(30616, 56, CL["soon"]:format(nova), "Urgent")
+	self:CDBar(30616, 58) -- Nova
+	self:DelayedMessage(30616, 56, CL["soon"]:format(self:SpellName(30616)), "Urgent") -- Nova
 	self:Berserk(1200)
 
 	self:StopBar(L["escape_bar"])
@@ -146,20 +144,20 @@ function mod:Start()
 end
 
 function mod:Nova(args)
-	self:Message(args.spellId, args.spellName, "Positive", args.spellId)
-	self:Bar(args.spellId, "~"..args.spellName, 51, args.spellId)
-	self:Bar(args.spellId, CL["cast"]:format(args.spellName), 12, args.spellId)
-	self:DelayedMessage(args.spellId, 48, CL["soon"]:format(args.spellName), "Urgent")
+	self:Message(args.spellId, "Positive")
+	self:CDBar(args.spellId, 51)
+	self:Bar(args.spellId, 12, CL["cast"]:format(args.spellName)
+	self:DelayedMessage(args.spellId, 48, "Urgent", CL["soon"]:format(args.spellName))
 end
 
 function mod:Debris(args)
 	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Important", args.spellId, "Alert")
+		self:LocalMessage(args.spellId, "Important", "Alert", CL["you"]:format(args.spellName))
 	end
 end
 
 function mod:DebrisInc()
-	self:Message(36449, L["debris_message"], "Positive", 36449)
+	self:Message(36449, "Positive", nil, L["debris_message"])
 end
 
 function mod:UNIT_HEALTH_FREQUENT(unit)
@@ -167,7 +165,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 37 then
 			local debris = self:SpellName(36449)
-			self:Message(36449, CL["soon"]:format(debris), "Positive")
+			self:Message(36449, "Positive", nil, CL["soon"]:format(debris), false)
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end

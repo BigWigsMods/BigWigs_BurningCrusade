@@ -43,7 +43,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{42783, "ICON", "WHISPER", "PROXIMITY"}, "phase", "split", "bosskill"
+		{42783, "ICON", "PROXIMITY"}, "phase", "split", "bosskill"
 	}
 end
 
@@ -61,9 +61,9 @@ end
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
-	self:Message("phase", L["phase1_message"], "Positive")
-	self:Bar("phase", L["split_bar"], 50, "Spell_Shadow_SealOfKings")
-	self:DelayedMessage("phase", 43, L["split_warning"], "Important")
+	self:Message("phase", "Positive", nil, L["phase1_message"], false)
+	self:Bar("phase", 50, L["split_bar"], "Spell_Shadow_SealOfKings")
+	self:DelayedMessage("phase", 43, "Important", L["split_warning"])
 end
 
 --------------------------------------------------------------------------------
@@ -71,13 +71,11 @@ end
 --
 
 function mod:Wrath(args)
-	self:TargetMessage(args.spellId, L["wrath_other"], args.destName, "Attention", args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Attention", nil, L["wrath_other"])
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:TargetBar(args.spellId, L["wrath_other"], args.destName, 6, args.spellId)
+	self:TargetBar(args.spellId, 6, args.destName, L["wrath_other"])
 	if UnitIsUnit("player", args.destName) then
 		self:OpenProximity(args.spellId, 10)
-	else
-		self:Whisper(args.spellId, args.destName, L["wrath_other"])
 	end
 end
 
@@ -92,29 +90,29 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 	if self:MobId(UnitGUID(unit)) == 18805 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 21 and hp < 25 then
-			self:Message("phase", L["phase2_warning"], "Positive")
+			self:Message("phase", "Positive", nil, L["phase2_warning"], false)
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
 end
 
 function mod:Phase2()
-	self:Message("phase", L["phase2_message"], "Important")
+	self:Message("phase", "Important", nil, L["phase2_message"], false)
 	self:CancelAllTimers()
 	self:StopBar(L["split_bar"])
 end
 
 function mod:Split()
 	--split is around 90 seconds after the previous
-	self:Bar("split", L["split_bar"], 90, "Spell_Shadow_SealOfKings")
-	self:DelayedMessage("split", 83, L["split_warning"], "Important")
+	self:Bar("split", 90, L["split_bar"], "Spell_Shadow_SealOfKings")
+	self:DelayedMessage("split", 83, "Important", L["split_warning"])
 
 	-- Agents 6 seconds after the Split
-	self:Message("split", L["agent_warning"], "Important")
-	self:Bar("split", L["agent_bar"], 6, "Ability_Creature_Cursed_01")
+	self:Message("split", "Important", nil, L["agent_warning"], false)
+	self:Bar("split", 6, L["agent_bar"], "Ability_Creature_Cursed_01")
 
 	-- Priests 22 seconds after the Split
-	self:DelayedMessage("split", 19, L["priest_warning"], "Important")
-	self:Bar("split", L["priest_bar"], 22, "Spell_Holy_HolyBolt")
+	self:DelayedMessage("split", 19, "Important", L["priest_warning"])
+	self:Bar("split", 22, L["priest_bar"], "Spell_Holy_HolyBolt")
 end
 
