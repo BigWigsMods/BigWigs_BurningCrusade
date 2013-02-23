@@ -636,7 +636,7 @@ function mod:Parasite(player, spellID)
 	if db.parasite then
 		local other = fmt(L["parasite_other"], player)
 		if player == pName then
-			self:LocalMessage(L["parasite_you"], "Personal", spellID, "Long")
+			self:Message(L["parasite_you"], "Personal", spellID, "Long")
 			self:WideMessage(other)
 		else
 			self:IfMessage(other, "Attention", spellID)

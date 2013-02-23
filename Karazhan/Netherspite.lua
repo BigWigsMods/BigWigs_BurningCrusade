@@ -52,7 +52,7 @@ end
 
 function mod:OnEngage()
 	voidcount = 1
-	self:Bar("phase", L["phase2_bar"], 60, "Spell_ChargePositive")
+	self:Bar("phase", 60, L["phase2_bar"], "Spell_ChargePositive")
 	self:Berserk(540)
 end
 
@@ -61,23 +61,23 @@ end
 --
 
 function mod:VoidZone(args)
-	self:Message(args.spellId, L["voidzone_warn"]:format(voidcount), "Attention", args.spellId)
+	self:Message(args.spellId, "Attention", nil, L["voidzone_warn"]:format(voidcount))
 	voidcount = voidcount + 1
 end
 
 function mod:Netherbreath(args)
-	self:Message(args.spellId, args.spellName, "Urgent", args.spellId)
-	self:Bar(args.spellId, "<"..args.spellName..">", 2.5, args.spellId)
+	self:Message(args.spellId, "Urgent")
+	self:Bar(args.spellId, 2.5, "<"..args.spellName..">")
 end
 
 function mod:Phase1()
 	self:StopBar("<"..self:SpellName(38523)..">")
-	self:Message("phase", L["phase1_message"], "Important", "Spell_ChargePositive")
-	self:Bar("phase", L["phase2_bar"], 58, "Spell_ChargePositive")
+	self:Message("phase", "Important", nil, L["phase1_message"], "Spell_ChargePositive")
+	self:Bar("phase", 58, L["phase2_bar"], "Spell_ChargePositive")
 end
 
 function mod:Phase2()
-	self:Message("phase", L["phase2_message"], "Important", "Spell_ChargeNegative")
-	self:Bar("phase", L["phase1_bar"], 30, "Spell_ChargeNegative")
+	self:Message("phase", "Important", nil, L["phase2_message"], "Spell_ChargeNegative")
+	self:Bar("phase", 30, L["phase1_bar"], "Spell_ChargeNegative")
 end
 

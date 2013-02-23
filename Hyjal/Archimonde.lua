@@ -46,9 +46,8 @@ end
 function mod:OnEngage()
 	self:Berserk(600)
 	self:OpenProximity(32014, 15)
-	local fear = self:SpellName(31970)
-	self:Bar(31970, "~"..fear, 40, 31970)
-	self:DelayedMessage(31970, 40, CL["soon"]:format(fear), "Urgent", 31970)
+	self:CDBar(31970, 40)
+	self:DelayedMessage(31970, 40, "Urgent", CL["soon"]:format(self:SpellName(31970))) -- Fear
 end
 
 --------------------------------------------------------------------------------
@@ -56,13 +55,13 @@ end
 --
 
 function mod:Grip(args)
-	self:TargetMessage(args.spellId, L["grip_other"], args.destName, "Attention", args.spellId, "Alert")
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert", L["grip_other"])
 end
 
 function mod:Fear(args)
-	self:Bar(args.spellId, "~"..args.spellName, 41.5, args.spellId)
-	self:Message(args.spellId, L["fear_message"], "Important", args.spellId)
-	self:DelayedMessage(args.spellId, 41.5, CL["soon"]:format(args.spellName), "Urgent")
+	self:CDBar(args.spellId, 41.5)
+	self:Message(args.spellId, "Important", nil, L["fear_message"])
+	self:DelayedMessage(args.spellId, 41.5, "Urgent", CL["soon"]:format(args.spellName))
 end
 
 do
@@ -78,7 +77,7 @@ do
 		if player and not UnitDetailedThreatSituation(mobId.."target", mobId) then
 			mod:CancelTimer(timer)
 			timer = nil
-			mod:TargetMessage(spellId, spellId, player, "Important", spellId, "Long") -- Air Burst
+			mod:TargetMessage(spellId, player, "Important", "Long") -- Air Burst
 			mod:PrimaryIcon(spellId, player)
 			mod:ScheduleTimer("PrimaryIcon", 5, spellId)
 			if UnitIsUnit(player, "player") then
@@ -104,8 +103,8 @@ end
 function mod:ProtectionOfElune()
 	self:CancelAllTimers()
 	self:PrimaryIcon(32014)
-	self:StopBar("~"..self:SpellName(31970)) -- Fear
+	self:StopBar(31970) -- Fear
 	-- Use berserk instead of making a toggle option for this.
-	self:Bar("berserk", L["killable"], 36, "achievement_boss_archimonde-")
+	self:Bar("berserk", 36, L["killable"], "achievement_boss_archimonde-")
 end
 

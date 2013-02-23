@@ -133,13 +133,13 @@ function mod:Charge(args)
 	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 20, args.destName)
-	if UnitIsUnit(args.destName, "player") then
+	if self:Me(args.destGUID) then
 		self:OpenProximity(args.spellId, 10)
 	end
 end
 
 function mod:ChargeRemoved(args)
-	if UnitIsUnit(args.destName, "player") then
+	if self:Me(args.destGUID) then
 		self:CloseProximity(args.spellId)
 	end
 	self:StopBar(args.spellName, args.destName)

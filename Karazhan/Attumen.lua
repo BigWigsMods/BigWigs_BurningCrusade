@@ -42,16 +42,16 @@ end
 --
 
 function mod:Curse(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Attention")
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
 	if msg == L["phase2_trigger"] then
-		self:Message("phase", L["phase2_message"], "Important")
+		self:Message("phase", "Important", nil, L["phase2_message"], false)
 	end
 end
 
 function mod:Phase3()
-	self:Message("phase", L["phase3_message"], "Important")
+	self:Message("phase", "Important", nil, L["phase3_message"], false)
 end
 

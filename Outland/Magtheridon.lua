@@ -151,8 +151,8 @@ function mod:Nova(args)
 end
 
 function mod:Debris(args)
-	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(args.spellId, "Important", "Alert", CL["you"]:format(args.spellName))
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Important", "Alert", CL["you"]:format(args.spellName))
 	end
 end
 

@@ -41,9 +41,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message(29511, L["engage_message"], "Attention")
-	self:DelayedMessage(29511, 33, L["repentance_warning"], "Urgent", nil, "Alarm")
-	self:Bar(29511, "~"..self:SpellName(29511), 33, 29511)
+	self:Message(29511, "Attention", nil, L["engage_message"])
+	self:DelayedMessage(29511, 33, "Urgent", L["repentance_warning"], false, "Alarm")
+	self:CDBar(29511, 33)
 	self:OpenProximity("proximity", 10)
 end
 
@@ -52,14 +52,14 @@ end
 --
 
 function mod:HolyFire(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Important")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 function mod:Repentance(args)
-	self:Message(args.spellId, L["repentance_message"], "Important", args.spellId)
-	self:Bar(args.spellId, "<"..args.spellName..">", 12, args.spellId)
-	self:DelayedMessage(args.spellId, 33, L["repentance_warning"], "Urgent", nil, "Alarm")
-	self:Bar(args.spellId, "~"..args.spellName, 33, args.spellId)
+	self:Message(args.spellId, "Important", nil, L["repentance_message"])
+	self:Bar(args.spellId, 12, "<"..args.spellName..">")
+	self:DelayedMessage(args.spellId, 33, "Urgent", L["repentance_warning"], false, "Alarm")
+	self:CDBar(args.spellId, 33)
 end
 

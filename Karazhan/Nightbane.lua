@@ -54,9 +54,9 @@ end
 function mod:OnEngage()
 	local spellId = 36922
 	local fear = self:SpellName(spellId)
-	self:Message(spellId, CL["custom_start_s"]:format(self.displayName, fear, 35), "Positive")
-	self:Bar(spellId, "~"..fear, 35, spellId)
-	self:DelayedMessage(spellId, 33, CL["soon"]:format(fear), "Positive")
+	self:Message(spellId, "Positive", nil, CL["custom_start_s"]:format(self.displayName, fear, 35), false)
+	self:CDBar(spellId, 35)
+	self:DelayedMessage(spellId, 33, "Positive", CL["soon"]:format(fear))
 end
 
 --------------------------------------------------------------------------------
@@ -64,41 +64,40 @@ end
 --
 
 function mod:Fear(args)
-	self:Bar(args.spellId, "<"..args.spellName..">", 2.5, args.spellId)
-	self:Message(args.spellId, args.spellName, "Positive", args.spellId)
-	self:Bar(args.spellId, "~"..args.spellName, 37, args.spellId)
-	self:DelayedMessage(args.spellId, 35, CL["soon"]:format(args.spellName), "Positive")
+	self:Bar(args.spellId, 2.5, "<"..args.spellName..">")
+	self:Message(args.spellId, "Positive")
+	self:CDBar(args.spellId, 37)
+	self:DelayedMessage(args.spellId, 35, "Positive", CL["soon"]:format(args.spellName))
 end
 
 function mod:CharredEarth(args)
-	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(args.spellId, CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alarm", CL["underyou"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:Bones(args)
-	self:Message(args.spellId, args.spellName, "Urgent", args.spellId)
-	self:Bar(args.spellId, "<"..args.spellName..">", 11, args.spellId)
+	self:Message(args.spellId, "Urgent")
+	self:Bar(args.spellId, 11, "<"..args.spellName..">")
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
 	if msg == L["summon_trigger"] then
-		self:Bar("phase", L["landphase_message"], 34, "INV_Misc_Head_Dragon_01")
+		self:Bar("phase", 34, L["landphase_message"], "INV_Misc_Head_Dragon_01")
 	end
 end
 
 function mod:Air()
-	local fear = self:SpellName(36922)
-	self:CancelDelayedMessage(CL["soon"]:format(fear))
-	self:StopBar("~"..fear)
+	self:CancelDelayedMessage(CL["soon"]:format(self:SpellName(36922)))
+	self:StopBar(36922) -- Fear
 
-	self:Message("phase", L["airphase_message"], "Attention", "INV_Misc_Head_Dragon_01", "Info")
-	self:Bar("phase", L["landphase_message"], 57, "INV_Misc_Head_Dragon_01")
+	self:Message("phase", "Attention", "Info", L["airphase_message"], "INV_Misc_Head_Dragon_01")
+	self:Bar("phase", 57, L["landphase_message"], "INV_Misc_Head_Dragon_01")
 end
 
 function mod:Land()
-	self:Message("phase", L["landphase_message"], "Important", "INV_Misc_Head_Dragon_01", "Long")
-	self:Bar("phase", L["landphase_message"], 17, "INV_Misc_Head_Dragon_01")
+	self:Message("phase", "Important", "Long", L["landphase_message"], "INV_Misc_Head_Dragon_01")
+	self:Bar("phase", 17, L["landphase_message"] "INV_Misc_Head_Dragon_01")
 end
 

@@ -25,7 +25,7 @@ end
 --
 
 function mod:Web(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Urgent", args.spellId)
-	self:TargetBar(args.spellId, args.spellName, args.destName, 10, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetBar(args.spellId, 10, args.destName)
 end
 

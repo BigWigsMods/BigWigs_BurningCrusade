@@ -279,7 +279,7 @@ function mod:TargetCheck()
 		if target then
 			local other = fmt(L["target_message"], target)
 			if target == pName then
-				self:LocalMessage(L["target_you"], "Personal", nil, "Alarm")
+				self:Message(L["target_you"], "Personal", nil, "Alarm")
 				self:WideMessage(other)
 			else
 				self:Message(other, "Attention")

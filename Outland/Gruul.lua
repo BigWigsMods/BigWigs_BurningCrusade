@@ -76,8 +76,8 @@ end
 --
 
 function mod:CaveIn(args)
-	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(args.spellId, "Personal", "Alarm", CL["you"]:format(args.spellName))
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alarm", CL["you"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end

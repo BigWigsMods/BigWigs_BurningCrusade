@@ -42,8 +42,8 @@ end
 
 function mod:OnEngage()
 	count = 1
-	self:Bar(31447, L["mark_bar"]:format(count), 45, 31447)
-	self:DelayedMessage(31447, 40, L["mark_warn"], "Positive")
+	self:Bar(31447, 45, L["mark_bar"]:format(count))
+	self:DelayedMessage(31447, 40, "Positive", L["mark_warn"])
 end
 
 --------------------------------------------------------------------------------
@@ -53,14 +53,14 @@ end
 function mod:MarkCast(args)
 	local time = 45 - (count * 5)
 	if time < 5 then time = 5 end
-	self:Message(args.spellId, ("%s (%d)"):format(args.spellName, count), "Attention", args.spellId)
+	self:Message(args.spellId, "Attention", nil, ("%s (%d)"):format(args.spellName, count))
 	count = count + 1
-	self:Bar(args.spellId, L["mark_bar"]:format(count), time, args.spellId)
-	self:DelayedMessage(args.spellId, time - 5, L["mark_warn"], "Positive")
+	self:Bar(args.spellId, time, L["mark_bar"]:format(count))
+	self:DelayedMessage(args.spellId, time - 5, "Positive", L["mark_warn"])
 end
 
 function mod:Mark(args)
-	if UnitIsUnit(args.destName, "player") then
+	if self:Me(args.destGUID) then
 		local power = UnitPower("player", 0)
 		if power > 0 and power < 4000 then
 			self:OpenProximity(args.spellId, 15)
@@ -70,7 +70,7 @@ function mod:Mark(args)
 end
 
 function mod:MarkRemoved(args)
-	if UnitIsUnit(args.destName, "player") then
+	if self:Me(args.destGUID) then
 		self:CloseProximity(args.spellId)
 	end
 end

@@ -47,22 +47,22 @@ end
 --
 
 function mod:RainOfFire(args)
-	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(args.spellId, CL["you"]:format(args.spellName), "Urgent", args.spellId, "Alarm")
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Urgent", "Alarm", CL["you"]:format(args.spellName))
 	end
 end
 
 function mod:Howl(args)
-	self:Message(args.spellId, L["howl_message"], "Important", args.spellId)
-	self:Bar(args.spellId, L["howl_bar"], 16, args.spellId)
-	self:DelayedMessage(args.spellId, 15, CL["soon"]:format(L["howl_message"]), "Important")
+	self:Message(args.spellId, "Important", nil, L["howl_message"])
+	self:Bar(args.spellId, 16, L["howl_bar"])
+	self:DelayedMessage(args.spellId, 15, "Important", CL["soon"]:format(L["howl_message"]))
 end
 
 function mod:Doom(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId, "Alert")
-	self:TargetBar(args.spellId, args.spellName, args.destName, 19, args.spellId)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetBar(args.spellId, 19, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
-	if UnitIsUnit(args.destName, "player") then
+	if self:Me(args.destGUID) then
 		self:Flash(args.spellId)
 	end
 end

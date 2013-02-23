@@ -74,14 +74,14 @@ function mod:Wrath(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", nil, L["wrath_other"])
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 6, args.destName, L["wrath_other"])
-	if UnitIsUnit("player", args.destName) then
+	if self:Me(args.destGUID) then
 		self:OpenProximity(args.spellId, 10)
 	end
 end
 
 function mod:WrathRemove(args)
 	self:PrimaryIcon(args.spellId)
-	if UnitIsUnit("player", args.destName) then
+	if self:Me(args.destGUID) then
 		self:CloseProximity(args.spellId)
 	end
 end

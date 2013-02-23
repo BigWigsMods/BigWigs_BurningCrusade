@@ -47,14 +47,14 @@ end
 
 function mod:OnEngage()
 	local swarn = L["spawns_warning"]
-	self:Bar("spawns", L["roar"], 15, "INV_Staff_08")
-	self:DelayedMessage("spawns", 10, (swarn):format(L["roar"]), "Attention", "INV_Staff_08")
-	self:Bar("spawns", L["strawman"], 25, "Ability_Druid_ChallangingRoar")
-	self:DelayedMessage("spawns", 20, (swarn):format(L["strawman"]), "Attention", "Ability_Druid_ChallangingRoar")
-	self:Bar("spawns", L["tinhead"], 35, "INV_Chest_Plate06")
-	self:DelayedMessage("spawns", 30, (swarn):format(L["tinhead"]), "Attention", "INV_Chest_Plate06")
-	self:Bar("spawns", L["tito"], 48, "Ability_Hunter_Pet_Wolf")
-	self:DelayedMessage("spawns", 43, (swarn):format(L["tito"]), "Attention", "Ability_Hunter_Pet_Wolf")
+	self:Bar("spawns", 15, L["roar"], "INV_Staff_08")
+	self:DelayedMessage("spawns", 10, "Attention", (swarn):format(L["roar"]), "INV_Staff_08")
+	self:Bar("spawns", 25, L["strawman"], "Ability_Druid_ChallangingRoar")
+	self:DelayedMessage("spawns", 20, "Attention", (swarn):format(L["strawman"]), "Ability_Druid_ChallangingRoar")
+	self:Bar("spawns", 35, L["tinhead"], "INV_Chest_Plate06")
+	self:DelayedMessage("spawns", 30, "Attention", (swarn):format(L["tinhead"]), "INV_Chest_Plate06")
+	self:Bar("spawns", 48, L["tito"], "Ability_Hunter_Pet_Wolf")
+	self:DelayedMessage("spawns", 43, "Attention", (swarn):format(L["tito"]), "Ability_Hunter_Pet_Wolf")
 end
 
 --------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ end
 --
 
 function mod:ChainLightning(args)
-	self:Message(args.spellId, args.spellName, "Urgent", args.spellId)
-	self:Bar(args.spellId, "<"..args.spellName..">", 2, args.spellId)
+	self:Message(args.spellId, "Urgent")
+	self:Bar(args.spellId, 2, "<"..args.spellName..">")
 end
 

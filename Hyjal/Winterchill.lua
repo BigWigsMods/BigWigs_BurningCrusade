@@ -34,13 +34,13 @@ end
 --
 
 function mod:Icebolt(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Important", args.spellId, "Alert")
+	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 function mod:DeathAndDecay(args)
-	if UnitIsUnit(args.destName, "player") then
-		self:LocalMessage(args.spellId, CL["underyou"]:format(args.spellName), "Personal", args.spellId, "Alarm")
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "Personal", "Alarm")
 		self:Flash(args.spellId)
 	end
 end

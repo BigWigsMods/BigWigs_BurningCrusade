@@ -412,7 +412,7 @@ function mod:Vapor(_, _, source)
 	if db.vapor then
 		local other = L["vapor_message"]:format(source)
 		if source == pName then
-			self:LocalMessage(L["vapor_you"], "Personal", nil, "Long")
+			self:Message(L["vapor_you"], "Personal", nil, "Long")
 			self:WideMessage(other)
 		else
 			self:IfMessage(other, "Urgent", 45402)

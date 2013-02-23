@@ -22,7 +22,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{30753, "ICON", "WHISPER"}, "bosskill"
+		{30753, "ICON"}, "bosskill"
 	}
 end
 
@@ -37,9 +37,8 @@ end
 --
 
 function mod:Riding(args)
-	self:TargetMessage(args.spellId, args.spellName, args.destName, "Attention", args.spellId, "Long")
-	self:Whisper(args.spellId, args.destName, args.spellName)
+	self:TargetMessage(args.spellId, args.destName, "Attention", "Long")
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:Bar(args.spellId, L["riding_bar"]:format(args.destName), 20, args.spellId)
+	self:Bar(args.spellId, 20, L["riding_bar"]:format(args.destName))
 end
 

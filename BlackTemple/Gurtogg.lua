@@ -314,7 +314,7 @@ function mod:Rage(player, spellID)
 		self:TriggerEvent("BigWigs_StopBar", self, fmt(L["bloodboil_message"], count))
 
 		if player == pName then
-			self:LocalMessage(L["rage_you"], "Personal", spellID, "Long")
+			self:Message(L["rage_you"], "Personal", spellID, "Long")
 			self:WideMessage(fmt(L["rage_other"], player))
 		else
 			self:IfMessage(fmt(L["rage_other"], player), "Attention", spellID)

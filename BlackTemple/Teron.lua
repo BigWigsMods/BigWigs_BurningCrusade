@@ -209,7 +209,7 @@ function mod:Shadow(player, spellID)
 	if db.shadow then
 		local other = L["shadow_other"]:format(player)
 		if player == pName then
-			self:LocalMessage(L["shadow_you"], "Personal", spellID, "Long")
+			self:Message(L["shadow_you"], "Personal", spellID, "Long")
 			self:WideMessage(other)
 		else
 			self:IfMessage(other, "Attention", spellID)

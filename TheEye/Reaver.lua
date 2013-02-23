@@ -57,7 +57,7 @@ end
 function mod:Orb(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
-	if UnitIsUnit("player", args.destName) then
+	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
 end

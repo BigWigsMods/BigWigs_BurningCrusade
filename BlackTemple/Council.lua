@@ -484,7 +484,7 @@ function mod:Poison(player, spellID)
 	if db.poison then
 		local other = fmt(L["poison_other"], player)
 		if player == pName then
-			self:LocalMessage(L["poison_you"], "Important", spellID, "Long")
+			self:Message(L["poison_you"], "Important", spellID, "Long")
 			self:WideMessage(other)
 		else
 			self:IfMessage(other, "Attention", spellID)
@@ -532,7 +532,7 @@ end
 
 function mod:Blizzard(player)
 	if player == pName and db.blizzard then
-		self:LocalMessage(L["blizzard_message"], "Personal", 41482, "Alarm")
+		self:Message(L["blizzard_message"], "Personal", 41482, "Alarm")
 	end
 end
 
