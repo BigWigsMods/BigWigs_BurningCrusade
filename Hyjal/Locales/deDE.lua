@@ -14,11 +14,6 @@ if L then
 	L.howl_message = "AoE Stille"
 end
 
-L = BigWigs:NewBossLocale("Hyjal Summit", "deDE")
-if L then
-	
-end
-
 L = BigWigs:NewBossLocale("Kaz'rogal", "deDE")
 if L then
 	L.mark_bar = "Mal von Kaz'rogal (%d)"

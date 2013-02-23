@@ -14,11 +14,6 @@ if L then
 	L.howl_message = "群体沉默"
 end
 
-L = BigWigs:NewBossLocale("Hyjal Summit", "zhCN")
-if L then
-	
-end
-
 L = BigWigs:NewBossLocale("Kaz'rogal", "zhCN")
 if L then
 	L.mark_bar = "下一印记：%d"

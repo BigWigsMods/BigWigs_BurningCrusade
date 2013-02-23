@@ -14,11 +14,6 @@ if L then
 	L.howl_message = "Silencio de área"
 end
 
-L = BigWigs:NewBossLocale("Hyjal Summit", "esES")
-if L then
-	
-end
-
 L = BigWigs:NewBossLocale("Kaz'rogal", "esES")
 if L then
 	L.mark_bar = "~Marca (%d)"

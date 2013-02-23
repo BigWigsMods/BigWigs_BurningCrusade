@@ -14,11 +14,6 @@ if L then
 	L. howl_message = "광역 침묵"
 end
 
-L = BigWigs:NewBossLocale("Hyjal Summit", "koKR")
-if L then
-	
-end
-
 L = BigWigs:NewBossLocale("Kaz'rogal", "koKR")
 if L then
 	L.mark_bar = "다음 징표 (%d)"

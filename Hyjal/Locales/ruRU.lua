@@ -14,11 +14,6 @@ if L then
 	L.howl_message = "МАСС Молчание"
 end
 
-L = BigWigs:NewBossLocale("Hyjal Summit", "ruRU")
-if L then
-	
-end
-
 L = BigWigs:NewBossLocale("Kaz'rogal", "ruRU")
 if L then
 	L.mark_bar = "След Матка (%d)"
