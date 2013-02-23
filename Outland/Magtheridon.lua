@@ -146,7 +146,7 @@ end
 function mod:Nova(args)
 	self:Message(args.spellId, "Positive")
 	self:CDBar(args.spellId, 51)
-	self:Bar(args.spellId, 12, CL["cast"]:format(args.spellName)
+	self:Bar(args.spellId, 12, CL["cast"]:format(args.spellName))
 	self:DelayedMessage(args.spellId, 48, "Urgent", CL["soon"]:format(args.spellName))
 end
 

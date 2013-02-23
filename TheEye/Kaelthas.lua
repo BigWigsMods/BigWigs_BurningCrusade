@@ -214,7 +214,7 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 		self:DelayedMessage("phase", 90, "Attention", L["revive_warning"])
 	elseif msg == L["phase3_trigger"] then
 		phase = 3
-		self:Message("phase", "Positive", nil, L["phase3_message"] false)
+		self:Message("phase", "Positive", nil, L["phase3_message"], false)
 		self:Bar("phase", 180, L["phase4_bar"], "Spell_ChargePositive")
 	elseif msg == L["phase4_trigger"] then
 		phase = 4
