@@ -134,7 +134,5 @@ if L then
 
 	L.barrier_desc = "Prévient quand les barrières se dissipent."
 	L.barrier_down_message = "Barrière %d/4 dissipée !"
-
-	L.loot_desc = "Prévient quand un joueur ramasse un Noyau contaminé."
 end
 

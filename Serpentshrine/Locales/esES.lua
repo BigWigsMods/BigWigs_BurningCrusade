@@ -134,7 +134,5 @@ if L then
 
 	L.barrier_desc = "Avisar cuand caen las Barreras mágicas."
 	L.barrier_down_message = "¡Barrera %d/4 caída!"
-
-	L.loot_desc = "Avisar quién despoja Núcleos máculos."
 end
 

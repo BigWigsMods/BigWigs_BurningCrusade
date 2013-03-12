@@ -134,7 +134,5 @@ if L then
 
 	L.barrier_desc = "Alarmiert, wenn die Barrieren in Phase 2 zerstört werden."
 	L.barrier_down_message = "Barriere %d/4 zerstört!"
-
-	L.loot_desc = "Warnt, wer einen Besudelten Kern lootet."
 end
 

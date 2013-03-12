@@ -1,12 +1,12 @@
 local L = BigWigs:NewBossLocale("Hydross the Unstable", "ruRU")
 if not L then return end
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("Fathom-Lord Karathress", "ruRU")
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("Leotheras the Blind", "ruRU")
@@ -42,12 +42,12 @@ end
 
 L = BigWigs:NewBossLocale("The Lurker Below", "ruRU")
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("Morogrim Tidewalker", "ruRU")
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("Lady Vashj", "ruRU")
@@ -84,7 +84,5 @@ if L then
 
 	L.barrier_desc = "Предупреждать о разрушении барьеров."
 	L.barrier_down_message = "Барьер %d/4 разрушен!"
-
-	L.loot_desc = "Показывать, кто взял Порченую магму."
 end
 

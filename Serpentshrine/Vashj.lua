@@ -51,10 +51,6 @@ if L then
 	L.barrier_desc = "Alert when the barriers go down."
 	L.barrier_icon = 38112
 	L.barrier_down_message = "Barrier %d/4 down!"
-
-	L.loot = GetItemInfo(31088)
-	L.loot_desc = "Warn who loots the Tainted Cores."
-	L.loot_icon = 38132
 end
 L = mod:GetLocale()
 
@@ -65,7 +61,7 @@ L = mod:GetLocale()
 function mod:GetOptions(CL)
 	return {
 		{38280, "ICON", "PROXIMITY"},
-		"elemental", "strider", "naga", "loot", "barrier",
+		"elemental", "strider", "naga", "barrier",
 		"berserk",
 		"phase", "bosskill"
 	}, {
@@ -79,20 +75,13 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Charge", 38280)
 	self:Log("SPELL_AURA_REMOVED", "ChargeRemoved", 38280)
-	--It seems that looting the core no longer stuns the player, this isn't fired. (v4.2)
-	self:Log("SPELL_AURA_APPLIED", "LootUpdate", 38132)
 	--It seems that there is no longer any events for barrier removal. (v4.2)
 	self:Log("SPELL_AURA_REMOVED", "BarrierRemove", 38112)
 
-	self:RegisterEvent("CHAT_MSG_LOOT")
-	self:AddSyncListener("VashjLoot")
-
 	self:Yell("Phase2", L["phase2_trigger"])
 	self:Yell("Phase3", L["phase3_trigger"])
+	self:Yell("Engage", L["engage_trigger1"], L["engage_trigger2"], L["engage_trigger3"], L["engage_trigger4"], L["engage_trigger5"])
 
-	self:Yell("Engage", L["engage_trigger1"], L["engage_trigger2"], L["engage_trigger3"], 
-		L["engage_trigger4"], L["engage_trigger5"]
-	)
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 21212)
@@ -120,7 +109,6 @@ function mod:Phase2()
 end
 
 function mod:Phase3()
-	self:PrimaryIcon("loot")
 	self:CancelAllTimers()
 	self:StopBar(L["elemental_bar"])
 	self:StopBar(L["strider_bar"])
@@ -145,12 +133,6 @@ function mod:ChargeRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
 
---It seems that looting the core no longer stuns the player, this isn't fired. (v4.2)
-function mod:LootUpdate(args)
-	self:TargetMessage("loot", args.destName, "Positive", "Info", L["loot"], args.spellId)
-	self:PrimaryIcon("loot", args.destName)
-end
-
 --It seems that there is no longer any events for barrier removal. (v4.2)
 function mod:BarrierRemove(args)
 	shieldsFaded = shieldsFaded + 1
@@ -162,31 +144,6 @@ end
 function mod:ElementalDeath()
 	self:Bar("elemental", 53, L["elemental_bar"], 38132)
 	self:DelayedMessage("elemental", 48, "Important", L["elemental_soon_message"])
-end
-
-do
-	local lootItem = '^' .. LOOT_ITEM:gsub("%%s", "(.-)") .. '$'
-	local lootItemSelf = '^' .. LOOT_ITEM_SELF:gsub("%%s", "(.*)") .. '$'
-	function mod:CHAT_MSG_LOOT(_, msg)
-		local player, item = select(3, msg:find(lootItem))
-		if not player then
-			item = select(3, msg:find(lootItemSelf))
-			if item then
-				player = UnitName("player")
-			end
-		end
-
-		if type(item) == "string" and type(player) == "string" then
-			local itemLink, itemRarity = select(2, GetItemInfo(item))
-			if itemRarity and itemRarity == 1 and itemLink then
-				local itemId = select(3, itemLink:find("item:(%d+):"))
-				if not itemId then return end
-				itemId = tonumber(itemId:trim())
-				if type(itemId) ~= "number" or itemId ~= 31088 then return end -- Tainted Core
-				self:Sync("VashjLoot", player)
-			end
-		end
-	end
 end
 
 function mod:RepeatStrider()
@@ -208,13 +165,6 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 			self:Message("phase", "Attention", nil, L["phase2_soon_message"], false)
 			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
-	end
-end
-
-function mod:OnSync(sync, rest, nick)
-	if sync == "VashjLoot" and rest then
-		self:TargetMessage("loot", rest, "Positive", "Info", L["loot"], 38132, true)
-		self:PrimaryIcon("loot", rest)
 	end
 end
 

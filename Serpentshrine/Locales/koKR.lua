@@ -135,7 +135,5 @@ if L then
 
 	L.barrier_desc = "보호막 손실 시 알립니다."
 	L.barrier_down_message = "보호막 %d/4 손실!"
-
-	L.loot_desc = "오염된 핵을 획득한 플레이어를 알립니다."
 end
 

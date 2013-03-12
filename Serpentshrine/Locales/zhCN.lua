@@ -134,7 +134,5 @@ if L then
 
 	L.barrier_desc = "当护盾击碎发出警报。"
 	L.barrier_down_message = "护盾 - %d/4 击碎！"
-
-	L.loot_desc = "对拾取了污染之核的队友发出警报。"
 end
 

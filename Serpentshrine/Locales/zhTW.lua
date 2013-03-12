@@ -138,7 +138,5 @@ if L then
 
 	L.barrier_desc = "當瓦許女士的魔法屏障消失時警示"
 	L.barrier_down_message = "魔法屏障 %d/4 解除!"
-
-	L.loot_desc = "提示誰拾取了受污染的核心"
 end
 
