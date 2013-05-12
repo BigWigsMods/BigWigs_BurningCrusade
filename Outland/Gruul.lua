@@ -52,13 +52,15 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Shatter", 33654)
 	self:Log("SPELL_CAST_START", "Slam", 33525)
 
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	self:Yell("Engage", L["engage_trigger"])
 
 	self:Death("Win", 19044)
 end
 
 function mod:OnEngage()
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "StartWipeCheck")
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "StopWipeCheck")
+
 	self:OpenProximity("proximity", 15)
 
 	self:Message("grasp", "Attention", nil, L["engage_message"]:format(self.displayName), false)

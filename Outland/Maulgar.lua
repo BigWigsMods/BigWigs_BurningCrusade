@@ -59,11 +59,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Flurry", 33232)
 
 	self:Yell("Engage", L["engage_trigger"])
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	self:Death("Win", 18831)
 end
 
 function mod:OnEngage()
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "StartWipeCheck")
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "StopWipeCheck")
+
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
 	self:Message(33238, "Attention", nil, L["whirlwind_warning"])
