@@ -36,9 +36,10 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Sacrifice", 30115)
+	self:Log("SPELL_AURA_REMOVED", "SacrificeRemoved", 30115)
+
 	self:Log("SPELL_AURA_APPLIED", "Weakened", 30065)
 	self:Log("SPELL_AURA_REMOVED", "WeakenedRemoved", 30065)
-	self:Log("SPELL_AURA_REMOVED", "SacrificeRemoved", 30115)
 
 	self:Yell("Engage", L["engage_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
@@ -62,6 +63,11 @@ function mod:Sacrifice(args)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
+function mod:SacrificeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
+	self:PrimaryIcon(args.spellId)
+end
+
 function mod:Weakened(args)
 	self:Message("weak", "Important", "Alarm", L["weak_message"], args.spellId)
 	self:DelayedMessage("weak", 40, "Attention", L["weak_warning1"])
@@ -69,13 +75,8 @@ function mod:Weakened(args)
 end
 
 function mod:WeakenedRemoved(args)
-	self:Message(args.spellId, "Attention", "Info", L["weak_warning2"])
+	self:Message("weak", "Attention", "Info", L["weak_warning2"])
 	self:CancelDelayedMessage(L["weak_warning1"])
 	self:StopBar(L["weak_bar"])
-end
-
-function mod:SacrificeRemoved(args)
-	self:StopBar(args.spellName, args.destName)
-	self:PrimaryIcon(args.spellId)
 end
 
