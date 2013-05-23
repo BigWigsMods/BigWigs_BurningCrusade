@@ -72,7 +72,7 @@ function mod:UNIT_HEALTH_FREQUENT(unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 36 then
 			self:Message(37023, "Positive", "Info", CL["soon"]:format(self:SpellName(37023)), false) -- Frenzy
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
 		end
 	end
 end
