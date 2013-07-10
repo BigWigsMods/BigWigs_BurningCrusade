@@ -227,7 +227,7 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 		self:CancelDelayedMessage(L["pyro_warning"])
 		self:StopBar(L["pyro"])
 		self:Message("phase", "Attention", nil, L["flying_message"], false)
-		self:Bar("phase", 60, L["gravity_bar"], "Spell_Nature_UnrelentingStorm")
+		self:Bar("phase", 60, 35941) -- Gravity Lapse
 	end
 end
 
