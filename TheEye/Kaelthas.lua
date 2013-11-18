@@ -16,7 +16,7 @@ local phase = 1
 
 local L = mod:NewLocale("enUS", true)
 if L then
-	L.engage_trigger = "My people are addicted to it"
+	L.engage_trigger = "Energy. Power."
 	L.engage_message = "Phase 1"
 
 	L.gaze = "Gaze"
@@ -173,7 +173,7 @@ function mod:GravityLapse(args)
 end
 
 function mod:AddDeaths(args)
-	self:Message("phase", "Attention", nil, L["dead_message"]:format(args.destName))
+	self:Message("phase", "Attention", nil, L["dead_message"]:format(args.destName), false)
 end
 
 function mod:Pyro()
