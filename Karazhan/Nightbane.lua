@@ -98,6 +98,6 @@ end
 
 function mod:Land()
 	self:Message("phase", "Important", "Long", L["landphase_message"], "INV_Misc_Head_Dragon_01")
-	self:Bar("phase", 17, L["landphase_message"] "INV_Misc_Head_Dragon_01")
+	self:Bar("phase", 17, L["landphase_message"], "INV_Misc_Head_Dragon_01")
 end
 
