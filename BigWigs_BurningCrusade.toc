@@ -1,7 +1,9 @@
 ## Interface: 50400
 
 ## Title: Big Wigs [|cffeda55fBurning Crusade|r]
+## Title-zhCN: Big Wigs [|cffeda55f燃烧的远征|r]
 ## Notes: A collection of Big Wigs modules from the Burning Crusade era.
+## Notes-zhCN: Big Wigs 燃烧的远征模块。
 
 ## LoadOnDemand: 1
 ## Dependencies: BigWigs
