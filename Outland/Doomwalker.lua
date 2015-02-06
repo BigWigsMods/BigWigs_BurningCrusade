@@ -5,7 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Doomwalker", 473)
 if not mod then return end
 mod:RegisterEnableMob(17711)
-mod.worldBoss = true
+mod.worldBoss = 17711
+mod.otherMenu = 466
 
 --------------------------------------------------------------------------------
 -- Localization

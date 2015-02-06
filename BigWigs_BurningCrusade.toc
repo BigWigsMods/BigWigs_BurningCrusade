@@ -9,7 +9,7 @@
 ## Dependencies: BigWigs
 
 ## X-Category: Raid
-## X-BigWigs-LoadOn-ZoneId: 775, 780, 779, 776, 799, 782
+## X-BigWigs-LoadOn-ZoneId: 775, 780, 779, 776, 799, 782, 466
 ## X-BigWigs-LoadOn-WorldBoss: 473, 17711, 465, 18728
 
 modules.xml
