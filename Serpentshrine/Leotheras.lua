@@ -54,7 +54,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		37640, "whisper", "mindcontrol", "phase", "image", "berserk", "bosskill"
+		37640, "whisper", "mindcontrol", "phase", "image", "berserk"
 	}
 end
 

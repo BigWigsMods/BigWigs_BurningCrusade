@@ -31,7 +31,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions(CL)
 	return {
-		38330, "totem", "berserk", "bosskill"
+		38330, "totem", "berserk"
 	}, {
 		[38330] = L["priest"],
 		totem = CL["general"],

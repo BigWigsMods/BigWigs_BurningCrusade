@@ -26,7 +26,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		30254, 30403, "proximity", "berserk", "bosskill"
+		30254, 30403, "proximity", "berserk"
 	}
 end
 

@@ -40,7 +40,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"dive", "spout", 37660, "proximity", "bosskill"
+		"dive", "spout", 37660, "proximity"
 	}
 end
 

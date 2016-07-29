@@ -12,7 +12,7 @@ mod:RegisterEnableMob(17767)
 
 function mod:GetOptions()
 	return {
-		{31258, "FLASH"}, {31249, "ICON"}, "berserk", "bosskill"
+		{31258, "FLASH"}, {31249, "ICON"}, "berserk"
 	}
 end
 

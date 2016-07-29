@@ -40,7 +40,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"phase", 30843, 30852, "infernal", "bosskill"
+		"phase", 30843, 30852, "infernal"
 	}
 end
 

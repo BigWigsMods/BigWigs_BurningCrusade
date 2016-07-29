@@ -273,7 +273,7 @@ local mod = BigWigs:NewModule(boss)
 mod.zonename = BZ["Black Temple"]
 mod.enabletrigger = boss
 mod.guid = 22948
-mod.toggleOptions = {"phase", "bloodboil", -1, "rage", "whisper", -1, "acid", "icon", "enrage", "bosskill"}
+mod.toggleOptions = {"phase", "bloodboil", -1, "rage", "whisper", -1, "acid", "icon", "enrage"}
 mod.revision = tonumber(("$Revision: 5 $"):sub(12, -3))
 
 ------------------------------

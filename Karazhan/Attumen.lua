@@ -26,7 +26,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"phase", 29833, "bosskill"}
+	return {"phase", 29833}
 end
 
 function mod:OnBossEnable()

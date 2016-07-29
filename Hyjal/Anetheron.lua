@@ -12,7 +12,7 @@ mod:RegisterEnableMob(17808)
 
 function mod:GetOptions()
 	return {
-		{31299, "ICON"}, 31306, "berserk", "bosskill"
+		{31299, "ICON"}, 31306, "berserk"
 	}
 end
 

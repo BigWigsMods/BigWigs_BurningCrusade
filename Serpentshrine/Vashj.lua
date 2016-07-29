@@ -63,7 +63,7 @@ function mod:GetOptions(CL)
 		{38280, "ICON", "PROXIMITY"},
 		"elemental", "strider", "naga", "barrier",
 		"berserk",
-		"phase", "bosskill"
+		"phase"
 	}, {
 		[38280] = CL["phase"]:format(1),
 		elemental = CL["phase"]:format(2),

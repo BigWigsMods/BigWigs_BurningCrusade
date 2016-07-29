@@ -45,7 +45,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"adds", "drink", "blizzard", "pull", 30004, "bosskill"
+		"adds", "drink", "blizzard", "pull", 30004
 	}
 end
 

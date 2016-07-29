@@ -183,7 +183,7 @@ local mod = BigWigs:NewModule(boss)
 mod.zonename = BZ["Black Temple"]
 mod.enabletrigger = boss
 mod.guid = 22871
-mod.toggleOptions = {"shadow", "ghost", "icon", "crush", "bosskill"}
+mod.toggleOptions = {"shadow", "ghost", "icon", "crush"}
 mod.revision = tonumber(("$Revision: 5 $"):sub(12, -3))
 
 ------------------------------

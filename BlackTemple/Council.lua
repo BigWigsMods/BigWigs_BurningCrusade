@@ -427,7 +427,7 @@ local mod = BigWigs:NewModule(boss)
 mod.zonename = BZ["Black Temple"]
 mod.enabletrigger = {malande, gathios, zerevor, veras}
 mod.guid = 22951
-mod.toggleOptions = {"immune", "res", "shield", -1, "vanish", "circle", -1, "poison", "icon", -1, "blizzard", "enrage", "bosskill"}
+mod.toggleOptions = {"immune", "res", "shield", -1, "vanish", "circle", -1, "poison", "icon", -1, "blizzard", "enrage"}
 mod.revision = tonumber(("$Revision: 5 $"):sub(12, -3))
 
 ------------------------------

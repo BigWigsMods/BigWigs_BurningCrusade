@@ -39,7 +39,7 @@ L = mod:GetLocale()
 --
 
 function mod:GetOptions()
-	return {"stance", "mark", {38246, "ICON"}, {38235, "PROXIMITY"}, "berserk", "bosskill"}
+	return {"stance", "mark", {38246, "ICON"}, {38235, "PROXIMITY"}, "berserk"}
 end
 
 function mod:OnBossEnable()

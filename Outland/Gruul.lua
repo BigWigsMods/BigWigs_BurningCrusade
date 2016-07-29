@@ -39,7 +39,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"grasp", "grow", {36240, "FLASH"}, 36297, "proximity", "bosskill"
+		"grasp", "grow", {36240, "FLASH"}, 36297, "proximity"
 	}
 end
 

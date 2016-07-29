@@ -11,7 +11,7 @@ mod:RegisterEnableMob(16179)
 --
 
 function mod:GetOptions()
-	return {29896, "bosskill"}
+	return {29896}
 end
 
 function mod:OnBossEnable()

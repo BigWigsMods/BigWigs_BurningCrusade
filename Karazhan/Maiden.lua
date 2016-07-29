@@ -26,7 +26,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		29511, {29522, "ICON"}, "proximity", "bosskill"
+		29511, {29522, "ICON"}, "proximity"
 	}
 end
 

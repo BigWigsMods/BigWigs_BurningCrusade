@@ -78,7 +78,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"phase", 37018, "mc", 37027, {"gaze", "ICON"}, 44863, "pyro", "rebirth", "proximity", "bosskill"
+		"phase", 37018, "mc", 37027, {"gaze", "ICON"}, 44863, "pyro", "rebirth", "proximity"
 	}
 end
 

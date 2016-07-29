@@ -31,7 +31,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{46394, "WHISPER", "ICON"}, "burnresist", 45150, 45185, "berserk", "bosskill"
+		{46394, "WHISPER", "ICON"}, "burnresist", 45150, 45185, "berserk"
 	}
 end
 

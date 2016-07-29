@@ -30,7 +30,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"weak", {30115, "ICON"}, "berserk", "bosskill"
+		"weak", {30115, "ICON"}, "berserk"
 	}
 end
 

@@ -33,7 +33,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"overrun", "earthquake", "proximity", 33653, "bosskill"
+		"overrun", "earthquake", "proximity", 33653
 	}
 end
 

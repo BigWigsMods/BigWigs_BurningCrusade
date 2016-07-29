@@ -32,7 +32,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"spawns", 32337, "bosskill"
+		"spawns", 32337
 	}
 end
 

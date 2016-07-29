@@ -14,7 +14,7 @@ local first = nil
 
 function mod:GetOptions()
 	return {
-		35383, {35410, "ICON"}, 35181, "berserk", "bosskill"
+		35383, {35410, "ICON"}, 35181, "berserk"
 	}
 end
 

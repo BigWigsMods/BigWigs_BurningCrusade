@@ -42,7 +42,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		37730, 37850, "murloc", "globules", "bosskill"
+		37730, 37850, "murloc", "globules"
 	}
 end
 

@@ -23,7 +23,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{31347, "ICON", "FLASH"}, 31344, 31340, "berserk", "bosskill"
+		{31347, "ICON", "FLASH"}, 31344, 31340, "berserk"
 	}
 end
 

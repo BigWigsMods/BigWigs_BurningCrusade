@@ -324,7 +324,7 @@ local mod = BigWigs:NewModule(boss)
 mod.zonename = BZ["Black Temple"]
 mod.enabletrigger = {desire, suffering, anger}
 mod.guid = 23420
-mod.toggleOptions = {"enrage", "runeshield", "deaden", -1, "spite", "scream", "bosskill"}
+mod.toggleOptions = {"enrage", "runeshield", "deaden", -1, "spite", "scream"}
 mod.revision = tonumber(("$Revision: 5 $"):sub(12, -3))
 
 ------------------------------

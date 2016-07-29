@@ -62,7 +62,7 @@ function mod:GetOptions()
 	return {
 		"escape", "abyssal", "heal",
 		30616, "banish", 36449,
-		"exhaust", "berserk", "bosskill"
+		"exhaust", "berserk"
 	}
 end
 

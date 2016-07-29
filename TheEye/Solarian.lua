@@ -43,7 +43,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{42783, "ICON", "PROXIMITY"}, "phase", "split", "bosskill"
+		{42783, "ICON", "PROXIMITY"}, "phase", "split"
 	}
 end
 

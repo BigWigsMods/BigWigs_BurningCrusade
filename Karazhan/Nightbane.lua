@@ -31,7 +31,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"phase", 36922, {30129, "FLASH"}, 37098, "bosskill"
+		"phase", 36922, {30129, "FLASH"}, 37098
 	}
 end
 

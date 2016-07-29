@@ -282,7 +282,7 @@ local mod = BigWigs:NewModule(boss)
 mod.zonename = BZ["Sunwell Plateau"]
 mod.enabletrigger = boss
 mod.guid = 25840
-mod.toggleOptions = {"phase", -1, "darkness", "void", "humanoid", "fiends", "gravity", "enrage", "bosskill"}
+mod.toggleOptions = {"phase", -1, "darkness", "void", "humanoid", "fiends", "gravity", "enrage"}
 mod.revision = tonumber(("$Revision: 6 $"):sub(12, -3))
 
 ------------------------------
