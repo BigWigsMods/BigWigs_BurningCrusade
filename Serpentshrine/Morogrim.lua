@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Morogrim Tidewalker", 780)
+local mod = BigWigs:NewBoss("Morogrim Tidewalker", 780, 1571)
 if not mod then return end
 mod:RegisterEnableMob(21213)
 

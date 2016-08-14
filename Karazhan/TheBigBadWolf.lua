@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("The Big Bad Wolf", 799)
+local mod = BigWigs:NewBoss("The Big Bad Wolf", 799, 1556)
 if not mod then return end
 mod:RegisterEnableMob(17521, 17603) --The Big Bad Wolf, Grandmother
 

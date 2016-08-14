@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Fathom-Lord Karathress", 780)
+local mod = BigWigs:NewBoss("Fathom-Lord Karathress", 780, 1570)
 if not mod then return end
 mod:RegisterEnableMob(21214, 21966, 21965, 21964) --Karathress, Sharkkis, Tidalvess, Caribdis
 

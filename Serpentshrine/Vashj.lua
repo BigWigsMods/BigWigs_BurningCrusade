@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Lady Vashj", 780)
+local mod, CL = BigWigs:NewBoss("Lady Vashj", 780, 1572)
 if not mod then return end
 mod:RegisterEnableMob(21212, 22055, 22056, 22009) --Vashj, Coilfang Elite, Coilfang Strider, Tainted Elemental
 

@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Romulo & Julianne", 799)
+local mod = BigWigs:NewBoss("Romulo & Julianne", 799, 1556)
 if not mod then return end
 mod:RegisterEnableMob(17533, 17534) --Romulo, Julianne
 

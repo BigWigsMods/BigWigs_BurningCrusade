@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Doomwalker", "deDE")
+local L = BigWigs:NewBossLocale("Doomwalker", "zhCN")
 if not L then return end
 if L then
 	L.engage_trigger = "停止前进。否则你们将被消灭。"
@@ -9,7 +9,7 @@ if L then
 	L.earthquake_desc = "当施放地震术时发出警告。"
 end
 
-L = BigWigs:NewBossLocale("Doom Lord Kazzak", "deDE")
+L = BigWigs:NewBossLocale("Doom Lord Kazzak", "zhCN")
 if L then
 	L.engage_trigger1 = "军团将会征服一切！"
 	L.engage_trigger2 = "所有的凡人都将灭亡！"
@@ -22,7 +22,7 @@ if L then
 	L.enraged_bar = "<已激怒>"
 end
 
-L = BigWigs:NewBossLocale("Gruul the Dragonkiller", "deDE")
+L = BigWigs:NewBossLocale("Gruul the Dragonkiller", "zhCN")
 if L then
 	L.engage_trigger = "来了……就得死。"
 	L.engage_message = "%s 激活！"
@@ -42,7 +42,7 @@ if L then
 	L.silence_bar = "沉默"
 end
 
-L = BigWigs:NewBossLocale("High King Maulgar", "deDE")
+L = BigWigs:NewBossLocale("High King Maulgar", "zhCN")
 if L then
 	L.engage_trigger = "戈隆才是外域的主宰！"
 
@@ -64,7 +64,7 @@ if L then
 	L.priest = "盲眼先知 (牧师)"
 end
 
-L = BigWigs:NewBossLocale("Magtheridon", "deDE")
+L = BigWigs:NewBossLocale("Magtheridon", "zhCN")
 if L then
 	L.escape = "释放"
 	L.escape_desc = "玛瑟里顿获得自由倒计时。"

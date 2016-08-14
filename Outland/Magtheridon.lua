@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Magtheridon", 779)
+local mod, CL = BigWigs:NewBoss("Magtheridon", 779, 1566)
 if not mod then return end
 mod:RegisterEnableMob(17257, 17256) --Magtheridon, Hellfire Channeler
 

@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Gruul the Dragonkiller", 776)
+local mod, CL = BigWigs:NewBoss("Gruul the Dragonkiller", 776, 1565)
 if not mod then return end
 mod:RegisterEnableMob(19044)
 

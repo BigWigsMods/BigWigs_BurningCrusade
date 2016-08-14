@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("High Astromancer Solarian", 782)
+local mod = BigWigs:NewBoss("High Astromancer Solarian", 782, 1575)
 if not mod then return end
 mod:RegisterEnableMob(18805)
 

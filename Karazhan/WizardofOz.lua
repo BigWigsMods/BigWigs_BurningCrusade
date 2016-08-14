@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("The Crone", 799)
+local mod = BigWigs:NewBoss("The Crone", 799, 1556)
 if not mod then return end
 --The Crone, Dorothee, Tito, Strawman, Tinhead, Roar
 mod:RegisterEnableMob(18168, 17535, 17548, 17543, 17547, 17546)

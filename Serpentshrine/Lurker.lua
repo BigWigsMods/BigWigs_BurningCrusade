@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("The Lurker Below", 780)
+local mod = BigWigs:NewBoss("The Lurker Below", 780, 1568)
 if not mod then return end
 mod:RegisterEnableMob(21217, 21873, 21865) --Lurker, Coilfang Guardian, Coilfang Ambusher
 
