@@ -1,14 +1,35 @@
 ## Interface: 70000
 
-## Title: Big Wigs [|cffeda55fBurning Crusade|r]
-## Title-zhCN: Big Wigs [|cffeda55f燃烧的远征|r]
-## Notes: A collection of Big Wigs modules from the Burning Crusade era.
-## Notes-zhCN: Big Wigs 燃烧的远征模块。
+## Title: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-zhCN: BigWigs [|cffeda55f燃烧的远征|r]
+## Title-zhTW: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-deDE: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-frFR: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-itIT: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-koKR: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-ruRU: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-ptBR: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-esES: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-esMX: BigWigs [|cffeda55fBurning Crusade|r]
+## Notes: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-zhCN: BigWigs 燃烧的远征模块。
+## Notes-zhTW: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-deDE: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-frFR: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-itIT: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-koKR: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-ruRU: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-ptBR: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-esES: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-esMX: A collection of BigWigs modules from the Burning Crusade era.
 
 ## LoadOnDemand: 1
 ## Dependencies: BigWigs
 
 ## X-Category: Raid
+## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
+## X-Curse-Project-ID: bigwigs_burningcrusade
+## X-WoWI-ID: 22096
 ## X-BigWigs-LoadOn-ZoneId: 775, 780, 779, 776, 799, 782, 466
 ## X-BigWigs-LoadOn-WorldBoss: -473, 17711, -465, 18728
 
