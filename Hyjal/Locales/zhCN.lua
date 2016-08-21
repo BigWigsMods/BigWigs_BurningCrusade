@@ -5,7 +5,7 @@ if L then
 	L.grip_other = "军团之握"
 	L.fear_message = "恐惧！约42秒后再次发动。"
 
-	L.killable = "Becomes Killable"
+	L.killable = "可以击杀"
 end
 
 L = BigWigs:NewBossLocale("Azgalor", "zhCN")
