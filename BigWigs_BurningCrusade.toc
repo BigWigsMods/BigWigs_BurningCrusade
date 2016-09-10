@@ -15,7 +15,7 @@
 ## Notes-zhCN: BigWigs 燃烧的远征模块。
 ## Notes-zhTW: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-deDE: Eine Sammlung von BigWigs-Modulen aus der Ära Burning Crusade.
-## Notes-frFR: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-frFR: Une collection de modules BigWigs de l'ère Burning Crusade.
 ## Notes-itIT: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-koKR: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-ruRU: A collection of BigWigs modules from the Burning Crusade era.
