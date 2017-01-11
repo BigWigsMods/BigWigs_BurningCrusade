@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Moroes", 799, 1554)
+local mod, CL = BigWigs:NewBoss("Moroes Raid", 799, 1554)
 if not mod then return end
 --Moroes, Baroness Dorothea Millstipe, Baron Rafe Dreuger, Lady Catriona Von'Indi,
 --Lady Keira Berrybuck, Lord Robin Daris, Lord Crispin Ference
