@@ -6,7 +6,7 @@ end
 
 L = BigWigs:NewBossLocale("High Warlord Naj'entus", "zhTW")
 if L then
-	
+	L.start_trigger = "你會以瓦許女士之名而死!"
 end
 
 L = BigWigs:NewBossLocale("Reliquary of Souls", "zhTW")
