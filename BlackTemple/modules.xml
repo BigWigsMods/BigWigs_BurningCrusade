@@ -2,8 +2,8 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Najentus.lua"/>
+<Script file="Supremus.lua"/>
 <!--<Script file="Gurtogg.lua"/>-->
-<!--<Script file="Supremus.lua"/>-->
 <!--<Script file="Teron.lua"/>-->
 <!--<Script file="Souls.lua"/>-->
 <!--<Script file="Shahraz.lua"/>-->

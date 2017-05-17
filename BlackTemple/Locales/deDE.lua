@@ -1,7 +1,11 @@
 local L = BigWigs:NewBossLocale("Supremus", "deDE")
 if not L then return end
 if L then
-	
+	L.normal_phase_trigger = "Supremus schlägt wütend auf den Boden!"
+	L.kite_phase_trigger = "Der Boden beginnt aufzubrechen!"
+	--L.normal_phase = "Normal Phase"
+	--L.kite_phase = "Kite Phase"
+	--L.next_phase = "Next Phase"
 end
 
 L = BigWigs:NewBossLocale("High Warlord Naj'entus", "deDE")
