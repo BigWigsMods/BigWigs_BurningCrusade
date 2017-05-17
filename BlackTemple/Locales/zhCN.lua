@@ -3,9 +3,9 @@ if not L then return end
 if L then
 	L.normal_phase_trigger = "苏普雷姆斯愤怒地击打着地面！"
 	L.kite_phase_trigger = "地面崩裂了！"
-	--L.normal_phase = "Normal Phase"
-	--L.kite_phase = "Kite Phase"
-	--L.next_phase = "Next Phase"
+	L.normal_phase = "一般阶段"
+	L.kite_phase = "风筝阶段"
+	L.next_phase = "下一阶段"
 end
 
 L = BigWigs:NewBossLocale("High Warlord Naj'entus", "zhCN")
