@@ -35,6 +35,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "TidalShield", 39872)
 	self:Log("SPELL_AURA_REMOVED", "TidalShieldRemoved", 39872)
 	self:Log("SPELL_AURA_APPLIED", "ImpalingSpine", 39837)
+	self:Log("SPELL_AURA_REMOVED", "ImpalingSpineRemoved", 39837)
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 end
@@ -72,4 +73,8 @@ function mod:ImpalingSpine(args)
 	end
 	self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
 	self:PrimaryIcon(args.spellId, args.destName)
+end
+
+function mod:ImpalingSpineRemoved(args)
+	self:PrimaryIcon(args.spellId)
 end
