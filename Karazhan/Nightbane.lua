@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Nightbane", 799, 1558)
+local mod, CL = BigWigs:NewBoss("Nightbane Raid", 799, 1558)
 if not mod then return end
 mod:RegisterEnableMob(17225)
 

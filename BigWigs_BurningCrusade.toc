@@ -1,4 +1,4 @@
-## Interface: 70000
+## Interface: 70200
 
 ## Title: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-zhCN: BigWigs [|cffeda55f燃烧的远征|r]
@@ -14,8 +14,8 @@
 ## Notes: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-zhCN: BigWigs 燃烧的远征模块。
 ## Notes-zhTW: A collection of BigWigs modules from the Burning Crusade era.
-## Notes-deDE: A collection of BigWigs modules from the Burning Crusade era.
-## Notes-frFR: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-deDE: Eine Sammlung von BigWigs-Modulen aus der Ära Burning Crusade.
+## Notes-frFR: Une collection de modules BigWigs de l'ère Burning Crusade.
 ## Notes-itIT: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-koKR: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-ruRU: A collection of BigWigs modules from the Burning Crusade era.
@@ -25,13 +25,13 @@
 
 ## LoadOnDemand: 1
 ## Dependencies: BigWigs
-## Version: @project-revision@
+## Version: @project-version@
 
 ## X-Category: Raid
 ## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
-## X-Curse-Project-ID: bigwigs_burningcrusade
+## X-Curse-Project-ID: 50688
 ## X-WoWI-ID: 22096
-## X-BigWigs-LoadOn-ZoneId: 775, 780, 779, 776, 799, 782, 466
+## X-BigWigs-LoadOn-ZoneId: 775, 780, 779, 776, 796, 799, 782, 466
 ## X-BigWigs-LoadOn-WorldBoss: -473, 17711, -465, 18728
 
 modules.xml
