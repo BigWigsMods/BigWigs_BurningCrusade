@@ -111,7 +111,7 @@ L:RegisterTranslations("koKR", function() return {
 	desire_warn = "30초 후 마나 0!",
 
 	runeshield = "룬 보호막",
-	runeshield_desc = "욕망의 정수가 룬 보호막 획득에 대한 타이머 입니다.",
+	runeshield_desc = "욕망의 정수가 언제 룬 보호막을 획득하는지 타이머를 표시합니다.",
 	runeshield_message = "룬 보호막!",
 	runeshield_nextbar = "다음 룬 보호막",
 	runeshield_warn = "약 3초 후 룬 보호막",
@@ -124,11 +124,11 @@ L:RegisterTranslations("koKR", function() return {
 
 	spite = "원한",
 	spite_desc = "원한에 걸린 대상을 알립니다.",
-	spite_message = "원한: [%s]",
+	spite_message = "%s에게 원한",
 
 	scream = "영혼의 절규",
-	scream_desc = "영혼의 절규 재사용 시간을 표시합니다.",
-	scream_bar = "~영혼의 절규 재사용 시간",
+	scream_desc = "영혼의 절규의 재사용 대기시간 바를 표시합니다.",
+	scream_bar = "~영혼의 절규 재사용 대기시간",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
