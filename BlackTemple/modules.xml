@@ -6,11 +6,10 @@
 <!--<Script file="ShadeOfAkama.lua"/>-->
 <Script file="Teron.lua"/>
 <Script file="Gurtogg.lua"/>
-<!--<Script file="Souls.lua"/>-->
+<Script file="Souls.lua"/>
 <!--<Script file="Shahraz.lua"/>-->
 <!--<Script file="Council.lua"/>-->
 <!--<Script file="Illidan.lua"/>-->
-<!--<Script file="Hydross.lua"/>-->
 
 </Ui>
 

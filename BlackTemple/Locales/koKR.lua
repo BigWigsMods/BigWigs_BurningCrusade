@@ -15,7 +15,9 @@ end
 
 L = BigWigs:NewBossLocale("Reliquary of Souls", "koKR")
 if L then
-	
+	L.zero_mana = "마나 0"
+	--L.zero_mana_desc = "Show the time it will take until the Essence of Desire has reduced everyones maximum mana to 0."
+	L.desire_start = "욕망의 정수 - 160초 후 마나 0"
 end
 
 L = BigWigs:NewBossLocale("Illidan Stormrage", "koKR")
