@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Supremus", 796, 1583)
 if not mod then return end
 mod:RegisterEnableMob(22898)
---mod.engageId = 602
+mod.engageId = 602
 --mod.respawnTime = 0
 
 --------------------------------------------------------------------------------
@@ -37,8 +37,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:CheckForEngage()
-
 	self:Log("SPELL_AURA_APPLIED", "Fixate", 41951)
 	self:Log("SPELL_AURA_REMOVED", "FixateRemoved", 41951)
 	self:Log("SPELL_CAST_SUCCESS", "MoltenPunch", 40126)
@@ -47,11 +45,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "MoltenFlameDamage", 40265) -- Not firing?
 
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-	self:RegisterEvent("BOSS_KILL")
 end
 
 function mod:OnEngage()
-	self:CheckForWipe()
 	self:Berserk(900)
 	self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
 end
@@ -95,11 +91,5 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	elseif msg == L.kite_phase_trigger then
 		self:Message("stages", "Neutral", "Info", L.kite_phase, false)
 		self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
-	end
-end
-
-function mod:BOSS_KILL(_, id)
-	if id == 602 then
-		self:Win()
 	end
 end
