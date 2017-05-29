@@ -8,7 +8,7 @@
 <Script file="Gurtogg.lua"/>
 <Script file="Souls.lua"/>
 <Script file="Shahraz.lua"/>
-<!--<Script file="Council.lua"/>-->
+<Script file="Council.lua"/>
 <!--<Script file="Illidan.lua"/>-->
 
 </Ui>

@@ -37,7 +37,16 @@ end
 
 L = BigWigs:NewBossLocale("The Illidari Council", "esES") or BigWigs:NewBossLocale("The Illidari Council", "esMX")
 if L then
-	
+	--L.veras = "Veras: %s"
+	--L.malande = "Malande: %s"
+	--L.gathios = "Gathios: %s"
+	--L.zerevor = "Zerevor: %s"
+
+	L.circle_heal_message = "¡Se ha curado! - Prox. en ~20seg"
+	L.circle_fail_message = "¡%s Interrumpido! - Prox. en ~12seg"
+
+	--L.magical_immunity = "Immune to magical!"
+	--L.physical_immunity = "Immune to physical!"
 end
 
 L = BigWigs:NewBossLocale("Teron Gorefiend", "esES") or BigWigs:NewBossLocale("Teron Gorefiend", "esMX")

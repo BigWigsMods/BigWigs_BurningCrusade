@@ -37,7 +37,16 @@ end
 
 L = BigWigs:NewBossLocale("The Illidari Council", "koKR")
 if L then
-	
+	--L.veras = "Veras: %s"
+	--L.malande = "Malande: %s"
+	--L.gathios = "Gathios: %s"
+	--L.zerevor = "Zerevor: %s"
+
+	L.circle_heal_message = "치유됨! - 다음은 약 20초 이내"
+	L.circle_fail_message = "%s 차단함! - 다음은 약 12초 이내"
+
+	--L.magical_immunity = "Immune to magical!"
+	--L.physical_immunity = "Immune to physical!"
 end
 
 L = BigWigs:NewBossLocale("Teron Gorefiend", "koKR")
