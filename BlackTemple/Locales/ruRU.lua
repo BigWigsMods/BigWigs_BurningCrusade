@@ -1,5 +1,10 @@
-local L = BigWigs:NewBossLocale("Supremus", "ruRU")
+local L = BigWigs:NewBossLocale("High Warlord Naj'entus", "ruRU")
 if not L then return end
+if L then
+	L.start_trigger = "Вы умрете во имя леди Вайш!"
+end
+
+L = BigWigs:NewBossLocale("Supremus", "ruRU")
 if L then
 	L.normal_phase_trigger = "Супремус в гневе ударяет по земле!"
 	L.kite_phase_trigger = "Земля начинает раскалываться!"
@@ -8,31 +13,11 @@ if L then
 	--L.next_phase = "Next Phase"
 end
 
-L = BigWigs:NewBossLocale("High Warlord Naj'entus", "ruRU")
-if L then
-	L.start_trigger = "Вы умрете во имя леди Вайш!"
-end
-
 L = BigWigs:NewBossLocale("Reliquary of Souls", "ruRU")
 if L then
 	--L.zero_mana = "Zero Mana"
 	--L.zero_mana_desc = "Show the time it will take until the Essence of Desire has reduced everyones maximum mana to 0."
 	--L.desire_start = "Essence of Desire - Zero Mana in 160 sec"
-end
-
-L = BigWigs:NewBossLocale("Illidan Stormrage", "ruRU")
-if L then
-	
-end
-
-L = BigWigs:NewBossLocale("Mother Shahraz", "ruRU")
-if L then
-	
-end
-
-L = BigWigs:NewBossLocale("Gurtogg Bloodboil", "ruRU")
-if L then
-	
 end
 
 L = BigWigs:NewBossLocale("The Illidari Council", "ruRU")
@@ -49,8 +34,7 @@ if L then
 	--L.physical_immunity = "Immune to physical!"
 end
 
-L = BigWigs:NewBossLocale("Teron Gorefiend", "ruRU")
+L = BigWigs:NewBossLocale("Illidan Stormrage", "ruRU")
 if L then
 	
 end
-
