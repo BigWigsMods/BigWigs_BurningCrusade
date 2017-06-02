@@ -36,5 +36,7 @@ end
 
 L = BigWigs:NewBossLocale("Illidan Stormrage", "frFR")
 if L then
-	
+	L.barrage_bar = "Barrage"
+	L.eyeblast_trigger = "Soutenez le regard du Traître !"
+	L.warmup_trigger = "Akama. Ta duplicité n'est pas très étonnante. J'aurais dû vous massacrer depuis longtemps, toi et ton frère déformé."
 end

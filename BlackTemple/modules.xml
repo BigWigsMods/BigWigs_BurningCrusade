@@ -9,7 +9,7 @@
 <Script file="Souls.lua"/>
 <Script file="Shahraz.lua"/>
 <Script file="Council.lua"/>
-<!--<Script file="Illidan.lua"/>-->
+<Script file="Illidan.lua"/>
 
 </Ui>
 
