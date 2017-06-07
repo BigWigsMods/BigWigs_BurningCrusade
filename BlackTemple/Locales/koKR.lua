@@ -37,6 +37,5 @@ end
 L = BigWigs:NewBossLocale("Illidan Stormrage", "koKR")
 if L then
 	L.barrage_bar = "집중포화"
-	L.eyeblast_trigger = "배신자의 눈을 똑바로 쳐다봐라!"
 	L.warmup_trigger = "아카마, 너의 불충은 그리 놀랍지도 않구나. 너희 흉측한 형제들을 벌써 오래전에 없애버렸어야 했는데..."
 end

@@ -37,6 +37,5 @@ end
 L = BigWigs:NewBossLocale("Illidan Stormrage", "ruRU")
 if L then
 	--L.barrage_bar = "Barrage"
-	L.eyeblast_trigger = "Посмотри в глаза Предателя!"
 	L.warmup_trigger = "Акама! Твое двуличие меня не удивляет. Мне давным-давно стоило уничтожить тебя и твоих уродливых собратьев."
 end

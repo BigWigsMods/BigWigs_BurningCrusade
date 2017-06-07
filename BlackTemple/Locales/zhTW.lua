@@ -37,6 +37,5 @@ end
 L = BigWigs:NewBossLocale("Illidan Stormrage", "zhTW")
 if L then
 	L.barrage_bar = "黑暗侵襲"
-	L.eyeblast_trigger = "直視背叛者的雙眼吧!"
 	L.warmup_trigger = "阿卡瑪。你的謊言真是老套。我很久前就該殺了你和你那些畸形的同胞。"
 end

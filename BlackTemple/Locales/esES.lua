@@ -37,6 +37,5 @@ end
 L = BigWigs:NewBossLocale("Illidan Stormrage", "esES") or BigWigs:NewBossLocale("Illidan Stormrage", "esMX")
 if L then
 	L.barrage_bar = "Tromba"
-	L.eyeblast_trigger = "¡Mirad a los ojos del Traidor!"
 	L.warmup_trigger = "Akama. Tu hipocresía no me sorprende. Debí acabar contigo y con tus malogrados hermanos hace tiempo."
 end
