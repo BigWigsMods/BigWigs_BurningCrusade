@@ -8,30 +8,30 @@ L = BigWigs:NewBossLocale("Supremus", "koKR")
 if L then
 	L.normal_phase_trigger =  "궁극의 심연이 분노하여 땅을 내리찍습니다!"
 	L.kite_phase_trigger = "땅이 갈라져서 열리기 시작합니다!"
-	--L.normal_phase = "Normal Phase"
-	--L.kite_phase = "Kite Phase"
-	--L.next_phase = "Next Phase"
+	L.normal_phase = "보통 단계"
+	L.kite_phase = "유도 단계"
+	L.next_phase = "다음 단계"
 end
 
 L = BigWigs:NewBossLocale("Reliquary of Souls", "koKR")
 if L then
 	L.zero_mana = "마나 0"
-	--L.zero_mana_desc = "Show the time it will take until the Essence of Desire has reduced everyones maximum mana to 0."
+	L.zero_mana_desc = "욕망의 정수가 모두의 최대 마나를 0으로 감소시키기 까지의 시간을 표시합니다."
 	L.desire_start = "욕망의 정수 - 160초 후 마나 0"
 end
 
 L = BigWigs:NewBossLocale("The Illidari Council", "koKR")
 if L then
-	--L.veras = "Veras: %s"
-	--L.malande = "Malande: %s"
-	--L.gathios = "Gathios: %s"
-	--L.zerevor = "Zerevor: %s"
+	L.veras = "베라스: %s"
+	L.malande = "말란데: %s"
+	L.gathios = "가디오스: %s"
+	L.zerevor = "제레보르: %s"
 
-	L.circle_heal_message = "치유됨! - 다음은 약 20초 이내"
-	L.circle_fail_message = "%s 차단함! - 다음은 약 12초 이내"
+	L.circle_heal_message = "치유됨! - 다음은 약 20초 후"
+	L.circle_fail_message = "%s 시전 방해! - 다음은 약 12초 후"
 
-	--L.magical_immunity = "Immune to magical!"
-	--L.physical_immunity = "Immune to physical!"
+	L.magical_immunity = "마법 공격에 면역!"
+	L.physical_immunity = "물리 공격에 면역!"
 end
 
 L = BigWigs:NewBossLocale("Illidan Stormrage", "koKR")
