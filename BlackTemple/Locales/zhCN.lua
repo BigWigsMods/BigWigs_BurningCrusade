@@ -22,16 +22,16 @@ end
 
 L = BigWigs:NewBossLocale("The Illidari Council", "zhCN")
 if L then
-	--L.veras = "Veras: %s"
-	--L.malande = "Malande: %s"
-	--L.gathios = "Gathios: %s"
-	--L.zerevor = "Zerevor: %s"
+	L.veras = "维尔莱斯：%s"
+	L.malande = "玛兰德：%s"
+	L.gathios = "加西奥斯：%s"
+	L.zerevor = "塞勒沃尔：%s"
 
 	L.circle_heal_message = "治疗成功！约20秒后，再次发动。"
 	L.circle_fail_message = "%s 打断！约12秒后，再次发动治疗之环。"
 
-	--L.magical_immunity = "Immune to magical!"
-	--L.physical_immunity = "Immune to physical!"
+	L.magical_immunity = "魔法免疫！"
+	L.physical_immunity = "物理免疫！"
 end
 
 L = BigWigs:NewBossLocale("Illidan Stormrage", "zhCN")
