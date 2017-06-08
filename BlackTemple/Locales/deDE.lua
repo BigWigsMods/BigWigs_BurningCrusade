@@ -37,6 +37,5 @@ end
 L = BigWigs:NewBossLocale("Illidan Stormrage", "deDE")
 if L then
 	L.barrage_bar = "Sperrfeuer"
-	L.eyeblast_trigger = "Blickt in die Augen des Verräters!"
 	L.warmup_trigger = "Akama. Euer falsches Spiel überrascht mich nicht. Ich hätte Euch und Eure missgestalteten Brüder schon vor langer Zeit abschlachten sollen."
 end

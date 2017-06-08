@@ -28,7 +28,6 @@ local timer1, timer2 = nil, nil
 local L = mod:GetLocale()
 if L then
 	L.barrage_bar = "Barrage"
-	L.eyeblast_trigger = "Stare into the eyes of the Betrayer!"
 	L.warmup_trigger = "Akama. Your duplicity is hardly surprising. I should have slaughtered you and your malformed brethren long ago."
 end
 
@@ -49,7 +48,7 @@ function mod:GetOptions()
 
 		--[[ Stage Two: Flames of Azzinoth ]]--
 		{40585, "ICON"}, -- Dark Barrage
-		224895, -- Eye Blast
+		40018, -- Eye Blast
 		39869, -- Uncaged Wrath
 		40611, -- Blaze
 
@@ -80,6 +79,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DarkBarrage", 40585)
 	self:Log("SPELL_AURA_REMOVED", "DarkBarrageRemoved", 40585)
 	self:Log("SPELL_AURA_APPLIED", "UncagedWrath", 39869)
+	self:Log("SPELL_SUMMON", "EyeBlast", 40018)
 
 	--[[ Stage Three: The Demon Within ]]--
 	self:Death("FlameDeath", 22997) -- Flame of Azzinoth
@@ -95,8 +95,8 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
-	self:Log("SPELL_DAMAGE", "Damage", 40841, 40611, 40030) -- Flame Crash, Blaze, Demon Fire (Eye Blast)
-	self:Log("SPELL_MISSED", "Damage", 40841, 40611, 40030) -- Flame Crash, Blaze, Demon Fire (Eye Blast)
+	self:Log("SPELL_DAMAGE", "Damage", 40841, 40611, 40018, 40030) -- Flame Crash, Blaze, Eye Blast, Demon Fire (Eye Blast)
+	self:Log("SPELL_MISSED", "Damage", 40841, 40611, 40018, 40030) -- Flame Crash, Blaze, Eye Blast, Demon Fire (Eye Blast)
 end
 
 function mod:OnEngage()
@@ -150,6 +150,17 @@ end
 
 function mod:UncagedWrath(args)
 	self:Message(args.spellId, "Urgent", "Warning")
+end
+
+do
+	local prev = 0
+	function mod:EyeBlast(args)
+		local t = GetTime()
+		if t-prev > 2 then
+			self:Message(args.spellId, "Attention", "Info")
+		end
+		prev = t -- Continually spams every 1s during the cast
+	end
 end
 
 --[[ Stage Three: The Demon Within ]]--
@@ -236,9 +247,7 @@ function mod:UNIT_AURA(unit)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.eyeblast_trigger then
-		self:Message(224895, "Attention", "Info")
-	elseif msg == L.warmup_trigger then
+	if msg == L.warmup_trigger then
 		self:Bar("warmup", 41.5, CL.active, "achievement_boss_illidan")
 	end
 end
@@ -248,7 +257,7 @@ do
 	function mod:Damage(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
 			prev = GetTime()
-			self:Message(args.spellId == 40030 and 224895 or args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			self:Message(args.spellId == 40030 and 40018 or args.spellId, "Personal", "Alert", CL.underyou:format(args.spellId == 40030 and self:SpellName(40018) or args.spellName))
 		end
 	end
 end
