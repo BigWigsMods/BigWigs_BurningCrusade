@@ -13,6 +13,17 @@ if L then
 	--L.next_phase = "Next Phase"
 end
 
+L = BigWigs:NewBossLocale("Shade of Akama", "itIT")
+if L then
+	--L.wipe_trigger = "No! Not yet!"
+	--L.defender = "Defender" -- Ashtongue Defender
+	--L.sorcerer = "Sorcerer" -- Ashtongue Sorcerer
+	--L.adds_right = "Adds (Right)"
+	--L.adds_left = "Adds (Left)"
+
+	--L.engaged = "Shade of Akama Engaged"
+end
+
 L = BigWigs:NewBossLocale("Reliquary of Souls", "itIT")
 if L then
 	--L.zero_mana = "Zero Mana"
