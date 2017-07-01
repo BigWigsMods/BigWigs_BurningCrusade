@@ -6,7 +6,7 @@
 ## Title-deDE: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-frFR: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-itIT: BigWigs [|cffeda55fBurning Crusade|r]
-## Title-koKR: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-koKR: BigWigs [|cffeda55f불타는 성전|r]
 ## Title-ruRU: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-ptBR: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-esES: BigWigs [|cffeda55fBurning Crusade|r]
@@ -17,7 +17,7 @@
 ## Notes-deDE: Eine Sammlung von BigWigs-Modulen aus der Ära Burning Crusade.
 ## Notes-frFR: Une collection de modules BigWigs de l'ère Burning Crusade.
 ## Notes-itIT: A collection of BigWigs modules from the Burning Crusade era.
-## Notes-koKR: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-koKR: 불타는 성전 BigWigs 모듈 모음집입니다..
 ## Notes-ruRU: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-ptBR: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-esES: A collection of BigWigs modules from the Burning Crusade era.
