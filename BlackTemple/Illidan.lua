@@ -194,7 +194,7 @@ function mod:SummonShadowDemons(args)
 end
 
 --[[ Stage Four: The Long Hunt ]]--
-function mod:ShadowPrison(args) -- Stage 4
+function mod:ShadowPrison() -- Stage 4
 	self:Message("stages", "Neutral", nil, -15757, false) -- Stage Four: The Long Hunt
 
 	self:Bar(40683, 75) -- Frenzy

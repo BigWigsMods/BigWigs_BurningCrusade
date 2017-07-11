@@ -74,7 +74,7 @@ function mod:Weakened(args)
 	self:Bar("weak", 45, L["weak_bar"], args.spellId)
 end
 
-function mod:WeakenedRemoved(args)
+function mod:WeakenedRemoved()
 	self:Message("weak", "Attention", "Info", L["weak_warning2"])
 	self:CancelDelayedMessage(L["weak_warning1"])
 	self:StopBar(L["weak_bar"])
