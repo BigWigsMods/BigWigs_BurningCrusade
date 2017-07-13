@@ -23,12 +23,15 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ShadowOfDeath", 40251)
+	self:Log("SPELL_AURA_APPLIED", "ShadowOfDeathApplied", 40251)
+	self:Log("SPELL_AURA_REMOVED", "ShadowOfDeathRemoved", 40251)
 	self:Log("SPELL_CAST_SUCCESS", "CrushingShadows", 40243)
 	self:Log("SPELL_AURA_APPLIED", "CrushingShadowsApplied", 40243)
 end
 
 function mod:OnEngage()
 	self:Berserk(600)
+	self:CDBar(40251, 10) -- Shadow of Death
 	self:CDBar(40243, 15.7) -- Crushing Shadows
 end
 
@@ -37,10 +40,18 @@ end
 --
 
 function mod:ShadowOfDeath(args)
+	self:Bar(args.spellId, 62)
+end
+
+function mod:ShadowOfDeathApplied(args)
 	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
-	self:TargetBar(args.spellId, 55, args.destName)
+	-- Used to be 55s, wowhead says 55s, timewalking logs say 30s
+	self:TargetBar(args.spellId, 30, args.destName, 54224) -- 54224 = "Death" / ability_rogue_feigndeath / icon 132293
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:ScheduleTimer("TargetBar", 55, args.spellId, 60, args.destName, 221641) -- 221641 = "Ghost" / achievement_halloween_ghost_01 / icon 236548
+end
+
+function mod:ShadowOfDeathRemoved(args)
+	self:TargetBar(40251, 60, args.destName, 221641) -- 221641 = "Ghost" / achievement_halloween_ghost_01 / icon 236548
 end
 
 function mod:CrushingShadows(args)
