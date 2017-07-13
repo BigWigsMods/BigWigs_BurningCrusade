@@ -43,7 +43,7 @@ function mod:GetOptions()
 
 		--[[ Stage One: You Are Not Prepared ]]--
 		41032, -- Shear
-		{41917, "ICON"}, -- Parasitic Shadowfiend
+		{41917, "ICON", "SAY"}, -- Parasitic Shadowfiend
 		40841, -- Flame Crash
 
 		--[[ Stage Two: Flames of Azzinoth ]]--
@@ -73,6 +73,8 @@ function mod:OnBossEnable()
 	--[[ Stage One: You Are Not Prepared ]]--
 	self:Log("SPELL_AURA_APPLIED", "Shear", 41032)
 	self:Log("SPELL_AURA_APPLIED", "ParasiticShadowfiend", 41917)
+	self:Log("SPELL_AURA_APPLIED", "ParasiticShadowfiendFailure", 41914)
+	self:Log("SPELL_AURA_REMOVED", "ParasiticShadowfiendOver", 41917, 41914)
 
 	--[[ Stage Two: Flames of Azzinoth ]]--
 	self:Log("SPELL_CAST_START", "ThrowGlaive", 39849)
@@ -124,6 +126,21 @@ function mod:ParasiticShadowfiend(args)
 	self:TargetMessage(args.spellId, args.destName, "Attention", "Long")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 10, args.destName, 36469, args.spellId) -- 36469 = "Parasite"
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, 36469) -- 36469 = "Parasite"
+	end
+end
+
+function mod:ParasiticShadowfiendFailure(args) -- The parasite reached someone new before it was killed
+	self:TargetMessage(41917, args.destName, "Attention")
+	self:TargetBar(41917, 10, args.destName, 36469, 41917) -- 36469 = "Parasite"
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, 36469) -- 36469 = "Parasite"
+	end
+end
+
+function mod:ParasiticShadowfiendOver(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
 --[[ Stage Two: Flames of Azzinoth ]]--
@@ -157,7 +174,7 @@ do
 	function mod:EyeBlast(args)
 		local t = GetTime()
 		if t-prev > 2 then
-			self:Message(args.spellId, "Attention", "Info")
+			self:Message(args.spellId, "Attention", "Info", args.spellName, 224284) -- XXX temp until it has an icon
 		end
 		prev = t -- Continually spams every 1s during the cast
 	end
