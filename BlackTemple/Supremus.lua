@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Supremus", 796, 1583)
 if not mod then return end
 mod:RegisterEnableMob(22898)
 mod.engageId = 602
---mod.respawnTime = 0
+--mod.respawnTime = 0 -- Resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -49,6 +49,7 @@ end
 
 function mod:OnEngage()
 	self:Berserk(900)
+	self:CDBar(40126, 12) -- Molten Punch
 	self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
 end
 
@@ -70,7 +71,7 @@ end
 
 function mod:MoltenPunch(args)
 	self:Message(args.spellId, "Attention")
-	self:Bar(args.spellId, 10)
+	self:CDBar(args.spellId, 16) -- 16-20
 end
 
 do
