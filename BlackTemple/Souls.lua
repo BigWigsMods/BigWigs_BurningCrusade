@@ -85,7 +85,7 @@ end
 function mod:OnEngage()
 	wipe(playerList)
 	wipe(castCollector)
-	self:CDBar(41305, 49) -- Frenzy
+	self:CDBar(41305, 48) -- Frenzy
 	self:CDBar(41303, 21.6) -- Soul Drain
 end
 
@@ -139,7 +139,7 @@ function mod:AuraOfSuffering() -- Start of Stage 1
 end
 
 function mod:SoulDrain(args)
-	self:Bar(args.spellId, 21.8)
+	self:Bar(args.spellId, 21.3)
 end
 
 function mod:SoulDrainApplied(args)
@@ -168,8 +168,8 @@ end
 function mod:AuraOfDesire() -- Start of Stage 2
 	self:Message("zero_mana", "Neutral", nil, L.desire_start, L.zero_mana_icon)
 	self:Bar("zero_mana", 160, L.zero_mana, L.zero_mana_icon)
-	self:CDBar(41410, 30) -- Deaden
-	self:CDBar(41431, 15) -- Rune Shield
+	self:CDBar(41410, 27.6) -- Deaden
+	self:CDBar(41431, 13) -- Rune Shield
 end
 
 function mod:RuneShield(args)
@@ -188,12 +188,12 @@ end
 
 --[[ Essence of Anger ]]--
 function mod:AuraOfAnger() -- Start of Stage 3
-	self:CDBar(41376, 20.5) -- Spite
-	self:CDBar(41545, 10.5) -- Soul Scream
+	self:CDBar(41376, 18.2) -- Spite
+	self:CDBar(41545, 8.5) -- Soul Scream
 end
 
 function mod:Spite(args)
-	self:Bar(args.spellId, 20.6)
+	self:Bar(args.spellId, 20.5)
 end
 
 function mod:SpiteApplied(args)
