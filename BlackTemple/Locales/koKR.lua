@@ -15,13 +15,13 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Akama", "koKR")
 if L then
-	--L.wipe_trigger = "No! Not yet!"
-	--L.defender = "Defender" -- Ashtongue Defender
-	--L.sorcerer = "Sorcerer" -- Ashtongue Sorcerer
-	--L.adds_right = "Adds (Right)"
-	--L.adds_left = "Adds (Left)"
+	L.wipe_trigger = "아직은! 안돼!"
+	L.defender = "수호병" -- Ashtongue Defender
+	L.sorcerer = "사술사" -- Ashtongue Sorcerer
+	L.adds_right = "몹 추가 (오른쪽)"
+	L.adds_left = "몹 추가 (왼쪽)"
 
-	--L.engaged = "Shade of Akama Engaged"
+	L.engaged = "아카마의 망령 전투 시작"
 end
 
 L = BigWigs:NewBossLocale("Reliquary of Souls", "koKR")
