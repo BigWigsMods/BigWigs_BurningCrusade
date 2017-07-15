@@ -7,7 +7,7 @@ local mod = BigWigs:NewBoss("Teron Gorefiend", 796, 1585)
 if not mod then return end
 mod:RegisterEnableMob(22871)
 mod.engageId = 604
---mod.respawnTime = 0
+--mod.respawnTime = 0 -- Resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -22,7 +22,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "ShadowOfDeath", 40251)
+	self:Log("SPELL_CAST_SUCCESS", "ShadowOfDeath", 40251)
 	self:Log("SPELL_AURA_APPLIED", "ShadowOfDeathApplied", 40251)
 	self:Log("SPELL_AURA_REMOVED", "ShadowOfDeathRemoved", 40251)
 	self:Log("SPELL_CAST_SUCCESS", "CrushingShadows", 40243)
@@ -55,7 +55,7 @@ function mod:ShadowOfDeathRemoved(args)
 end
 
 function mod:CrushingShadows(args)
-	self:CDBar(args.spellId, 15.7)
+	self:CDBar(args.spellId, 15.7) -- 15-21
 end
 
 do
