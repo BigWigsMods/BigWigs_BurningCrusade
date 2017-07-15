@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("The Illidari Council", 796, 1589)
 if not mod then return end
 mod:RegisterEnableMob(22951, 22952, 22949, 22950) -- Lady Malande, Veras Darkshadow, Gathios the Shatterer, High Nethermancer Zerevor
 mod.engageId = 608
---mod.respawnTime = 0
+--mod.respawnTime = 0 -- Resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -80,7 +80,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BlessingOfSpellWarding", 41451)
 
 	--[[ High Nethermancer Zerevor ]]--
-	self:Log("SPELL_AURA_APPLIED", "Damage", 41481, 41482)
+	self:Log("SPELL_AURA_APPLIED", "Damage", 41481, 41482) -- Flamestrike, Blizzard
 	self:Log("SPELL_PERIODIC_DAMAGE", "Damage", 41481, 41482)
 	self:Log("SPELL_PERIODIC_MISSED", "Damage", 41481, 41482)
 end
@@ -104,7 +104,9 @@ function mod:VanishOver(args)
 end
 
 function mod:DeadlyPoison(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	if self:Healer() or self:Me(args.destGUID) then
+		self:TargetMessage(args.spellId, args.destName, "Important", "Alarm")
+	end
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -150,7 +152,7 @@ function mod:ChromaticResistanceAuraOver(args)
 end
 
 function mod:BlessingOfProtection(args)
-	if self:MobId(args.destGUID) == 22951 then -- Lady Malande
+	if self:MobId(args.destGUID) == 22951 and self:MobId(UnitGUID("target")) == 22951 and self:Damager() then -- Lady Malande
 		local txt = L.malande:format(L.physical_immunity)
 		self:Message(args.spellId, "Important", "Info", txt)
 		self:Bar(args.spellId, 15, txt)
@@ -158,7 +160,7 @@ function mod:BlessingOfProtection(args)
 end
 
 function mod:BlessingOfSpellWarding(args)
-	if self:MobId(args.destGUID) == 22951 then -- Lady Malande
+	if self:MobId(args.destGUID) == 22951 and self:MobId(UnitGUID("target")) == 22951 and self:Damager() then -- Lady Malande
 		local txt = L.malande:format(L.magical_immunity)
 		self:Message(args.spellId, "Important", "Info", txt)
 		self:Bar(args.spellId, 15, txt)
