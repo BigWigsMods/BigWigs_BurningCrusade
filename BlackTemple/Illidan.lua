@@ -91,6 +91,7 @@ function mod:OnBossEnable()
 
 	--[[ Stage Four: The Long Hunt ]]--
 	self:Log("SPELL_CAST_SUCCESS", "ShadowPrison", 40647)
+	self:Log("SPELL_AURA_REMOVED", "ShadowPrisonRemoved", 40647)
 	self:Log("SPELL_CAST_SUCCESS", "Frenzy", 40683)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:RegisterUnitEvent("UNIT_AURA", nil, "boss1")
@@ -149,7 +150,7 @@ function mod:ThrowGlaive() -- Stage 2
 
 	self:PrimaryIcon(41917) -- Parasitic Shadowfiend
 	self:CDBar(40585, 95) -- Dark Barrage
-	self:Message("stages", "Neutral", nil, -15740, false) -- Stage Two: Flames of Azzinoth
+	self:Message("stages", "Neutral", nil, CL.stage:format(2), false)
 end
 
 function mod:DarkBarrage(args)
@@ -185,7 +186,7 @@ function mod:FlameDeath() -- Stage 3
 	flamesDead = flamesDead + 1
 	if flamesDead == 2 then
 		self:StopBar(40585) -- Dark Barrage
-		self:Message("stages", "Neutral", "Alarm", -15751, false) -- Stage Three: The Demon Within
+		self:Message("stages", "Neutral", "Alarm", CL.stage:format(3), false)
 		self:Bar(40506, 75) -- Demon Form
 		self:OpenProximity(40932, 5) -- Agonizing Flames
 	end
@@ -211,11 +212,18 @@ function mod:SummonShadowDemons(args)
 end
 
 --[[ Stage Four: The Long Hunt ]]--
-function mod:ShadowPrison() -- Stage 4
-	self:Message("stages", "Neutral", nil, -15757, false) -- Stage Four: The Long Hunt
+function mod:ShadowPrison(args) -- Pre Stage 4 Intermission
+	self:Message("stages", "Neutral", nil, CL.intermission, false)
+	self:Bar("stages", 30, CL.intermission, args.spellId)
+end
 
-	self:Bar(40683, 75) -- Frenzy
-	self:Bar(40506, 90) -- Demon Form
+function mod:ShadowPrisonRemoved(args) -- Stage 4
+	if self:MobId(args.destGUID) == 23089 then -- When debuff drops from Akama (downstairs)
+		self:Message("stages", "Neutral", nil, CL.stage:format(4), false)
+
+		self:Bar(40683, 45) -- Frenzy
+		self:Bar(40506, 60) -- Demon Form
+	end
 end
 
 function mod:Frenzy(args)
