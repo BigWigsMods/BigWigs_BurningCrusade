@@ -49,6 +49,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "StealthRemoved", 34189)
+	self:RegisterMessage("BigWigs_BossComm")
 
 	self:Log("SPELL_AURA_APPLIED", "RainOfFireDamage", 42023)
 	self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFireDamage", 42023)
@@ -78,6 +79,12 @@ end
 function mod:StealthRemoved(args)
 	-- Stealth is removed when you speak to him, starting the encounter
 	if self:MobId(args.destGUID) == 23191 then -- Akama
+		self:Sync("Akama") -- There seems to be range problems with this, sync for now.
+	end
+end
+
+function mod:BigWigs_BossComm(_, msg)
+	if msg == "Akama" and not self.isEngaged then
 		self:Engage()
 	end
 end
