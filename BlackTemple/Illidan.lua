@@ -20,6 +20,7 @@ local barrageCount = 0
 local inDemonPhase = false
 local isCaged = false
 local timer1, timer2 = nil, nil
+local fixateList = {}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -110,12 +111,26 @@ function mod:OnEngage()
 	inDemonPhase = false
 	isCaged = false
 	wipe(playerList)
+	wipe(fixateList)
+
 	self:Berserk(1500)
+	self:RegisterTargetEvents("CheckForFixate")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:CheckForFixate(_, unit, guid)
+	local mobId = self:MobId(guid)
+	if mobId == 23498 and not fixateList[guid] then
+		if self:Me(UnitGUID(unit.."target")) then
+			fixateList[guid] = true
+			self:Say(41917, 36469) -- Parasitic Shadowfiend -- 41951 = "Fixate"
+			self:Message(41917, "Personal", "Long", CL.you:format(self:SpellName(36469)))
+		end
+	end
+end
 
 --[[ Stage One: You Are Not Prepared ]]--
 function mod:Shear(args)
