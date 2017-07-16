@@ -151,7 +151,7 @@ function mod:ParasiticShadowfiendFailure(args) -- The parasite reached someone n
 	self:TargetMessage(41917, args.destName, "Attention")
 	self:TargetBar(41917, 10, args.destName, 36469, 41917) -- 36469 = "Parasite"
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId, 36469) -- 36469 = "Parasite"
+		self:Say(41917, 36469) -- 36469 = "Parasite"
 	end
 end
 
