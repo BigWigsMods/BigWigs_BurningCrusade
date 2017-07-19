@@ -33,10 +33,10 @@ end
 
 L = BigWigs:NewBossLocale("The Illidari Council", "zhTW")
 if L then
-	L.veras = "維拉斯‧深影: %s"
-	L.malande = "瑪蘭黛女士: %s"
-	L.gathios = "粉碎者高希歐: %s"
-	L.zerevor = "高等虛空術士札瑞佛: %s"
+	L.veras = "維拉斯‧深影：%s"
+	L.malande = "瑪蘭黛女士：%s"
+	L.gathios = "粉碎者高希歐：%s"
+	L.zerevor = "高等虛空術士札瑞佛：%s"
 
 	L.circle_heal_message = "治療成功！約20秒後再次使用。"
 	L.circle_fail_message = "%s打斷了！約12秒後再次使用。"
