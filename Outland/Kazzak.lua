@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Doom Lord Kazzak", -465)
 if not mod then return end
 mod:RegisterEnableMob(18728)
 mod.worldBoss = 18728
-mod.otherMenu = 466
+mod.otherMenu = -466
 
 --------------------------------------------------------------------------------
 -- Localization
