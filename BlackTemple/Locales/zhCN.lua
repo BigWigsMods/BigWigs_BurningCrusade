@@ -15,7 +15,7 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Akama", "zhCN")
 if L then
-	--L.wipe_trigger = "No! Not yet!"
+	L.wipe_trigger = "不！我不能死！"
 	L.defender = "防御者" -- Ashtongue Defender
 	L.sorcerer = "巫师" -- Ashtongue Sorcerer
 	L.adds_right = "增援（右侧）"
