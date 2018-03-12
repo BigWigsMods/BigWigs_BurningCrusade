@@ -45,7 +45,7 @@ function mod:OnEngage()
 	self:Message(29448, "Attention", nil, L["engage_message"]:format(self.displayName))
 
 	self:CDBar(29448, 35)
-	self:DelayedMessage(29448, 30, CL["soon"]:format(self:SpellName(29448)), "Attention")
+	self:DelayedMessage(29448, 30, "Attention", CL["soon"]:format(self:SpellName(29448)))
 end
 
 --------------------------------------------------------------------------------

@@ -135,8 +135,8 @@ end
 
 function mod:CircleOfHealingInterrupted(args)
 	if args.extraSpellId == 41455 then
-		self:Message(args.extraSpellId, "Urgent", nil, L.circle_fail_message:format(self:ColorName(args.sourceName)))
-		self:CDBar(args.extraSpellId, 12)
+		self:Message(41455, "Urgent", nil, L.circle_fail_message:format(self:ColorName(args.sourceName)))
+		self:CDBar(41455, 12)
 	end
 end
 
