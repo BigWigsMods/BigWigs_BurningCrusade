@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Hyakiss the Lurker", 799, 1552)
+local mod = BigWigs:NewBoss("Hyakiss the Lurker", 532, 1552)
 if not mod then return end
 mod:RegisterEnableMob(16179)
 

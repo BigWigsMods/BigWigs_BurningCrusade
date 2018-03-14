@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Void Reaver", 782, 1574)
+local mod = BigWigs:NewBoss("Void Reaver", 550, 1574)
 if not mod then return end
 mod:RegisterEnableMob(19516)
 

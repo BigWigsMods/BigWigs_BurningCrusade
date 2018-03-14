@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("High Warlord Naj'entus", 796, 1582)
+local mod, CL = BigWigs:NewBoss("High Warlord Naj'entus", 564, 1582)
 if not mod then return end
 mod:RegisterEnableMob(22887)
 mod.engageId = 601

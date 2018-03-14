@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Netherspite", 799, 1561)
+local mod = BigWigs:NewBoss("Netherspite", 532, 1561)
 if not mod then return end
 mod:RegisterEnableMob(15689)
 

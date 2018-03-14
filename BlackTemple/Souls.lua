@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Reliquary of Souls", 796, 1587)
+local mod, CL = BigWigs:NewBoss("Reliquary of Souls", 564, 1587)
 if not mod then return end
 mod:RegisterEnableMob(23420, 23419, 23418) -- Essence of Anger, Essence of Desire, Essence of Suffering
 mod.engageId = 606

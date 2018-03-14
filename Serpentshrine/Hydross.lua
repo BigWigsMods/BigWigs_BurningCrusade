@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Hydross the Unstable", 780, 1567)
+local mod = BigWigs:NewBoss("Hydross the Unstable", 548, 1567)
 if not mod then return end
 mod:RegisterEnableMob(21216)
 
