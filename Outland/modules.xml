@@ -7,5 +7,6 @@
 <Script file="Magtheridon.lua"/>
 <Script file="Maulgar.lua"/>
 
-</Ui>
+<Include file="Options\options.xml"/>
 
+</Ui>

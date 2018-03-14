@@ -8,5 +8,6 @@
 <Script file="Morogrim.lua"/>
 <Script file="Vashj.lua"/>
 
-</Ui>
+<Include file="Options\options.xml"/>
 
+</Ui>

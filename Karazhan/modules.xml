@@ -15,5 +15,6 @@
 <Script file="TheBigBadWolf.lua"/>
 <Script file="WizardofOz.lua"/>
 
-</Ui>
+<Include file="Options\options.xml"/>
 
+</Ui>
