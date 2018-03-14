@@ -32,7 +32,7 @@
 ## X-Curse-Project-ID: 50688
 ## X-WoWI-ID: 22096
 ## X-BigWigs-ExtraMenu: -466
-## X-BigWigs-LoadOn-ZoneId: 775, 780, 779, 776, 796, 799, 782
+## X-BigWigs-LoadOn-InstanceId: 532, 534, 544, 548, 550, 564, 565
 ## X-BigWigs-LoadOn-WorldBoss: -473, 17711, -465, 18728
 
 modules.xml
