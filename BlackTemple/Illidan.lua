@@ -251,7 +251,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
 end
 
 function mod:UNIT_AURA(unit)
-	if UnitBuff(unit, self:SpellName(40506)) then -- Demon Form
+	if self:UnitBuff(unit, self:SpellName(40506)) then -- Demon Form
 		if not inDemonPhase then
 			inDemonPhase = true
 			burstCount = 0
@@ -273,7 +273,7 @@ function mod:UNIT_AURA(unit)
 		self:StopBar(41126) -- Flame Burst
 	end
 
-	if UnitDebuff(unit, self:SpellName(40695)) then -- Caged
+	if self:UnitDebuff(unit, self:SpellName(40695)) then -- Caged
 		if not isCaged then
 			isCaged = true
 			self:Message(40695, "Positive", "Warning")
