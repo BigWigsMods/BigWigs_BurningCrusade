@@ -13,14 +13,14 @@ BigWigs:AddSounds("Doom Lord Kazzak", {
 })
 
 BigWigs:AddSounds("Magtheridon", {
-	["escape"] = "Long",
-	["heal"] = "Alarm",
 	[36449] = "Alert",
 	["banish"] = "Info",
+	["escape"] = "Long",
+	["heal"] = "Alarm",
 })
 
 BigWigs:AddSounds("High King Maulgar", {
-	[33131] = "Long",
 	[33054] = "Info",
+	[33131] = "Long",
 	[33152] = "Alarm",
 })

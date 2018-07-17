@@ -1,8 +1,8 @@
 
 BigWigs:AddSounds("Al'ar", {
-	[35410] = "Long",
 	[35181] = "Alert",
 	[35383] = "Alarm",
+	[35410] = "Long",
 })
 
 BigWigs:AddSounds("Void Reaver", {

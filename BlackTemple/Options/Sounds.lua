@@ -1,75 +1,75 @@
 
 BigWigs:AddSounds("High Warlord Naj'entus", {
-	[39872] = "Alert",
 	[39837] = "Warning",
+	[39872] = "Alert",
 })
 
 BigWigs:AddSounds("Supremus", {
 	[40265] = "Alert",
-	["stages"] = "Info",
 	[41951] = "Warning",
+	["stages"] = "Info",
 })
 
 BigWigs:AddSounds("Shade of Akama", {
-	["stages"] = "Info",
 	[42023] = "Alert",
+	["stages"] = "Info",
 })
 
 BigWigs:AddSounds("Teron Gorefiend", {
-	[40251] = "Warning",
 	[40243] = "Alert",
+	[40251] = "Warning",
 })
 
 BigWigs:AddSounds("Gurtogg Bloodboil", {
-	[40508] = "Alert",
-	[40491] = "Alert",
-	[42005] = "Info",
 	[40481] = "Alarm",
-	[40604] = {"Warning","Info"},
+	[40491] = "Alert",
+	[40508] = "Alert",
+	[40604] = {"Info","Warning"},
+	[42005] = "Info",
 })
 
 BigWigs:AddSounds("Reliquary of Souls", {
-	[41376] = "Alert",
 	[41294] = "Warning",
 	[41303] = "Alert",
-	[41431] = "Warning",
-	[41426] = "Alarm",
-	[41410] = "Info",
 	[41305] = "Info",
+	[41376] = "Alert",
+	[41410] = "Info",
+	[41426] = "Alarm",
+	[41431] = "Warning",
 })
 
 BigWigs:AddSounds("Mother Shahraz", {
-	[40896] = "Info",
-	[40883] = "Info",
-	[40882] = "Info",
 	[40880] = "Info",
-	[41001] = "Alert",
+	[40882] = "Info",
+	[40883] = "Info",
 	[40891] = "Info",
+	[40896] = "Info",
 	[40897] = "Info",
+	[41001] = "Alert",
 })
 
 BigWigs:AddSounds("The Illidari Council", {
-	[41481] = "Alarm",
-	[41476] = "Alert",
-	[41485] = "Alarm",
-	[41482] = "Alarm",
-	[41475] = "Long",
 	[41450] = "Info",
 	[41451] = "Info",
 	[41455] = "Warning",
+	[41475] = "Long",
+	[41476] = "Alert",
+	[41481] = "Alarm",
+	[41482] = "Alarm",
+	[41485] = "Alarm",
 })
 
 BigWigs:AddSounds("Illidan Stormrage", {
 	[39869] = "Warning",
-	[41032] = "Alert",
-	[40695] = {"Info","Warning"},
-	[41117] = "Alert",
+	[40018] = {"Alert","Info"},
+	[40506] = "Alarm",
 	[40585] = "Alert",
 	[40683] = "Long",
-	[41126] = "Alert",
-	["stages"] = "Alarm",
+	[40695] = {"Info","Warning"},
 	[40932] = "Alert",
-	[40018] = {"Info","Alert"},
-	[40506] = "Alarm",
+	[41032] = "Alert",
+	[41117] = "Alert",
+	[41126] = "Alert",
 	[41917] = "Long",
+	["stages"] = "Alarm",
 })

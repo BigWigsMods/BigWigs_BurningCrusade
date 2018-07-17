@@ -25,6 +25,6 @@ BigWigs:AddSounds("Morogrim Tidewalker", {
 })
 
 BigWigs:AddSounds("Lady Vashj", {
-	["phase"] = "Alarm",
 	[38280] = "Alert",
+	["phase"] = "Alarm",
 })

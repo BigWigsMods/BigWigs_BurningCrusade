@@ -8,14 +8,14 @@ BigWigs:AddSounds("Maiden of Virtue Raid", {
 })
 
 BigWigs:AddSounds("Prince Malchezaar", {
-	[30852] = "Info",
 	[30843] = "Alarm",
+	[30852] = "Info",
 	["infernal"] = "Alert",
 })
 
 BigWigs:AddSounds("Moroes Raid", {
-	[37023] = {"Alarm","Info"},
 	[29448] = "Alert",
+	[37023] = {"Alarm","Info"},
 })
 
 BigWigs:AddSounds("Nightbane Raid", {
@@ -24,9 +24,9 @@ BigWigs:AddSounds("Nightbane Raid", {
 })
 
 BigWigs:AddSounds("Shade of Aran", {
-	[30004] = {"Long","Alarm"},
-	["drink"] = "Alert",
+	[30004] = {"Alarm","Long"},
 	["adds"] = "Alert",
+	["drink"] = "Alert",
 })
 
 BigWigs:AddSounds("Terestian Illhoof", {
