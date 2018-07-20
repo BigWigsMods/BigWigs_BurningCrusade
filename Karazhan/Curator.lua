@@ -75,12 +75,12 @@ function mod:Infusion(args)
 	self:StopBar(CL["cast"]:format(self:SpellName(30254))) -- Evocation
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 15691 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
 			self:Message(30403, "Positive", nil, CL["soon"]:format(self:SpellName(30403)), false) -- Arcane Infusion
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end

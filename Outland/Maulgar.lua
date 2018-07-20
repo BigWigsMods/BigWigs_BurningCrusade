@@ -113,13 +113,13 @@ function mod:Flurry(args)
 	self:Message(args.spellId, "Important", nil, "50% - "..args.spellName)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 18831 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 50 and hp < 57 then
 			local flurry = self:SpellName(33232)
 			self:Message(33232, "Positive", nil, CL["soon"]:format(flurry))
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end

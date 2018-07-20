@@ -64,7 +64,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_MANA", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "target", "focus")
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 end
 
@@ -121,22 +121,22 @@ do
 	end
 end
 
-function mod:UNIT_MANA(unit)
+function mod:UNIT_POWER_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 16524 then
-		local mana = UnitPower(unit, 0)
+		local mana = UnitPower(unit)
 		if mana > 33000 and mana < 37000 then
 			self:Message("drink", "Urgent", "Alert", L["drink_warning"], false)
-			self:UnregisterUnitEvent("UNIT_MANA", "target", "focus")
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 16524 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 40 and hp < 46 then
 			self:Message("adds", "Urgent", "Alert", L["adds_warning"], false)
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end

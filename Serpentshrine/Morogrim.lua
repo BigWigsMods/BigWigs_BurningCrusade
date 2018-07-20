@@ -102,12 +102,12 @@ function mod:Globules()
 	self:Bar("globules", 36, L["globules_bar"], "INV_Elemental_Primal_Water")
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 21213 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 25 and hp < 30 then
 			self:Message("globules", "Positive", nil, L["globules_warning"], false)
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end

@@ -244,13 +244,13 @@ function mod:Frenzy(args)
 	--self:Bar(args.spellId, ??) -- Frenzy
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 40693 then -- Cage Trap
-		self:Message(40695, "Important", "Info", CL.spawned:format(spellName), 199341) -- 199341: ability_hunter_traplauncher / icon 461122
+		self:Message(40695, "Important", "Info", CL.spawned:format(self:SpellName(spellId)), 199341) -- 199341: ability_hunter_traplauncher / icon 461122
 	end
 end
 
-function mod:UNIT_AURA(unit)
+function mod:UNIT_AURA(_, unit)
 	if self:UnitBuff(unit, self:SpellName(40506)) then -- Demon Form
 		if not inDemonPhase then
 			inDemonPhase = true

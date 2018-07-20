@@ -67,12 +67,12 @@ function mod:Vanish(args)
 	self:DelayedMessage(args.spellId, 30, "Attention", CL["soon"]:format(args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 15687 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 36 then
 			self:Message(37023, "Positive", "Info", CL["soon"]:format(self:SpellName(37023)), false) -- Frenzy
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end

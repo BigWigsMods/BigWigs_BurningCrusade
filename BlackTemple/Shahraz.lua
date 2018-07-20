@@ -76,7 +76,7 @@ do
 		[40882] = true, -- Prismatic Aura: Fire
 		[40896] = true, -- Prismatic Aura: Frost
 	}
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		if spells[spellId] then
 			self:Message(spellId, "Attention", "Info") -- SetOption:40883,40891,40880,40897,40882,40896:::
 			self:Bar(spellId, 15) -- SetOption:40883,40891,40880,40897,40882,40896:::

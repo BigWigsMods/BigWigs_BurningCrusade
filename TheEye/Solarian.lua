@@ -86,12 +86,12 @@ function mod:WrathRemove(args)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 18805 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 21 and hp < 25 then
 			self:Message("phase", "Positive", nil, L["phase2_warning"], false)
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end
