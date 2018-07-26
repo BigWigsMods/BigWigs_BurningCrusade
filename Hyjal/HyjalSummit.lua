@@ -524,81 +524,81 @@ function mod:BigWigs_RecvSync( sync, rest )
 
 				if nextBoss == winterchill then
 					if wave == 1 then
-						self:Message(fmt(one, wave, 10, ghoul), "Important")
+						self:Message(fmt(one, wave, 10, ghoul), "red")
 					elseif wave == 2 then
-						self:Message(fmt(two, wave, 10, ghoul, 2, fiend), "Important")
+						self:Message(fmt(two, wave, 10, ghoul, 2, fiend), "red")
 					elseif wave == 3 then
-						self:Message(fmt(two, wave, 6, ghoul, 6, fiend), "Important")
+						self:Message(fmt(two, wave, 6, ghoul, 6, fiend), "red")
 					elseif wave == 4 then
-						self:Message(fmt(three, wave, 6, ghoul, 4, fiend, 2, necro), "Important")
+						self:Message(fmt(three, wave, 6, ghoul, 4, fiend, 2, necro), "red")
 					elseif wave == 5 then
-						self:Message(fmt(three, wave, 2, ghoul, 6, fiend, 4, necro), "Important")
+						self:Message(fmt(three, wave, 2, ghoul, 6, fiend, 4, necro), "red")
 					elseif wave == 6 then
-						self:Message(fmt(two, wave, 6, ghoul, 6, abom), "Important")
+						self:Message(fmt(two, wave, 6, ghoul, 6, abom), "red")
 					elseif wave == 7 then
-						self:Message(fmt(three, wave, 4, ghoul, 4, necro, 4, abom), "Important")
+						self:Message(fmt(three, wave, 4, ghoul, 4, necro, 4, abom), "red")
 					elseif wave == 8 then
-						self:Message(fmt(four, wave, 6, ghoul, 4, fiend, 2, abom, 2, necro), "Important")
+						self:Message(fmt(four, wave, 6, ghoul, 4, fiend, 2, abom, 2, necro), "red")
 					end
 				elseif nextBoss == anetheron then
 					if wave == 1 then
-						self:Message(fmt(one, wave, 10, ghoul), "Important")
+						self:Message(fmt(one, wave, 10, ghoul), "red")
 					elseif wave == 2 then
-						self:Message(fmt(two, wave, 4, abom, 8, ghoul), "Important")
+						self:Message(fmt(two, wave, 4, abom, 8, ghoul), "red")
 					elseif wave == 3 then
-						self:Message(fmt(three, wave, 4, necro, 4, fiend, 4, ghoul), "Important")
+						self:Message(fmt(three, wave, 4, necro, 4, fiend, 4, ghoul), "red")
 					elseif wave == 4 then
-						self:Message(fmt(three, wave, 2, banshee, 6, fiend, 4, necro), "Important")
+						self:Message(fmt(three, wave, 2, banshee, 6, fiend, 4, necro), "red")
 					elseif wave == 5 then
-						self:Message(fmt(three, wave, 6, ghoul, 2, necro, 4, banshee), "Important")
+						self:Message(fmt(three, wave, 6, ghoul, 2, necro, 4, banshee), "red")
 					elseif wave == 6 then
-						self:Message(fmt(three, wave, 2, abom, 4, necro, 6, ghoul), "Important")
+						self:Message(fmt(three, wave, 2, abom, 4, necro, 6, ghoul), "red")
 					elseif wave == 7 then
-						self:Message(fmt(four, wave, 4, abom, 4, fiend, 2, banshee, 2, ghoul), "Important")
+						self:Message(fmt(four, wave, 4, abom, 4, fiend, 2, banshee, 2, ghoul), "red")
 					elseif wave == 8 then
-						self:Message(fmt(five, wave, 4, abom, 3, fiend, 2, banshee, 2, necro, 3, ghoul), "Important")
+						self:Message(fmt(five, wave, 4, abom, 3, fiend, 2, banshee, 2, necro, 3, ghoul), "red")
 					end
 				elseif nextBoss == kazrogal then
 					if wave == 1 then
-						self:Message(fmt(four, wave, 4, abom, 2, banshee, 4, ghoul, 2, necro), "Important")
+						self:Message(fmt(four, wave, 4, abom, 2, banshee, 4, ghoul, 2, necro), "red")
 					elseif wave == 2 then
-						self:Message(fmt(two, wave, 4, ghoul, 10, garg), "Important")
+						self:Message(fmt(two, wave, 4, ghoul, 10, garg), "red")
 					elseif wave == 3 then
-						self:Message(fmt(three, wave, 6, fiend, 2, necro, 6, ghoul), "Important")
+						self:Message(fmt(three, wave, 6, fiend, 2, necro, 6, ghoul), "red")
 					elseif wave == 4 then
-						self:Message(fmt(three, wave, 6, garg, 6, fiend, 2, necro), "Important")
+						self:Message(fmt(three, wave, 6, garg, 6, fiend, 2, necro), "red")
 					elseif wave == 5 then
-						self:Message(fmt(three, wave, 4, ghoul, 4, necro, 6, abom), "Important")
+						self:Message(fmt(three, wave, 4, ghoul, 4, necro, 6, abom), "red")
 					elseif wave == 6 then
-						self:Message(fmt(two, wave, 8, garg, 1, wyrm), "Important")
+						self:Message(fmt(two, wave, 8, garg, 1, wyrm), "red")
 					elseif wave == 7 then
-						self:Message(fmt(three, wave, 6, ghoul, 4, abom, 1, wyrm), "Important")
+						self:Message(fmt(three, wave, 6, ghoul, 4, abom, 1, wyrm), "red")
 					elseif wave == 8 then
-						self:Message(fmt(five, wave, 6, ghoul, 2, fiend, 2, necro, 4, abom, 2, banshee), "Important")
+						self:Message(fmt(five, wave, 6, ghoul, 2, fiend, 2, necro, 4, abom, 2, banshee), "red")
 					end
 				elseif nextBoss == azgalor then
 					if wave == 1 then
-						self:Message(fmt(two, wave, 6, abom, 6, necro), "Important")
+						self:Message(fmt(two, wave, 6, abom, 6, necro), "red")
 					elseif wave == 2 then
-						self:Message(fmt(three, wave, 5, ghoul, 8, garg, 1, wyrm), "Important")
+						self:Message(fmt(three, wave, 5, ghoul, 8, garg, 1, wyrm), "red")
 					elseif wave == 3 then
-						self:Message(fmt(two, wave, 6, ghoul, 8, infernal), "Important")
+						self:Message(fmt(two, wave, 6, ghoul, 8, infernal), "red")
 					elseif wave == 4 then
-						self:Message(fmt(two, wave, 6, fel, 8, infernal), "Important")
+						self:Message(fmt(two, wave, 6, fel, 8, infernal), "red")
 					elseif wave == 5 then
-						self:Message(fmt(three, wave, 4, abom, 6, fel, 4, necro), "Important")
+						self:Message(fmt(three, wave, 4, abom, 6, fel, 4, necro), "red")
 					elseif wave == 6 then
-						self:Message(fmt(two, wave, 6, necro, 6, banshee), "Important")
+						self:Message(fmt(two, wave, 6, necro, 6, banshee), "red")
 					elseif wave == 7 then
-						self:Message(fmt(four, wave, 2, ghoul, 2, fiend, 2, fel, 8, infernal), "Important")
+						self:Message(fmt(four, wave, 2, ghoul, 2, fiend, 2, fel, 8, infernal), "red")
 					elseif wave == 8 then
-						self:Message(fmt(five, wave, 4, fiend, 2, necro, 4, abom, 2, banshee, 4, fel), "Important")
+						self:Message(fmt(five, wave, 4, fiend, 2, necro, 4, abom, 2, banshee, 4, fel), "red")
 					end
 				else
-					self:Message(fmt(L["Wave %d incoming!"], wave), "Important")
+					self:Message(fmt(L["Wave %d incoming!"], wave), "red")
 				end
 			else
-				self:Message(fmt(L["Wave %d incoming!"], wave), "Important")
+				self:Message(fmt(L["Wave %d incoming!"], wave), "red")
 			end
 
 			self:CancelScheduledEvent("BigWigsSummitTimersDM90")
@@ -610,16 +610,16 @@ function mod:BigWigs_RecvSync( sync, rest )
 			local wtime = waveTimes[wave]
 			if wave == 8 then
 				local msg = L["%s in ~%d sec!"]
-				self:ScheduleEvent("BigWigsSummitTimersDM90", "BigWigs_Message", wtime - 90, fmt(msg, nextBoss, 90), "Attention")
-				self:ScheduleEvent("BigWigsSummitTimersDM60", "BigWigs_Message", wtime - 60, fmt(msg, nextBoss, 60), "Attention")
-				self:ScheduleEvent("BigWigsSummitTimersDM30", "BigWigs_Message", wtime - 30, fmt(msg, nextBoss, 30), "Urgent")
+				self:ScheduleEvent("BigWigsSummitTimersDM90", "BigWigs_Message", wtime - 90, fmt(msg, nextBoss, 90), "yellow")
+				self:ScheduleEvent("BigWigsSummitTimersDM60", "BigWigs_Message", wtime - 60, fmt(msg, nextBoss, 60), "yellow")
+				self:ScheduleEvent("BigWigsSummitTimersDM30", "BigWigs_Message", wtime - 30, fmt(msg, nextBoss, 30), "orange")
 				waveBar = fmt(L["~%s spawn"], nextBoss)
 				self:Bar(waveBar, wtime, "Spell_Fire_FelImmolation")
 			else
 				local msg = L["Wave %d in ~%d sec!"]
-				self:ScheduleEvent("BigWigsSummitTimersDM90", "BigWigs_Message", wtime - 90, fmt(msg, wave + 1, 90), "Attention")
-				self:ScheduleEvent("BigWigsSummitTimersDM60", "BigWigs_Message", wtime - 60, fmt(msg, wave + 1, 60), "Attention")
-				self:ScheduleEvent("BigWigsSummitTimersDM30", "BigWigs_Message", wtime - 30, fmt(msg, wave + 1, 30), "Urgent")
+				self:ScheduleEvent("BigWigsSummitTimersDM90", "BigWigs_Message", wtime - 90, fmt(msg, wave + 1, 90), "yellow")
+				self:ScheduleEvent("BigWigsSummitTimersDM60", "BigWigs_Message", wtime - 60, fmt(msg, wave + 1, 60), "yellow")
+				self:ScheduleEvent("BigWigsSummitTimersDM30", "BigWigs_Message", wtime - 30, fmt(msg, wave + 1, 30), "orange")
 				waveBar = fmt(L["~Wave %d spawn"], wave + 1)
 				self:Bar(waveBar, wtime, "Spell_Holy_Crusade")
 			end

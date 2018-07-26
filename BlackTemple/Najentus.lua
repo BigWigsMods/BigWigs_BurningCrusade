@@ -47,7 +47,7 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 end
 
 function mod:OnEngage()
-	self:DelayedMessage(39872, 45, "Attention", CL.custom_sec:format(self:SpellName(39872), 10)) -- Tidal Shield
+	self:DelayedMessage(39872, 45, "yellow", CL.custom_sec:format(self:SpellName(39872), 10)) -- Tidal Shield
 	self:CDBar(39872, 55) -- Tidal Shield. 55-60
 	self:Berserk(480)
 	self:OpenProximity(39835, 8) -- Needle Spine
@@ -58,20 +58,20 @@ end
 --
 
 function mod:TidalShield(args)
-	self:Message(args.spellId, "Important", "Alert")
-	self:DelayedMessage(args.spellId, 50, "Attention", CL.custom_sec:format(args.spellName, 10))
+	self:Message(args.spellId, "red", "Alert")
+	self:DelayedMessage(args.spellId, 50, "yellow", CL.custom_sec:format(args.spellName, 10))
 	self:CDBar(args.spellId, 56) -- 56-60
 end
 
 function mod:TidalShieldRemoved(args)
-	self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
+	self:Message(args.spellId, "green", nil, CL.removed:format(args.spellName))
 end
 
 function mod:ImpalingSpine(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 

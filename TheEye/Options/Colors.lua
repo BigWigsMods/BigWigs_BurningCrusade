@@ -1,28 +1,28 @@
 
 BigWigs:AddColors("Al'ar", {
-	[35181] = {"Important","Urgent"},
-	[35383] = "Personal",
-	[35410] = {"Important","Personal"},
+	[35181] = {"red","orange"},
+	[35383] = "blue",
+	[35410] = {"red","blue"},
 })
 
 BigWigs:AddColors("Void Reaver", {
-	[25778] = {"Personal","Positive"},
-	[34172] = {"Attention","Personal"},
+	[25778] = {"blue","green"},
+	[34172] = {"yellow","blue"},
 })
 
 BigWigs:AddColors("Kael'thas Sunstrider", {
-	[37018] = {"Attention","Personal"},
-	[37027] = {"Attention","Personal"},
-	[44863] = {"Attention","Urgent"},
-	["gaze"] = {"Important","Personal"},
-	["mc"] = {"Important","Personal"},
-	["phase"] = {"Attention","Important","Positive"},
-	["pyro"] = {"Attention","Positive"},
-	["rebirth"] = {"Attention","Urgent"},
+	[37018] = {"yellow","blue"},
+	[37027] = {"yellow","blue"},
+	[44863] = {"yellow","orange"},
+	["gaze"] = {"red","blue"},
+	["mc"] = {"red","blue"},
+	["phase"] = {"yellow","red","green"},
+	["pyro"] = {"yellow","green"},
+	["rebirth"] = {"yellow","orange"},
 })
 
 BigWigs:AddColors("High Astromancer Solarian", {
-	[42783] = {"Attention","Personal"},
-	["phase"] = {"Important","Positive"},
-	["split"] = "Important",
+	[42783] = {"yellow","blue"},
+	["phase"] = {"red","green"},
+	["split"] = "red",
 })

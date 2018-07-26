@@ -403,7 +403,7 @@ end
 
 function mod:Gas(_, spellID)
 	if db.gas then
-		self:IfMessage(L["gas_message"], "Attention", spellID)
+		self:IfMessage(L["gas_message"], "yellow", spellID)
 		self:Bar(L["gas_bar"], 20, spellID)
 	end
 end
@@ -412,10 +412,10 @@ function mod:Vapor(_, _, source)
 	if db.vapor then
 		local other = L["vapor_message"]:format(source)
 		if source == pName then
-			self:Message(L["vapor_you"], "Personal", nil, "Long")
+			self:Message(L["vapor_you"], "blue", nil, "Long")
 			self:WideMessage(other)
 		else
-			self:IfMessage(other, "Urgent", 45402)
+			self:IfMessage(other, "orange", 45402)
 		end
 		self:Bar(other, 10, 45402)
 		self:Icon(source, "icon")
@@ -466,7 +466,7 @@ do
 		if target and target ~= lastTarget and UnitExists(target) then
 			if not isMT(target) then
 				local msg = L["encaps_message"]:format(target)
-				self:IfMessage(msg, "Important", 45665, "Alert")
+				self:IfMessage(msg, "red", 45665, "Alert")
 				self:Bar(msg, 6, 45665)
 				self:Icon(target, "icon")
 			end
@@ -496,7 +496,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, unit)
 	if db.breath and unit == boss then
 		--19879 track dragonkin, looks like a dragon breathing 'deep breath' :)
-		self:IfMessage(L["breath_warn"]:format(count), "Attention", 19879)
+		self:IfMessage(L["breath_warn"]:format(count), "yellow", 19879)
 		self:Bar(L["breath_warn"]:format(count), 4, 19879)
 		count = count + 1
 		if count < 4 then
@@ -523,12 +523,12 @@ end
 function mod:PhaseOne()
 	if db.phase then
 		self:Bar(L["takeoff_bar"], 60, 31550)
-		self:DelayedMessage(55, L["takeoff_message"], "Attention")
+		self:DelayedMessage(55, L["takeoff_message"], "yellow")
 	end
 
 	if db.encaps then
 		self:Bar(L["encaps"], 30, 45661)
-		self:DelayedMessage(25, L["encaps_warning"], "Attention")
+		self:DelayedMessage(25, L["encaps_warning"], "yellow")
 		self:ScheduleRepeatingEvent("BWEncapsScan", self.Encapsulate, 0.5, self)
 	end
 end

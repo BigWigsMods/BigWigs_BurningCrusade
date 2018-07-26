@@ -59,7 +59,7 @@ end
 --
 
 function mod:Bloodboil(args)
-	self:Message(args.spellId, "Attention", "Info", CL.count:format(args.spellName, bloodCount))
+	self:Message(args.spellId, "yellow", "Info", CL.count:format(args.spellName, bloodCount))
 	if bloodCount == 3 then bloodCount = 0 end
 	bloodCount = bloodCount + 1
 	self:CDBar(args.spellId, 10, CL.count:format(args.spellName, bloodCount))
@@ -74,7 +74,7 @@ function mod:FelRage(args)
 		self:Say(args.spellId)
 	end
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Warning", nil, nil, true)
+	self:TargetMessage(args.spellId, args.destName, "orange", "Warning", nil, nil, true)
 	self:TargetBar(args.spellId, 30, args.destName)
 end
 
@@ -90,7 +90,7 @@ function mod:FelRageRemovedFromBoss(args)
 		self:Bar(42005, 10, CL.count:format(self:SpellName(42005), bloodCount)) -- Bloodboil
 		self:CDBar(40604, 52) -- Fel Rage 52-55
 		self:CDBar(40508, 26) -- Fel-Acid Breath
-		self:Message(40604, "Neutral", "Info", CL.over:format(args.spellName)) -- Fel Rage Over
+		self:Message(40604, "cyan", "Info", CL.over:format(args.spellName)) -- Fel Rage Over
 	end
 end
 
@@ -99,7 +99,7 @@ do
 		if self:Me(guid) then
 			self:Say(40508, 18609) -- 18609 = "Breath"
 		end
-		self:TargetMessage(40508, player, "Important", "Alert")
+		self:TargetMessage(40508, player, "red", "Alert")
 		self:PrimaryIcon(40508, player)
 	end
 
@@ -114,17 +114,17 @@ do
 end
 
 function mod:BewilderingStrikeApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Positive", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "green", "Alert")
 end
 
 function mod:AcidicWound(args)
 	if args.amount % 3 == 0 and args.amount > 8 then
-		self:StackMessage(args.spellId, args.destName, args.amount, "Positive", args.amount > 14 and "Alarm")
+		self:StackMessage(args.spellId, args.destName, args.amount, "green", args.amount > 14 and "Alarm")
 	end
 end
 
 function mod:AcidicWoundRemoved(args)
 	if self:Me(args.destGUID) and self:Tank() then
-		self:Message(args.spellId, "Positive", "Alarm", CL.removed:format(args.spellName))
+		self:Message(args.spellId, "green", "Alarm", CL.removed:format(args.spellName))
 	end
 end

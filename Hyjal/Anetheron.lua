@@ -34,7 +34,7 @@ end
 --
 
 function mod:Swarm(args)
-	self:Message(args.spellId, "Attention")
+	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 11)
 end
 
@@ -44,14 +44,14 @@ do
 		if mobId then
 			local target = UnitName(mobId.."target")
 			if not target then return end
-			mod:TargetMessage(spellId, target, "Important", "Alert")
+			mod:TargetMessage(spellId, target, "red", "Alert")
 			mod:PrimaryIcon(spellId, target)
 			mod:ScheduleTimer("PrimaryIcon", 5, spellId)
 		end
 	end
 
 	function mod:Inferno(args)
-		self:DelayedMessage(args.spellId, 45, "Positive", CL["soon"]:format(args.spellName))
+		self:DelayedMessage(args.spellId, 45, "green", CL["soon"]:format(args.spellName))
 		self:CDBar(args.spellId, 50)
 		self:ScheduleTimer(infernoCheck, 0.7, args.sourceGUID, args.spellId)
 	end

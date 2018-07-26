@@ -1,37 +1,37 @@
 
 BigWigs:AddColors("Doomwalker", {
-	[33653] = {"Important","Urgent"},
-	["earthquake"] = {"Attention","Important"},
-	["overrun"] = {"Attention","Important"},
+	[33653] = {"red","orange"},
+	["earthquake"] = {"yellow","red"},
+	["overrun"] = {"yellow","red"},
 })
 
 BigWigs:AddColors("Gruul the Dragonkiller", {
-	[36240] = "Personal",
-	[36297] = {"Attention","Urgent"},
-	["grasp"] = {"Attention","Positive","Urgent"},
-	["grow"] = "Important",
+	[36240] = "blue",
+	[36297] = {"yellow","orange"},
+	["grasp"] = {"yellow","green","orange"},
+	["grow"] = "red",
 })
 
 BigWigs:AddColors("Doom Lord Kazzak", {
-	[21063] = {"Attention","Personal"},
-	[32960] = "Personal",
-	["berserk"] = {"Attention","Important","Positive","Urgent"},
+	[21063] = {"yellow","blue"},
+	[32960] = "blue",
+	["berserk"] = {"yellow","red","green","orange"},
 })
 
 BigWigs:AddColors("Magtheridon", {
-	[30616] = {"Positive","Urgent"},
-	[36449] = {"Important","Positive"},
-	["abyssal"] = "Attention",
-	["banish"] = {"Attention","Important"},
-	["escape"] = {"Attention","Positive","Urgent"},
-	["heal"] = "Urgent",
+	[30616] = {"green","orange"},
+	[36449] = {"red","green"},
+	["abyssal"] = "yellow",
+	["banish"] = {"yellow","red"},
+	["escape"] = {"yellow","green","orange"},
+	["heal"] = "orange",
 })
 
 BigWigs:AddColors("High King Maulgar", {
-	[33054] = "Attention",
-	[33131] = "Attention",
-	[33147] = "Important",
-	[33152] = "Important",
-	[33232] = {"Important","Positive"},
-	[33238] = {"Attention","Important","Urgent"},
+	[33054] = "yellow",
+	[33131] = "yellow",
+	[33147] = "red",
+	[33152] = "red",
+	[33232] = {"red","green"},
+	[33238] = {"yellow","red","orange"},
 })

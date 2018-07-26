@@ -47,7 +47,7 @@ function mod:OnEngage()
 	self:Berserk(600)
 	self:OpenProximity(32014, 15)
 	self:CDBar(31970, 40)
-	self:DelayedMessage(31970, 40, "Urgent", CL["soon"]:format(self:SpellName(31970))) -- Fear
+	self:DelayedMessage(31970, 40, "orange", CL["soon"]:format(self:SpellName(31970))) -- Fear
 end
 
 --------------------------------------------------------------------------------
@@ -55,18 +55,18 @@ end
 --
 
 function mod:GripOfTheLegion(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert", L["grip_other"])
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert", L["grip_other"])
 end
 
 function mod:Fear(args)
 	self:CDBar(args.spellId, 41.5)
-	self:Message(args.spellId, "Important", nil, L["fear_message"])
-	self:DelayedMessage(args.spellId, 41.5, "Urgent", CL["soon"]:format(args.spellName))
+	self:Message(args.spellId, "red", nil, L["fear_message"])
+	self:DelayedMessage(args.spellId, 41.5, "orange", CL["soon"]:format(args.spellName))
 end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessage(32014, name, "Important", "Long")
+		self:TargetMessage(32014, name, "red", "Long")
 		self:PrimaryIcon(32014, name)
 		self:ScheduleTimer("PrimaryIcon", 5, 32014)
 		if self:Me(guid) then

@@ -91,7 +91,7 @@ end
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	shieldsFaded = 0
-	self:Message("phase", "Attention", nil, L["engage_message"], false)
+	self:Message("phase", "yellow", nil, L["engage_message"], false)
 end
 
 --------------------------------------------------------------------------------
@@ -101,9 +101,9 @@ end
 function mod:Phase2()
 	self:PrimaryIcon(38280)
 	shieldsFaded = 0
-	self:Message("phase", "Important", "Alarm", L["phase2_message"], false)
+	self:Message("phase", "red", "Alarm", L["phase2_message"], false)
 	self:Bar("elemental", 53, L["elemental_bar"], 38132)
-	self:DelayedMessage("elemental", 48, "Important", L["elemental_soon_message"])
+	self:DelayedMessage("elemental", 48, "red", L["elemental_soon_message"])
 	self:RepeatStrider()
 	self:RepeatNaga()
 end
@@ -113,12 +113,12 @@ function mod:Phase3()
 	self:StopBar(L["elemental_bar"])
 	self:StopBar(L["strider_bar"])
 	self:StopBar(L["naga_bar"])
-	self:Message("phase", "Important", "Alarm", L["phase3_message"], false)
+	self:Message("phase", "red", "Alarm", L["phase3_message"], false)
 	self:Berserk(240, true)
 end
 
 function mod:Charge(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then
@@ -137,24 +137,24 @@ end
 function mod:BarrierRemove(args)
 	shieldsFaded = shieldsFaded + 1
 	if shieldsFaded < 4 then
-		self:Message("barrier", "Attention", nil, L["barrier_down_message"]:format(shieldsFaded), args.spellId)
+		self:Message("barrier", "yellow", nil, L["barrier_down_message"]:format(shieldsFaded), args.spellId)
 	end
 end
 
 function mod:ElementalDeath()
 	self:Bar("elemental", 53, L["elemental_bar"], 38132)
-	self:DelayedMessage("elemental", 48, "Important", L["elemental_soon_message"])
+	self:DelayedMessage("elemental", 48, "red", L["elemental_soon_message"])
 end
 
 function mod:RepeatStrider()
 	self:Bar("strider", 63, L["strider_bar"], "Spell_Nature_AstralRecal")
-	self:DelayedMessage("strider", 58, "Attention", L["strider_soon_message"])
+	self:DelayedMessage("strider", 58, "yellow", L["strider_soon_message"])
 	self:ScheduleTimer("RepeatStrider", 63)
 end
 
 function mod:RepeatNaga()
 	self:Bar("naga", 47.5, L["naga_bar"], "INV_Misc_MonsterHead_02")
-	self:DelayedMessage("naga", 42.5, "Attention", L["naga_soon_message"])
+	self:DelayedMessage("naga", 42.5, "yellow", L["naga_soon_message"])
 	self:ScheduleTimer("RepeatNaga", 47.5)
 end
 
@@ -162,7 +162,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 21212 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 70 and hp < 76 then
-			self:Message("phase", "Attention", nil, L["phase2_soon_message"], false)
+			self:Message("phase", "yellow", nil, L["phase2_soon_message"], false)
 			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end

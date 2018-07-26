@@ -37,7 +37,7 @@ end
 --
 
 function mod:Riding(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Long")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Long")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:Bar(args.spellId, 20, L["riding_bar"]:format(args.destName))
 end

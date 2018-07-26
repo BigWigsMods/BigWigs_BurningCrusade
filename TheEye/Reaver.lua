@@ -46,7 +46,7 @@ end
 --
 
 function mod:KnockAway(args)
-	self:TargetMessage(args.spellId, args.destName, "Positive", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "green", "Alarm")
 	self:CDBar(args.spellId, 20)
 end
 
@@ -55,7 +55,7 @@ function mod:Pounding(args)
 end
 
 function mod:Orb(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)

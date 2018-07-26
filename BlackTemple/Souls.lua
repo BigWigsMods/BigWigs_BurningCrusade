@@ -145,45 +145,45 @@ end
 function mod:SoulDrainApplied(args)
 	playerList[#playerList+1] = args.destName
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Attention", "Alert")
+		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "yellow", "Alert")
 	end
 end
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "Urgent", "Info")
+	self:Message(args.spellId, "orange", "Info")
 	self:CastBar(args.spellId, 8)
 end
 
 function mod:FrenzyRemoved(args)
-	self:Message(args.spellId, "Positive", "Info", CL.over:format(args.spellName))
+	self:Message(args.spellId, "green", "Info", CL.over:format(args.spellName))
 	self:Bar(args.spellId, 40.5)
 end
 
 function mod:Fixate(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
+	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 --[[ Essence of Desire ]]--
 function mod:AuraOfDesire() -- Start of Stage 2
-	self:Message("zero_mana", "Neutral", nil, L.desire_start, L.zero_mana_icon)
+	self:Message("zero_mana", "cyan", nil, L.desire_start, L.zero_mana_icon)
 	self:Bar("zero_mana", 160, L.zero_mana, L.zero_mana_icon)
 	self:CDBar(41410, 27.6) -- Deaden
 	self:CDBar(41431, 13) -- Rune Shield
 end
 
 function mod:RuneShield(args)
-	self:Message(args.spellId, "Urgent", self:Dispeller("magic", true) and "Warning")
+	self:Message(args.spellId, "orange", self:Dispeller("magic", true) and "Warning")
 	self:Bar(args.spellId, 15.7)
 end
 
 function mod:Deaden(args)
-	self:Message(args.spellId, "Important", self:Interrupter() and "Info", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", self:Interrupter() and "Info", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 31.5)
 end
 
 function mod:SpiritShock(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, self:Tank())
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Tank())
 end
 
 --[[ Essence of Anger ]]--
@@ -199,7 +199,7 @@ end
 function mod:SpiteApplied(args)
 	playerList[#playerList+1] = args.destName
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Important", "Alert")
+		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "red", "Alert")
 	end
 end
 
