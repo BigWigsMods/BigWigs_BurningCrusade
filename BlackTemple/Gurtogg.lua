@@ -3,11 +3,11 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Gurtogg Bloodboil", 796, 1586)
+local mod, CL = BigWigs:NewBoss("Gurtogg Bloodboil", 564, 1586)
 if not mod then return end
 mod:RegisterEnableMob(22948)
 mod.engageId = 605
---mod.respawnTime = 0
+--mod.respawnTime = 0 -- Resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -36,6 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "FelRageRemoved", 40604)
 	self:Log("SPELL_AURA_REMOVED", "FelRageRemovedFromBoss", 40594)
 	self:Log("SPELL_CAST_START", "FelAcidBreath", 40508)
+	self:Log("SPELL_CAST_SUCCESS", "FelAcidBreathOver", 40508)
 
 	self:Log("SPELL_AURA_APPLIED", "BewilderingStrikeApplied", 40491)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "AcidicWound", 40481)
@@ -46,10 +47,10 @@ function mod:OnEngage()
 	bloodCount = 1
 
 	self:Berserk(600)
-	self:CDBar(42005, 11, CL.count:format(self:SpellName(42005), bloodCount)) -- Bloodboil
+	self:CDBar(42005, 10.5, CL.count:format(self:SpellName(42005), bloodCount)) -- Bloodboil
 	self:CDBar(40508, 24.3) -- Fel-Acid Breath
 	if not self:Solo() then
-		self:CDBar(40604, 49) -- Fel Rage
+		self:CDBar(40604, 58) -- Fel Rage
 	end
 end
 
@@ -58,10 +59,10 @@ end
 --
 
 function mod:Bloodboil(args)
-	self:Message(args.spellId, "Attention", "Info", CL.count:format(args.spellName, bloodCount))
+	self:Message(args.spellId, "yellow", "Info", CL.count:format(args.spellName, bloodCount))
 	if bloodCount == 3 then bloodCount = 0 end
 	bloodCount = bloodCount + 1
-	self:Bar(args.spellId, 10, CL.count:format(args.spellName, bloodCount))
+	self:CDBar(args.spellId, 10, CL.count:format(args.spellName, bloodCount))
 end
 
 function mod:FelRage(args)
@@ -73,12 +74,13 @@ function mod:FelRage(args)
 		self:Say(args.spellId)
 	end
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:TargetMessage(args.spellId, args.destName, "Urgent", "Alarm", nil, nil, true)
-	self:TargetBar(args.spellId, 28, args.destName)
+	self:TargetMessage(args.spellId, args.destName, "orange", "Warning", nil, nil, true)
+	self:TargetBar(args.spellId, 30, args.destName)
 end
 
 function mod:FelRageRemoved(args)
 	self:PrimaryIcon(args.spellId)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:FelRageRemovedFromBoss(args)
@@ -86,9 +88,9 @@ function mod:FelRageRemovedFromBoss(args)
 		bloodCount = 1
 
 		self:Bar(42005, 10, CL.count:format(self:SpellName(42005), bloodCount)) -- Bloodboil
-		self:Bar(40604, 60) -- Fel Rage
-		--self:Bar(40508, ?) -- Fel-Acid Breath
-		self:Message(40604, "Neutral", "Info", CL.over:format(args.spellName)) -- Fel Rage Over
+		self:CDBar(40604, 52) -- Fel Rage 52-55
+		self:CDBar(40508, 26) -- Fel-Acid Breath
+		self:Message(40604, "cyan", "Info", CL.over:format(args.spellName)) -- Fel Rage Over
 	end
 end
 
@@ -97,29 +99,32 @@ do
 		if self:Me(guid) then
 			self:Say(40508, 18609) -- 18609 = "Breath"
 		end
-		self:TargetMessage(40508, player, "Important", "Alert")
+		self:TargetMessage(40508, player, "red", "Alert")
 		self:PrimaryIcon(40508, player)
-		self:ScheduleTimer("PrimaryIcon", 5)
 	end
 
 	function mod:FelAcidBreath(args)
 		self:GetBossTarget(printTarget, 0.4, args.sourceGUID)
 		self:CDBar(args.spellId, 24.3)
 	end
+
+	function mod:FelAcidBreathOver(args)
+		self:PrimaryIcon(args.spellId)
+	end
 end
 
 function mod:BewilderingStrikeApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "Positive", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "green", "Alert")
 end
 
 function mod:AcidicWound(args)
 	if args.amount % 3 == 0 and args.amount > 8 then
-		self:StackMessage(args.spellId, args.destName, args.amount, "Positive", args.amount > 14 and "Warning")
+		self:StackMessage(args.spellId, args.destName, args.amount, "green", args.amount > 14 and "Alarm")
 	end
 end
 
 function mod:AcidicWoundRemoved(args)
 	if self:Me(args.destGUID) and self:Tank() then
-		self:Message(args.spellId, "Positive", nil, CL.removed:format(args.spellName))
+		self:Message(args.spellId, "green", "Alarm", CL.removed:format(args.spellName))
 	end
 end

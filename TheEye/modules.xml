@@ -6,5 +6,6 @@
 <Script file="Kaelthas.lua"/>
 <Script file="Solarian.lua"/>
 
-</Ui>
+<Include file="Options\options.xml"/>
 
+</Ui>

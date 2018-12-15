@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Void Reaver", 782, 1574)
+local mod = BigWigs:NewBoss("Void Reaver", 550, 1574)
 if not mod then return end
 mod:RegisterEnableMob(19516)
 
@@ -46,7 +46,7 @@ end
 --
 
 function mod:KnockAway(args)
-	self:TargetMessage(args.spellId, args.destName, "Positive", "Alarm")
+	self:TargetMessage(args.spellId, args.destName, "green", "Alarm")
 	self:CDBar(args.spellId, 20)
 end
 
@@ -55,7 +55,7 @@ function mod:Pounding(args)
 end
 
 function mod:Orb(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)

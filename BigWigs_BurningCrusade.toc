@@ -1,4 +1,4 @@
-## Interface: 70200
+## Interface: 80000
 
 ## Title: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-zhCN: BigWigs [|cffeda55f燃烧的远征|r]
@@ -6,7 +6,7 @@
 ## Title-deDE: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-frFR: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-itIT: BigWigs [|cffeda55fBurning Crusade|r]
-## Title-koKR: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-koKR: BigWigs [|cffeda55f불타는 성전|r]
 ## Title-ruRU: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-ptBR: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-esES: BigWigs [|cffeda55fBurning Crusade|r]
@@ -17,7 +17,7 @@
 ## Notes-deDE: Eine Sammlung von BigWigs-Modulen aus der Ära Burning Crusade.
 ## Notes-frFR: Une collection de modules BigWigs de l'ère Burning Crusade.
 ## Notes-itIT: A collection of BigWigs modules from the Burning Crusade era.
-## Notes-koKR: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-koKR: 불타는 성전 BigWigs 모듈 모음집입니다.
 ## Notes-ruRU: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-ptBR: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-esES: A collection of BigWigs modules from the Burning Crusade era.
@@ -31,8 +31,9 @@
 ## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
 ## X-Curse-Project-ID: 50688
 ## X-WoWI-ID: 22096
-## X-BigWigs-LoadOn-ZoneId: 775, 780, 779, 776, 796, 799, 782, 466
-## X-BigWigs-LoadOn-WorldBoss: -473, 17711, -465, 18728
+## X-BigWigs-ExtraMenu: -101
+## X-BigWigs-LoadOn-InstanceId: 532, 534, 544, 548, 550, 564, 565
+## X-BigWigs-LoadOn-WorldBoss: -104, 17711, -100, 18728
 
 modules.xml
 

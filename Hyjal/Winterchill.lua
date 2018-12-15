@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Rage Winterchill", 775, 1577)
+local mod = BigWigs:NewBoss("Rage Winterchill", 534, 1577)
 if not mod then return end
 mod:RegisterEnableMob(17767)
 
@@ -34,13 +34,13 @@ end
 --
 
 function mod:Icebolt(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 function mod:DeathAndDecay(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alarm")
+		self:Message(args.spellId, "blue", "Alarm")
 		self:Flash(args.spellId)
 	end
 end

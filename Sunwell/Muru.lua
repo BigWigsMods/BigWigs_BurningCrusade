@@ -312,9 +312,9 @@ end
 function mod:Darkness(unit, spellID)
 	if unit == boss and db.darkness then
 		self:Bar(L["darkness"], 20, spellID)
-		self:IfMessage(L["darkness_message"]:format(unit), "Positive", spellID)
+		self:IfMessage(L["darkness_message"]:format(unit), "green", spellID)
 		self:Bar(L["darkness_next"], 45, spellID)
-		self:ScheduleEvent("DarknessWarn", "BigWigs_Message", 40, L["darkness_soon"], "Positive")
+		self:ScheduleEvent("DarknessWarn", "BigWigs_Message", 40, L["darkness_soon"], "green")
 	end
 end
 
@@ -325,10 +325,10 @@ function mod:Fiends()
 			local time = GetTime()
 			if (time - last) > 5 then
 				last = time
-				self:Message(L["fiends_message"], "Important", true, nil, nil, 45934)
+				self:Message(L["fiends_message"], "red", true, nil, nil, 45934)
 			end
 		elseif phase == 2 then
-			self:Message(L["fiends_message"], "Important", true, nil, nil, 45934)
+			self:Message(L["fiends_message"], "red", true, nil, nil, 45934)
 		end
 	end
 end
@@ -345,7 +345,7 @@ function mod:Portals()
 	self:TriggerEvent("BigWigs_StopBar", self, L["humanoid_next"])
 	self:TriggerEvent("BigWigs_StopBar", self, L["darkness_next"])
 	if db.phase then
-		self:Message(L["phase2_message"], "Attention")
+		self:Message(L["phase2_message"], "yellow")
 		self:Bar(entropius, 10, 46087)
 	end
 	if db.gravity then
@@ -357,21 +357,21 @@ function mod:GravityBall()
 	if db.gravity then
 		--44218 , looks like a Gravity Balls :p
 		self:Bar(L["gravity_next"], 15, 44218)
-		self:DelayedMessage(5, L["gravity_soon"], "Urgent")
+		self:DelayedMessage(5, L["gravity_soon"], "orange")
 		self:Bar(L["gravity_spawned"], 10, 44218)
 	end
 end
 
 function mod:RepeatVoid()
 	self:Bar(L["void_next"]:format(voidcount), 30, 46087)
-	self:ScheduleEvent("VoidWarn", "BigWigs_Message", 25, L["void_soon"]:format(voidcount), "Attention")
+	self:ScheduleEvent("VoidWarn", "BigWigs_Message", 25, L["void_soon"]:format(voidcount), "yellow")
 	voidcount = voidcount + 1
 	self:ScheduleEvent("Void", self.RepeatVoid, 30, self)
 end
 
 function mod:RepeatHumanoid()
 	self:Bar(L["humanoid_next"]:format(humanoidcount), 60, 46087)
-	self:ScheduleEvent("HumanoidWarn", "BigWigs_Message", 55, L["humanoid_soon"]:format(humanoidcount), "Urgent")
+	self:ScheduleEvent("HumanoidWarn", "BigWigs_Message", 55, L["humanoid_soon"]:format(humanoidcount), "orange")
 	humanoidcount = humanoidcount + 1
 	self:ScheduleEvent("Humanoid", self.RepeatHumanoid, 60, self)
 end
@@ -387,11 +387,11 @@ function mod:BigWigs_RecvSync(sync, rest, nick)
 		end
 		if db.darkness then
 			self:Bar(L["darkness_next"], 45, 45996)
-			self:DelayedMessage(40, L["darkness_soon"], "Positive")
+			self:DelayedMessage(40, L["darkness_soon"], "green")
 		end
 		if db.void then
 			self:Bar(L["void_next"]:format(voidcount), 30, 46087)
-			self:DelayedMessage(25, L["void_soon"]:format(voidcount), "Attention")
+			self:DelayedMessage(25, L["void_soon"]:format(voidcount), "yellow")
 			voidcount = voidcount + 1
 			self:ScheduleEvent("Void", self.RepeatVoid, 30, self)
 		end

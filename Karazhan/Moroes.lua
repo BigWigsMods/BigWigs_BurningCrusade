@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Moroes Raid", 799, 1554)
+local mod, CL = BigWigs:NewBoss("Moroes Raid", 532, 1554)
 if not mod then return end
 --Moroes, Baroness Dorothea Millstipe, Baron Rafe Dreuger, Lady Catriona Von'Indi,
 --Lady Keira Berrybuck, Lord Robin Daris, Lord Crispin Ference
@@ -42,10 +42,10 @@ end
 
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
-	self:Message(29448, "Attention", nil, L["engage_message"]:format(self.displayName))
+	self:Message(29448, "yellow", nil, L["engage_message"]:format(self.displayName))
 
 	self:CDBar(29448, 35)
-	self:DelayedMessage(29448, 30, CL["soon"]:format(self:SpellName(29448)), "Attention")
+	self:DelayedMessage(29448, 30, "yellow", CL["soon"]:format(self:SpellName(29448)))
 end
 
 --------------------------------------------------------------------------------
@@ -53,26 +53,26 @@ end
 --
 
 function mod:Garrote(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "Important", "Alarm", "30% - "..args.spellName)
+	self:Message(args.spellId, "red", "Alarm", "30% - "..args.spellName)
 end
 
 function mod:Vanish(args)
-	self:Message(args.spellId, "Urgent", "Alert")
+	self:Message(args.spellId, "orange", "Alert")
 	self:CDBar(args.spellId, 35)
-	self:DelayedMessage(args.spellId, 30, "Attention", CL["soon"]:format(args.spellName))
+	self:DelayedMessage(args.spellId, 30, "yellow", CL["soon"]:format(args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 15687 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 36 then
-			self:Message(37023, "Positive", "Info", CL["soon"]:format(self:SpellName(37023)), false) -- Frenzy
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:Message(37023, "green", "Info", CL["soon"]:format(self:SpellName(37023)), false) -- Frenzy
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end

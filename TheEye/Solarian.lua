@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("High Astromancer Solarian", 782, 1575)
+local mod = BigWigs:NewBoss("High Astromancer Solarian", 550, 1575)
 if not mod then return end
 mod:RegisterEnableMob(18805)
 
@@ -61,9 +61,9 @@ end
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
-	self:Message("phase", "Positive", nil, L["phase1_message"], false)
+	self:Message("phase", "green", nil, L["phase1_message"], false)
 	self:Bar("phase", 50, L["split_bar"], "Spell_Shadow_SealOfKings")
-	self:DelayedMessage("phase", 43, "Important", L["split_warning"])
+	self:DelayedMessage("phase", 43, "red", L["split_warning"])
 end
 
 --------------------------------------------------------------------------------
@@ -71,7 +71,7 @@ end
 --
 
 function mod:Wrath(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", nil, L["wrath_other"])
+	self:TargetMessage(args.spellId, args.destName, "yellow", nil, L["wrath_other"])
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 6, args.destName, L["wrath_other"])
 	if self:Me(args.destGUID) then
@@ -86,18 +86,18 @@ function mod:WrathRemove(args)
 	end
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 18805 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 21 and hp < 25 then
-			self:Message("phase", "Positive", nil, L["phase2_warning"], false)
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:Message("phase", "green", nil, L["phase2_warning"], false)
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end
 
 function mod:Phase2()
-	self:Message("phase", "Important", nil, L["phase2_message"], false)
+	self:Message("phase", "red", nil, L["phase2_message"], false)
 	self:CancelAllTimers()
 	self:StopBar(L["split_bar"])
 end
@@ -105,14 +105,14 @@ end
 function mod:Split()
 	--split is around 90 seconds after the previous
 	self:Bar("split", 90, L["split_bar"], "Spell_Shadow_SealOfKings")
-	self:DelayedMessage("split", 83, "Important", L["split_warning"])
+	self:DelayedMessage("split", 83, "red", L["split_warning"])
 
 	-- Agents 6 seconds after the Split
-	self:Message("split", "Important", nil, L["agent_warning"], false)
+	self:Message("split", "red", nil, L["agent_warning"], false)
 	self:Bar("split", 6, L["agent_bar"], "Ability_Creature_Cursed_01")
 
 	-- Priests 22 seconds after the Split
-	self:DelayedMessage("split", 19, "Important", L["priest_warning"])
+	self:DelayedMessage("split", 19, "red", L["priest_warning"])
 	self:Bar("split", 22, L["priest_bar"], "Spell_Holy_HolyBolt")
 end
 

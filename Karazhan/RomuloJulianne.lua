@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Romulo & Julianne", 799, 1556)
+local mod = BigWigs:NewBoss("Romulo & Julianne", 532, 1556)
 if not mod then return end
 mod:RegisterEnableMob(17533, 17534) --Romulo, Julianne
 
@@ -69,16 +69,16 @@ end
 --
 
 function mod:Poison(args)
-	self:TargetMessage("poison", args.destName, "Important", nil, L["poison_message"], args.spellId)
+	self:TargetMessage("poison", args.destName, "red", nil, L["poison_message"], args.spellId)
 end
 
 function mod:Heal(args)
-	self:Message("heal", "Urgent", nil, L["heal_message"], args.spellId)
+	self:Message("heal", "orange", nil, L["heal_message"], args.spellId)
 end
 
 function mod:Devotion(args)
 	if self:MobId(args.destGUID) == 17534 then -- Julianne
-		self:Message("buff", "Attention", nil, L["buff2_message"], args.spellId)
+		self:Message("buff", "yellow", nil, L["buff2_message"], args.spellId)
 		self:Bar("buff", 10, L["buff2_message"], args.spellId)
 	end
 end
@@ -91,7 +91,7 @@ end
 
 function mod:Daring(args)
 	if self:MobId(args.destGUID) == 17533 then -- Julianne
-		self:Message("buff", "Attention", nil, L["buff1_message"], args.spellId)
+		self:Message("buff", "yellow", nil, L["buff1_message"], args.spellId)
 		self:Bar("buff", 8, L["buff1_message"], args.spellId)
 	end
 end
@@ -103,14 +103,14 @@ function mod:DaringRemoved(args)
 end
 
 function mod:Act1()
-	self:Message("phase", "Positive", nil, L["phase1_message"], false)
+	self:Message("phase", "green", nil, L["phase1_message"], false)
 end
 
 function mod:Act2()
-	self:Message("phase", "Positive", nil, L["phase2_message"], false)
+	self:Message("phase", "green", nil, L["phase2_message"], false)
 end
 
 function mod:Act3()
-	self:Message("phase", "Positive", nil, L["phase3_message"], false)
+	self:Message("phase", "green", nil, L["phase3_message"], false)
 end
 

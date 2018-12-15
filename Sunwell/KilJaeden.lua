@@ -590,26 +590,26 @@ function mod:Sinister()
 	self:CancelScheduledEvent("BombWarn")
 	self:TriggerEvent("BigWigs_StopBar", self, L["bomb_nextbar"])
 	if db.sinister then
-		self:IfMessage(L["sinister_message"], "Attention", 45892)
+		self:IfMessage(L["sinister_message"], "yellow", 45892)
 	end
 	if db.flame then
 		self:Bar(L["flame_bar"], 57, 45737)
-		self:DelayedMessage(52, L["flame_message"], "Attention")
+		self:DelayedMessage(52, L["flame_message"], "yellow")
 	end
 	if db.blueorb then
 		-- 23018, looks like a Blue Dragonflight Orb :)
 		if phase == 2 or phase == 3 then
 			self:Bar(L["blueorb"], 37, 23018)
-			self:DelayedMessage(32, L["blueorb_warning"], "Urgent")
+			self:DelayedMessage(32, L["blueorb_warning"], "orange")
 		elseif phase == 4 then
 			self:Bar(L["blueorb"], 45, 23018)
-			self:DelayedMessage(40, L["blueorb_warning"], "Urgent")
+			self:DelayedMessage(40, L["blueorb_warning"], "orange")
 		end
 	end
 end
 
 function mod:Shield()
-	self:IfMessage(L["shield_up"], "Urgent", 45848)
+	self:IfMessage(L["shield_up"], "orange", 45848)
 end
 
 local last = 0
@@ -618,7 +618,7 @@ function mod:Orb()
 	if (time - last) > 10 then
 		last = time
 		if db.orb then
-			self:IfMessage(L["orb_shooting"], "Attention", 45680, "Alert")
+			self:IfMessage(L["orb_shooting"], "yellow", 45680, "Alert")
 		end
 	end
 end
@@ -626,13 +626,13 @@ end
 function mod:Deaths(unit, guid)
 	if type(guid) == "string" and tonumber((guid):sub(-12,-7),16) == 25588 then --Hand of the Deceiver
 		deaths = deaths + 1
-		self:IfMessage(L["deceiver_dies"]:format(deaths), "Positive")
+		self:IfMessage(L["deceiver_dies"]:format(deaths), "green")
 		if deaths == 3 then
 			phase = 2
 			self:Bar(boss, 10, "Spell_Shadow_Charm")
 			self:TriggerEvent("BigWigs_ShowProximity", self)
 			if db.phase then
-				self:Message(L["phase2_message"], "Important", nil, "Alarm")
+				self:Message(L["phase2_message"], "red", nil, "Alarm")
 			end
 		end
 		return
@@ -644,13 +644,13 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, unit)
 	if unit == boss and db.bomb then
 		self:Bar(L["bomb_bar"], 8, "Spell_Shadow_BlackPlague")
-		self:IfMessage(L["bomb_cast"], "Positive")
+		self:IfMessage(L["bomb_cast"], "green")
 		if phase == 3 or phase == 4 then
 			self:Bar(L["bomb_nextbar"], 46, "Spell_Shadow_BlackPlague")
-			self:ScheduleEvent("BombWarn", "BigWigs_Message", 36, L["bomb_warning"], "Attention")
+			self:ScheduleEvent("BombWarn", "BigWigs_Message", 36, L["bomb_warning"], "yellow")
 		elseif phase == 5 then
 			self:Bar(L["bomb_nextbar"], 25, "Spell_Shadow_BlackPlague")
-			self:DelayedMessage(15, L["bomb_warning"], "Attention")
+			self:DelayedMessage(15, L["bomb_warning"], "yellow")
 		end
 	end
 end
@@ -659,33 +659,33 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if (msg == L["kalec_yell"] or msg == L["kalec_yell2"] or msg == L["kalec_yell3"]) then
 		if db.bomb then
 			self:Bar(L["bomb_nextbar"], 40, "Spell_Shadow_BlackPlague")
-			self:DelayedMessage(30, L["bomb_warning"], "Attention")
+			self:DelayedMessage(30, L["bomb_warning"], "yellow")
 		end
 		if db.blueorb then
-			self:IfMessage(L["blueorb_message"], "Attention")
+			self:IfMessage(L["blueorb_message"], "yellow")
 		end
 	elseif msg == L["kalec_yell4"] then
 		if db.bomb then
 			self:Bar(L["bomb_nextbar"], 13, "Spell_Shadow_BlackPlague")
-			self:DelayedMessage(3, L["bomb_warning"], "Attention")
+			self:DelayedMessage(3, L["bomb_warning"], "yellow")
 		end
 		if db.blueorb then
-			self:IfMessage(L["blueorb_message"], "Attention")
+			self:IfMessage(L["blueorb_message"], "yellow")
 		end
 	elseif msg == L["phase3_trigger"] then
 		phase = 3
 		if db.phase then
-			self:Message(L["phase3_message"], "Important", nil, "Alarm")
+			self:Message(L["phase3_message"], "red", nil, "Alarm")
 		end
 	elseif msg == L["phase4_trigger"] then
 		phase = 4
 		if db.phase then
-			self:Message(L["phase4_message"], "Important", nil, "Alarm")
+			self:Message(L["phase4_message"], "red", nil, "Alarm")
 		end
 	elseif msg == L["phase5_trigger"] then
 		phase = 5
 		if db.phase then
-			self:Message(L["phase5_message"], "Important", nil, "Alarm")
+			self:Message(L["phase5_message"], "red", nil, "Alarm")
 		end
 	end
 end
@@ -693,8 +693,8 @@ end
 function mod:ShadowCast(_, spellID)
 	if db.shadow then
 		self:Bar(L["shadow_bar"], 28.7, spellID)
-		self:IfMessage(L["shadow_message"], "Attention", spellID)
-		self:DelayedMessage(23.7, L["shadow_warning"], "Attention")
+		self:IfMessage(L["shadow_message"], "yellow", spellID)
+		self:DelayedMessage(23.7, L["shadow_warning"], "yellow")
 	end
 end
 
@@ -710,7 +710,7 @@ function mod:Bloom(player)
 		self:Whisper(player, L["bloom_you"], "bloomwhisper")
 		self:ScheduleEvent("BWBloomWarn", self.BloomWarn, 0.4, self)
 		if player == pName and db.bloomsay then
-			self:Message(L["bloom_you"], "Personal", 45641, "Long")
+			self:Message(L["bloom_you"], "blue", 45641, "Long")
 			SendChatMessage(L["bloom_say"], "SAY")
 		end
 	end
@@ -731,9 +731,9 @@ function mod:BloomWarn()
 		end
 	end
 
-	self:IfMessage(L["bloom_other"]:format(msg), "Important", 45641, "Alert")
+	self:IfMessage(L["bloom_other"]:format(msg), "red", 45641, "Alert")
 	self:Bar(L["bloom_bar"], 20, 45641)
-	self:DelayedMessage(15, L["bloom_message"], "Attention")
+	self:DelayedMessage(15, L["bloom_message"], "yellow")
 	for i = 1, #bloomed do bloomed[i] = nil end
 end
 
@@ -742,13 +742,13 @@ function mod:UNIT_HEALTH(msg)
 		local health = UnitHealth(msg)
 		if not sinister1 and health > 86 and health <= 88 then
 			sinister1 = true
-			self:Message(L["sinister_warning"], "Attention")
+			self:Message(L["sinister_warning"], "yellow")
 		elseif not sinister2 and health > 56 and health <= 58 then
 			sinister2 = true
-			self:Message(L["sinister_warning"], "Attention")
+			self:Message(L["sinister_warning"], "yellow")
 		elseif not sinister3 and health > 26 and health <= 28 then
 			sinister3 = true
-			self:Message(L["sinister_warning"], "Attention")
+			self:Message(L["sinister_warning"], "yellow")
 		end
 	end
 end

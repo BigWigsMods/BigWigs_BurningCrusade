@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Hyakiss the Lurker", 799, 1552)
+local mod = BigWigs:NewBoss("Hyakiss the Lurker", 532, 1552)
 if not mod then return end
 mod:RegisterEnableMob(16179)
 
@@ -25,7 +25,7 @@ end
 --
 
 function mod:Web(args)
-	self:TargetMessage(args.spellId, args.destName, "Urgent")
+	self:TargetMessage(args.spellId, args.destName, "orange")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 

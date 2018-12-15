@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("The Big Bad Wolf", 799, 1556)
+local mod = BigWigs:NewBoss("The Big Bad Wolf", 532, 1556)
 if not mod then return end
 mod:RegisterEnableMob(17521, 17603) --The Big Bad Wolf, Grandmother
 
@@ -37,7 +37,7 @@ end
 --
 
 function mod:Riding(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Long")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Long")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:Bar(args.spellId, 20, L["riding_bar"]:format(args.destName))
 end

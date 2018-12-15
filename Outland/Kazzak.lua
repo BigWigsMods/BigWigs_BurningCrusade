@@ -2,11 +2,11 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Doom Lord Kazzak", -465)
+local mod, CL = BigWigs:NewBoss("Doom Lord Kazzak", -100)
 if not mod then return end
 mod:RegisterEnableMob(18728)
 mod.worldBoss = 18728
-mod.otherMenu = 466
+mod.otherMenu = -101
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -45,8 +45,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("berserk", "Attention", nil, L["enrage_warning1"]:format(self.displayName), false)
-	self:DelayedMessage("berserk", 49, "Urgent", L["enrage_warning2"])
+	self:Message("berserk", "yellow", nil, L["enrage_warning1"]:format(self.displayName), false)
+	self:DelayedMessage("berserk", 49, "orange", L["enrage_warning2"])
 	self:Bar("berserk", 60, L["enrage_bar"], 32964)
 end
 
@@ -56,20 +56,20 @@ end
 
 function mod:Mark(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alarm", CL["you"]:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alarm", CL["you"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:Twisted(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 end
 
 function mod:Frenzy(args)
-	self:Message("berserk", "Important", "Alert", L["enrage_message"], args.spellId)
-	self:DelayedMessage("berserk", 10, "Positive", L["enrage_finished"])
+	self:Message("berserk", "red", "Alert", L["enrage_message"], args.spellId)
+	self:DelayedMessage("berserk", 10, "green", L["enrage_finished"])
 	self:Bar("berserk", 10, L["enraged_bar"], args.spellId)
-	self:DelayedMessage("berserk", 49, "Urgent", L["enrage_warning2"])
+	self:DelayedMessage("berserk", 49, "orange", L["enrage_warning2"])
 	self:Bar("berserk", 60, L["enrage_bar"], args.spellId)
 end
 

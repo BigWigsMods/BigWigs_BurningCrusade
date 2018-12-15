@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Shade of Akama", 796, 1584)
+local mod, CL = BigWigs:NewBoss("Shade of Akama", 564, 1584)
 if not mod then return end
 mod:RegisterEnableMob(23191, 22841) -- Akama, Shade of Akama
 mod.engageId = 603
@@ -49,6 +49,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "StealthRemoved", 34189)
+	self:RegisterMessage("BigWigs_BossComm")
 
 	self:Log("SPELL_AURA_APPLIED", "RainOfFireDamage", 42023)
 	self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFireDamage", 42023)
@@ -59,7 +60,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("stages", "Neutral", "Info", L.engaged, false)
+	self:Message("stages", "cyan", "Info", L.engaged, false)
 	self:Bar("stages", 13, L.defender, 159241) -- ability_parry / icon 132269
 	self:ScheduleTimer("Bar", 13, "stages", 32, L.defender, 159241)
 	defender = self:ScheduleTimer("RepeaterDefender", 45)
@@ -78,6 +79,12 @@ end
 function mod:StealthRemoved(args)
 	-- Stealth is removed when you speak to him, starting the encounter
 	if self:MobId(args.destGUID) == 23191 then -- Akama
+		self:Sync("Akama") -- There seems to be range problems with this, sync for now.
+	end
+end
+
+function mod:BigWigs_BossComm(_, msg)
+	if msg == "Akama" and not self.isEngaged then
 		self:Engage()
 	end
 end
@@ -108,7 +115,7 @@ do
 		local t = GetTime()
 		if self:Me(args.destGUID) and t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.you:format(args.spellName))
+			self:Message(args.spellId, "blue", "Alert", CL.you:format(args.spellName))
 		end
 	end
 end
@@ -125,7 +132,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		self:StopBar(L.sorcerer)
 		self:StopBar(L.adds_right)
 		self:StopBar(L.adds_left)
-		self:Message("stages", "Neutral", "Info", CL.stage:format(2), false)
+		self:Message("stages", "cyan", "Info", CL.stage:format(2), false)
 	end
 end
 

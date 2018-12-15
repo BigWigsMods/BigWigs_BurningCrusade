@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Brutallus", 789)
+local mod, CL = BigWigs:NewBoss("Brutallus", 580)
 if not mod then return end
 mod:RegisterEnableMob(24882)
 
@@ -53,7 +53,7 @@ function mod:OnEngage()
 	self:Berserk(360)
 	local burn = GetSpellInfo(46394)
 	self:Bar(46394, burn, 20, 46394)
-	self:DelayedMessage(46394, 16, CL["soon"]:format(burn), "Attention")
+	self:DelayedMessage(46394, 16, CL["soon"]:format(burn), "yellow")
 	self:Bar(45185, GetSpellInfo(45185), 30, 45185)
 end
 
@@ -62,12 +62,12 @@ end
 --
 
 function mod:Burn(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Important", spellId, "Alert")
+	self:TargetMessage(spellId, spellName, player, "red", spellId, "Alert")
 	self:PrimaryIcon(spellId, player)
 	self:Whisper(spellId, player, spellName)
 	self:Bar(spellId, CL["other"]:format(spellName, player), 60, spellId)
 	self:Bar(spellId, spellName, 20, spellId)
-	self:DelayedMessage(spellId, 16, CL["soon"]:format(spellName), "Attention")
+	self:DelayedMessage(spellId, 16, CL["soon"]:format(spellName), "yellow")
 end
 
 function mod:Meteor(_, spellId)
@@ -80,12 +80,12 @@ function mod:BurnRemove(player, _, _, _, spellName)
 end
 
 function mod:BurnResist(player, spellId)
-	self:Message("burnresist", L["burn_resist"]:format(player), "Positive", spellId)
+	self:Message("burnresist", L["burn_resist"]:format(player), "green", spellId)
 end
 
 function mod:Stomp(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "Urgent", spellId)
-	self:DelayedMessage(spellId, 25.5, CL["custom_sec"]:format(spellName, 5), "Attention")
+	self:TargetMessage(spellId, spellName, player, "orange", spellId)
+	self:DelayedMessage(spellId, 25.5, CL["custom_sec"]:format(spellName, 5), "yellow")
 	self:Bar(spellId, spellName, 30.5, spellId)
 end
 

@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("The Curator Raid", 799, 1557)
+local mod, CL = BigWigs:NewBoss("The Curator Raid", 532, 1557)
 if not mod then return end
 mod:RegisterEnableMob(15691)
 
@@ -46,9 +46,9 @@ function mod:OnEngage()
 	self:Berserk(600)
 	self:CDBar(30254, 109)
 	local evocation = self:SpellName(30254)
-	self:DelayedMessage(30254, 39, "Positive", CL["custom_sec"]:format(evocation, 70))
-	self:DelayedMessage(30254, 79, "Attention", CL["custom_sec"]:format(evocation, 30))
-	self:DelayedMessage(30254, 99, "Urgent", CL["custom_sec"]:format(evocation, 10))
+	self:DelayedMessage(30254, 39, "green", CL["custom_sec"]:format(evocation, 70))
+	self:DelayedMessage(30254, 79, "yellow", CL["custom_sec"]:format(evocation, 30))
+	self:DelayedMessage(30254, 99, "orange", CL["custom_sec"]:format(evocation, 10))
 end
 
 --------------------------------------------------------------------------------
@@ -56,31 +56,31 @@ end
 --
 
 function mod:Evocate(args)
-	self:Message(args.spellId, "Important", "Alarm", L["weaken_message"])
+	self:Message(args.spellId, "red", "Alarm", L["weaken_message"])
 	self:Bar(args.spellId, 20, CL["cast"]:format(args.spellName))
-	self:DelayedMessage(args.spellId, 15, "Urgent", L["weaken_fade_warning"])
-	self:DelayedMessage(args.spellId, 20, "Important", L["weaken_fade_message"], false, "Alarm")
+	self:DelayedMessage(args.spellId, 15, "orange", L["weaken_fade_warning"])
+	self:DelayedMessage(args.spellId, 20, "red", L["weaken_fade_message"], false, "Alarm")
 
 	self:Bar(args.spellId, 115)
-	self:DelayedMessage(args.spellId, 45, "Positive", CL["custom_sec"]:format(args.spellName, 70))
-	self:DelayedMessage(args.spellId, 85, "Attention", CL["custom_sec"]:format(args.spellName, 30))
-	self:DelayedMessage(args.spellId, 105, "Urgent", CL["custom_sec"]:format(args.spellName, 10))
+	self:DelayedMessage(args.spellId, 45, "green", CL["custom_sec"]:format(args.spellName, 70))
+	self:DelayedMessage(args.spellId, 85, "yellow", CL["custom_sec"]:format(args.spellName, 30))
+	self:DelayedMessage(args.spellId, 105, "orange", CL["custom_sec"]:format(args.spellName, 10))
 end
 
 function mod:Infusion(args)
-	self:Message(args.spellId, "Important", nil, "15% - "..args.spellName)
+	self:Message(args.spellId, "red", nil, "15% - "..args.spellName)
 
 	self:CancelAllTimers()
 	self:StopBar(30254) -- Evocation
 	self:StopBar(CL["cast"]:format(self:SpellName(30254))) -- Evocation
 end
 
-function mod:UNIT_HEALTH_FREQUENT(unit)
+function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 15691 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
-			self:Message(30403, "Positive", nil, CL["soon"]:format(self:SpellName(30403)), false) -- Arcane Infusion
-			self:UnregisterUnitEvent("UNIT_HEALTH_FREQUENT", "target", "focus")
+			self:Message(30403, "green", nil, CL["soon"]:format(self:SpellName(30403)), false) -- Arcane Infusion
+			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end

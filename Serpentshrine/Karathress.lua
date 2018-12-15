@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Fathom-Lord Karathress", 780, 1570)
+local mod = BigWigs:NewBoss("Fathom-Lord Karathress", 548, 1570)
 if not mod then return end
 mod:RegisterEnableMob(21214, 21966, 21965, 21964) --Karathress, Sharkkis, Tidalvess, Caribdis
 
@@ -57,14 +57,14 @@ end
 --
 
 function mod:Heal(args)
-	self:Message(args.spellId, "Important", "Long", L["heal_message"])
+	self:Message(args.spellId, "red", "Long", L["heal_message"])
 end
 
 function mod:Totem(args)
 	if self:MobId(args.sourceGUID) == 21214 then
-		self:Message("totem", "Urgent", "Alarm", L["totem_message2"], args.spellId)
+		self:Message("totem", "orange", "Alarm", L["totem_message2"], args.spellId)
 	else
-		self:Message("totem", "Attention", nil, L["totem_message1"], args.spellId)
+		self:Message("totem", "yellow", nil, L["totem_message1"], args.spellId)
 	end
 end
 

@@ -315,7 +315,7 @@ end
 
 function mod:PyroGain(unit, spellID)
 	if unit == lock and db.pyro then
-		self:Message(L["pyro_gain"]:format(unit), "Positive", nil, nil, nil, spellID)
+		self:Message(L["pyro_gain"]:format(unit), "green", nil, nil, nil, spellID)
 		self:Bar(L["pyro"], 15, spellID)
 	end
 end
@@ -323,7 +323,7 @@ end
 function mod:PyroRemove(_, _, source, spellID)
 	if spellID and spellID == 45230 then
 		if db.pyro then
-			self:Message(L["pyro_remove"]:format(source), "Positive")
+			self:Message(L["pyro_remove"]:format(source), "green")
 			self:TriggerEvent("BigWigs_StopBar", self, L["pyro"])
 		end
 	end
@@ -354,17 +354,17 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, unit, _, _, player)
 	if ((unit == lady and deaths == 0) or (unit == lock and deaths == 1)) and db.nova then
 		if player == pName then
-			self:Message(L["nova_message"]:format(player), "Personal", 45329, "Long")
+			self:Message(L["nova_message"]:format(player), "blue", 45329, "Long")
 		else
-			self:Message(L["nova_message"]:format(player), "Urgent", nil, nil, nil, 45329)
+			self:Message(L["nova_message"]:format(player), "orange", nil, nil, nil, 45329)
 		end
 		self:Bar(L["nova_bar"], 30.5, 45329)
 		self:Icon(player, "icon")
 	elseif ((unit == lock and deaths == 0) or (unit == lady and deaths == 1)) and db.conflag then
 		if player == pName then
-			self:Message(L["conflag_message"]:format(player), "Personal", 45333, "Long")
+			self:Message(L["conflag_message"]:format(player), "blue", 45333, "Long")
 		else
-			self:Message(L["conflag_message"]:format(player), "Attention", nil, nil, nil, 45333)
+			self:Message(L["conflag_message"]:format(player), "yellow", nil, nil, nil, 45333)
 			self:Whisper(player, L["conflag_you"])
 		end
 		self:Bar(L["conflag_bar"], 32, 45333)

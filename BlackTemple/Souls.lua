@@ -3,7 +3,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Reliquary of Souls", 796, 1587)
+local mod, CL = BigWigs:NewBoss("Reliquary of Souls", 564, 1587)
 if not mod then return end
 mod:RegisterEnableMob(23420, 23419, 23418) -- Essence of Anger, Essence of Desire, Essence of Suffering
 mod.engageId = 606
@@ -85,7 +85,7 @@ end
 function mod:OnEngage()
 	wipe(playerList)
 	wipe(castCollector)
-	self:CDBar(41305, 49) -- Frenzy
+	self:CDBar(41305, 48) -- Frenzy
 	self:CDBar(41303, 21.6) -- Soul Drain
 end
 
@@ -93,7 +93,7 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, _, castGUID, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
 	if spellId == 28819 then -- Submerge Visual
 		if not next(castCollector) then -- Kill first
 			castCollector[castGUID] = true
@@ -139,67 +139,67 @@ function mod:AuraOfSuffering() -- Start of Stage 1
 end
 
 function mod:SoulDrain(args)
-	self:Bar(args.spellId, 21.8)
+	self:Bar(args.spellId, 21.3)
 end
 
 function mod:SoulDrainApplied(args)
 	playerList[#playerList+1] = args.destName
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Attention", "Alert")
+		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "yellow", "Alert")
 	end
 end
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "Urgent", "Info")
+	self:Message(args.spellId, "orange", "Info")
 	self:CastBar(args.spellId, 8)
 end
 
 function mod:FrenzyRemoved(args)
-	self:Message(args.spellId, "Positive", "Info", CL.over:format(args.spellName))
+	self:Message(args.spellId, "green", "Info", CL.over:format(args.spellName))
 	self:Bar(args.spellId, 40.5)
 end
 
 function mod:Fixate(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
+	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 --[[ Essence of Desire ]]--
 function mod:AuraOfDesire() -- Start of Stage 2
-	self:Message("zero_mana", "Neutral", nil, L.desire_start, L.zero_mana_icon)
+	self:Message("zero_mana", "cyan", nil, L.desire_start, L.zero_mana_icon)
 	self:Bar("zero_mana", 160, L.zero_mana, L.zero_mana_icon)
-	self:CDBar(41410, 30) -- Deaden
-	self:CDBar(41431, 15) -- Rune Shield
+	self:CDBar(41410, 27.6) -- Deaden
+	self:CDBar(41431, 13) -- Rune Shield
 end
 
 function mod:RuneShield(args)
-	self:Message(args.spellId, "Urgent", self:Dispeller("magic", true) and "Warning")
+	self:Message(args.spellId, "orange", self:Dispeller("magic", true) and "Warning")
 	self:Bar(args.spellId, 15.7)
 end
 
 function mod:Deaden(args)
-	self:Message(args.spellId, "Important", self:Interrupter() and "Info", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", self:Interrupter() and "Info", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 31.5)
 end
 
 function mod:SpiritShock(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alarm", nil, nil, self:Tank())
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Tank())
 end
 
 --[[ Essence of Anger ]]--
 function mod:AuraOfAnger() -- Start of Stage 3
-	self:CDBar(41376, 20.5) -- Spite
-	self:CDBar(41545, 10.5) -- Soul Scream
+	self:CDBar(41376, 18.2) -- Spite
+	self:CDBar(41545, 8.5) -- Soul Scream
 end
 
 function mod:Spite(args)
-	self:Bar(args.spellId, 20.6)
+	self:Bar(args.spellId, 20.5)
 end
 
 function mod:SpiteApplied(args)
 	playerList[#playerList+1] = args.destName
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "Important", "Alert")
+		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "red", "Alert")
 	end
 end
 

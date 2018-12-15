@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("The Lurker Below", 780, 1568)
+local mod = BigWigs:NewBoss("The Lurker Below", 548, 1568)
 if not mod then return end
 mod:RegisterEnableMob(21217, 21873, 21865) --Lurker, Coilfang Guardian, Coilfang Ambusher
 
@@ -55,17 +55,17 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("dive", "Attention", nil, L["engage_warning"]:format(self.displayName), false)
+	self:Message("dive", "yellow", nil, L["engage_warning"]:format(self.displayName), false)
 	local dwarn = L["dive_warning"]
-	self:DelayedMessage("dive", 30, "Positive", (dwarn):format(60))
-	self:DelayedMessage("dive", 60, "Positive", (dwarn):format(30))
-	self:DelayedMessage("dive", 80, "Positive", (dwarn):format(10))
-	self:DelayedMessage("dive", 85, "Urgent", (dwarn):format(5), false, "Alarm")
+	self:DelayedMessage("dive", 30, "green", (dwarn):format(60))
+	self:DelayedMessage("dive", 60, "green", (dwarn):format(30))
+	self:DelayedMessage("dive", 80, "green", (dwarn):format(10))
+	self:DelayedMessage("dive", 85, "orange", (dwarn):format(5), false, "Alarm")
 	self:Bar("dive", 90, L["dive_bar"], "Spell_Frost_ArcticWinds")
 
 	self:CDBar(37660, 17) -- Whirl
 
-	self:DelayedMessage("spout", 34, "Attention", L["spout_warning"])
+	self:DelayedMessage("spout", 34, "yellow", L["spout_warning"])
 	self:Bar("spout", 37, L["spout_bar"], "INV_Weapon_Rifle_02")
 
 	self:OpenProximity("proximity", 10)
@@ -91,8 +91,8 @@ function mod:Spout()
 	self:CheckForWipe()
 	self:Bar("spout", 20, L["spout_message"], "Spell_Frost_ChillingBlast")
 	self:Bar("spout", 50, L["spout_bar"], "Spell_Frost_ChillingBlast")
-	self:Message("spout", "Important", "Alert", L["spout_message"], 37433)
-	self:DelayedMessage("spout", 47, "Attention", L["spout_warning"])
+	self:Message("spout", "red", "Alert", L["spout_message"], 37433)
+	self:DelayedMessage("spout", 47, "yellow", L["spout_warning"])
 	self:StopBar(37660) -- Whirl
 end
 
@@ -109,15 +109,15 @@ do
 			self:ScheduleTimer("LurkerUp", 60)
 
 			local ewarn = L["emerge_warning"]
-			self:Message("dive", "Attention", nil, L["dive_message"], false)
-			self:DelayedMessage("dive", 30, "Positive", (ewarn):format(30))
-			self:DelayedMessage("dive", 50, "Positive", (ewarn):format(10))
-			self:DelayedMessage("dive", 55, "Urgent", (ewarn):format(5), false, "Alert")
-			self:DelayedMessage("dive", 60, "Attention", L["emerge_message"])
+			self:Message("dive", "yellow", nil, L["dive_message"], false)
+			self:DelayedMessage("dive", 30, "green", (ewarn):format(30))
+			self:DelayedMessage("dive", 50, "green", (ewarn):format(10))
+			self:DelayedMessage("dive", 55, "orange", (ewarn):format(5), false, "Alert")
+			self:DelayedMessage("dive", 60, "yellow", L["emerge_message"])
 			self:Bar("dive", 60, L["emerge_bar"], "Spell_Frost_Stun")
 
 			self:Bar("spout", 63, L["spout_bar"], "Spell_Frost_ChillingBlast")
-			self:DelayedMessage("spout", 60, "Attention", L["spout_warning"])
+			self:DelayedMessage("spout", 60, "yellow", L["spout_warning"])
 			return
 		end
 		if not timer then
@@ -128,10 +128,10 @@ end
 
 function mod:LurkerUp()
 	local dwarn = L["dive_warning"]
-	self:DelayedMessage("dive", 30, "Positive", (dwarn):format(60))
-	self:DelayedMessage("dive", 60, "Positive", (dwarn):format(30))
-	self:DelayedMessage("dive", 80, "Positive", (dwarn):format(10))
-	self:DelayedMessage("dive", 85, "Urgent", (dwarn):format(5), false, "Alarm")
+	self:DelayedMessage("dive", 30, "green", (dwarn):format(60))
+	self:DelayedMessage("dive", 60, "green", (dwarn):format(30))
+	self:DelayedMessage("dive", 80, "green", (dwarn):format(10))
+	self:DelayedMessage("dive", 85, "orange", (dwarn):format(5), false, "Alarm")
 	self:Bar("dive", 90, L["dive_bar"], "Spell_Frost_ArcticWinds")
 
 	self:OpenProximity("proximity", 10)

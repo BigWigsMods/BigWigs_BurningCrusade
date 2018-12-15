@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Al'ar", 782, 1573)
+local mod, CL = BigWigs:NewBoss("Al'ar", 550, 1573)
 if not mod then return end
 mod:RegisterEnableMob(19514)
 
@@ -40,12 +40,12 @@ end
 
 function mod:FlamePatch(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Personal", "Alarm", CL["underyou"]:format(args.spellName))
+		self:Message(args.spellId, "blue", "Alarm", CL["underyou"]:format(args.spellName))
 	end
 end
 
 function mod:Armor(args)
-	self:TargetMessage(args.spellId, args.destName, "Important", "Long")
+	self:TargetMessage(args.spellId, args.destName, "red", "Long")
 	self:TargetBar(args.spellId, 60, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
@@ -58,9 +58,9 @@ do
 			if not first then
 				first = true
 			else
-				self:Message(35181, "Urgent", "Alert")
+				self:Message(35181, "orange", "Alert")
 			end
-			self:DelayedMessage(35181, 47, "Important", CL["soon"]:format(diveBomb))
+			self:DelayedMessage(35181, 47, "red", CL["soon"]:format(diveBomb))
 			self:CDBar(35181, 52)
 			self:CancelTimer(timer)
 			timer = nil

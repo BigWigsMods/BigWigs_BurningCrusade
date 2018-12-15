@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Azgalor", 775, 1580)
+local mod, CL = BigWigs:NewBoss("Azgalor", 534, 1580)
 if not mod then return end
 mod:RegisterEnableMob(17842)
 
@@ -48,18 +48,18 @@ end
 
 function mod:RainOfFire(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "Urgent", "Alarm", CL["you"]:format(args.spellName))
+		self:Message(args.spellId, "orange", "Alarm", CL["you"]:format(args.spellName))
 	end
 end
 
 function mod:Howl(args)
-	self:Message(args.spellId, "Important", nil, L["howl_message"])
+	self:Message(args.spellId, "red", nil, L["howl_message"])
 	self:Bar(args.spellId, 16, L["howl_bar"])
-	self:DelayedMessage(args.spellId, 15, "Important", CL["soon"]:format(L["howl_message"]))
+	self:DelayedMessage(args.spellId, 15, "red", CL["soon"]:format(L["howl_message"]))
 end
 
 function mod:Doom(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention", "Alert")
+	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
 	self:TargetBar(args.spellId, 19, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

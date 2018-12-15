@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Attumen the Huntsman Raid", 799, 1553)
+local mod = BigWigs:NewBoss("Attumen the Huntsman Raid", 532, 1553)
 if not mod then return end
 mod:RegisterEnableMob(16152, 16151, 15550)
 
@@ -42,16 +42,16 @@ end
 --
 
 function mod:Curse(args)
-	self:TargetMessage(args.spellId, args.destName, "Attention")
+	self:TargetMessage(args.spellId, args.destName, "yellow")
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
 	if msg == L["phase2_trigger"] then
-		self:Message("phase", "Important", nil, L["phase2_message"], false)
+		self:Message("phase", "red", nil, L["phase2_message"], false)
 	end
 end
 
 function mod:Phase3()
-	self:Message("phase", "Important", nil, L["phase3_message"], false)
+	self:Message("phase", "red", nil, L["phase3_message"], false)
 end
 

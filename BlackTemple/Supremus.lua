@@ -3,11 +3,11 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Supremus", 796, 1583)
+local mod, CL = BigWigs:NewBoss("Supremus", 564, 1583)
 if not mod then return end
 mod:RegisterEnableMob(22898)
 mod.engageId = 602
---mod.respawnTime = 0
+--mod.respawnTime = 0 -- Resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -49,6 +49,7 @@ end
 
 function mod:OnEngage()
 	self:Berserk(900)
+	self:CDBar(40126, 12) -- Molten Punch
 	self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
 end
 
@@ -60,7 +61,7 @@ function mod:Fixate(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
-	self:TargetMessage(args.spellId, args.destName, "Important", "Warning")
+	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -69,8 +70,8 @@ function mod:FixateRemoved(args)
 end
 
 function mod:MoltenPunch(args)
-	self:Message(args.spellId, "Attention")
-	self:Bar(args.spellId, 10)
+	self:Message(args.spellId, "yellow")
+	self:CDBar(args.spellId, 16) -- 16-20
 end
 
 do
@@ -79,17 +80,17 @@ do
 		local t = GetTime()
 		if self:Me(args.destGUID) and t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "Personal", "Alert", CL.underyou:format(args.spellName))
+			self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 		end
 	end
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg == L.normal_phase_trigger then
-		self:Message("stages", "Neutral", "Info", L.normal_phase, false)
+		self:Message("stages", "cyan", "Info", L.normal_phase, false)
 		self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
 	elseif msg == L.kite_phase_trigger then
-		self:Message("stages", "Neutral", "Info", L.kite_phase, false)
+		self:Message("stages", "cyan", "Info", L.kite_phase, false)
 		self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
 	end
 end

@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Kaz'rogal", 775, 1579)
+local mod = BigWigs:NewBoss("Kaz'rogal", 534, 1579)
 if not mod then return end
 mod:RegisterEnableMob(17888)
 
@@ -43,7 +43,7 @@ end
 function mod:OnEngage()
 	count = 1
 	self:Bar(31447, 45, L["mark_bar"]:format(count))
-	self:DelayedMessage(31447, 40, "Positive", L["mark_warn"])
+	self:DelayedMessage(31447, 40, "green", L["mark_warn"])
 end
 
 --------------------------------------------------------------------------------
@@ -53,10 +53,10 @@ end
 function mod:MarkCast(args)
 	local time = 45 - (count * 5)
 	if time < 5 then time = 5 end
-	self:Message(args.spellId, "Attention", nil, ("%s (%d)"):format(args.spellName, count))
+	self:Message(args.spellId, "yellow", nil, ("%s (%d)"):format(args.spellName, count))
 	count = count + 1
 	self:Bar(args.spellId, time, L["mark_bar"]:format(count))
-	self:DelayedMessage(args.spellId, time - 5, "Positive", L["mark_warn"])
+	self:DelayedMessage(args.spellId, time - 5, "green", L["mark_warn"])
 end
 
 function mod:Mark(args)

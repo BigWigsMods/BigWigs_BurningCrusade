@@ -11,5 +11,7 @@
 <Script file="Council.lua"/>
 <Script file="Illidan.lua"/>
 
+<Include file="Options\options.xml"/>
+
 </Ui>
 
