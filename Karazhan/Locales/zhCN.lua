@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman", "zhCN")
+local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "zhCN")
 if not L then return end
 if L then
 	L.phase = "阶段"
@@ -9,7 +9,7 @@ if L then
 	L.phase3_message = "第三阶段"
 end
 
-L = BigWigs:NewBossLocale("The Curator", "zhCN")
+L = BigWigs:NewBossLocale("The Curator Raid", "zhCN")
 if L then
 	L.engage_trigger = "展览厅只对访客开放。"
 
@@ -18,7 +18,7 @@ if L then
 	L.weaken_fade_warning = "5秒后，唤醒结束！"
 end
 
-L = BigWigs:NewBossLocale("Maiden of Virtue", "zhCN")
+L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "zhCN")
 if L then
 	L.engage_trigger = "你们的行为是不可饶恕的。"
 	L.engage_message = "战斗开始！约33秒后，释放悔改！"
@@ -47,7 +47,7 @@ if L then
 	L.infernal_message = "地狱火出现！5秒后发动，地狱烈焰！"
 end
 
-L = BigWigs:NewBossLocale("Moroes", "zhCN")
+L = BigWigs:NewBossLocale("Moroes Raid", "zhCN")
 if L then
 	L.engage_trigger = "啊，不速之客。我得准备一下……"
 	L.engage_message = "%s 激活！约35秒后，消失！"
@@ -67,8 +67,10 @@ if L then
 	L.voidzone_warn = "虚空领域：>%d<！"
 end
 
-L = BigWigs:NewBossLocale("Nightbane", "zhCN")
+L = BigWigs:NewBossLocale("Nightbane Raid", "zhCN")
 if L then
+	L.name = "夜之魇"
+
 	L.phase = "阶段警报"
 	L.phase_desc = "当进入下阶段时发出警报。"
 	L.airphase_trigger = "可怜的渣滓。我要腾空而起，让你尝尝毁灭的滋味！"
@@ -83,6 +85,8 @@ end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "zhCN")
 if L then
+	L.name = "罗密欧和朱丽叶"
+
 	L.phase = "阶段警报"
 	L.phase_desc = "当进入下阶段发出警报。"
 	L.phase1_trigger = "你是个什么魔鬼，这样煎熬着我？"
@@ -144,11 +148,15 @@ end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "zhCN")
 if L then
+	L.name = "大灰狼"
+
 	L.riding_bar = "快跑：%s"
 end
 
 L = BigWigs:NewBossLocale("The Crone", "zhCN")
 if L then
+	L.name = "巫婆"
+
 	L.engage_trigger = "^啊，托托，我们必须找到回家的路！"
 
 	L.spawns = "启动时间"

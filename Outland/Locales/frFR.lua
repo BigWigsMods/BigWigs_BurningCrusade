@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Doomwalker", "frFR")
 if not L then return end
 if L then
+	L.name = "Marche-funeste"
+
 	L.engage_trigger = "Cessez toute activité. Vous allez être éliminés."
 	L.engage_message = "Marche-funeste engagé, Séisme dans ~30 sec. !"
 
@@ -11,6 +13,8 @@ end
 
 L = BigWigs:NewBossLocale("Doom Lord Kazzak", "frFR")
 if L then
+	L.name = "Seigneur funeste Kazzak"
+
 	L.engage_trigger1 = "La Légion envahira l'univers !"
 	L.engage_trigger2 = "Que les mortels périssent tous !"
 

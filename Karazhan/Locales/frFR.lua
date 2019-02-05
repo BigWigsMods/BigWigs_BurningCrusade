@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman", "frFR")
+local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "frFR")
 if not L then return end
 if L then
 	L.phase = "Phase"
@@ -9,7 +9,7 @@ if L then
 	L.phase3_message = "Phase 3"
 end
 
-L = BigWigs:NewBossLocale("The Curator", "frFR")
+L = BigWigs:NewBossLocale("The Curator Raid", "frFR")
 if L then
 	L.engage_trigger = "L'accès à la Ménagerie est réservé aux invités."
 
@@ -18,7 +18,7 @@ if L then
 	L.weaken_fade_warning = "Evocation terminée dans 5 sec. !"
 end
 
-L = BigWigs:NewBossLocale("Maiden of Virtue", "frFR")
+L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "frFR")
 if L then
 	L.engage_trigger = "Votre comportement est inacceptable."
 	L.engage_message = "Damoiselle engagée ! Repentir dans ~33 sec."
@@ -47,7 +47,7 @@ if L then
 	L.infernal_message = "Infernal ! Flammes infernales dans 5 sec. !"
 end
 
-L = BigWigs:NewBossLocale("Moroes", "frFR")
+L = BigWigs:NewBossLocale("Moroes Raid", "frFR")
 if L then
 	L.engage_trigger = "Hum. Des visiteurs imprévus. Il va falloir se préparer."
 	L.engage_message = "Moroes engagé - Disparition dans ~35 sec. !"
@@ -67,8 +67,10 @@ if L then
 	L.voidzone_warn = "Zone du vide (%d) !"
 end
 
-L = BigWigs:NewBossLocale("Nightbane", "frFR")
+L = BigWigs:NewBossLocale("Nightbane Raid", "frFR")
 if L then
+	L.name = "Plaie-de-nuit"
+
 	L.phase = "Phases"
 	L.phase_desc = "Prévient quand Plaie-de-nuit passe d'une phase à l'autre."
 	L.airphase_trigger = "Misérable vermine. Je vais vous exterminer des airs !"
@@ -83,6 +85,8 @@ end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "frFR")
 if L then
+	L.name = "Romulo & Julianne"
+
 	L.phase = "Phases"
 	L.phase_desc = "Prévient quand la rencontre entre dans une nouvelle phase."
 	L.phase1_trigger = "Quel démon es-tu pour me tourmenter ainsi ?"
@@ -144,11 +148,15 @@ end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "frFR")
 if L then
+	L.name = "Le Grand Méchant Loup"
+
 	L.riding_bar = "Chaperon : %s"
 end
 
 L = BigWigs:NewBossLocale("The Crone", "frFR")
 if L then
+	L.name = "La Mégère"
+
 	L.engage_trigger = "^Oh, Tito, nous devons trouver le moyen de rentrer à la maison !"
 
 	L.spawns = "Délais d'activité"

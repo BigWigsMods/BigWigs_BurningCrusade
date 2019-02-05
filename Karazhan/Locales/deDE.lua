@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman", "deDE")
+local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "deDE")
 if not L then return end
 if L then
 	L.phase = "Phase"
@@ -9,7 +9,7 @@ if L then
 	L.phase3_message = "Phase 3"
 end
 
-L = BigWigs:NewBossLocale("The Curator", "deDE")
+L = BigWigs:NewBossLocale("The Curator Raid", "deDE")
 if L then
 	L.engage_trigger = "Die Menagerie ist nur f\195\188r G\195\164ste."
 
@@ -18,7 +18,7 @@ if L then
 	L.weaken_fade_warning = "Hervorrufung in 5 sekunden beendet!"
 end
 
-L = BigWigs:NewBossLocale("Maiden of Virtue", "deDE")
+L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "deDE")
 if L then
 	L.engage_trigger = "Euer Verhalten wird nicht toleriert."
 	L.engage_message = "Maid Engaged! Bu\195\159e in ~33 Sek!"
@@ -48,7 +48,7 @@ if L then
 	L.infernal_message = "Infernos in 5 Sek!"
 end
 
-L = BigWigs:NewBossLocale("Moroes", "deDE")
+L = BigWigs:NewBossLocale("Moroes Raid", "deDE")
 if L then
 	L.engage_trigger = "Hm, unangek\195\188ndigte Besucher. Es m\195\188ssen Vorbereitungen getroffen werden..."
 	L.engage_message = "%s Engaged - Verschwinden in ~35 Sek!"
@@ -68,8 +68,10 @@ if L then
 	L.voidzone_warn = "Zone der Leere (%d)!"
 end
 
-L = BigWigs:NewBossLocale("Nightbane", "deDE")
+L = BigWigs:NewBossLocale("Nightbane Raid", "deDE")
 if L then
+	L.name = "Schrecken der Nacht"
+
 	L.phase = "Phasen"
 	L.phase_desc = "Warnt wenn Schrecken der Nacht die Phasen wechelt"
 	L.airphase_trigger = "Abscheuliches Gew\195\188rm! Ich werde euch aus der Luft vernichten!"
@@ -84,6 +86,8 @@ end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "deDE")
 if L then
+	L.name = "Romulo & Julianne"
+
 	L.phase = "Phase"
 	L.phase_desc = "Warnt wenn eine neue Phase beginnt"
 	L.phase1_trigger = "Welch' Teufel bist du, dass du mich so folterst?"
@@ -145,11 +149,15 @@ end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "deDE")
 if L then
+	L.name = "Der große böse Wolf"
+
 	L.riding_bar = "%s rennt"
 end
 
 L = BigWigs:NewBossLocale("The Crone", "deDE")
 if L then
+	L.name = "Die böse Hexe"
+
 	L.engage_trigger = "^Oh Tito, wir m\195\188ssen einfach einen Weg nach Hause finden!"
 
 	L.spawns = "Spawn Timer"

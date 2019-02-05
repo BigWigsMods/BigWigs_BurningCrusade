@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Doomwalker", "ruRU")
 if not L then return end
 if L then
+	L.name = "Судьболом"
+
 	L.engage_trigger = "Не продолжайте. Вы будете уничтожены."
 	L.engage_message = "Doomwalker engaged, Earthquake in ~30sec!"
 
@@ -11,7 +13,7 @@ end
 
 L = BigWigs:NewBossLocale("Doom Lord Kazzak", "ruRU")
 if L then
-	
+	L.name = "Владыка Судеб Каззак"
 end
 
 L = BigWigs:NewBossLocale("Gruul the Dragonkiller", "ruRU")

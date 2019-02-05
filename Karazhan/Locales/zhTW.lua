@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman", "zhTW")
+local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "zhTW")
 if not L then return end
 if L then
 	L.phase = "階段警告"
@@ -9,7 +9,7 @@ if L then
 	L.phase3_message = "第三階段"
 end
 
-L = BigWigs:NewBossLocale("The Curator", "zhTW")
+L = BigWigs:NewBossLocale("The Curator Raid", "zhTW")
 if L then
 	L.engage_trigger = "展示廳是賓客專屬的。"
 
@@ -18,7 +18,7 @@ if L then
 	L.weaken_fade_warning = "喚醒將於 5 秒後結束"
 end
 
-L = BigWigs:NewBossLocale("Maiden of Virtue", "zhTW")
+L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "zhTW")
 if L then
 	L.engage_trigger = "你的行為不能被容忍。"
 	L.engage_message = "戰鬥開始！33 秒後懺悔！"
@@ -47,7 +47,7 @@ if L then
 	L.infernal_message = "5 秒後召喚地獄火"
 end
 
-L = BigWigs:NewBossLocale("Moroes", "zhTW")
+L = BigWigs:NewBossLocale("Moroes Raid", "zhTW")
 if L then
 	L.engage_trigger = "嗯，突然上門的訪客。一定要做好準備……"
 	L.engage_message = "%s 進入戰鬥 - 將於 35 秒後消失"
@@ -67,8 +67,10 @@ if L then
 	L.voidzone_warn = "虛空地區 (%d)"
 end
 
-L = BigWigs:NewBossLocale("Nightbane", "zhTW")
+L = BigWigs:NewBossLocale("Nightbane Raid", "zhTW")
 if L then
+	L.name = "夜禍"
+
 	L.phase = "階段警告"
 	L.phase_desc = "當 夜禍 進入下一階段時發送警告"
 	L.airphase_trigger = "悲慘的害蟲。我將讓你消失在空氣中!"
@@ -83,6 +85,8 @@ end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "zhTW")
 if L then
+	L.name = "羅慕歐與茱麗葉"
+
 	L.phase = "階段提示"
 	L.phase_desc = "當戰鬥進入下一個階段時發送警告"
 	L.phase1_trigger = "你是什麼樣的惡魔，讓我這樣的痛苦?"
@@ -144,11 +148,15 @@ end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "zhTW")
 if L then
+	L.name = "大野狼"
+
 	L.riding_bar = "%s 快跑！"
 end
 
 L = BigWigs:NewBossLocale("The Crone", "zhTW")
 if L then
+	L.name = "老巫婆"
+
 	L.engage_trigger = "喔多多，我們一定要找到回家的路!"
 
 	L.spawns = "啟動時間"

@@ -12,6 +12,8 @@ mod:RegisterEnableMob(17533, 17534) --Romulo, Julianne
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.name = "Romulo & Julianne"
+
 	L.phase = "Phases"
 	L.phase_desc = "Warn when entering a new Phase."
 	L.phase1_trigger = "What devil art thou, that dost torment me thus?"
@@ -47,6 +49,10 @@ function mod:GetOptions()
 	return {
 		"phase", "heal", "buff", "poison"
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

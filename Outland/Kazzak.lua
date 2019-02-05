@@ -14,6 +14,8 @@ mod.otherMenu = -101
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.name = "Doom Lord Kazzak"
+
 	L.engage_trigger1 = "The Legion will conquer all!"
 	L.engage_trigger2 = "All mortals will perish!"
 
@@ -32,6 +34,10 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {{32960, "FLASH"}, 21063, "berserk"}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

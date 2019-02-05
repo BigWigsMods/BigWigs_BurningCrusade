@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Doomwalker", "koKR")
 if not L then return end
 if L then
+	L.name = "파멸의 절단기"
+
 	L.engage_trigger = "접근 금지. 너희는 제거될 것이다."
 	L.engage_message = "파멸의 절단기 전투 개시, 약 30초 이내 지진!"
 
@@ -11,6 +13,8 @@ end
 
 L = BigWigs:NewBossLocale("Doom Lord Kazzak", "koKR")
 if L then
+	L.name = "파멸의 군주 카자크"
+
 	L.engage_trigger1 = "불타는 군단이 온 세상을 지배하리라!"
 	L.engage_trigger2 = "필멸의 종족은 모두 멸망하리라!"
 

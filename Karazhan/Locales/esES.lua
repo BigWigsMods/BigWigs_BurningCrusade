@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman", "esES")
+local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "esES")
 if not L then return end
 if L then
 	L.phase = "Fases"
@@ -9,7 +9,7 @@ if L then
 	L.phase3_message = "Fase 3"
 end
 
-L = BigWigs:NewBossLocale("The Curator", "esES")
+L = BigWigs:NewBossLocale("The Curator Raid", "esES")
 if L then
 	L.engage_trigger = "La colección es solo para los invitados."
 
@@ -18,7 +18,7 @@ if L then
 	L.weaken_fade_warning = "¡Evocación en ~5 seg!"
 end
 
-L = BigWigs:NewBossLocale("Maiden of Virtue", "esES")
+L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "esES")
 if L then
 	L.engage_trigger = "No se tolerará tu comportamiento."
 	L.engage_message = "¡Doncella en combate! Arrepentimiento en ~33 seg"
@@ -47,7 +47,7 @@ if L then
 	L.infernal_message = "¡Aterrizó Infernal - Llamas infernales en 5seg!"
 end
 
-L = BigWigs:NewBossLocale("Moroes", "esES")
+L = BigWigs:NewBossLocale("Moroes Raid", "esES")
 if L then
 	L.engage_trigger = "Mm, visita inesperada. Hay que hacer los preparativos..."
 	L.engage_message = "%s Activado - Desvanecer en ~35sec!"
@@ -67,8 +67,10 @@ if L then
 	L.voidzone_warn = "¡Zona de vacío (%d)!"
 end
 
-L = BigWigs:NewBossLocale("Nightbane", "esES")
+L = BigWigs:NewBossLocale("Nightbane Raid", "esES")
 if L then
+	L.name = "Nocturno"
+
 	L.phase = "Fases"
 	L.phase_desc = "Avisa cuando Nocturno cambia de fase."
 	L.airphase_trigger = "Miserable alimaña. ¡Te exterminaré del aire!"
@@ -83,6 +85,8 @@ end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "esES")
 if L then
+	L.name = "Romulo & Julianne"
+
 	L.phase = "Fases"
 	L.phase_desc = "Avisa cuando entra en una nueva fase."
 	L.phase1_trigger = "¿Qué demonio sois que me atormentáis de questa manera?"
@@ -144,11 +148,15 @@ end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "esES")
 if L then
+	L.name = "El Gran Lobo Malvado"
+
 	L.riding_bar = "%s Corriendo"
 end
 
 L = BigWigs:NewBossLocale("The Crone", "esES")
 if L then
+	L.name = "La Vieja Bruja"
+
 	L.engage_trigger = "^¡Oh, Tito, solo tenemos que buscar la manera de volver a casa!"
 
 	L.spawns = "Activación"

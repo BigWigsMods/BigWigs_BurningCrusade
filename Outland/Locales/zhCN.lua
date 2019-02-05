@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Doomwalker", "zhCN")
 if not L then return end
 if L then
+	L.name = "末日行者"
+
 	L.engage_trigger = "停止前进。否则你们将被消灭。"
 	L.engage_message = "末日行者激活！约30秒后，发动地震术！"
 
@@ -11,6 +13,8 @@ end
 
 L = BigWigs:NewBossLocale("Doom Lord Kazzak", "zhCN")
 if L then
+	L.name = "末日领主卡扎克"
+
 	L.engage_trigger1 = "军团将会征服一切！"
 	L.engage_trigger2 = "所有的凡人都将灭亡！"
 

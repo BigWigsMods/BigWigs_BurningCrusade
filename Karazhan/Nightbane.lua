@@ -12,6 +12,8 @@ mod:RegisterEnableMob(17225)
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.name = "Nightbane"
+
 	L.phase = "Phases"
 	L.phase_desc = "Warn when Nightbane switches between phases."
 	L.airphase_trigger = "Miserable vermin. I shall exterminate you from the air!"
@@ -33,6 +35,10 @@ function mod:GetOptions()
 	return {
 		"phase", 36922, {30129, "FLASH"}, 37098
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

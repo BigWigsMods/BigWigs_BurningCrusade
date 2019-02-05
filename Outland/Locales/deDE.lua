@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Doomwalker", "deDE")
 if not L then return end
 if L then
+	L.name = "Verdammniswandler"
+
 	L.engage_trigger = "Fahren Sie nicht fort. Sie werden eliminiert." --check
 	L.engage_message = "Verdammniswandler angegriffen, Erdbeben in ~30sek!"
 
@@ -11,6 +13,8 @@ end
 
 L = BigWigs:NewBossLocale("Doom Lord Kazzak", "deDE")
 if L then
+	L.name = "Verdammnislord Kazzak"
+
 	L.engage_trigger1 = "Die Legion wird alles erobern!"
 	L.engage_trigger2 = "Alle Sterblichen werden zu Grunde gehen!"
 
