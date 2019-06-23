@@ -13,4 +13,4 @@ A collection of BigWigs modules from the **Burning Crusade** era, including:
 * Shadowmoon Valley: Doomwalker
 
 ## Download
-https://mods.curse.com/addons/wow/bigwigs_burningcrusade
+https://www.curseforge.com/wow/addons/bigwigs_burningcrusade
