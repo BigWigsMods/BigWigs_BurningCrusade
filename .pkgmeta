@@ -2,5 +2,4 @@ package-as: BigWigs_BurningCrusade
 wowi-archive-previous: no
 
 ignore:
-  - .travis.yml
   - README.md
