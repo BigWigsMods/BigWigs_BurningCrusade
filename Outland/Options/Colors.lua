@@ -1,29 +1,29 @@
 
 BigWigs:AddColors("Doomwalker", {
-	[33653] = {"red","orange"},
-	["earthquake"] = {"yellow","red"},
-	["overrun"] = {"yellow","red"},
+	[33653] = {"orange","red"},
+	["earthquake"] = {"red","yellow"},
+	["overrun"] = {"red","yellow"},
 })
 
 BigWigs:AddColors("Gruul the Dragonkiller", {
 	[36240] = "blue",
-	[36297] = {"yellow","orange"},
-	["grasp"] = {"yellow","green","orange"},
+	[36297] = {"orange","yellow"},
+	["grasp"] = {"green","orange","yellow"},
 	["grow"] = "red",
 })
 
 BigWigs:AddColors("Doom Lord Kazzak", {
-	[21063] = {"yellow","blue"},
+	[21063] = {"blue","yellow"},
 	[32960] = "blue",
-	["berserk"] = {"yellow","red","green","orange"},
+	["berserk"] = {"green","orange","red","yellow"},
 })
 
 BigWigs:AddColors("Magtheridon", {
 	[30616] = {"green","orange"},
-	[36449] = {"red","green"},
+	[36449] = {"green","red"},
 	["abyssal"] = "yellow",
-	["banish"] = {"yellow","red"},
-	["escape"] = {"yellow","green","orange"},
+	["banish"] = {"red","yellow"},
+	["escape"] = {"green","orange","yellow"},
 	["heal"] = "orange",
 })
 
@@ -32,6 +32,6 @@ BigWigs:AddColors("High King Maulgar", {
 	[33131] = "yellow",
 	[33147] = "red",
 	[33152] = "red",
-	[33232] = {"red","green"},
-	[33238] = {"yellow","red","orange"},
+	[33232] = {"green","red"},
+	[33238] = {"orange","red","yellow"},
 })
