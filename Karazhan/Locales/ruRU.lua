@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman", "ruRU")
+local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "ruRU")
 if not L then return end
 if L then
 	L.phase = "Фаза"
@@ -9,7 +9,7 @@ if L then
 	L.phase3_message = "Фаза 3"
 end
 
-L = BigWigs:NewBossLocale("The Curator", "ruRU")
+L = BigWigs:NewBossLocale("The Curator Raid", "ruRU")
 if L then
 	L.engage_trigger = "Галерея только для гостей."
 
@@ -18,7 +18,7 @@ if L then
 	L.weaken_fade_warning = "Прилив сил заканчивается через 5сек!"
 end
 
-L = BigWigs:NewBossLocale("Maiden of Virtue", "ruRU")
+L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "ruRU")
 if L then
 	L.engage_trigger = "Ваше поведение нестерпимо."
 	L.engage_message = "Контакт с Пресветлой девой! Покаяние за ~33сек"
@@ -47,7 +47,7 @@ if L then
 	L.infernal_message = "Появление Инфернала! Адское Пламя через 5сек!"
 end
 
-L = BigWigs:NewBossLocale("Moroes", "ruRU")
+L = BigWigs:NewBossLocale("Moroes Raid", "ruRU")
 if L then
 	L.engage_trigger = "Хмм, неожиданные посетители. Нужно подготовиться…"
 	L.engage_message = "Контакт с %s - исчезновение за ~35 сек"
@@ -67,8 +67,10 @@ if L then
 	L.voidzone_warn = "Портал Бездны (%d)!"
 end
 
-L = BigWigs:NewBossLocale("Nightbane", "ruRU")
+L = BigWigs:NewBossLocale("Nightbane Raid", "ruRU")
 if L then
+	L.name = "Ночная Погибель"
+
 	L.phase = "Фазы"
 	L.phase_desc = "Предупреждает о переключениях фаз Ночной Погибели."
 	L.airphase_trigger = "Жалкий гнус! Я изгоню тебя из воздуха!"
@@ -83,6 +85,8 @@ end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "ruRU")
 if L then
+	L.name = "Ромуло и Джулианна"
+
 	L.phase = "Фазы"
 	L.phase_desc = "Предупреждать о начале новой фазы."
 	L.phase1_trigger = "Что же за демон ты есмь, коий мучает меня так?"
@@ -144,11 +148,15 @@ end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "ruRU")
 if L then
+	L.name = "Злой и страшный серый волк"
+
 	L.riding_bar = "%s БЕГИ!!!"
 end
 
 L = BigWigs:NewBossLocale("The Crone", "ruRU")
 if L then
+	L.name = "Ведьма"
+
 	L.engage_trigger = "^О, Тито, нам просто надо найти дорогу домой!"
 
 	L.spawns = "Таймер появления"

@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman", "koKR")
+local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "koKR")
 if not L then return end
 if L then
 	L.phase = "단계"
@@ -9,7 +9,7 @@ if L then
 	L.phase3_message = "3 단계"
 end
 
-L = BigWigs:NewBossLocale("The Curator", "koKR")
+L = BigWigs:NewBossLocale("The Curator Raid", "koKR")
 if L then
 	L.engage_trigger = "박물관에는 초대받은 손님만 입장하실 수 있습니다."
 
@@ -18,7 +18,7 @@ if L then
 	L.weaken_fade_warning = "5초 후 환기 종료!"
 end
 
-L = BigWigs:NewBossLocale("Maiden of Virtue", "koKR")
+L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "koKR")
 if L then
 	L.engage_trigger = "너희의 행동은 그냥 넘길 수가 없다."
 	L.engage_message = "고결의 여신 전투 개시! 약 33초 후 참회"
@@ -47,7 +47,7 @@ if L then
 	L.infernal_message = "불지옥 등장! 5초 이내 지옥불!"
 end
 
-L = BigWigs:NewBossLocale("Moroes", "koKR")
+L = BigWigs:NewBossLocale("Moroes Raid", "koKR")
 if L then
 	L.engage_trigger = "음, 예상치 못한 손님들이군. 준비를 해야겠어..."
 	L.engage_message = "%s 전투 시작 - 약 35초 후 소멸!"
@@ -67,8 +67,10 @@ if L then
 	L.voidzone_warn = "공허의 지대 (%d)!"
 end
 
-L = BigWigs:NewBossLocale("Nightbane", "koKR")
+L = BigWigs:NewBossLocale("Nightbane Raid", "koKR")
 if L then
+	L.name = "파멸의 어둠"
+
 	L.phase = "단계"
 	L.phase_desc = "파멸의 어둠의 단계 변경 시 알립니다."
 	L.airphase_trigger = "이 더러운 기생충들, 내가 하늘에서 너희의 씨를 말리리라!"
@@ -83,6 +85,8 @@ end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "koKR")
 if L then
+	L.name = "로밀로 & 줄리엔"
+
 	L.phase = "단계"
 	L.phase_desc = "새로운 단계 진입 시 알립니다."
 	L.phase1_trigger = "당신들은 대체 누구시기에 절 이리도 괴롭히나요?"
@@ -144,11 +148,15 @@ end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "koKR")
 if L then
+	L.name = "커다란 나쁜 늑대"
+
 	L.riding_bar = "빨간 두건 - %s"
 end
 
 L = BigWigs:NewBossLocale("The Crone", "koKR")
 if L then
+	L.name = "마녀"
+
 	L.engage_trigger = "^티토야, 우린 집으로 갈 방법을 찾아야 해!"
 
 	L.spawns = "등장 타이머"

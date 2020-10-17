@@ -14,6 +14,8 @@ mod.otherMenu = -101
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.name = "Doomwalker"
+
 	L.engage_trigger = "Do not proceed. You will be eliminated."
 	L.engage_message = "Doomwalker engaged, Earthquake in ~30sec!"
 
@@ -35,6 +37,10 @@ function mod:GetOptions()
 	return {
 		"overrun", "earthquake", "proximity", 33653
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

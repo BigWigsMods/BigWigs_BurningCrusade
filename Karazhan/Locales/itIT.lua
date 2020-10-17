@@ -1,15 +1,15 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman", "itIT")
+local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "itIT")
 if not L then return end
 if L then
 
 end
 
-L = BigWigs:NewBossLocale("The Curator", "itIT")
+L = BigWigs:NewBossLocale("The Curator Raid", "itIT")
 if L then
 
 end
 
-L = BigWigs:NewBossLocale("Maiden of Virtue", "itIT")
+L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "itIT")
 if L then
 
 end
@@ -19,7 +19,7 @@ if L then
 
 end
 
-L = BigWigs:NewBossLocale("Moroes", "itIT")
+L = BigWigs:NewBossLocale("Moroes Raid", "itIT")
 if L then
 
 end
@@ -29,7 +29,7 @@ if L then
 
 end
 
-L = BigWigs:NewBossLocale("Nightbane", "itIT")
+L = BigWigs:NewBossLocale("Nightbane Raid", "itIT")
 if L then
 
 end

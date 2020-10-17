@@ -13,6 +13,8 @@ mod:RegisterEnableMob(18168, 17535, 17548, 17543, 17547, 17546)
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.name = "The Crone"
+
 	L.engage_trigger = "^Oh Tito, we simply must find a way home!"
 
 	L.spawns = "Spawn Timers"
@@ -34,6 +36,10 @@ function mod:GetOptions()
 	return {
 		"spawns", 32337
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

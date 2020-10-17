@@ -1,6 +1,8 @@
 local L = BigWigs:NewBossLocale("Doomwalker", "esES")
 if not L then return end
 if L then
+	L.name = "Caminante del Destino"
+
 	L.engage_trigger = "No continuéis. Seréis eliminados."
 	L.engage_message = "¡Caminante del Destino en combate, Terremoto en ~30 seg!"
 
@@ -11,6 +13,8 @@ end
 
 L = BigWigs:NewBossLocale("Doom Lord Kazzak", "esES")
 if L then
+	L.name = "Señor Apocalíptico Kazzak"
+
 	L.engage_trigger1 = "¡La Legión lo conquistará todo!"
 	L.engage_trigger2 = "¡Todo mortal perecerá!"
 

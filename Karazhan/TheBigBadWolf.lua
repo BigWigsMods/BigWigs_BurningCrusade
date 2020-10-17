@@ -12,6 +12,8 @@ mod:RegisterEnableMob(17521, 17603) --The Big Bad Wolf, Grandmother
 
 local L = mod:NewLocale("enUS", true)
 if L then
+	L.name = "The Big Bad Wolf"
+
 	L.riding_bar = "%s Running"
 end
 L = mod:GetLocale()
@@ -24,6 +26,10 @@ function mod:GetOptions()
 	return {
 		{30753, "ICON"}
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.name
 end
 
 function mod:OnBossEnable()
