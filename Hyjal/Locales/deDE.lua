@@ -1,4 +1,4 @@
-local L = BigWigs:NewBossLocale("Archimonde", "deDE")
+local L = BigWigs:NewBossLocale("ArchimondeHyjal", "deDE")
 if not L then return end
 if L then
 	L.engage_trigger = "Euer Widerstand ist sinnlos!"
