@@ -251,7 +251,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:UNIT_AURA(_, unit)
-	if self:UnitBuff(unit, self:SpellName(40506)) then -- Demon Form
+	if self:UnitBuff(unit, self:SpellName(40506), 40506) then -- Demon Form
 		if not inDemonPhase then
 			inDemonPhase = true
 			burstCount = 0
