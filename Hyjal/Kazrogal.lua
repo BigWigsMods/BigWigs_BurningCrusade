@@ -34,9 +34,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Mark", 31447)
 	self:Log("SPELL_AURA_REMOVED", "MarkRemoved", 31447)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:Death("Win", 17888)
 end
 
