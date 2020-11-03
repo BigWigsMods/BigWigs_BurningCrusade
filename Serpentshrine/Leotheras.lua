@@ -64,10 +64,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Whisper", 37676)
 	self:Log("SPELL_AURA_APPLIED", "Madness", 37749)
 
-	self:Yell("Image", L["image_trigger"])
-	self:Yell("Phase", L["phase_trigger"])
+	self:BossYell("Image", L["image_trigger"])
+	self:BossYell("Phase", L["phase_trigger"])
 
-	self:Yell("Engage", L["enrage_trigger"])
+	self:BossYell("Engage", L["enrage_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 21215)

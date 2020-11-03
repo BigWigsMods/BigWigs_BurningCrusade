@@ -50,10 +50,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Nova", 30852)
 	self:Log("SPELL_CAST_SUCCESS", "Infernal", 30834)
 
-	self:Yell("Phase2", L["phase2_trigger"])
-	self:Yell("Phase3", L["phase3_trigger"])
+	self:BossYell("Phase2", L["phase2_trigger"])
+	self:BossYell("Phase3", L["phase3_trigger"])
 
-	self:Yell("Engage", L["phase1_trigger"])
+	self:BossYell("Engage", L["phase1_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 15690)

@@ -51,9 +51,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Wrath", 42783)
 	self:Log("SPELL_AURA_REMOVED", "WrathRemove", 42783)
 
-	self:Yell("Engage", L["engage_trigger"])
-	self:Yell("Phase2", L["phase2_trigger"])
-	self:Yell("Split", L["split_trigger1"], L["split_trigger2"])
+	self:BossYell("Engage", L["engage_trigger"])
+	self:BossYell("Phase2", L["phase2_trigger"])
+	self:BossYell("Split", L["split_trigger1"], L["split_trigger2"])
 
 	self:Death("Win", 18805)
 end

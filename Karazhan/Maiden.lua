@@ -34,7 +34,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "HolyFire", 29522)
 	self:Log("SPELL_CAST_START", "Repentance", 29511)
 
-	self:Yell("Engage", L["engage_trigger"])
+	self:BossYell("Engage", L["engage_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 16457)

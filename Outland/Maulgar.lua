@@ -58,7 +58,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Smash", 39144)
 	self:Log("SPELL_CAST_SUCCESS", "Flurry", 33232)
 
-	self:Yell("Engage", L["engage_trigger"])
+	self:BossYell("Engage", L["engage_trigger"])
 
 	self:Death("Win", 18831)
 end

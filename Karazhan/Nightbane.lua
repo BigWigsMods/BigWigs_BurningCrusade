@@ -48,10 +48,10 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 
-	self:Yell("Air", L["airphase_trigger"])
-	self:Yell("Land", L["landphase_trigger1"], L["landphase_trigger2"])
+	self:BossYell("Air", L["airphase_trigger"])
+	self:BossYell("Land", L["landphase_trigger1"], L["landphase_trigger2"])
 
-	self:Yell("Engage", L["engage_trigger"])
+	self:BossYell("Engage", L["engage_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 17225)

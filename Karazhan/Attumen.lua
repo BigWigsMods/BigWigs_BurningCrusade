@@ -31,7 +31,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Curse", 29833)
-	self:Yell("Phase3", L["phase3_trigger"])
+	self:BossYell("Phase3", L["phase3_trigger"])
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 	self:Death("Win", 15550)

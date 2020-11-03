@@ -93,7 +93,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Phoenix", 36723)
 	self:Log("SPELL_CAST_START", "GravityLapse", 35941)
 
-	self:Yell("Engage", L["engage_trigger"])
+	self:BossYell("Engage", L["engage_trigger"])
 	self:Emote("Pyro", L["pyro_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 

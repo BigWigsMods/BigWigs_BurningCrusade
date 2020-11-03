@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Heal", 38330)
 	self:Log("SPELL_SUMMON", "Totem", 38236)
 
-	self:Yell("Engage", L["enrage_trigger"])
+	self:BossYell("Engage", L["enrage_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 21214)

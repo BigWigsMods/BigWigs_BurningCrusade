@@ -76,8 +76,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Banished", 30168)
 	self:Log("SPELL_AURA_REMOVED", "BanishRemoved", 30168)
 
-	self:Yell("Start", L["escape_trigger2"])
-	self:Yell("DebrisInc", L["debris_trigger"])
+	self:BossYell("Start", L["escape_trigger2"])
+	self:BossYell("DebrisInc", L["debris_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 

@@ -65,9 +65,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Daring", 30841)
 	self:Log("SPELL_AURA_REMOVED", "DaringRemoved", 30841)
 
-	self:Yell("Act1", L["phase1_trigger"])
-	self:Yell("Act2", L["phase2_trigger"])
-	self:Yell("Act3", L["phase3_trigger"])
+	self:BossYell("Act1", L["phase1_trigger"])
+	self:BossYell("Act2", L["phase2_trigger"])
+	self:BossYell("Act3", L["phase3_trigger"])
 end
 
 --------------------------------------------------------------------------------

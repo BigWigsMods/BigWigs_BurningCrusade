@@ -45,7 +45,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Twisted", 21063)
 	self:Log("SPELL_AURA_APPLIED", "Frenzy", 32964)
 
-	self:Yell("Engage", L["engage_trigger1"], L["engage_trigger2"])
+	self:BossYell("Engage", L["engage_trigger1"], L["engage_trigger2"])
 
 	self:Death("Win", 18728)
 end

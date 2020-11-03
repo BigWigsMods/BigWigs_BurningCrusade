@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Pounding", 34162)
 	self:Log("SPELL_CAST_SUCCESS", "Orb", 34172)
 
-	self:Yell("Engage", L["engage_trigger"])
+	self:BossYell("Engage", L["engage_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 19516)

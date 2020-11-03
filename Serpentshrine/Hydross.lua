@@ -55,7 +55,7 @@ function mod:OnBossEnable()
 	stance = 1
 	allowed = nil
 
-	self:Yell("Engage", L["start_trigger"])
+	self:BossYell("Engage", L["start_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 21216)

@@ -51,7 +51,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Tidal", 37730)
 	self:Log("SPELL_CAST_SUCCESS", "Murlocs", 37764)
 
-	self:Yell("Globules", L["globules_trigger1"], L["globules_trigger2"])
+	self:BossYell("Globules", L["globules_trigger1"], L["globules_trigger2"])
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 

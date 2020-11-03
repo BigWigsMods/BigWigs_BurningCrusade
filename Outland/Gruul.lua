@@ -52,7 +52,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Shatter", 33654)
 	self:Log("SPELL_CAST_START", "Slam", 33525)
 
-	self:Yell("Engage", L["engage_trigger"])
+	self:BossYell("Engage", L["engage_trigger"])
 
 	self:Death("Win", 19044)
 end

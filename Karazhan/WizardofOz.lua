@@ -45,7 +45,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ChainLightning", 32337)
 
-	self:Yell("Engage", L["engage_trigger"])
+	self:BossYell("Engage", L["engage_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 18168)

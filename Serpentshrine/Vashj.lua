@@ -78,9 +78,9 @@ function mod:OnBossEnable()
 	--It seems that there is no longer any events for barrier removal. (v4.2)
 	self:Log("SPELL_AURA_REMOVED", "BarrierRemove", 38112)
 
-	self:Yell("Phase2", L["phase2_trigger"])
-	self:Yell("Phase3", L["phase3_trigger"])
-	self:Yell("Engage", L["engage_trigger1"], L["engage_trigger2"], L["engage_trigger3"], L["engage_trigger4"], L["engage_trigger5"])
+	self:BossYell("Phase2", L["phase2_trigger"])
+	self:BossYell("Phase3", L["phase3_trigger"])
+	self:BossYell("Engage", L["engage_trigger1"], L["engage_trigger2"], L["engage_trigger3"], L["engage_trigger4"], L["engage_trigger5"])
 
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 

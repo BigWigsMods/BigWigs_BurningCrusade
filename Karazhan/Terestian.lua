@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Weakened", 30065)
 	self:Log("SPELL_AURA_REMOVED", "WeakenedRemoved", 30065)
 
-	self:Yell("Engage", L["engage_trigger"])
+	self:BossYell("Engage", L["engage_trigger"])
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 15688)
