@@ -16,8 +16,6 @@ if L then
 	L.burnresist = "Résistances à Brûler"
 	L.burnresist_desc = "Prévient quand un joueur a résisté à Brûler."
 	L.burn_resist = "%s a résisté à Brûler"
-
-	L.meteor_bar = "Attaque météorique #%d"
 end
 
 L = BigWigs:NewBossLocale("M'uru", "frFR")

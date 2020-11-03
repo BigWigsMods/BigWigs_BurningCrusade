@@ -16,8 +16,6 @@ if L then
 	L.burnresist = "燃燒抵抗"
 	L.burnresist_desc = "警報誰抵抗了燃燒"
 	L.burn_resist = "燃燒抵抗: [%s]"
-
-	L.meteor_bar = "下一次隕石斬 #%d"
 end
 
 L = BigWigs:NewBossLocale("M'uru", "zhTW")

@@ -16,8 +16,6 @@ if L then
 	L.burnresist = "Brand wiederstanden"
 	L.burnresist_desc = "Warnt wer Brand weiderstanden hat."
 	L.burn_resist = "%s hat Brand wiederstanden"
-
-	L.meteor_bar = "Meteor Slash #%d"
 end
 
 L = BigWigs:NewBossLocale("M'uru", "deDE")

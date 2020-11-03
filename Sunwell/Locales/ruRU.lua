@@ -16,8 +16,6 @@ if L then
 	L.burnresist = "Сопротивление Палящему Пламени"
 	L.burnresist_desc = "Предупреждать Вас о тех, кто сопротивлении Палящему Пламени."
 	L.burn_resist = "%s сопротивляется Палящему Пламени"
-
-	L.meteor_bar = "Метеоритный Дождь #%d"
 end
 
 L = BigWigs:NewBossLocale("M'uru", "ruRU")

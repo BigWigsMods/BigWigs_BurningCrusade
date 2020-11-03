@@ -2,9 +2,13 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Brutallus", 580)
+local mod, CL = BigWigs:NewBoss("Brutallus", 580, 1592)
 if not mod then return end
 mod:RegisterEnableMob(24882)
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local meteorCounter = 1
 
@@ -20,8 +24,6 @@ if L then
 	L.burnresist_desc = "Warn who resists burn."
 	L.burnresist_icon = 45141
 	L.burn_resist = "%s resisted Burn"
-
-	L.meteor_bar = "Meteor Slash #%d"
 end
 L = mod:GetLocale()
 
@@ -31,7 +33,11 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{46394, "WHISPER", "ICON"}, "burnresist", 45150, 45185, "berserk"
+		{46394, "ICON"}, -- Burn
+		"burnresist",
+		45150, -- Meteor Slash
+		45185, -- Stomp
+		"berserk",
 	}
 end
 
@@ -42,7 +48,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "BurnRemove", 46394)
 	self:Log("SPELL_CAST_SUCCESS", "Stomp", 45185)
 
-	self:Yell("Engage", L["engage_trigger"])
+	self:BossYell("Engage", L.engage_trigger)
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Death("Win", 24882)
@@ -51,41 +57,38 @@ end
 function mod:OnEngage()
 	meteorCounter = 1
 	self:Berserk(360)
-	local burn = GetSpellInfo(46394)
-	self:Bar(46394, burn, 20, 46394)
-	self:DelayedMessage(46394, 16, CL["soon"]:format(burn), "yellow")
-	self:Bar(45185, GetSpellInfo(45185), 30, 45185)
+	self:Bar(46394, 20) -- Burn
+	self:DelayedMessage(46394, 16, CL.soon:format(self:SpellName(46394)), "yellow") -- Burn
+	self:Bar(45185, 30) -- Stomp
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Burn(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "red", spellId, "Alert")
-	self:PrimaryIcon(spellId, player)
-	self:Whisper(spellId, player, spellName)
-	self:Bar(spellId, CL["other"]:format(spellName, player), 60, spellId)
-	self:Bar(spellId, spellName, 20, spellId)
-	self:DelayedMessage(spellId, 16, CL["soon"]:format(spellName), "yellow")
+function mod:Burn(args)
+	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
+	self:PrimaryIcon(args.spellId, args.destName)
+	self:TargetBar(args.spellId, 60, args.destName)
+	self:Bar(args.spellId, 20)
+	self:DelayedMessage(args.spellId, 16, "yellow", CL.soon:format(args.spellName))
 end
 
-function mod:Meteor(_, spellId)
+function mod:Meteor(args)
 	meteorCounter = meteorCounter + 1
-	self:Bar(spellId, L["meteor_bar"]:format(meteorCounter), 12, spellId)
+	self:Bar(args.spellId, 12, CL.count:format(args.spellName, meteorCounter))
 end
 
-function mod:BurnRemove(player, _, _, _, spellName)
-	self:StopBar(CL["other"]:format(spellName, player))
+function mod:BurnRemove(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
-function mod:BurnResist(player, spellId)
-	self:Message("burnresist", L["burn_resist"]:format(player), "green", spellId)
+function mod:BurnResist(args)
+	self:Message("burnresist", "green", nil, L.burn_resist:format(args.destName), args.spellId)
 end
 
-function mod:Stomp(player, spellId, _, _, spellName)
-	self:TargetMessage(spellId, spellName, player, "orange", spellId)
-	self:DelayedMessage(spellId, 25.5, CL["custom_sec"]:format(spellName, 5), "yellow")
-	self:Bar(spellId, spellName, 30.5, spellId)
+function mod:Stomp(args)
+	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:DelayedMessage(args.spellId, 25.5, "yellow", CL.custom_sec:format(args.spellName, 5))
+	self:Bar(args.spellId, 30.5)
 end
-

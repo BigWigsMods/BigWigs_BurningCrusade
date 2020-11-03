@@ -16,8 +16,6 @@ if L then
 	L.burnresist = "Quemar resistido"
 	L.burnresist_desc = "Avisar quién resiste Quemar."
 	L.burn_resist = "Quemar resistido por %s"
-
-	L.meteor_bar = "Tajo meteórico #%d"
 end
 
 L = BigWigs:NewBossLocale("M'uru", "esES")
