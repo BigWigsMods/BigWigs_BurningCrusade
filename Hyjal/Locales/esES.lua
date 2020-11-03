@@ -20,3 +20,33 @@ if L then
 	L.mark_warn = "Marca en 5 seg"
 end
 
+L = BigWigs:NewBossLocale("Hyjal Summit Trash", "esES")
+if L then
+	L.waves = "Oleadas"
+	L.waves_desc = "Avisos aproximados para cada oleada."
+
+	L.ghoul = "Necrófagos"
+	L.fiend = "Malignos de cripta"
+	L.abom = "Abominación"
+	L.necro = "Nigromantes"
+	L.banshee = "Almas en pena"
+	L.garg = "Gárgolas"
+	L.wyrm = "Vermis de escarcha"
+	L.fel = "Acechador vil"
+	L.infernal = "Infernales"
+	L.one = "¡Oleada %d! %d %s"
+	L.two = "¡Oleada %d! %d %s, %d %s"
+	L.three = "¡Oleada %d! %d %s, %d %s, %d %s"
+	L.four = "¡Oleada %d! %d %s, %d %s, %d %s, %d %s"
+	L.five = "¡Oleada %d! %d %s, %d %s, %d %s, %d %s, %d %s"
+	L.barWave = "Oleada %d aparece"
+
+	L.waveInc = "¡Oleada %d viene!"
+	L.message = "¡%s en ~%d seg!"
+	L.waveMessage = "¡Oleada %d en ~%d seg!"
+
+	L.winterchillGossip = "Mis compañeros y yo estamos contigo, Lady Valiente."
+	L.anetheronGossip = "Estamos listos para cualquier cosa que Archimonde nos mande, lady Valiente."
+	L.kazrogalGossip = "Estoy contigo, Thrall."
+	L.azgalorGossip = "No tenemos nada que temer."
+end
