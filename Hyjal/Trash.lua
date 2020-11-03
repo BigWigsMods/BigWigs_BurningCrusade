@@ -16,9 +16,9 @@ mod:RegisterEnableMob(
 -- Locals
 --
 
-local allianceWaveTimes = {127.5, 127.5, 127.5, 127.5, 127.5, 127.5, 127.5, 140}
+local allianceWaveTimes = {127.5, 127.5, 127.5, 127.5, 127.5, 127.5, 127.5, 185}
 local RWCwaveTimes = allianceWaveTimes
-local KRwaveTimes = {135, 160, 190, 165, 140, 130, 195, 225}
+local KRwaveTimes = {135, 160, 190, 165, 140, 130, 195, 222}
 local hordeWaveTimes = {135, 190, 190, 195, 140, 165, 195, 225}
 
 local nextBoss = ""
