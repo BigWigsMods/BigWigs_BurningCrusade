@@ -58,7 +58,7 @@ function mod:OnEngage()
 	meteorCounter = 1
 	self:Berserk(360)
 	self:Bar(46394, 20) -- Burn
-	self:DelayedMessage(46394, 16, CL.soon:format(self:SpellName(46394)), "yellow") -- Burn
+	self:DelayedMessage(46394, 16, "yellow", CL.soon:format(self:SpellName(46394))) -- Burn
 	self:Bar(45185, 30) -- Stomp
 end
 
