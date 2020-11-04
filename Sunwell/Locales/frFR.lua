@@ -6,7 +6,16 @@ end
 
 L = BigWigs:NewBossLocale("Felmyst", "frFR")
 if L then
-	
+	L.phase = "Phases"
+	L.phase_desc = "Prévient quand Gangrebrume décolle et atterit."
+	L.airphase_trigger = "Je suis plus forte que jamais !"
+	L.takeoff_bar = "Décollage"
+	L.takeoff_message = "Décollage dans 5 sec. !"
+	L.landing_bar = "Atterrissage"
+	L.landing_message = "Atterrissage dans 10 sec. !"
+
+	L.breath = "Grande inspiration"
+	L.breath_desc = "Prévient quand Gangrebrume inspire profondément."
 end
 
 L = BigWigs:NewBossLocale("Brutallus", "frFR")

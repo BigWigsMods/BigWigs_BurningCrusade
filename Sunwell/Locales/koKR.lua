@@ -6,7 +6,16 @@ end
 
 L = BigWigs:NewBossLocale("Felmyst", "koKR")
 if L then
-	
+	L.phase = "단계"
+	L.phase_desc = "이륙과 착지 단계에 대해 알립니다."
+	L.airphase_trigger = "나는 어느 때보다도 강하다!"
+	L.takeoff_bar = "이륙"
+	L.takeoff_message = "5초 이내 이륙!"
+	L.landing_bar = "착지"
+	L.landing_message = "10초 이내 착지!"
+
+	L.breath = "깊은 숨결"
+	L.breath_desc = "깊은 숨결을 알립니다."
 end
 
 L = BigWigs:NewBossLocale("Brutallus", "koKR")
