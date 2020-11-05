@@ -45,7 +45,7 @@ function mod:FlamePatch(args)
 end
 
 function mod:Armor(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Long")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Long")
 	self:TargetBar(args.spellId, 60, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

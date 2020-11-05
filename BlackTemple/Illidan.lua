@@ -132,12 +132,12 @@ end
 
 --[[ Stage One: You Are Not Prepared ]]--
 function mod:Shear(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
 	self:TargetBar(args.spellId, 7, args.destName)
 end
 
 function mod:ParasiticShadowfiend(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Long")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Long")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 10, args.destName, 36469, args.spellId) -- 36469 = "Parasite"
 	if self:Me(args.destGUID) then
@@ -146,7 +146,7 @@ function mod:ParasiticShadowfiend(args)
 end
 
 function mod:ParasiticShadowfiendFailure(args) -- The parasite reached someone new before it was killed
-	self:TargetMessage(41917, args.destName, "yellow")
+	self:TargetMessageOld(41917, args.destName, "yellow")
 	self:TargetBar(41917, 10, args.destName, 36469, 41917) -- 36469 = "Parasite"
 	if self:Me(args.destGUID) then
 		self:Say(41917, 36469) -- 36469 = "Parasite"
@@ -167,7 +167,7 @@ function mod:ThrowGlaive() -- Stage 2
 end
 
 function mod:DarkBarrage(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	barrageCount = barrageCount + 1
 	self:CDBar(args.spellId, 50) -- Varies between 50 and 70 depending on Eye Blast

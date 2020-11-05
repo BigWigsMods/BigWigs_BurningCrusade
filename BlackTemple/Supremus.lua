@@ -61,7 +61,7 @@ function mod:Fixate(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 

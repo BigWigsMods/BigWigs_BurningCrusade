@@ -68,7 +68,7 @@ function mod:Mark(args)
 end
 
 function mod:Twisted(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 end
 
 function mod:Frenzy(args)

@@ -53,7 +53,7 @@ end
 --
 
 function mod:Garrote(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 

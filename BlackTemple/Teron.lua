@@ -44,7 +44,7 @@ function mod:ShadowOfDeath(args)
 end
 
 function mod:ShadowOfDeathApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
 	-- Used to be 55s, wowhead says 55s, timewalking logs say 30s
 	self:TargetBar(args.spellId, 30, args.destName, 54224) -- 54224 = "Death" / ability_rogue_feigndeath / icon 132293
 	self:PrimaryIcon(args.spellId, args.destName)

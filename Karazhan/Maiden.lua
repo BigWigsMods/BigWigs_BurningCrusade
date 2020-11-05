@@ -52,7 +52,7 @@ end
 --
 
 function mod:HolyFire(args)
-	self:TargetMessage(args.spellId, args.destName, "red")
+	self:TargetMessageOld(args.spellId, args.destName, "red")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 

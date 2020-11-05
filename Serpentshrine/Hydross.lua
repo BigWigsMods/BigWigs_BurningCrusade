@@ -77,7 +77,7 @@ end
 do
 	local scheduled = nil
 	local function tombWarn(spellId)
-		mod:TargetMessage(spellId, inTomb, "yellow")
+		mod:TargetMessageOld(spellId, inTomb, "yellow")
 		scheduled = nil
 	end
 	function mod:Tomb(args)
@@ -90,7 +90,7 @@ do
 end
 
 function mod:Sludge(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 24, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 end

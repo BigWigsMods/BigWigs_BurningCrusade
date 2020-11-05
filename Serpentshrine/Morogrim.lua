@@ -73,7 +73,7 @@ end
 do
 	local scheduled = nil
 	local function graveWarn()
-		mod:TargetMessage(37850, inGrave, "red", "Alert")
+		mod:TargetMessageOld(37850, inGrave, "red", "Alert")
 		scheduled = nil
 	end
 	function mod:Grave(args)

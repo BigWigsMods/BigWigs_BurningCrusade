@@ -76,7 +76,7 @@ do
 	local scheduled = nil
 	local inWreath = mod:NewTargetList()
 	local function wreathWarn(spellId)
-		mod:TargetMessage(30004, inWreath, "red", "Long", spellId)
+		mod:TargetMessageOld(30004, inWreath, "red", "Long", spellId)
 		scheduled = nil
 	end
 	function mod:FlameWreath(args)

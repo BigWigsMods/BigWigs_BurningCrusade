@@ -71,7 +71,7 @@ function mod:ImpalingSpine(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning", nil, nil, true)
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 

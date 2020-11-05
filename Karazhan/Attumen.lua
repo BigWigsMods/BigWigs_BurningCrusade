@@ -42,7 +42,7 @@ end
 --
 
 function mod:Curse(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)

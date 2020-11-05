@@ -67,7 +67,7 @@ end
 --
 
 function mod:Burn(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 60, args.destName)
 	self:Bar(args.spellId, 20)
@@ -88,7 +88,7 @@ function mod:BurnResist(args)
 end
 
 function mod:Stomp(args)
-	self:TargetMessage(args.spellId, args.destName, "orange")
+	self:TargetMessageOld(args.spellId, args.destName, "orange")
 	self:DelayedMessage(args.spellId, 25.5, "yellow", CL.custom_sec:format(args.spellName, 5))
 	self:Bar(args.spellId, 30.5)
 end

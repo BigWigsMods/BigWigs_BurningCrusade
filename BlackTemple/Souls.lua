@@ -160,7 +160,7 @@ function mod:FrenzyRemoved(args)
 end
 
 function mod:Fixate(args)
-	self:TargetMessage(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -183,7 +183,7 @@ function mod:Deaden(args)
 end
 
 function mod:SpiritShock(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Tank())
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Tank())
 end
 
 --[[ Essence of Anger ]]--

@@ -90,7 +90,7 @@ end
 do
 	local scheduled = nil
 	local function demonWarn(spellId)
-		mod:TargetMessage("whisper", beDemon, "yellow", nil, L["whisper_message"], spellId)
+		mod:TargetMessageOld("whisper", beDemon, "yellow", nil, L["whisper_message"], spellId)
 		scheduled = nil
 	end
 	function mod:Whisper(args)
@@ -114,7 +114,7 @@ function mod:WhirlwindBar()
 end
 
 function mod:Madness(args)
-	self:TargetMessage("mindcontrol", args.destName, "orange", "Alert", L["mindcontrol_warning"], args.spellId)
+	self:TargetMessageOld("mindcontrol", args.destName, "orange", "Alert", L["mindcontrol_warning"], args.spellId)
 end
 
 do

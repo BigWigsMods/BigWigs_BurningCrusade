@@ -75,7 +75,7 @@ end
 --
 
 function mod:Poison(args)
-	self:TargetMessage("poison", args.destName, "red", nil, L["poison_message"], args.spellId)
+	self:TargetMessageOld("poison", args.destName, "red", nil, L["poison_message"], args.spellId)
 end
 
 function mod:Heal(args)

@@ -115,13 +115,13 @@ end
 --
 
 function mod:Conflag(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
 function mod:Toy(args)
 	if phase < 3 then
-		self:TargetMessage(args.spellId, args.destName, "yellow")
+		self:TargetMessageOld(args.spellId, args.destName, "yellow")
 		self:TargetBar(args.spellId, 60, args.destName)
 	end
 end
@@ -133,7 +133,7 @@ end
 do
 	local scheduled = nil
 	local function mcWarn(spellId)
-		mod:TargetMessage("mc", MCd, "red", "Alert", spellId)
+		mod:TargetMessageOld("mc", MCd, "red", "Alert", spellId)
 		scheduled = nil
 	end
 	function mod:MC(args)
@@ -185,7 +185,7 @@ end
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg, _, _, _, player)
 	if msg:find(L["gaze_trigger"]) then
 		self:TargetBar("gaze", 9, player, L["gaze"], "Spell_Shadow_EvilEye")
-		self:TargetMessage("gaze", player, "red", nil, L["gaze"], "Spell_Shadow_EvilEye")
+		self:TargetMessageOld("gaze", player, "red", nil, L["gaze"], "Spell_Shadow_EvilEye")
 		self:PrimaryIcon("gaze", player)
 		self.gazePlayer = player
 	end

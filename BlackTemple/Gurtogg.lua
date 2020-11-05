@@ -74,7 +74,7 @@ function mod:FelRage(args)
 		self:Say(args.spellId)
 	end
 	self:PrimaryIcon(args.spellId, args.destName)
-	self:TargetMessage(args.spellId, args.destName, "orange", "Warning", nil, nil, true)
+	self:TargetMessageOld(args.spellId, args.destName, "orange", "Warning", nil, nil, true)
 	self:TargetBar(args.spellId, 30, args.destName)
 end
 
@@ -99,7 +99,7 @@ do
 		if self:Me(guid) then
 			self:Say(40508, 18609) -- 18609 = "Breath"
 		end
-		self:TargetMessage(40508, player, "red", "Alert")
+		self:TargetMessageOld(40508, player, "red", "Alert")
 		self:PrimaryIcon(40508, player)
 	end
 
@@ -114,7 +114,7 @@ do
 end
 
 function mod:BewilderingStrikeApplied(args)
-	self:TargetMessage(args.spellId, args.destName, "green", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "green", "Alert")
 end
 
 function mod:AcidicWound(args)

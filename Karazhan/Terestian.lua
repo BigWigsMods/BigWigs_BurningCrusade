@@ -56,7 +56,7 @@ end
 --
 
 function mod:Sacrifice(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow")
 	self:TargetBar(args.spellId, 30, args.destName)
 	self:DelayedMessage(args.spellId, 40, "orange", CL["soon"]:format(args.spellName))
 	self:CDBar(args.spellId, 42)

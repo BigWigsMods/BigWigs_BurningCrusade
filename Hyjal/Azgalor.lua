@@ -57,7 +57,7 @@ function mod:Howl(args)
 end
 
 function mod:Doom(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
 	self:TargetBar(args.spellId, 19, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

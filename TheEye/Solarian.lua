@@ -71,7 +71,7 @@ end
 --
 
 function mod:Wrath(args)
-	self:TargetMessage(args.spellId, args.destName, "yellow", nil, L["wrath_other"])
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", nil, L["wrath_other"])
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 6, args.destName, L["wrath_other"])
 	if self:Me(args.destGUID) then

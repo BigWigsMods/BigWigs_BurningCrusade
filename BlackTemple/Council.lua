@@ -105,7 +105,7 @@ end
 
 function mod:DeadlyPoison(args)
 	if self:Healer() or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, args.destName, "red", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm")
 	end
 	self:PrimaryIcon(args.spellId, args.destName)
 end
