@@ -145,7 +145,7 @@ end
 function mod:SoulDrainApplied(args)
 	playerList[#playerList+1] = args.destName
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "yellow", "Alert")
+		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "yellow", "Alert")
 	end
 end
 
@@ -199,7 +199,7 @@ end
 function mod:SpiteApplied(args)
 	playerList[#playerList+1] = args.destName
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "red", "Alert")
+		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "red", "Alert")
 	end
 end
 

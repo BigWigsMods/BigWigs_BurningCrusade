@@ -63,7 +63,7 @@ do
 	function mod:CrushingShadowsApplied(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessage", 0.3, args.spellId, list, "orange", "Alert")
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, list, "orange", "Alert")
 		end
 	end
 end

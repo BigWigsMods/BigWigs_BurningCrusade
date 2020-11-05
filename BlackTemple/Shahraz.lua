@@ -57,7 +57,7 @@ function mod:FatalAttraction(args)
 	end
 
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessage", 0.3, args.spellId, playerList, "orange", "Alert")
+		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "Alert")
 	end
 end
 
