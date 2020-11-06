@@ -61,7 +61,7 @@ end
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
-	self:Message("murloc", "green", nil, L["murloc_engaged"]:format(self.displayName), false)
+	self:MessageOld("murloc", "green", nil, L["murloc_engaged"]:format(self.displayName), false)
 	self:Bar("murloc", 40, L["murloc_bar"], 42365)
 	self:Bar(37850, 20, L["grave_nextbar"])
 end
@@ -88,17 +88,17 @@ do
 end
 
 function mod:Tidal(args)
-	self:Message(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "Alarm")
 end
 
 function mod:Murlocs()
-	self:Message("murloc", "green", nil, L["murloc_message"], 42365)
+	self:MessageOld("murloc", "green", nil, L["murloc_message"], 42365)
 	self:Bar("murloc", 51, L["murloc_bar"], 42365)
 	self:DelayedMessage("murloc", 49, "yellow", L["murloc_soon_message"])
 end
 
 function mod:Globules()
-	self:Message("globules", "red", "Alert", L["globules_message"], false)
+	self:MessageOld("globules", "red", "Alert", L["globules_message"], false)
 	self:Bar("globules", 36, L["globules_bar"], "INV_Elemental_Primal_Water")
 end
 
@@ -106,7 +106,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 21213 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 25 and hp < 30 then
-			self:Message("globules", "green", nil, L["globules_warning"], false)
+			self:MessageOld("globules", "green", nil, L["globules_warning"], false)
 			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end

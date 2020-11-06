@@ -56,7 +56,7 @@ end
 --
 
 function mod:Evocate(args)
-	self:Message(args.spellId, "red", "Alarm", L["weaken_message"])
+	self:MessageOld(args.spellId, "red", "Alarm", L["weaken_message"])
 	self:Bar(args.spellId, 20, CL["cast"]:format(args.spellName))
 	self:DelayedMessage(args.spellId, 15, "orange", L["weaken_fade_warning"])
 	self:DelayedMessage(args.spellId, 20, "red", L["weaken_fade_message"], false, "Alarm")
@@ -68,7 +68,7 @@ function mod:Evocate(args)
 end
 
 function mod:Infusion(args)
-	self:Message(args.spellId, "red", nil, "15% - "..args.spellName)
+	self:MessageOld(args.spellId, "red", nil, "15% - "..args.spellName)
 
 	self:CancelAllTimers()
 	self:StopBar(30254) -- Evocation
@@ -79,7 +79,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 15691 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
-			self:Message(30403, "green", nil, CL["soon"]:format(self:SpellName(30403)), false) -- Arcane Infusion
+			self:MessageOld(30403, "green", nil, CL["soon"]:format(self:SpellName(30403)), false) -- Arcane Infusion
 			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end

@@ -632,7 +632,7 @@ function mod:Deaths(unit, guid)
 			self:Bar(boss, 10, "Spell_Shadow_Charm")
 			self:TriggerEvent("BigWigs_ShowProximity", self)
 			if db.phase then
-				self:Message(L["phase2_message"], "red", nil, "Alarm")
+				self:MessageOld(L["phase2_message"], "red", nil, "Alarm")
 			end
 		end
 		return
@@ -675,17 +675,17 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	elseif msg == L["phase3_trigger"] then
 		phase = 3
 		if db.phase then
-			self:Message(L["phase3_message"], "red", nil, "Alarm")
+			self:MessageOld(L["phase3_message"], "red", nil, "Alarm")
 		end
 	elseif msg == L["phase4_trigger"] then
 		phase = 4
 		if db.phase then
-			self:Message(L["phase4_message"], "red", nil, "Alarm")
+			self:MessageOld(L["phase4_message"], "red", nil, "Alarm")
 		end
 	elseif msg == L["phase5_trigger"] then
 		phase = 5
 		if db.phase then
-			self:Message(L["phase5_message"], "red", nil, "Alarm")
+			self:MessageOld(L["phase5_message"], "red", nil, "Alarm")
 		end
 	end
 end
@@ -710,7 +710,7 @@ function mod:Bloom(player)
 		self:Whisper(player, L["bloom_you"], "bloomwhisper")
 		self:ScheduleEvent("BWBloomWarn", self.BloomWarn, 0.4, self)
 		if player == pName and db.bloomsay then
-			self:Message(L["bloom_you"], "blue", 45641, "Long")
+			self:MessageOld(L["bloom_you"], "blue", 45641, "Long")
 			SendChatMessage(L["bloom_say"], "SAY")
 		end
 	end
@@ -742,13 +742,13 @@ function mod:UNIT_HEALTH(msg)
 		local health = UnitHealth(msg)
 		if not sinister1 and health > 86 and health <= 88 then
 			sinister1 = true
-			self:Message(L["sinister_warning"], "yellow")
+			self:MessageOld(L["sinister_warning"], "yellow")
 		elseif not sinister2 and health > 56 and health <= 58 then
 			sinister2 = true
-			self:Message(L["sinister_warning"], "yellow")
+			self:MessageOld(L["sinister_warning"], "yellow")
 		elseif not sinister3 and health > 26 and health <= 28 then
 			sinister3 = true
-			self:Message(L["sinister_warning"], "yellow")
+			self:MessageOld(L["sinister_warning"], "yellow")
 		end
 	end
 end

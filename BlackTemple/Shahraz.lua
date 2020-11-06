@@ -78,7 +78,7 @@ do
 	}
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		if spells[spellId] then
-			self:Message(spellId, "yellow", "Info") -- SetOption:40883,40891,40880,40897,40882,40896:::
+			self:MessageOld(spellId, "yellow", "Info") -- SetOption:40883,40891,40880,40897,40882,40896:::
 			self:Bar(spellId, 15) -- SetOption:40883,40891,40880,40897,40882,40896:::
 		end
 	end

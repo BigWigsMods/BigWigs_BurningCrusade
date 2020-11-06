@@ -70,7 +70,7 @@ function mod:FixateRemoved(args)
 end
 
 function mod:MoltenPunch(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 	self:CDBar(args.spellId, 16) -- 16-20
 end
 
@@ -80,17 +80,17 @@ do
 		local t = GetTime()
 		if self:Me(args.destGUID) and t-prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
 		end
 	end
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg == L.normal_phase_trigger then
-		self:Message("stages", "cyan", "Info", L.normal_phase, false)
+		self:MessageOld("stages", "cyan", "Info", L.normal_phase, false)
 		self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
 	elseif msg == L.kite_phase_trigger then
-		self:Message("stages", "cyan", "Info", L.kite_phase, false)
+		self:MessageOld("stages", "cyan", "Info", L.kite_phase, false)
 		self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
 	end
 end

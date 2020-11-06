@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message(29511, "yellow", nil, L["engage_message"])
+	self:MessageOld(29511, "yellow", nil, L["engage_message"])
 	self:DelayedMessage(29511, 33, "orange", L["repentance_warning"], false, "Alarm")
 	self:CDBar(29511, 33)
 	self:OpenProximity("proximity", 10)
@@ -57,7 +57,7 @@ function mod:HolyFire(args)
 end
 
 function mod:Repentance(args)
-	self:Message(args.spellId, "red", nil, L["repentance_message"])
+	self:MessageOld(args.spellId, "red", nil, L["repentance_message"])
 	self:Bar(args.spellId, 12, "<"..args.spellName..">")
 	self:DelayedMessage(args.spellId, 33, "orange", L["repentance_warning"], false, "Alarm")
 	self:CDBar(args.spellId, 33)

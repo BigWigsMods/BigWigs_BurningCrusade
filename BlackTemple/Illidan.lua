@@ -126,7 +126,7 @@ function mod:CheckForFixate(_, unit, guid)
 	if mobId == 23498 and not fixateList[guid] and self:Me(UnitGUID(unit.."target")) then -- Parasitic Shadowfiend
 		fixateList[guid] = true
 		self:Say(41917, 41951) -- 41951 = "Fixate"
-		self:Message(41917, "blue", "Long", CL.you:format(self:SpellName(41951)), 41951)
+		self:MessageOld(41917, "blue", "Long", CL.you:format(self:SpellName(41951)), 41951)
 	end
 end
 
@@ -163,7 +163,7 @@ function mod:ThrowGlaive() -- Stage 2
 
 	self:PrimaryIcon(41917) -- Parasitic Shadowfiend
 	self:CDBar(40585, 95) -- Dark Barrage
-	self:Message("stages", "cyan", nil, CL.stage:format(2), false)
+	self:MessageOld("stages", "cyan", nil, CL.stage:format(2), false)
 end
 
 function mod:DarkBarrage(args)
@@ -180,7 +180,7 @@ function mod:DarkBarrageRemoved(args)
 end
 
 function mod:UncagedWrath(args)
-	self:Message(args.spellId, "orange", "Warning")
+	self:MessageOld(args.spellId, "orange", "Warning")
 end
 
 do
@@ -188,7 +188,7 @@ do
 	function mod:EyeBlast(args)
 		local t = GetTime()
 		if t-prev > 2 then
-			self:Message(args.spellId, "yellow", "Info", args.spellName, 224284) -- XXX temp until it has an icon
+			self:MessageOld(args.spellId, "yellow", "Info", args.spellName, 224284) -- XXX temp until it has an icon
 		end
 		prev = t -- Continually spams every 1s during the cast
 	end
@@ -199,7 +199,7 @@ function mod:FlameDeath() -- Stage 3
 	flamesDead = flamesDead + 1
 	if flamesDead == 2 then
 		self:StopBar(40585) -- Dark Barrage
-		self:Message("stages", "cyan", "Alarm", CL.stage:format(3), false)
+		self:MessageOld("stages", "cyan", "Alarm", CL.stage:format(3), false)
 		self:Bar(40506, 75) -- Demon Form
 		self:OpenProximity(40932, 5) -- Agonizing Flames
 	end
@@ -214,25 +214,25 @@ end
 
 function mod:FlameBurst(args)
 	burstCount = burstCount + 1
-	self:Message(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "Alert")
 	if burstCount < 3 then -- He'll only do three times before transforming again
 		self:Bar(args.spellId, 20)
 	end
 end
 
 function mod:SummonShadowDemons(args)
-	self:Message(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "Alert")
 end
 
 --[[ Stage Four: The Long Hunt ]]--
 function mod:ShadowPrison(args) -- Pre Stage 4 Intermission
-	self:Message("stages", "cyan", nil, CL.intermission, false)
+	self:MessageOld("stages", "cyan", nil, CL.intermission, false)
 	self:Bar("stages", 30, CL.intermission, args.spellId)
 end
 
 function mod:ShadowPrisonRemoved(args) -- Stage 4
 	if self:MobId(args.destGUID) == 23089 then -- When debuff drops from Akama (downstairs)
-		self:Message("stages", "cyan", nil, CL.stage:format(4), false)
+		self:MessageOld("stages", "cyan", nil, CL.stage:format(4), false)
 
 		self:Bar(40683, 45) -- Frenzy
 		self:Bar(40506, 60) -- Demon Form
@@ -240,13 +240,13 @@ function mod:ShadowPrisonRemoved(args) -- Stage 4
 end
 
 function mod:Frenzy(args)
-	self:Message(args.spellId, "orange", "Long")
+	self:MessageOld(args.spellId, "orange", "Long")
 	--self:Bar(args.spellId, ??) -- Frenzy
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 40693 then -- Cage Trap
-		self:Message(40695, "red", "Info", CL.spawned:format(self:SpellName(spellId)), 199341) -- 199341: ability_hunter_traplauncher / icon 461122
+		self:MessageOld(40695, "red", "Info", CL.spawned:format(self:SpellName(spellId)), 199341) -- 199341: ability_hunter_traplauncher / icon 461122
 	end
 end
 
@@ -257,10 +257,10 @@ function mod:UNIT_AURA(_, unit)
 			burstCount = 0
 			self:Bar(41117, 25) -- Summon Shadow Demons
 			self:Bar(41126, 15) -- Flame Burst
-			self:Message(40506, "red", "Alarm") -- Demon Form
+			self:MessageOld(40506, "red", "Alarm") -- Demon Form
 			local demonFormOver = CL.over:format(self:SpellName(40506))
 			self:Bar(40506, 60, demonFormOver)
-			timer1 = self:ScheduleTimer("Message", 60, 40506, "green", nil, demonFormOver) -- Demon Form
+			timer1 = self:ScheduleTimer("MessageOld", 60, 40506, "green", nil, demonFormOver) -- Demon Form
 			timer2 = self:ScheduleTimer("Bar", 60, 40506, 60) -- Demon Form
 		end
 	elseif inDemonPhase then
@@ -276,7 +276,7 @@ function mod:UNIT_AURA(_, unit)
 	if self:UnitDebuff(unit, self:SpellName(40695)) then -- Caged
 		if not isCaged then
 			isCaged = true
-			self:Message(40695, "green", "Warning")
+			self:MessageOld(40695, "green", "Warning")
 			self:Bar(40695, 15)
 		end
 	elseif isCaged then
@@ -295,7 +295,7 @@ do
 	function mod:Damage(args)
 		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
 			prev = GetTime()
-			self:Message(args.spellId == 40030 and 40018 or args.spellId, "blue", "Alert", CL.underyou:format(args.spellId == 40030 and self:SpellName(40018) or args.spellName))
+			self:MessageOld(args.spellId == 40030 and 40018 or args.spellId, "blue", "Alert", CL.underyou:format(args.spellId == 40030 and self:SpellName(40018) or args.spellName))
 		end
 	end
 end

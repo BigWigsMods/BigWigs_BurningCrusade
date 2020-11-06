@@ -46,12 +46,12 @@ end
 
 function mod:RainOfFire(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "orange", "Alarm", CL["you"]:format(args.spellName))
+		self:MessageOld(args.spellId, "orange", "Alarm", CL["you"]:format(args.spellName))
 	end
 end
 
 function mod:Howl(args)
-	self:Message(args.spellId, "red", nil, L["howl_message"])
+	self:MessageOld(args.spellId, "red", nil, L["howl_message"])
 	self:Bar(args.spellId, 16, L["howl_bar"])
 	self:DelayedMessage(args.spellId, 15, "red", CL["soon"]:format(L["howl_message"]))
 end

@@ -60,7 +60,7 @@ end
 
 function mod:Fear(args)
 	self:CDBar(args.spellId, 41.5)
-	self:Message(args.spellId, "red", nil, L["fear_message"])
+	self:MessageOld(args.spellId, "red", nil, L["fear_message"])
 	self:DelayedMessage(args.spellId, 41.5, "orange", CL["soon"]:format(args.spellName))
 end
 

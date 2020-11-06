@@ -95,12 +95,12 @@ end
 
 --[[ Veras Darkshadow ]]--
 function mod:Vanish(args)
-	self:Message(args.spellId, "yellow", "Alert", L.veras:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "Alert", L.veras:format(args.spellName))
 	self:Bar(args.spellId, 30)
 end
 
 function mod:VanishOver(args)
-	self:Message(41476, "green", nil, CL.over:format(args.spellName))
+	self:MessageOld(41476, "green", nil, CL.over:format(args.spellName))
 end
 
 function mod:DeadlyPoison(args)
@@ -116,26 +116,26 @@ end
 
 --[[ Lady Malande ]]--
 function mod:ReflectiveShield(args)
-	self:Message(args.spellId, "red", "Long", L.malande:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "Long", L.malande:format(args.spellName))
 	self:Bar(args.spellId, 20)
 end
 
 function mod:ReflectiveShieldOver(args)
-	self:Message(args.spellId, "green", nil, CL.over:format(args.spellName))
+	self:MessageOld(args.spellId, "green", nil, CL.over:format(args.spellName))
 end
 
 function mod:CircleOfHealing(args)
-	self:Message(args.spellId, "orange", self:Interrupter() and "Warning", L.malande:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", self:Interrupter() and "Warning", L.malande:format(args.spellName))
 end
 
 function mod:CircleOfHealingSuccess(args)
-	self:Message(args.spellId, "orange", nil, L.circle_heal_message)
+	self:MessageOld(args.spellId, "orange", nil, L.circle_heal_message)
 	self:CDBar(args.spellId, 20)
 end
 
 function mod:CircleOfHealingInterrupted(args)
 	if args.extraSpellId == 41455 then
-		self:Message(41455, "orange", nil, L.circle_fail_message:format(self:ColorName(args.sourceName)))
+		self:MessageOld(41455, "orange", nil, L.circle_fail_message:format(self:ColorName(args.sourceName)))
 		self:CDBar(41455, 12)
 	end
 end
@@ -143,18 +143,18 @@ end
 --[[ Gathios the Shatterer ]]--
 function mod:ChromaticResistanceAura(args)
 	local res = self:SpellName(19726) -- 19726 = "Resistance Aura"
-	self:Message(args.spellId, "yellow", nil, L.gathios:format(res))
+	self:MessageOld(args.spellId, "yellow", nil, L.gathios:format(res))
 	self:Bar(args.spellId, 30, res)
 end
 
 function mod:ChromaticResistanceAuraOver(args)
-	self:Message(args.spellId, "green", nil, CL.over:format(self:SpellName(19726))) -- 19726 = "Resistance Aura"
+	self:MessageOld(args.spellId, "green", nil, CL.over:format(self:SpellName(19726))) -- 19726 = "Resistance Aura"
 end
 
 function mod:BlessingOfProtection(args)
 	if self:MobId(args.destGUID) == 22951 and self:MobId(UnitGUID("target")) == 22951 and not self:Healer() then -- Lady Malande
 		local txt = L.malande:format(L.physical_immunity)
-		self:Message(args.spellId, "red", "Info", txt)
+		self:MessageOld(args.spellId, "red", "Info", txt)
 		self:Bar(args.spellId, 15, txt)
 	end
 end
@@ -162,7 +162,7 @@ end
 function mod:BlessingOfSpellWarding(args)
 	if self:MobId(args.destGUID) == 22951 and self:MobId(UnitGUID("target")) == 22951 and not self:Healer() then -- Lady Malande
 		local txt = L.malande:format(L.magical_immunity)
-		self:Message(args.spellId, "red", "Info", txt)
+		self:MessageOld(args.spellId, "red", "Info", txt)
 		self:Bar(args.spellId, 15, txt)
 	end
 end
@@ -174,7 +174,7 @@ do
 		local t = GetTime()
 		if self:Me(args.destGUID) and t-prev > 2 then
 			prev = t
-			self:Message(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
 		end
 	end
 end

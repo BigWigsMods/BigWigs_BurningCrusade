@@ -88,7 +88,7 @@ function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 	abycount = 1
 
-	self:Message("escape", "yellow", nil, L["escape_warning1"]:format(self.displayName), 20589)
+	self:MessageOld("escape", "yellow", nil, L["escape_warning1"]:format(self.displayName), 20589)
 	self:Bar("escape", 120, L["escape_bar"], 20589)
 	self:DelayedMessage("escape", 60, "green", L["escape_warning2"])
 	self:DelayedMessage("escape", 90, "yellow", L["escape_warning3"])
@@ -111,23 +111,23 @@ function mod:Exhaustion(args)
 end
 
 function mod:Abyssal()
-	self:Message("abyssal", "yellow", nil, L["abyssal_message"]:format(abycount), 30511)
+	self:MessageOld("abyssal", "yellow", nil, L["abyssal_message"]:format(abycount), 30511)
 	abycount = abycount + 1
 end
 
 function mod:Heal(args)
-	self:Message("heal", "orange", "Alarm", L["heal_message"], args.spellId)
+	self:MessageOld("heal", "orange", "Alarm", L["heal_message"], args.spellId)
 	self:Bar("heal", 2, L["heal_message"], args.spellId)
 end
 
 function mod:Banished(args)
-	self:Message("banish", "red", "Info", L["banish_message"], args.spellId)
+	self:MessageOld("banish", "red", "Info", L["banish_message"], args.spellId)
 	self:Bar("banish", 10, L["banish_bar"], args.spellId)
 	self:StopBar(CL["cast"]:format(self:SpellName(30616))) -- Blast Nova
 end
 
 function mod:BanishRemoved(args)
-	self:Message("banish", "yellow", nil, L["banish_over_message"], args.spellId)
+	self:MessageOld("banish", "yellow", nil, L["banish_over_message"], args.spellId)
 	self:StopBar(L["banish_bar"])
 end
 
@@ -144,7 +144,7 @@ function mod:Start()
 end
 
 function mod:Nova(args)
-	self:Message(args.spellId, "green")
+	self:MessageOld(args.spellId, "green")
 	self:CDBar(args.spellId, 51)
 	self:Bar(args.spellId, 12, CL["cast"]:format(args.spellName))
 	self:DelayedMessage(args.spellId, 48, "orange", CL["soon"]:format(args.spellName))
@@ -152,12 +152,12 @@ end
 
 function mod:Debris(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "red", "Alert", CL["you"]:format(args.spellName))
+		self:MessageOld(args.spellId, "red", "Alert", CL["you"]:format(args.spellName))
 	end
 end
 
 function mod:DebrisInc()
-	self:Message(36449, "green", nil, L["debris_message"])
+	self:MessageOld(36449, "green", nil, L["debris_message"])
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
@@ -165,7 +165,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 37 then
 			local debris = self:SpellName(36449)
-			self:Message(36449, "green", nil, CL["soon"]:format(debris), false)
+			self:MessageOld(36449, "green", nil, CL["soon"]:format(debris), false)
 			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end

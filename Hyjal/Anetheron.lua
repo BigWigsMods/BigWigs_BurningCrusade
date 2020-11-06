@@ -33,7 +33,7 @@ end
 --
 
 function mod:Swarm(args)
-	self:Message(args.spellId, "yellow")
+	self:MessageOld(args.spellId, "yellow")
 	self:CDBar(args.spellId, 11)
 end
 

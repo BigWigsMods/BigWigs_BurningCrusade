@@ -61,7 +61,7 @@ end
 
 function mod:OnEngage()
 	nova = nil
-	self:Message("phase", "green", nil, L["phase1_message"], "achievement_boss_princemalchezaar_02")
+	self:MessageOld("phase", "green", nil, L["phase1_message"], "achievement_boss_princemalchezaar_02")
 
 	self:DelayedMessage(30843, 25, "yellow", CL["custom_sec"]:format(self:SpellName(30843), 5))
 	self:Bar(30843, 30) -- Enfeeble
@@ -76,7 +76,7 @@ end
 --
 
 function mod:Enfeeble(args)
-	self:Message(args.spellId, "red")
+	self:MessageOld(args.spellId, "red")
 	self:DelayedMessage(args.spellId, 25, "orange", CL["custom_sec"]:format(args.spellName, 5))
 	self:Bar(args.spellId, 30)
 	self:Bar(30852, 52) -- Shadow Nova
@@ -84,13 +84,13 @@ end
 
 function mod:SelfEnfeeble(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", "Alarm", CL["you"]:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "Alarm", CL["you"]:format(args.spellName))
 		self:TargetBar(args.spellId, 7, args.destName)
 	end
 end
 
 function mod:Nova(args)
-	self:Message(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "Info")
 	self:Bar(args.spellId, 2, "<"..args.spellName..">")
 	if nova then
 		self:Bar(args.spellId, 20)
@@ -99,17 +99,17 @@ function mod:Nova(args)
 end
 
 function mod:Infernal()
-	self:Message("infernal", "red", nil, L["infernal_warning"], L.infernal_icon)
+	self:MessageOld("infernal", "red", nil, L["infernal_warning"], L.infernal_icon)
 	self:DelayedMessage("infernal", 12, "orange", L["infernal_message"], false, "Alert")
 	self:Bar("infernal", 17, L["infernal_bar"], L.infernal_icon)
 end
 
 function mod:Phase2()
-	self:Message("phase", "green", nil, L["phase2_message"], "achievement_boss_princemalchezaar_02")
+	self:MessageOld("phase", "green", nil, L["phase2_message"], "achievement_boss_princemalchezaar_02")
 end
 
 function mod:Phase3()
-	self:Message("phase", "green", nil, L["phase3_message"], "achievement_boss_princemalchezaar_02")
+	self:MessageOld("phase", "green", nil, L["phase3_message"], "achievement_boss_princemalchezaar_02")
 	self:CancelDelayedMessage(CL["custom_sec"]:format(self:SpellName(30843), 5))
 	self:StopBar(30843) -- Enfeeble
 	nova = true

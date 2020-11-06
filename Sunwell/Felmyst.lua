@@ -73,7 +73,7 @@ end
 --
 
 function mod:GasNova(args)
-	self:Message(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", nil, CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 20)
 end
 
@@ -106,7 +106,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, unit)
 	if unit == self.displayName then
-		self:Message("breath", "yellow", nil, CL.count:format(L.breath, breathCount), L.breath_icon)
+		self:MessageOld("breath", "yellow", nil, CL.count:format(L.breath, breathCount), L.breath_icon)
 		self:Bar("breath", 4, CL.count:format(L.breath, breathCount), L.breath_icon)
 		breathCount = breathCount + 1
 		if breathCount < 4 then

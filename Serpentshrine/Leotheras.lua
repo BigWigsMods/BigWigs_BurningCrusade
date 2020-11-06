@@ -104,7 +104,7 @@ do
 end
 
 function mod:Whirlwind(args)
-	self:Message(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "Alert")
 	self:Bar(args.spellId, 12, CL["cast"]:format(args.spellName))
 end
 
@@ -119,7 +119,7 @@ end
 
 do
 	local function demonSoon()
-		mod:Message("phase", "red", nil, L["phase_normal"], false)
+		mod:MessageOld("phase", "red", nil, L["phase_normal"], false)
 		mod:DelayedMessage("phase", 40, "orange", L["phase_demonsoon"])
 		mod:Bar("phase", 45, L["demon_nextbar"], "Spell_Shadow_Metamorphosis")
 	end
@@ -129,7 +129,7 @@ do
 		self:StopBar(L["demon_nextbar"])
 		self:CancelAllTimers()
 
-		self:Message("phase", "yellow", nil, L["phase_demon"], false)
+		self:MessageOld("phase", "yellow", nil, L["phase_demon"], false)
 		self:DelayedMessage("phase", 55, "red", L["phase_normalsoon"])
 		self:Bar("whisper", 23, L["whisper_soon"], 37676)
 		self:Bar("phase", 60, L["demon_bar"], "Spell_Shadow_Metamorphosis")
@@ -144,14 +144,14 @@ function mod:Image()
 	self:CancelDelayedMessage(L["phase_demonsoon"])
 	self:StopBar(L["demon_bar"])
 	self:StopBar(L["demon_nextbar"])
-	self:Message("image", "red", nil, L["image_message"], false)
+	self:MessageOld("image", "red", nil, L["image_message"], false)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 21215 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
-			self:Message("image", "orange", nil, L["image_warning"], false)
+			self:MessageOld("image", "orange", nil, L["image_warning"], false)
 			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end

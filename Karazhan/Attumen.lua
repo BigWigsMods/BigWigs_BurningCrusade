@@ -47,11 +47,11 @@ end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
 	if msg == L["phase2_trigger"] then
-		self:Message("phase", "red", nil, L["phase2_message"], false)
+		self:MessageOld("phase", "red", nil, L["phase2_message"], false)
 	end
 end
 
 function mod:Phase3()
-	self:Message("phase", "red", nil, L["phase3_message"], false)
+	self:MessageOld("phase", "red", nil, L["phase3_message"], false)
 end
 

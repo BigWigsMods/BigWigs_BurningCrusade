@@ -40,7 +40,7 @@ end
 
 function mod:FlamePatch(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", "Alarm", CL["underyou"]:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "Alarm", CL["underyou"]:format(args.spellName))
 	end
 end
 
@@ -58,7 +58,7 @@ do
 			if not first then
 				first = true
 			else
-				self:Message(35181, "orange", "Alert")
+				self:MessageOld(35181, "orange", "Alert")
 			end
 			self:DelayedMessage(35181, 47, "red", CL["soon"]:format(diveBomb))
 			self:CDBar(35181, 52)

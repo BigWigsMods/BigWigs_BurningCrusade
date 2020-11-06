@@ -68,7 +68,7 @@ end
 --
 
 function mod:ChainLightning(args)
-	self:Message(args.spellId, "orange")
+	self:MessageOld(args.spellId, "orange")
 	self:Bar(args.spellId, 2, "<"..args.spellName..">")
 end
 

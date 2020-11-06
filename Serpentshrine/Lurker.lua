@@ -55,7 +55,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Message("dive", "yellow", nil, L["engage_warning"]:format(self.displayName), false)
+	self:MessageOld("dive", "yellow", nil, L["engage_warning"]:format(self.displayName), false)
 	local dwarn = L["dive_warning"]
 	self:DelayedMessage("dive", 30, "green", (dwarn):format(60))
 	self:DelayedMessage("dive", 60, "green", (dwarn):format(30))
@@ -91,7 +91,7 @@ function mod:Spout()
 	self:CheckForWipe()
 	self:Bar("spout", 20, L["spout_message"], "Spell_Frost_ChillingBlast")
 	self:Bar("spout", 50, L["spout_bar"], "Spell_Frost_ChillingBlast")
-	self:Message("spout", "red", "Alert", L["spout_message"], 37433)
+	self:MessageOld("spout", "red", "Alert", L["spout_message"], 37433)
 	self:DelayedMessage("spout", 47, "yellow", L["spout_warning"])
 	self:StopBar(37660) -- Whirl
 end
@@ -109,7 +109,7 @@ do
 			self:ScheduleTimer("LurkerUp", 60)
 
 			local ewarn = L["emerge_warning"]
-			self:Message("dive", "yellow", nil, L["dive_message"], false)
+			self:MessageOld("dive", "yellow", nil, L["dive_message"], false)
 			self:DelayedMessage("dive", 30, "green", (ewarn):format(30))
 			self:DelayedMessage("dive", 50, "green", (ewarn):format(10))
 			self:DelayedMessage("dive", 55, "orange", (ewarn):format(5), false, "Alert")

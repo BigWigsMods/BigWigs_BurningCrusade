@@ -51,7 +51,7 @@ end
 function mod:MarkCast(args)
 	local time = 45 - (count * 5)
 	if time < 5 then time = 5 end
-	self:Message(args.spellId, "yellow", nil, ("%s (%d)"):format(args.spellName, count))
+	self:MessageOld(args.spellId, "yellow", nil, ("%s (%d)"):format(args.spellName, count))
 	count = count + 1
 	self:Bar(args.spellId, time, L["mark_bar"]:format(count))
 	self:DelayedMessage(args.spellId, time - 5, "green", L["mark_warn"])

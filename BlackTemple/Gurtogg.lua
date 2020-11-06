@@ -59,7 +59,7 @@ end
 --
 
 function mod:Bloodboil(args)
-	self:Message(args.spellId, "yellow", "Info", CL.count:format(args.spellName, bloodCount))
+	self:MessageOld(args.spellId, "yellow", "Info", CL.count:format(args.spellName, bloodCount))
 	if bloodCount == 3 then bloodCount = 0 end
 	bloodCount = bloodCount + 1
 	self:CDBar(args.spellId, 10, CL.count:format(args.spellName, bloodCount))
@@ -90,7 +90,7 @@ function mod:FelRageRemovedFromBoss(args)
 		self:Bar(42005, 10, CL.count:format(self:SpellName(42005), bloodCount)) -- Bloodboil
 		self:CDBar(40604, 52) -- Fel Rage 52-55
 		self:CDBar(40508, 26) -- Fel-Acid Breath
-		self:Message(40604, "cyan", "Info", CL.over:format(args.spellName)) -- Fel Rage Over
+		self:MessageOld(40604, "cyan", "Info", CL.over:format(args.spellName)) -- Fel Rage Over
 	end
 end
 
@@ -125,6 +125,6 @@ end
 
 function mod:AcidicWoundRemoved(args)
 	if self:Me(args.destGUID) and self:Tank() then
-		self:Message(args.spellId, "green", "Alarm", CL.removed:format(args.spellName))
+		self:MessageOld(args.spellId, "green", "Alarm", CL.removed:format(args.spellName))
 	end
 end

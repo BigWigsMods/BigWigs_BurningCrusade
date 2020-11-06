@@ -69,13 +69,13 @@ function mod:SacrificeRemoved(args)
 end
 
 function mod:Weakened(args)
-	self:Message("weak", "red", "Alarm", L["weak_message"], args.spellId)
+	self:MessageOld("weak", "red", "Alarm", L["weak_message"], args.spellId)
 	self:DelayedMessage("weak", 40, "yellow", L["weak_warning1"])
 	self:Bar("weak", 45, L["weak_bar"], args.spellId)
 end
 
 function mod:WeakenedRemoved()
-	self:Message("weak", "yellow", "Info", L["weak_warning2"])
+	self:MessageOld("weak", "yellow", "Info", L["weak_warning2"])
 	self:CancelDelayedMessage(L["weak_warning1"])
 	self:StopBar(L["weak_bar"])
 end

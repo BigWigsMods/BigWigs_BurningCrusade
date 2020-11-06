@@ -60,7 +60,7 @@ end
 function mod:OnEngage()
 	local spellId = 36922
 	local fear = self:SpellName(spellId)
-	self:Message(spellId, "green", nil, CL["custom_start_s"]:format(self.displayName, fear, 35), false)
+	self:MessageOld(spellId, "green", nil, CL["custom_start_s"]:format(self.displayName, fear, 35), false)
 	self:CDBar(spellId, 35)
 	self:DelayedMessage(spellId, 33, "green", CL["soon"]:format(fear))
 end
@@ -71,20 +71,20 @@ end
 
 function mod:Fear(args)
 	self:Bar(args.spellId, 2.5, "<"..args.spellName..">")
-	self:Message(args.spellId, "green")
+	self:MessageOld(args.spellId, "green")
 	self:CDBar(args.spellId, 37)
 	self:DelayedMessage(args.spellId, 35, "green", CL["soon"]:format(args.spellName))
 end
 
 function mod:CharredEarth(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", "Alarm", CL["underyou"]:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "Alarm", CL["underyou"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end
 
 function mod:Bones(args)
-	self:Message(args.spellId, "orange")
+	self:MessageOld(args.spellId, "orange")
 	self:Bar(args.spellId, 11, "<"..args.spellName..">")
 end
 
@@ -98,12 +98,12 @@ function mod:Air()
 	self:CancelDelayedMessage(CL["soon"]:format(self:SpellName(36922)))
 	self:StopBar(36922) -- Fear
 
-	self:Message("phase", "yellow", "Info", L["airphase_message"], "INV_Misc_Head_Dragon_01")
+	self:MessageOld("phase", "yellow", "Info", L["airphase_message"], "INV_Misc_Head_Dragon_01")
 	self:Bar("phase", 57, L["landphase_message"], "INV_Misc_Head_Dragon_01")
 end
 
 function mod:Land()
-	self:Message("phase", "red", "Long", L["landphase_message"], "INV_Misc_Head_Dragon_01")
+	self:MessageOld("phase", "red", "Long", L["landphase_message"], "INV_Misc_Head_Dragon_01")
 	self:Bar("phase", 17, L["landphase_message"], "INV_Misc_Head_Dragon_01")
 end
 

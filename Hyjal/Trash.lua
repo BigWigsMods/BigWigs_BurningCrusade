@@ -159,81 +159,81 @@ function mod:UpdateWaves(_, text)
 			if nextBoss == self:BossName(1577) then -- Rage Winterchill
 				waveTime = RWCwaveTimes[wave]
 				if wave == 1 then
-					self:Message("waves", "cyan", nil, fmt(L.one, wave, 10, L.ghoul), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.one, wave, 10, L.ghoul), false)
 				elseif wave == 2 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 10, L.ghoul, 2, L.fiend), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 10, L.ghoul, 2, L.fiend), false)
 				elseif wave == 3 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 6, L.ghoul, 6, L.fiend), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 6, L.ghoul, 6, L.fiend), false)
 				elseif wave == 4 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 6, L.ghoul, 4, L.fiend, 2, L.necro), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 6, L.ghoul, 4, L.fiend, 2, L.necro), false)
 				elseif wave == 5 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 2, L.ghoul, 6, L.fiend, 4, L.necro), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 2, L.ghoul, 6, L.fiend, 4, L.necro), false)
 				elseif wave == 6 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 6, L.ghoul, 6, L.abom), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 6, L.ghoul, 6, L.abom), false)
 				elseif wave == 7 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 4, L.ghoul, 4, L.necro, 4, L.abom), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 4, L.ghoul, 4, L.necro, 4, L.abom), false)
 				elseif wave == 8 then
-					self:Message("waves", "cyan", nil, fmt(L.four, wave, 6, L.ghoul, 4, L.fiend, 2, L.abom, 2, L.necro), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.four, wave, 6, L.ghoul, 4, L.fiend, 2, L.abom, 2, L.necro), false)
 				end
 			elseif nextBoss == self:BossName(1578) then -- Anetheron
 				waveTime = allianceWaveTimes[wave]
 				if wave == 1 then
-					self:Message("waves", "cyan", nil, fmt(L.one, wave, 10, L.ghoul), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.one, wave, 10, L.ghoul), false)
 				elseif wave == 2 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 4, L.abom, 8, L.ghoul), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 4, L.abom, 8, L.ghoul), false)
 				elseif wave == 3 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 4, L.necro, 4, L.fiend, 4, L.ghoul), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 4, L.necro, 4, L.fiend, 4, L.ghoul), false)
 				elseif wave == 4 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 2, L.banshee, 6, L.fiend, 4, L.necro), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 2, L.banshee, 6, L.fiend, 4, L.necro), false)
 				elseif wave == 5 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 6, L.ghoul, 2, L.necro, 4, L.banshee), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 6, L.ghoul, 2, L.necro, 4, L.banshee), false)
 				elseif wave == 6 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 2, L.abom, 4, L.necro, 6, L.ghoul), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 2, L.abom, 4, L.necro, 6, L.ghoul), false)
 				elseif wave == 7 then
-					self:Message("waves", "cyan", nil, fmt(L.four, wave, 4, L.abom, 4, L.fiend, 2, L.banshee, 2, L.ghoul), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.four, wave, 4, L.abom, 4, L.fiend, 2, L.banshee, 2, L.ghoul), false)
 				elseif wave == 8 then
-					self:Message("waves", "cyan", nil, fmt(L.five, wave, 4, L.abom, 3, L.fiend, 2, L.banshee, 2, L.necro, 3, L.ghoul), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.five, wave, 4, L.abom, 3, L.fiend, 2, L.banshee, 2, L.necro, 3, L.ghoul), false)
 				end
 			elseif nextBoss == self:BossName(1579) then -- Kaz'rogal
 				waveTime = KRwaveTimes[wave]
 				if wave == 1 then
-					self:Message("waves", "cyan", nil, fmt(L.four, wave, 4, L.abom, 2, L.banshee, 4, L.ghoul, 2, L.necro), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.four, wave, 4, L.abom, 2, L.banshee, 4, L.ghoul, 2, L.necro), false)
 				elseif wave == 2 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 4, L.ghoul, 10, L.garg), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 4, L.ghoul, 10, L.garg), false)
 				elseif wave == 3 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 6, L.fiend, 2, L.necro, 6, L.ghoul), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 6, L.fiend, 2, L.necro, 6, L.ghoul), false)
 				elseif wave == 4 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 6, L.garg, 6, L.fiend, 2, L.necro), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 6, L.garg, 6, L.fiend, 2, L.necro), false)
 				elseif wave == 5 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 4, L.ghoul, 4, L.necro, 6, L.abom), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 4, L.ghoul, 4, L.necro, 6, L.abom), false)
 				elseif wave == 6 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 8, L.garg, 1, L.wyrm), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 8, L.garg, 1, L.wyrm), false)
 				elseif wave == 7 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 6, L.ghoul, 4, L.abom, 1, L.wyrm), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 6, L.ghoul, 4, L.abom, 1, L.wyrm), false)
 				elseif wave == 8 then
-					self:Message("waves", "cyan", nil, fmt(L.five, wave, 6, L.ghoul, 2, L.fiend, 2, L.necro, 4, L.abom, 2, L.banshee), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.five, wave, 6, L.ghoul, 2, L.fiend, 2, L.necro, 4, L.abom, 2, L.banshee), false)
 				end
 			elseif nextBoss == self:BossName(1580) then -- Azgalor
 				waveTime = hordeWaveTimes[wave]
 				if wave == 1 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 6, L.abom, 6, L.necro), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 6, L.abom, 6, L.necro), false)
 				elseif wave == 2 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 5, L.ghoul, 8, L.garg, 1, L.wyrm), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 5, L.ghoul, 8, L.garg, 1, L.wyrm), false)
 				elseif wave == 3 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 6, L.ghoul, 8, L.infernal), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 6, L.ghoul, 8, L.infernal), false)
 				elseif wave == 4 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 6, L.fel, 8, L.infernal), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 6, L.fel, 8, L.infernal), false)
 				elseif wave == 5 then
-					self:Message("waves", "cyan", nil, fmt(L.three, wave, 4, L.abom, 6, L.fel, 4, L.necro), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.three, wave, 4, L.abom, 6, L.fel, 4, L.necro), false)
 				elseif wave == 6 then
-					self:Message("waves", "cyan", nil, fmt(L.two, wave, 6, L.necro, 6, L.banshee), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.two, wave, 6, L.necro, 6, L.banshee), false)
 				elseif wave == 7 then
-					self:Message("waves", "cyan", nil, fmt(L.four, wave, 2, L.ghoul, 2, L.fiend, 2, L.fel, 8, L.infernal), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.four, wave, 2, L.ghoul, 2, L.fiend, 2, L.fel, 8, L.infernal), false)
 				elseif wave == 8 then
-					self:Message("waves", "cyan", nil, fmt(L.five, wave, 4, L.fiend, 2, L.necro, 4, L.abom, 2, L.banshee, 4, L.fel), false)
+					self:MessageOld("waves", "cyan", nil, fmt(L.five, wave, 4, L.fiend, 2, L.necro, 4, L.abom, 2, L.banshee, 4, L.fel), false)
 				end
 			else
-				self:Message("waves", "cyan", nil, fmt(L.waveInc, wave), false)
+				self:MessageOld("waves", "cyan", nil, fmt(L.waveInc, wave), false)
 			end
 
 			self:CancelDelayedMessage(fmt(L.message, nextBoss, 90))

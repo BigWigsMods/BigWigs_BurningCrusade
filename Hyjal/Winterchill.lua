@@ -39,7 +39,7 @@ end
 
 function mod:DeathAndDecay(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "blue", "Alarm")
+		self:MessageOld(args.spellId, "blue", "Alarm")
 		self:Flash(args.spellId)
 	end
 end

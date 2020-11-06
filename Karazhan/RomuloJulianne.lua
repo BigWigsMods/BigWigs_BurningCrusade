@@ -79,12 +79,12 @@ function mod:Poison(args)
 end
 
 function mod:Heal(args)
-	self:Message("heal", "orange", nil, L["heal_message"], args.spellId)
+	self:MessageOld("heal", "orange", nil, L["heal_message"], args.spellId)
 end
 
 function mod:Devotion(args)
 	if self:MobId(args.destGUID) == 17534 then -- Julianne
-		self:Message("buff", "yellow", nil, L["buff2_message"], args.spellId)
+		self:MessageOld("buff", "yellow", nil, L["buff2_message"], args.spellId)
 		self:Bar("buff", 10, L["buff2_message"], args.spellId)
 	end
 end
@@ -97,7 +97,7 @@ end
 
 function mod:Daring(args)
 	if self:MobId(args.destGUID) == 17533 then -- Julianne
-		self:Message("buff", "yellow", nil, L["buff1_message"], args.spellId)
+		self:MessageOld("buff", "yellow", nil, L["buff1_message"], args.spellId)
 		self:Bar("buff", 8, L["buff1_message"], args.spellId)
 	end
 end
@@ -109,14 +109,14 @@ function mod:DaringRemoved(args)
 end
 
 function mod:Act1()
-	self:Message("phase", "green", nil, L["phase1_message"], false)
+	self:MessageOld("phase", "green", nil, L["phase1_message"], false)
 end
 
 function mod:Act2()
-	self:Message("phase", "green", nil, L["phase2_message"], false)
+	self:MessageOld("phase", "green", nil, L["phase2_message"], false)
 end
 
 function mod:Act3()
-	self:Message("phase", "green", nil, L["phase3_message"], false)
+	self:MessageOld("phase", "green", nil, L["phase3_message"], false)
 end
 

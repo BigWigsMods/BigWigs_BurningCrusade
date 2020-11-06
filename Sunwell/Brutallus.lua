@@ -84,7 +84,7 @@ function mod:BurnRemove(args)
 end
 
 function mod:BurnResist(args)
-	self:Message("burnresist", "green", nil, L.burn_resist:format(args.destName), args.spellId)
+	self:MessageOld("burnresist", "green", nil, L.burn_resist:format(args.destName), args.spellId)
 end
 
 function mod:Stomp(args)

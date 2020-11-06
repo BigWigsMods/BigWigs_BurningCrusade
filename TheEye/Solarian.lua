@@ -61,7 +61,7 @@ end
 function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
 
-	self:Message("phase", "green", nil, L["phase1_message"], false)
+	self:MessageOld("phase", "green", nil, L["phase1_message"], false)
 	self:Bar("phase", 50, L["split_bar"], "Spell_Shadow_SealOfKings")
 	self:DelayedMessage("phase", 43, "red", L["split_warning"])
 end
@@ -90,14 +90,14 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 18805 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 21 and hp < 25 then
-			self:Message("phase", "green", nil, L["phase2_warning"], false)
+			self:MessageOld("phase", "green", nil, L["phase2_warning"], false)
 			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
 end
 
 function mod:Phase2()
-	self:Message("phase", "red", nil, L["phase2_message"], false)
+	self:MessageOld("phase", "red", nil, L["phase2_message"], false)
 	self:CancelAllTimers()
 	self:StopBar(L["split_bar"])
 end
@@ -108,7 +108,7 @@ function mod:Split()
 	self:DelayedMessage("split", 83, "red", L["split_warning"])
 
 	-- Agents 6 seconds after the Split
-	self:Message("split", "red", nil, L["agent_warning"], false)
+	self:MessageOld("split", "red", nil, L["agent_warning"], false)
 	self:Bar("split", 6, L["agent_bar"], "Ability_Creature_Cursed_01")
 
 	-- Priests 22 seconds after the Split

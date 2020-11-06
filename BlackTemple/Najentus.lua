@@ -58,13 +58,13 @@ end
 --
 
 function mod:TidalShield(args)
-	self:Message(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "Alert")
 	self:DelayedMessage(args.spellId, 50, "yellow", CL.custom_sec:format(args.spellName, 10))
 	self:CDBar(args.spellId, 56) -- 56-60
 end
 
 function mod:TidalShieldRemoved(args)
-	self:Message(args.spellId, "green", nil, CL.removed:format(args.spellName))
+	self:MessageOld(args.spellId, "green", nil, CL.removed:format(args.spellName))
 end
 
 function mod:ImpalingSpine(args)

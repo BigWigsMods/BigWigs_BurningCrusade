@@ -325,10 +325,10 @@ function mod:Fiends()
 			local time = GetTime()
 			if (time - last) > 5 then
 				last = time
-				self:Message(L["fiends_message"], "red", true, nil, nil, 45934)
+				self:MessageOld(L["fiends_message"], "red", true, nil, nil, 45934)
 			end
 		elseif phase == 2 then
-			self:Message(L["fiends_message"], "red", true, nil, nil, 45934)
+			self:MessageOld(L["fiends_message"], "red", true, nil, nil, 45934)
 		end
 	end
 end
@@ -345,7 +345,7 @@ function mod:Portals()
 	self:TriggerEvent("BigWigs_StopBar", self, L["humanoid_next"])
 	self:TriggerEvent("BigWigs_StopBar", self, L["darkness_next"])
 	if db.phase then
-		self:Message(L["phase2_message"], "yellow")
+		self:MessageOld(L["phase2_message"], "yellow")
 		self:Bar(entropius, 10, 46087)
 	end
 	if db.gravity then
