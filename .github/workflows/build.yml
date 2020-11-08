@@ -23,7 +23,7 @@ jobs:
       - name: Run luacheck
         uses: BigWigsMods/actions/luacheck@master
         with:
-          args: -q
+          args: -qo 011
           config: https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/.luacheckrc
 
       - name: Update option files
