@@ -1,11 +1,11 @@
 
-BigWigs:AddSounds("Anetheron", {
-	[31299] = "alert",
+BigWigs:AddSounds("Rage Winterchill", {
+	[31249] = "alert",
+	[31258] = "alarm",
 })
 
-BigWigs:AddSounds("ArchimondeHyjal", {
-	[31972] = "alert",
-	[32014] = "long",
+BigWigs:AddSounds("Anetheron", {
+	[31299] = "alert",
 })
 
 BigWigs:AddSounds("Azgalor", {
@@ -13,7 +13,7 @@ BigWigs:AddSounds("Azgalor", {
 	[31347] = "alert",
 })
 
-BigWigs:AddSounds("Rage Winterchill", {
-	[31249] = "alert",
-	[31258] = "alarm",
+BigWigs:AddSounds("ArchimondeHyjal", {
+	[31972] = "alert",
+	[32014] = "long",
 })
