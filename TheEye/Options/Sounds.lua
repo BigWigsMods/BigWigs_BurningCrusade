@@ -1,15 +1,15 @@
 
 BigWigs:AddSounds("Al'ar", {
-	[35181] = "Alert",
-	[35383] = "Alarm",
-	[35410] = "Long",
+	[35181] = "alert",
+	[35383] = "alarm",
+	[35410] = "long",
 })
 
 BigWigs:AddSounds("Void Reaver", {
-	[25778] = "Alarm",
-	[34172] = "Alert",
+	[25778] = "alarm",
+	[34172] = "alert",
 })
 
 BigWigs:AddSounds("Kael'thas Sunstrider", {
-	["mc"] = "Alert",
+	["mc"] = "alert",
 })

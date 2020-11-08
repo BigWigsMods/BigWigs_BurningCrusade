@@ -60,7 +60,7 @@ function mod:OnEngage()
 	self:DelayedMessage("dive", 30, "green", (dwarn):format(60))
 	self:DelayedMessage("dive", 60, "green", (dwarn):format(30))
 	self:DelayedMessage("dive", 80, "green", (dwarn):format(10))
-	self:DelayedMessage("dive", 85, "orange", (dwarn):format(5), false, "Alarm")
+	self:DelayedMessage("dive", 85, "orange", (dwarn):format(5), false, "alarm")
 	self:Bar("dive", 90, L["dive_bar"], "Spell_Frost_ArcticWinds")
 
 	self:CDBar(37660, 17) -- Whirl
@@ -91,7 +91,7 @@ function mod:Spout()
 	self:CheckForWipe()
 	self:Bar("spout", 20, L["spout_message"], "Spell_Frost_ChillingBlast")
 	self:Bar("spout", 50, L["spout_bar"], "Spell_Frost_ChillingBlast")
-	self:MessageOld("spout", "red", "Alert", L["spout_message"], 37433)
+	self:MessageOld("spout", "red", "alert", L["spout_message"], 37433)
 	self:DelayedMessage("spout", 47, "yellow", L["spout_warning"])
 	self:StopBar(37660) -- Whirl
 end
@@ -112,7 +112,7 @@ do
 			self:MessageOld("dive", "yellow", nil, L["dive_message"], false)
 			self:DelayedMessage("dive", 30, "green", (ewarn):format(30))
 			self:DelayedMessage("dive", 50, "green", (ewarn):format(10))
-			self:DelayedMessage("dive", 55, "orange", (ewarn):format(5), false, "Alert")
+			self:DelayedMessage("dive", 55, "orange", (ewarn):format(5), false, "alert")
 			self:DelayedMessage("dive", 60, "yellow", L["emerge_message"])
 			self:Bar("dive", 60, L["emerge_bar"], "Spell_Frost_Stun")
 
@@ -131,7 +131,7 @@ function mod:LurkerUp()
 	self:DelayedMessage("dive", 30, "green", (dwarn):format(60))
 	self:DelayedMessage("dive", 60, "green", (dwarn):format(30))
 	self:DelayedMessage("dive", 80, "green", (dwarn):format(10))
-	self:DelayedMessage("dive", 85, "orange", (dwarn):format(5), false, "Alarm")
+	self:DelayedMessage("dive", 85, "orange", (dwarn):format(5), false, "alarm")
 	self:Bar("dive", 90, L["dive_bar"], "Spell_Frost_ArcticWinds")
 
 	self:OpenProximity("proximity", 10)

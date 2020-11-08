@@ -87,7 +87,7 @@ function mod:Earthquake(args)
 end
 
 function mod:Frenzy(args)
-	self:MessageOld(args.spellId, "red", "Alarm", "20% - "..args.spellName)
+	self:MessageOld(args.spellId, "red", "alarm", "20% - "..args.spellName)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(event, unit)

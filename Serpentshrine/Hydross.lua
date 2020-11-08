@@ -100,7 +100,7 @@ function mod:Mark(args)
 	self:StopBar((debuffBar):format(curPerc, cleanName))
 
 	local spellId = args.spellId
-	self:MessageOld("mark", "red", "Alert", L["debuff_warn"]:format(curPerc), spellId)
+	self:MessageOld("mark", "red", "alert", L["debuff_warn"]:format(curPerc), spellId)
 	if spellId == 38215 or spellId == 38219 then
 		curPerc = 25
 	elseif spellId == 38216 or spellId == 38220 then

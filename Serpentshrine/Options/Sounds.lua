@@ -1,30 +1,30 @@
 
 BigWigs:AddSounds("Hydross the Unstable", {
-	["mark"] = "Alert",
+	["mark"] = "alert",
 })
 
 BigWigs:AddSounds("Fathom-Lord Karathress", {
-	[38330] = "Long",
-	["totem"] = "Alarm",
+	[38330] = "long",
+	["totem"] = "alarm",
 })
 
 BigWigs:AddSounds("Leotheras the Blind", {
-	[37640] = "Alert",
-	["mindcontrol"] = "Alert",
+	[37640] = "alert",
+	["mindcontrol"] = "alert",
 })
 
 BigWigs:AddSounds("The Lurker Below", {
-	["dive"] = {"Alarm","Alert"},
-	["spout"] = "Alert",
+	["dive"] = {"alarm","alert"},
+	["spout"] = "alert",
 })
 
 BigWigs:AddSounds("Morogrim Tidewalker", {
-	[37730] = "Alarm",
-	[37850] = "Alert",
-	["globules"] = "Alert",
+	[37730] = "alarm",
+	[37850] = "alert",
+	["globules"] = "alert",
 })
 
 BigWigs:AddSounds("Lady Vashj", {
-	[38280] = "Alert",
-	["phase"] = "Alarm",
+	[38280] = "alert",
+	["phase"] = "alarm",
 })

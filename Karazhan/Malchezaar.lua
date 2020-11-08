@@ -84,13 +84,13 @@ end
 
 function mod:SelfEnfeeble(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL["you"]:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL["you"]:format(args.spellName))
 		self:TargetBar(args.spellId, 7, args.destName)
 	end
 end
 
 function mod:Nova(args)
-	self:MessageOld(args.spellId, "red", "Info")
+	self:MessageOld(args.spellId, "red", "info")
 	self:Bar(args.spellId, 2, "<"..args.spellName..">")
 	if nova then
 		self:Bar(args.spellId, 20)
@@ -100,7 +100,7 @@ end
 
 function mod:Infernal()
 	self:MessageOld("infernal", "red", nil, L["infernal_warning"], L.infernal_icon)
-	self:DelayedMessage("infernal", 12, "orange", L["infernal_message"], false, "Alert")
+	self:DelayedMessage("infernal", 12, "orange", L["infernal_message"], false, "alert")
 	self:Bar("infernal", 17, L["infernal_bar"], L.infernal_icon)
 end
 

@@ -58,11 +58,11 @@ function mod:Garrote(args)
 end
 
 function mod:Frenzy(args)
-	self:MessageOld(args.spellId, "red", "Alarm", "30% - "..args.spellName)
+	self:MessageOld(args.spellId, "red", "alarm", "30% - "..args.spellName)
 end
 
 function mod:Vanish(args)
-	self:MessageOld(args.spellId, "orange", "Alert")
+	self:MessageOld(args.spellId, "orange", "alert")
 	self:CDBar(args.spellId, 35)
 	self:DelayedMessage(args.spellId, 30, "yellow", CL["soon"]:format(args.spellName))
 end
@@ -71,7 +71,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 15687 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 36 then
-			self:MessageOld(37023, "green", "Info", CL["soon"]:format(self:SpellName(37023)), false) -- Frenzy
+			self:MessageOld(37023, "green", "info", CL["soon"]:format(self:SpellName(37023)), false) -- Frenzy
 			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end

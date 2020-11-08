@@ -354,7 +354,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, unit, _, _, player)
 	if ((unit == lady and deaths == 0) or (unit == lock and deaths == 1)) and db.nova then
 		if player == pName then
-			self:MessageOld(L["nova_message"]:format(player), "blue", 45329, "Long")
+			self:MessageOld(L["nova_message"]:format(player), "blue", 45329, "long")
 		else
 			self:MessageOld(L["nova_message"]:format(player), "orange", nil, nil, nil, 45329)
 		end
@@ -362,7 +362,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, unit, _, _, player)
 		self:Icon(player, "icon")
 	elseif ((unit == lock and deaths == 0) or (unit == lady and deaths == 1)) and db.conflag then
 		if player == pName then
-			self:MessageOld(L["conflag_message"]:format(player), "blue", 45333, "Long")
+			self:MessageOld(L["conflag_message"]:format(player), "blue", 45333, "long")
 		else
 			self:MessageOld(L["conflag_message"]:format(player), "yellow", nil, nil, nil, 45333)
 			self:Whisper(player, L["conflag_you"])

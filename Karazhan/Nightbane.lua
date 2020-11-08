@@ -78,7 +78,7 @@ end
 
 function mod:CharredEarth(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL["underyou"]:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL["underyou"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end
@@ -98,12 +98,12 @@ function mod:Air()
 	self:CancelDelayedMessage(CL["soon"]:format(self:SpellName(36922)))
 	self:StopBar(36922) -- Fear
 
-	self:MessageOld("phase", "yellow", "Info", L["airphase_message"], "INV_Misc_Head_Dragon_01")
+	self:MessageOld("phase", "yellow", "info", L["airphase_message"], "INV_Misc_Head_Dragon_01")
 	self:Bar("phase", 57, L["landphase_message"], "INV_Misc_Head_Dragon_01")
 end
 
 function mod:Land()
-	self:MessageOld("phase", "red", "Long", L["landphase_message"], "INV_Misc_Head_Dragon_01")
+	self:MessageOld("phase", "red", "long", L["landphase_message"], "INV_Misc_Head_Dragon_01")
 	self:Bar("phase", 17, L["landphase_message"], "INV_Misc_Head_Dragon_01")
 end
 

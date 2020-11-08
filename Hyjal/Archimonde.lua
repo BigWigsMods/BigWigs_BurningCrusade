@@ -55,7 +55,7 @@ end
 --
 
 function mod:GripOfTheLegion(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert", L["grip_other"])
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert", L["grip_other"])
 end
 
 function mod:Fear(args)
@@ -66,7 +66,7 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		self:TargetMessageOld(32014, name, "red", "Long")
+		self:TargetMessageOld(32014, name, "red", "long")
 		self:PrimaryIcon(32014, name)
 		self:ScheduleTimer("PrimaryIcon", 5, 32014)
 		if self:Me(guid) then

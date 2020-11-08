@@ -93,7 +93,7 @@ function mod:OnEngage()
 	self:DelayedMessage("escape", 60, "green", L["escape_warning2"])
 	self:DelayedMessage("escape", 90, "yellow", L["escape_warning3"])
 	self:DelayedMessage("escape", 110, "orange", L["escape_warning4"])
-	self:DelayedMessage("escape", 117, "orange", L["escape_warning5"], false, "Long")
+	self:DelayedMessage("escape", 117, "orange", L["escape_warning5"], false, "long")
 end
 
 --------------------------------------------------------------------------------
@@ -116,12 +116,12 @@ function mod:Abyssal()
 end
 
 function mod:Heal(args)
-	self:MessageOld("heal", "orange", "Alarm", L["heal_message"], args.spellId)
+	self:MessageOld("heal", "orange", "alarm", L["heal_message"], args.spellId)
 	self:Bar("heal", 2, L["heal_message"], args.spellId)
 end
 
 function mod:Banished(args)
-	self:MessageOld("banish", "red", "Info", L["banish_message"], args.spellId)
+	self:MessageOld("banish", "red", "info", L["banish_message"], args.spellId)
 	self:Bar("banish", 10, L["banish_bar"], args.spellId)
 	self:StopBar(CL["cast"]:format(self:SpellName(30616))) -- Blast Nova
 end
@@ -152,7 +152,7 @@ end
 
 function mod:Debris(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "red", "Alert", CL["you"]:format(args.spellName))
+		self:MessageOld(args.spellId, "red", "alert", CL["you"]:format(args.spellName))
 	end
 end
 

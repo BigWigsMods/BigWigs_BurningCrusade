@@ -56,10 +56,10 @@ end
 --
 
 function mod:Evocate(args)
-	self:MessageOld(args.spellId, "red", "Alarm", L["weaken_message"])
+	self:MessageOld(args.spellId, "red", "alarm", L["weaken_message"])
 	self:Bar(args.spellId, 20, CL["cast"]:format(args.spellName))
 	self:DelayedMessage(args.spellId, 15, "orange", L["weaken_fade_warning"])
-	self:DelayedMessage(args.spellId, 20, "red", L["weaken_fade_message"], false, "Alarm")
+	self:DelayedMessage(args.spellId, 20, "red", L["weaken_fade_message"], false, "alarm")
 
 	self:Bar(args.spellId, 115)
 	self:DelayedMessage(args.spellId, 45, "green", CL["custom_sec"]:format(args.spellName, 70))

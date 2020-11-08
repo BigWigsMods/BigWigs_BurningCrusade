@@ -101,7 +101,7 @@ end
 function mod:Phase2()
 	self:PrimaryIcon(38280)
 	shieldsFaded = 0
-	self:MessageOld("phase", "red", "Alarm", L["phase2_message"], false)
+	self:MessageOld("phase", "red", "alarm", L["phase2_message"], false)
 	self:Bar("elemental", 53, L["elemental_bar"], 38132)
 	self:DelayedMessage("elemental", 48, "red", L["elemental_soon_message"])
 	self:RepeatStrider()
@@ -113,12 +113,12 @@ function mod:Phase3()
 	self:StopBar(L["elemental_bar"])
 	self:StopBar(L["strider_bar"])
 	self:StopBar(L["naga_bar"])
-	self:MessageOld("phase", "red", "Alarm", L["phase3_message"], false)
+	self:MessageOld("phase", "red", "alarm", L["phase3_message"], false)
 	self:Berserk(240, true)
 end
 
 function mod:Charge(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 20, args.destName)
 	if self:Me(args.destGUID) then

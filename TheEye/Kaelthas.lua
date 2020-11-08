@@ -133,7 +133,7 @@ end
 do
 	local scheduled = nil
 	local function mcWarn(spellId)
-		mod:TargetMessageOld("mc", MCd, "red", "Alert", spellId)
+		mod:TargetMessageOld("mc", MCd, "red", "alert", spellId)
 		scheduled = nil
 	end
 	function mod:MC(args)

@@ -618,7 +618,7 @@ function mod:Orb()
 	if (time - last) > 10 then
 		last = time
 		if db.orb then
-			self:IfMessage(L["orb_shooting"], "yellow", 45680, "Alert")
+			self:IfMessage(L["orb_shooting"], "yellow", 45680, "alert")
 		end
 	end
 end
@@ -632,7 +632,7 @@ function mod:Deaths(unit, guid)
 			self:Bar(boss, 10, "Spell_Shadow_Charm")
 			self:TriggerEvent("BigWigs_ShowProximity", self)
 			if db.phase then
-				self:MessageOld(L["phase2_message"], "red", nil, "Alarm")
+				self:MessageOld(L["phase2_message"], "red", nil, "alarm")
 			end
 		end
 		return
@@ -675,17 +675,17 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	elseif msg == L["phase3_trigger"] then
 		phase = 3
 		if db.phase then
-			self:MessageOld(L["phase3_message"], "red", nil, "Alarm")
+			self:MessageOld(L["phase3_message"], "red", nil, "alarm")
 		end
 	elseif msg == L["phase4_trigger"] then
 		phase = 4
 		if db.phase then
-			self:MessageOld(L["phase4_message"], "red", nil, "Alarm")
+			self:MessageOld(L["phase4_message"], "red", nil, "alarm")
 		end
 	elseif msg == L["phase5_trigger"] then
 		phase = 5
 		if db.phase then
-			self:MessageOld(L["phase5_message"], "red", nil, "Alarm")
+			self:MessageOld(L["phase5_message"], "red", nil, "alarm")
 		end
 	end
 end
@@ -710,7 +710,7 @@ function mod:Bloom(player)
 		self:Whisper(player, L["bloom_you"], "bloomwhisper")
 		self:ScheduleEvent("BWBloomWarn", self.BloomWarn, 0.4, self)
 		if player == pName and db.bloomsay then
-			self:MessageOld(L["bloom_you"], "blue", 45641, "Long")
+			self:MessageOld(L["bloom_you"], "blue", 45641, "long")
 			SendChatMessage(L["bloom_say"], "SAY")
 		end
 	end
@@ -731,7 +731,7 @@ function mod:BloomWarn()
 		end
 	end
 
-	self:IfMessage(L["bloom_other"]:format(msg), "red", 45641, "Alert")
+	self:IfMessage(L["bloom_other"]:format(msg), "red", 45641, "alert")
 	self:Bar(L["bloom_bar"], 20, 45641)
 	self:DelayedMessage(15, L["bloom_message"], "yellow")
 	for i = 1, #bloomed do bloomed[i] = nil end

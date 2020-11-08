@@ -44,7 +44,7 @@ function mod:ShadowOfDeath(args)
 end
 
 function mod:ShadowOfDeathApplied(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	-- Used to be 55s, wowhead says 55s, timewalking logs say 30s
 	self:TargetBar(args.spellId, 30, args.destName, 54224) -- 54224 = "Death" / ability_rogue_feigndeath / icon 132293
 	self:PrimaryIcon(args.spellId, args.destName)
@@ -63,7 +63,7 @@ do
 	function mod:CrushingShadowsApplied(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
-			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, list, "orange", "Alert")
+			self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, list, "orange", "alert")
 		end
 	end
 end

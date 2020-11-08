@@ -104,7 +104,7 @@ do
 end
 
 function mod:Whirlwind(args)
-	self:MessageOld(args.spellId, "red", "Alert")
+	self:MessageOld(args.spellId, "red", "alert")
 	self:Bar(args.spellId, 12, CL["cast"]:format(args.spellName))
 end
 
@@ -114,7 +114,7 @@ function mod:WhirlwindBar()
 end
 
 function mod:Madness(args)
-	self:TargetMessageOld("mindcontrol", args.destName, "orange", "Alert", L["mindcontrol_warning"], args.spellId)
+	self:TargetMessageOld("mindcontrol", args.destName, "orange", "alert", L["mindcontrol_warning"], args.spellId)
 end
 
 do

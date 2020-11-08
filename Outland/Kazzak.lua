@@ -62,7 +62,7 @@ end
 
 function mod:Mark(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm", CL["you"]:format(args.spellName))
+		self:MessageOld(args.spellId, "blue", "alarm", CL["you"]:format(args.spellName))
 		self:Flash(args.spellId)
 	end
 end
@@ -72,7 +72,7 @@ function mod:Twisted(args)
 end
 
 function mod:Frenzy(args)
-	self:MessageOld("berserk", "red", "Alert", L["enrage_message"], args.spellId)
+	self:MessageOld("berserk", "red", "alert", L["enrage_message"], args.spellId)
 	self:DelayedMessage("berserk", 10, "green", L["enrage_finished"])
 	self:Bar("berserk", 10, L["enraged_bar"], args.spellId)
 	self:DelayedMessage("berserk", 49, "orange", L["enrage_warning2"])

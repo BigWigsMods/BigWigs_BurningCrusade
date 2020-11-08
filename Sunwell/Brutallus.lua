@@ -67,7 +67,7 @@ end
 --
 
 function mod:Burn(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 60, args.destName)
 	self:Bar(args.spellId, 20)

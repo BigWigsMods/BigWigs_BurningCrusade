@@ -1,75 +1,75 @@
 
 BigWigs:AddSounds("High Warlord Naj'entus", {
-	[39837] = "Warning",
-	[39872] = "Alert",
+	[39837] = "warning",
+	[39872] = "alert",
 })
 
 BigWigs:AddSounds("Supremus", {
-	[40265] = "Alert",
-	[41951] = "Warning",
-	["stages"] = "Info",
+	[40265] = "alert",
+	[41951] = "warning",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Shade of Akama", {
-	[42023] = "Alert",
-	["stages"] = "Info",
+	[42023] = "alert",
+	["stages"] = "info",
 })
 
 BigWigs:AddSounds("Teron Gorefiend", {
-	[40243] = "Alert",
-	[40251] = "Warning",
+	[40243] = "alert",
+	[40251] = "warning",
 })
 
 BigWigs:AddSounds("Gurtogg Bloodboil", {
-	[40481] = "Alarm",
-	[40491] = "Alert",
-	[40508] = "Alert",
-	[40604] = {"Info","Warning"},
-	[42005] = "Info",
+	[40481] = "alarm",
+	[40491] = "alert",
+	[40508] = "alert",
+	[40604] = {"info","warning"},
+	[42005] = "info",
 })
 
 BigWigs:AddSounds("Reliquary of Souls", {
-	[41294] = "Warning",
-	[41303] = "Alert",
-	[41305] = "Info",
-	[41376] = "Alert",
-	[41410] = "Info",
-	[41426] = "Alarm",
-	[41431] = "Warning",
+	[41294] = "warning",
+	[41303] = "alert",
+	[41305] = "info",
+	[41376] = "alert",
+	[41410] = "info",
+	[41426] = "alarm",
+	[41431] = "warning",
 })
 
 BigWigs:AddSounds("Mother Shahraz", {
-	[40880] = "Info",
-	[40882] = "Info",
-	[40883] = "Info",
-	[40891] = "Info",
-	[40896] = "Info",
-	[40897] = "Info",
-	[41001] = "Alert",
+	[40880] = "info",
+	[40882] = "info",
+	[40883] = "info",
+	[40891] = "info",
+	[40896] = "info",
+	[40897] = "info",
+	[41001] = "alert",
 })
 
 BigWigs:AddSounds("The Illidari Council", {
-	[41450] = "Info",
-	[41451] = "Info",
-	[41455] = "Warning",
-	[41475] = "Long",
-	[41476] = "Alert",
-	[41481] = "Alarm",
-	[41482] = "Alarm",
-	[41485] = "Alarm",
+	[41450] = "info",
+	[41451] = "info",
+	[41455] = "warning",
+	[41475] = "long",
+	[41476] = "alert",
+	[41481] = "alarm",
+	[41482] = "alarm",
+	[41485] = "alarm",
 })
 
 BigWigs:AddSounds("Illidan Stormrage", {
-	[39869] = "Warning",
-	[40018] = {"Alert","Info"},
-	[40506] = "Alarm",
-	[40585] = "Alert",
-	[40683] = "Long",
-	[40695] = {"Info","Warning"},
-	[40932] = "Alert",
-	[41032] = "Alert",
-	[41117] = "Alert",
-	[41126] = "Alert",
-	[41917] = "Long",
-	["stages"] = "Alarm",
+	[39869] = "warning",
+	[40018] = {"alert","info"},
+	[40506] = "alarm",
+	[40585] = "alert",
+	[40683] = "long",
+	[40695] = {"info","warning"},
+	[40932] = "alert",
+	[41032] = "alert",
+	[41117] = "alert",
+	[41126] = "alert",
+	[41917] = "long",
+	["stages"] = "alarm",
 })

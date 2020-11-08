@@ -57,12 +57,12 @@ end
 --
 
 function mod:Heal(args)
-	self:MessageOld(args.spellId, "red", "Long", L["heal_message"])
+	self:MessageOld(args.spellId, "red", "long", L["heal_message"])
 end
 
 function mod:Totem(args)
 	if self:MobId(args.sourceGUID) == 21214 then
-		self:MessageOld("totem", "orange", "Alarm", L["totem_message2"], args.spellId)
+		self:MessageOld("totem", "orange", "alarm", L["totem_message2"], args.spellId)
 	else
 		self:MessageOld("totem", "yellow", nil, L["totem_message1"], args.spellId)
 	end

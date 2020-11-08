@@ -76,7 +76,7 @@ do
 	local scheduled = nil
 	local inWreath = mod:NewTargetList()
 	local function wreathWarn(spellId)
-		mod:TargetMessageOld(30004, inWreath, "red", "Long", spellId)
+		mod:TargetMessageOld(30004, inWreath, "red", "long", spellId)
 		scheduled = nil
 	end
 	function mod:FlameWreath(args)
@@ -90,7 +90,7 @@ do
 end
 
 function mod:FlameWreathStart(args)
-	self:MessageOld(args.spellId, "red", "Alarm", CL["cast"]:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "alarm", CL["cast"]:format(args.spellName))
 	self:Bar(args.spellId, 5, CL["cast"]:format(args.spellName))
 end
 
@@ -125,7 +125,7 @@ function mod:UNIT_POWER_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 16524 then
 		local mana = UnitPower(unit)
 		if mana > 33000 and mana < 37000 then
-			self:MessageOld("drink", "orange", "Alert", L["drink_warning"], false)
+			self:MessageOld("drink", "orange", "alert", L["drink_warning"], false)
 			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end
@@ -135,7 +135,7 @@ function mod:UNIT_HEALTH_FREQUENT(event, unit)
 	if self:MobId(UnitGUID(unit)) == 16524 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 40 and hp < 46 then
-			self:MessageOld("adds", "orange", "Alert", L["adds_warning"], false)
+			self:MessageOld("adds", "orange", "alert", L["adds_warning"], false)
 			self:UnregisterUnitEvent(event, "target", "focus")
 		end
 	end

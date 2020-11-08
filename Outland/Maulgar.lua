@@ -84,7 +84,7 @@ end
 
 function mod:SpellShield(args)
 	if self:MobId(args.destGUID) == 18832 then
-		self:MessageOld(args.spellId, "yellow", "Info", L["spellshield_message"])
+		self:MessageOld(args.spellId, "yellow", "info", L["spellshield_message"])
 		self:Bar(args.spellId, 30)
 	end
 end
@@ -97,12 +97,12 @@ function mod:Whirlwind(args)
 end
 
 function mod:Summon(args)
-	self:MessageOld(args.spellId, "yellow", "Long", L["summon_message"])
+	self:MessageOld(args.spellId, "yellow", "long", L["summon_message"])
 	self:Bar(args.spellId, 50, L["summon_bar"])
 end
 
 function mod:Prayer(args)
-	self:MessageOld(args.spellId, "red", "Alarm", L["heal_message"])
+	self:MessageOld(args.spellId, "red", "alarm", L["heal_message"])
 end
 
 function mod:Smash(args)

@@ -78,7 +78,7 @@ function mod:GasNova(args)
 end
 
 function mod:SummonDemonicVapor(args)
-	self:TargetMessageOld(45402, args.sourceName, "orange", "Alert")
+	self:TargetMessageOld(45402, args.sourceName, "orange", "alert")
 	self:TargetBar(45402, 10, args.sourceName)
 	self:PrimaryIcon(45402, args.sourceName)
 end
@@ -90,7 +90,7 @@ do
 		if t-prev > 15 then
 			prev = t
 			self:TargetBar(args.spellId, 6, args.destName)
-			self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
+			self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
 			self:PrimaryIcon(args.spellId, args.destName)
 		end
 	end

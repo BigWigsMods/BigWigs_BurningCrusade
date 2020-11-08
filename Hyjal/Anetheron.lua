@@ -43,7 +43,7 @@ do
 		if mobId then
 			local target = UnitName(mobId.."target")
 			if not target then return end
-			mod:TargetMessageOld(spellId, target, "red", "Alert")
+			mod:TargetMessageOld(spellId, target, "red", "alert")
 			mod:PrimaryIcon(spellId, target)
 			mod:ScheduleTimer("PrimaryIcon", 5, spellId)
 		end

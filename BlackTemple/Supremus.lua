@@ -61,7 +61,7 @@ function mod:Fixate(args)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId)
 	end
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -80,17 +80,17 @@ do
 		local t = GetTime()
 		if self:Me(args.destGUID) and t-prev > 1.5 then
 			prev = t
-			self:MessageOld(args.spellId, "blue", "Alert", CL.underyou:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 		end
 	end
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg == L.normal_phase_trigger then
-		self:MessageOld("stages", "cyan", "Info", L.normal_phase, false)
+		self:MessageOld("stages", "cyan", "info", L.normal_phase, false)
 		self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
 	elseif msg == L.kite_phase_trigger then
-		self:MessageOld("stages", "cyan", "Info", L.kite_phase, false)
+		self:MessageOld("stages", "cyan", "info", L.kite_phase, false)
 		self:Bar("stages", 60, L.next_phase, "spell_shadow_summoninfernal")
 	end
 end

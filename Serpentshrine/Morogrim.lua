@@ -73,7 +73,7 @@ end
 do
 	local scheduled = nil
 	local function graveWarn()
-		mod:TargetMessageOld(37850, inGrave, "red", "Alert")
+		mod:TargetMessageOld(37850, inGrave, "red", "alert")
 		scheduled = nil
 	end
 	function mod:Grave(args)
@@ -88,7 +88,7 @@ do
 end
 
 function mod:Tidal(args)
-	self:MessageOld(args.spellId, "orange", "Alarm")
+	self:MessageOld(args.spellId, "orange", "alarm")
 end
 
 function mod:Murlocs()
@@ -98,7 +98,7 @@ function mod:Murlocs()
 end
 
 function mod:Globules()
-	self:MessageOld("globules", "red", "Alert", L["globules_message"], false)
+	self:MessageOld("globules", "red", "alert", L["globules_message"], false)
 	self:Bar("globules", 36, L["globules_bar"], "INV_Elemental_Primal_Water")
 end
 

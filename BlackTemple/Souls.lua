@@ -145,22 +145,22 @@ end
 function mod:SoulDrainApplied(args)
 	playerList[#playerList+1] = args.destName
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "yellow", "Alert")
+		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "yellow", "alert")
 	end
 end
 
 function mod:Frenzy(args)
-	self:MessageOld(args.spellId, "orange", "Info")
+	self:MessageOld(args.spellId, "orange", "info")
 	self:CastBar(args.spellId, 8)
 end
 
 function mod:FrenzyRemoved(args)
-	self:MessageOld(args.spellId, "green", "Info", CL.over:format(args.spellName))
+	self:MessageOld(args.spellId, "green", "info", CL.over:format(args.spellName))
 	self:Bar(args.spellId, 40.5)
 end
 
 function mod:Fixate(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Warning")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
@@ -173,17 +173,17 @@ function mod:AuraOfDesire() -- Start of Stage 2
 end
 
 function mod:RuneShield(args)
-	self:MessageOld(args.spellId, "orange", self:Dispeller("magic", true) and "Warning")
+	self:MessageOld(args.spellId, "orange", self:Dispeller("magic", true) and "warning")
 	self:Bar(args.spellId, 15.7)
 end
 
 function mod:Deaden(args)
-	self:MessageOld(args.spellId, "red", self:Interrupter() and "Info", CL.casting:format(args.spellName))
+	self:MessageOld(args.spellId, "red", self:Interrupter() and "info", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 31.5)
 end
 
 function mod:SpiritShock(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alarm", nil, nil, self:Tank())
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm", nil, nil, self:Tank())
 end
 
 --[[ Essence of Anger ]]--
@@ -199,7 +199,7 @@ end
 function mod:SpiteApplied(args)
 	playerList[#playerList+1] = args.destName
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "red", "Alert")
+		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "red", "alert")
 	end
 end
 

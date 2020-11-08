@@ -46,7 +46,7 @@ end
 
 function mod:RainOfFire(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "orange", "Alarm", CL["you"]:format(args.spellName))
+		self:MessageOld(args.spellId, "orange", "alarm", CL["you"]:format(args.spellName))
 	end
 end
 
@@ -57,7 +57,7 @@ function mod:Howl(args)
 end
 
 function mod:Doom(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert")
 	self:TargetBar(args.spellId, 19, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then

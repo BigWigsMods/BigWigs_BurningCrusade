@@ -42,7 +42,7 @@ end
 
 function mod:OnEngage()
 	self:MessageOld(29511, "yellow", nil, L["engage_message"])
-	self:DelayedMessage(29511, 33, "orange", L["repentance_warning"], false, "Alarm")
+	self:DelayedMessage(29511, 33, "orange", L["repentance_warning"], false, "alarm")
 	self:CDBar(29511, 33)
 	self:OpenProximity("proximity", 10)
 end
@@ -59,7 +59,7 @@ end
 function mod:Repentance(args)
 	self:MessageOld(args.spellId, "red", nil, L["repentance_message"])
 	self:Bar(args.spellId, 12, "<"..args.spellName..">")
-	self:DelayedMessage(args.spellId, 33, "orange", L["repentance_warning"], false, "Alarm")
+	self:DelayedMessage(args.spellId, 33, "orange", L["repentance_warning"], false, "alarm")
 	self:CDBar(args.spellId, 33)
 end
 

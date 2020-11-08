@@ -33,13 +33,13 @@ end
 --
 
 function mod:Icebolt(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "Alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 function mod:DeathAndDecay(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "Alarm")
+		self:MessageOld(args.spellId, "blue", "alarm")
 		self:Flash(args.spellId)
 	end
 end

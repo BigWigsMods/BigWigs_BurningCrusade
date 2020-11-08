@@ -95,7 +95,7 @@ end
 
 --[[ Veras Darkshadow ]]--
 function mod:Vanish(args)
-	self:MessageOld(args.spellId, "yellow", "Alert", L.veras:format(args.spellName))
+	self:MessageOld(args.spellId, "yellow", "alert", L.veras:format(args.spellName))
 	self:Bar(args.spellId, 30)
 end
 
@@ -105,7 +105,7 @@ end
 
 function mod:DeadlyPoison(args)
 	if self:Healer() or self:Me(args.destGUID) then
-		self:TargetMessageOld(args.spellId, args.destName, "red", "Alarm")
+		self:TargetMessageOld(args.spellId, args.destName, "red", "alarm")
 	end
 	self:PrimaryIcon(args.spellId, args.destName)
 end
@@ -116,7 +116,7 @@ end
 
 --[[ Lady Malande ]]--
 function mod:ReflectiveShield(args)
-	self:MessageOld(args.spellId, "red", "Long", L.malande:format(args.spellName))
+	self:MessageOld(args.spellId, "red", "long", L.malande:format(args.spellName))
 	self:Bar(args.spellId, 20)
 end
 
@@ -125,7 +125,7 @@ function mod:ReflectiveShieldOver(args)
 end
 
 function mod:CircleOfHealing(args)
-	self:MessageOld(args.spellId, "orange", self:Interrupter() and "Warning", L.malande:format(args.spellName))
+	self:MessageOld(args.spellId, "orange", self:Interrupter() and "warning", L.malande:format(args.spellName))
 end
 
 function mod:CircleOfHealingSuccess(args)
@@ -154,7 +154,7 @@ end
 function mod:BlessingOfProtection(args)
 	if self:MobId(args.destGUID) == 22951 and self:MobId(UnitGUID("target")) == 22951 and not self:Healer() then -- Lady Malande
 		local txt = L.malande:format(L.physical_immunity)
-		self:MessageOld(args.spellId, "red", "Info", txt)
+		self:MessageOld(args.spellId, "red", "info", txt)
 		self:Bar(args.spellId, 15, txt)
 	end
 end
@@ -162,7 +162,7 @@ end
 function mod:BlessingOfSpellWarding(args)
 	if self:MobId(args.destGUID) == 22951 and self:MobId(UnitGUID("target")) == 22951 and not self:Healer() then -- Lady Malande
 		local txt = L.malande:format(L.magical_immunity)
-		self:MessageOld(args.spellId, "red", "Info", txt)
+		self:MessageOld(args.spellId, "red", "info", txt)
 		self:Bar(args.spellId, 15, txt)
 	end
 end
@@ -174,7 +174,7 @@ do
 		local t = GetTime()
 		if self:Me(args.destGUID) and t-prev > 2 then
 			prev = t
-			self:MessageOld(args.spellId, "blue", "Alarm", CL.you:format(args.spellName))
+			self:MessageOld(args.spellId, "blue", "alarm", CL.you:format(args.spellName))
 		end
 	end
 end

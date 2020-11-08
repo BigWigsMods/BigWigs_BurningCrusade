@@ -57,7 +57,7 @@ function mod:FatalAttraction(args)
 	end
 
 	if #playerList == 1 then
-		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "Alert")
+		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "orange", "alert")
 	end
 end
 
@@ -78,7 +78,7 @@ do
 	}
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		if spells[spellId] then
-			self:MessageOld(spellId, "yellow", "Info") -- SetOption:40883,40891,40880,40897,40882,40896:::
+			self:MessageOld(spellId, "yellow", "info") -- SetOption:40883,40891,40880,40897,40882,40896:::
 			self:Bar(spellId, 15) -- SetOption:40883,40891,40880,40897,40882,40896:::
 		end
 	end
