@@ -123,6 +123,6 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 		self:ScheduleTimer("PhaseOne", 100)
 
 		breathCount = 1
-		self:Bar("breath", 40.5, L.breath_nextbar:format(breathCount), L.breath_icon)
+		self:CDBar("breath", 40.5, CL.count:format(L.breath, breathCount), L.breath_icon)
 	end
 end
