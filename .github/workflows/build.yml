@@ -6,8 +6,6 @@ on:
       - master
     tags:
       - '*'
-    paths-ignore:
-      - '.github/**'
 
 jobs:
   build:
@@ -25,6 +23,12 @@ jobs:
         with:
           args: -qo 011
           config: https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/.luacheckrc
+
+      - name: Download common locale
+        if: always()
+        run: |
+          mkdir -p Core/Locales
+          curl -sS https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/Core/Locales/common.enUS.lua > Core/Locales/common.enUS.lua
 
       - name: Update option files
         if: always()
