@@ -67,7 +67,7 @@ function mod:OnEngage()
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", "StartWipeCheck")
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "StopWipeCheck")
 
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 
 	self:MessageOld(33238, "yellow", nil, L["whirlwind_warning"])
 	self:DelayedMessage(33238, 54, "orange", CL["soon"]:format(self:SpellName(33238))) -- Whirlwind
@@ -113,8 +113,8 @@ function mod:Flurry(args)
 	self:MessageOld(args.spellId, "red", nil, "50% - "..args.spellName)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
-	if self:MobId(UnitGUID(unit)) == 18831 then
+function mod:UNIT_HEALTH(event, unit)
+	if self:MobId(self:UnitGUID(unit)) == 18831 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 50 and hp < 57 then
 			local flurry = self:SpellName(33232)

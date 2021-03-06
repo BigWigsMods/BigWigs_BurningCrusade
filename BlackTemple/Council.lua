@@ -152,7 +152,7 @@ function mod:ChromaticResistanceAuraOver(args)
 end
 
 function mod:BlessingOfProtection(args)
-	if self:MobId(args.destGUID) == 22951 and self:MobId(UnitGUID("target")) == 22951 and not self:Healer() then -- Lady Malande
+	if self:MobId(args.destGUID) == 22951 and self:MobId(self:UnitGUID("target")) == 22951 and not self:Healer() then -- Lady Malande
 		local txt = L.malande:format(L.physical_immunity)
 		self:MessageOld(args.spellId, "red", "info", txt)
 		self:Bar(args.spellId, 15, txt)
@@ -160,7 +160,7 @@ function mod:BlessingOfProtection(args)
 end
 
 function mod:BlessingOfSpellWarding(args)
-	if self:MobId(args.destGUID) == 22951 and self:MobId(UnitGUID("target")) == 22951 and not self:Healer() then -- Lady Malande
+	if self:MobId(args.destGUID) == 22951 and self:MobId(self:UnitGUID("target")) == 22951 and not self:Healer() then -- Lady Malande
 		local txt = L.malande:format(L.magical_immunity)
 		self:MessageOld(args.spellId, "red", "info", txt)
 		self:Bar(args.spellId, 15, txt)

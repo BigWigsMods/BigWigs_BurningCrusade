@@ -123,7 +123,7 @@ end
 
 function mod:CheckForFixate(_, unit, guid)
 	local mobId = self:MobId(guid)
-	if mobId == 23498 and not fixateList[guid] and self:Me(UnitGUID(unit.."target")) then -- Parasitic Shadowfiend
+	if mobId == 23498 and not fixateList[guid] and self:Me(self:UnitGUID(unit.."target")) then -- Parasitic Shadowfiend
 		fixateList[guid] = true
 		self:Say(41917, 41951) -- 41951 = "Fixate"
 		self:MessageOld(41917, "blue", "long", CL.you:format(self:SpellName(41951)), 41951)

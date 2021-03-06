@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 	self:MessageOld(29448, "yellow", nil, L["engage_message"]:format(self.displayName))
 
 	self:CDBar(29448, 35)
@@ -67,8 +67,8 @@ function mod:Vanish(args)
 	self:DelayedMessage(args.spellId, 30, "yellow", CL["soon"]:format(args.spellName))
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
-	if self:MobId(UnitGUID(unit)) == 15687 then
+function mod:UNIT_HEALTH(event, unit)
+	if self:MobId(self:UnitGUID(unit)) == 15687 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 30 and hp < 36 then
 			self:MessageOld(37023, "green", "info", CL["soon"]:format(self:SpellName(37023)), false) -- Frenzy

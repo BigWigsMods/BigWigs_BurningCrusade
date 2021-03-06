@@ -121,7 +121,7 @@ do
 end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	if self:MobId(UnitGUID("boss1")) == 22841 then -- Shade of Akama
+	if self:MobId(self:UnitGUID("boss1")) == 22841 then -- Shade of Akama
 		self:CancelTimer(defender)
 		self:CancelTimer(sorcerer)
 		self:CancelTimer(right)

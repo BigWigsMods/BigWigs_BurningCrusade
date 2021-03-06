@@ -107,7 +107,7 @@ function mod:BigWigs_OnBossWin(_, mod)
 end
 
 function mod:GOSSIP_SHOW()
-	local mobId = self:MobId(UnitGUID("npc"))
+	local mobId = self:MobId(self:UnitGUID("npc"))
 	local gossip = self:GetGossipOptions()
 
 	if gossip and (mobId == 17852 or mobId == 17772) then -- Thrall, Lady Jaina Proudmoore

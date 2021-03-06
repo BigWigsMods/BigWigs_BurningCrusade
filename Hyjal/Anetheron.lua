@@ -41,7 +41,7 @@ do
 	local function infernoCheck(sGUID, spellId)
 		local mobId = mod:GetUnitIdByGUID(sGUID)
 		if mobId then
-			local target = UnitName(mobId.."target")
+			local target = mod:UnitName(mobId.."target")
 			if not target then return end
 			mod:TargetMessageOld(spellId, target, "red", "alert")
 			mod:PrimaryIcon(spellId, target)

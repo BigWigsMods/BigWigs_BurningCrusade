@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 	self:OpenProximity("proximity", 10)
 	self:Berserk(600)
 	self:CDBar(30254, 109)
@@ -75,8 +75,8 @@ function mod:Infusion(args)
 	self:StopBar(CL["cast"]:format(self:SpellName(30254))) -- Evocation
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
-	if self:MobId(UnitGUID(unit)) == 15691 then
+function mod:UNIT_HEALTH(event, unit)
+	if self:MobId(self:UnitGUID(unit)) == 15691 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
 			self:MessageOld(30403, "green", nil, CL["soon"]:format(self:SpellName(30403)), false) -- Arcane Infusion

@@ -74,7 +74,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH_FREQUENT", nil, "target", "focus")
+	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 	demonTimer = nil
 
 	self:DelayedMessage("phase", 55, "orange", L["phase_demonsoon"])
@@ -147,8 +147,8 @@ function mod:Image()
 	self:MessageOld("image", "red", nil, L["image_message"], false)
 end
 
-function mod:UNIT_HEALTH_FREQUENT(event, unit)
-	if self:MobId(UnitGUID(unit)) == 21215 then
+function mod:UNIT_HEALTH(event, unit)
+	if self:MobId(self:UnitGUID(unit)) == 21215 then
 		local hp = UnitHealth(unit) / UnitHealthMax(unit) * 100
 		if hp > 15 and hp < 20 then
 			self:MessageOld("image", "orange", nil, L["image_warning"], false)
