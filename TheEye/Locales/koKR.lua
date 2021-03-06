@@ -74,7 +74,6 @@ if L then
 
 	L.mc = "정신 지배"
 	L.mc_desc = "정신 지배에 걸린 플레이어를 알립니다."
-	L.mc_message = "정신 지배: %s"
 
 	L.revive_bar = "조언가 부활"
 	L.revive_warning = "5초 이내 조언가 부활!"

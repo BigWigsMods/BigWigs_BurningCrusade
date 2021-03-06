@@ -74,7 +74,6 @@ if L then
 
 	L.mc = "精神控制"
 	L.mc_desc = "当玩家受到精神控制时发出警报。"
-	L.mc_message = "精神控制：>%s<！"
 
 	L.revive_bar = "凤凰复活"
 	L.revive_warning = "5秒后，凤凰复活！"

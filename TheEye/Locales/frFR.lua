@@ -74,7 +74,6 @@ if L then
 
 	L.mc = "Contrôle mental"
 	L.mc_desc = "Prévient quand des joueurs subissent les effets du Contrôle mental."
-	L.mc_message = "Contrôle mental : %s"
 
 	L.revive_bar = "Retour des conseillers"
 	L.revive_warning = "Retour des conseillers dans 5 sec. !"

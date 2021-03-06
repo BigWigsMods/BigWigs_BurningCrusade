@@ -74,7 +74,6 @@ if L then
 
 	L.mc = "Control mental (Mind Control)"
 	L.mc_desc = "Avisar quién tiene Control mental."
-	L.mc_message = "Control mental: %s"
 
 	L.revive_bar = "Añadidos revividos"
 	L.revive_warning = "¡Añadidos reviven en 5seg!"

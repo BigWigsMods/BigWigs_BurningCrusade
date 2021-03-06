@@ -74,7 +74,6 @@ if L then
 
 	L.mc = "精神控制"
 	L.mc_desc = "精神控制警報"
-	L.mc_message = "精神控制: [%s]"
 
 	L.revive_bar = "顧問重生"
 	L.revive_warning = "顧問在 5 秒內活動! 坦克、治療準備就位!"

@@ -74,7 +74,6 @@ if L then
 
 	L.mc = "Gedankenkontrolle"
 	L.mc_desc = "Warnt wer von Gedankenkontrolle betroffen ist."
-	L.mc_message = "Gedankenkontrolle: %s"
 
 	L.revive_bar = "Berater wiederbeleben"
 	L.revive_warning = "Wiederbeleben der Berater in 5sek!"

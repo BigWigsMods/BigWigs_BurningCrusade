@@ -74,10 +74,6 @@ if L then
 	L.spout_warning = "約 3 秒後噴射!"
 	L.spout_bar = "噴射"
 
-	L.whirl = "旋風"
-	L.whirl_desc = "旋風計時器"
-	L.whirl_bar = "旋風"
-
 	L.emerge_warning = "%d 秒後浮現"
 	L.emerge_message = "浮現 - 近戰請等旋風結束上前 (約 90 秒後下潛)"
 	L.emerge_bar = "浮現"
