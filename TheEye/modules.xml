@@ -3,8 +3,8 @@
 
 <Script file="Alar.lua"/>
 <Script file="Reaver.lua"/>
-<Script file="Kaelthas.lua"/>
 <Script file="Solarian.lua"/>
+<Script file="Kaelthas.lua"/>
 
 <Include file="Options\options.xml"/>
 

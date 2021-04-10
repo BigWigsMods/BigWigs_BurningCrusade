@@ -2,9 +2,9 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Hydross.lua"/>
-<Script file="Karathress.lua"/>
-<Script file="Leotheras.lua"/>
 <Script file="Lurker.lua"/>
+<Script file="Leotheras.lua"/>
+<Script file="Karathress.lua"/>
 <Script file="Morogrim.lua"/>
 <Script file="Vashj.lua"/>
 
