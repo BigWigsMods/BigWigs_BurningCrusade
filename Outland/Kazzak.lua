@@ -2,11 +2,11 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Doom Lord Kazzak", -100)
+local mod, CL = BigWigs:NewBoss("Doom Lord Kazzak", BigWigsLoader.isBC and -1944 or -100)
 if not mod then return end
 mod:RegisterEnableMob(18728)
 mod.worldBoss = 18728
-mod.otherMenu = -101
+mod.otherMenu = BigWigsLoader.isBC and -1945 or -101
 
 --------------------------------------------------------------------------------
 -- Localization

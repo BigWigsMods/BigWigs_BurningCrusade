@@ -1,4 +1,5 @@
 ## Interface: 90005
+## Interface-BC: 20501
 
 ## Title: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-zhCN: BigWigs [|cffeda55f燃烧的远征|r]
@@ -31,9 +32,8 @@
 ## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
 ## X-Curse-Project-ID: 50688
 ## X-WoWI-ID: 22096
-## X-BigWigs-ExtraMenu: -101
+## X-BigWigs-ExtraMenu: -101, -1945
 ## X-BigWigs-LoadOn-InstanceId: 532, 534, 544, 548, 550, 564, 565, 580
-## X-BigWigs-LoadOn-WorldBoss: -104, 17711, -100, 18728
+## X-BigWigs-LoadOn-WorldBoss: -104, 17711, -100, 18728, -1948, 17711, -1944, 18728
 
 modules.xml
-
