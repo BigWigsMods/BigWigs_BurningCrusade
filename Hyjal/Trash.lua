@@ -91,17 +91,17 @@ end
 -- Event Handlers
 --
 
-function mod:BigWigs_OnBossWin(_, mod)
-	if mod.moduleName == "Rage Winterchill" then
+function mod:BigWigs_OnBossWin(_, module)
+	if module.moduleName == "Rage Winterchill" then
 		nextBoss = self:BossName(1578) -- Anetheron
 		self:StopBar(CL.active) -- Boss kill triggers a Trash module reboot
-	elseif mod.moduleName == "Anetheron" then
+	elseif module.moduleName == "Anetheron" then
 		nextBoss = self:BossName(1579) -- Kaz'rogal
 		self:StopBar(CL.active)
-	elseif mod.moduleName == "Kaz'rogal" then
+	elseif module.moduleName == "Kaz'rogal" then
 		nextBoss = self:BossName(1580) -- Azgalor
 		self:StopBar(CL.active)
-	elseif mod.moduleName == "Azgalor" then
+	elseif module.moduleName == "Azgalor" then
 		self:Disable()
 	end
 end
