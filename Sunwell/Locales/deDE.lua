@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "deDE")
 if not L then return end
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "deDE")
@@ -29,16 +29,22 @@ end
 
 L = BigWigs:NewBossLocale("M'uru", "deDE")
 if L then
-	
+	L.sentinel = "Leerenwache"
+	L.sentinel_desc = "Warnung wenn eine Leerenwache erscheint."
+	L.sentinel_next = "Leerenwache (%d)"
+
+	L.humanoid = "Menschliche Wache"
+	L.humanoid_desc = "Warnung wenn Menschliche Wachen erscheinen."
+	L.humanoid_next = "Wachen (%d)"
 end
 
 L = BigWigs:NewBossLocale("Kalecgos", "deDE")
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("The Eredar Twins", "deDE")
 if L then
-	
+
 end
 

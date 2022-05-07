@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "frFR")
 if not L then return end
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "frFR")
@@ -29,16 +29,22 @@ end
 
 L = BigWigs:NewBossLocale("M'uru", "frFR")
 if L then
-	
+	L.sentinel = "Sentinelles du Vide"
+	L.sentinel_desc = "Prévient quand les Sentinelles du Vide apparaissent."
+	L.sentinel_next = "Sentinelle (%d)"
+
+	L.humanoid = "Renforts humanoïdes"
+	L.humanoid_desc = "Prévient quand les renforts humanoïdes apparaissent."
+	L.humanoid_next = "Humanoïdes (%d)"
 end
 
 L = BigWigs:NewBossLocale("Kalecgos", "frFR")
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("The Eredar Twins", "frFR")
 if L then
-	
+
 end
 

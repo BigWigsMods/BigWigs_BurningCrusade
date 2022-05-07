@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "zhCN")
 if not L then return end
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "zhCN")
@@ -29,16 +29,22 @@ end
 
 L = BigWigs:NewBossLocale("M'uru", "zhCN")
 if L then
-	
+	L.sentinel = "虚空戒卫"
+	L.sentinel_desc = "当虚空戒卫刷新时发出警报。"
+	L.sentinel_next = "下一虚空戒卫：%d"
+
+	L.humanoid = "暗誓精灵"
+	L.humanoid_desc = "当暗誓精灵刷新时发出警报。"
+	L.humanoid_next = "下一暗誓精灵：%d"
 end
 
 L = BigWigs:NewBossLocale("Kalecgos", "zhCN")
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("The Eredar Twins", "zhCN")
 if L then
-	
+
 end
 

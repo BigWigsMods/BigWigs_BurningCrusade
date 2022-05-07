@@ -1,10 +1,10 @@
-local L = BigWigs:NewBossLocale("Kil'jaeden", "esES")
+local L = BigWigs:NewBossLocale("Kil'jaeden", "esMX")
 if not L then return end
 if L then
 
 end
 
-L = BigWigs:NewBossLocale("Felmyst", "esES")
+L = BigWigs:NewBossLocale("Felmyst", "esMX")
 if L then
 	L.phase = "Fases"
 	L.phase_desc = "Avisar sobre las fases de suelo y aire."
@@ -18,7 +18,7 @@ if L then
 	L.breath_desc = "Avisar cuando respira hondo."
 end
 
-L = BigWigs:NewBossLocale("Brutallus", "esES")
+L = BigWigs:NewBossLocale("Brutallus", "esMX")
 if L then
 	L.engage_trigger = "¡Ah, más corderos al matadero!"
 
@@ -27,7 +27,7 @@ if L then
 	L.burn_resist = "Quemar resistido por %s"
 end
 
-L = BigWigs:NewBossLocale("M'uru", "esES")
+L = BigWigs:NewBossLocale("M'uru", "esMX")
 if L then
 	L.sentinel = "Centinela del vacío"
 	L.sentinel_desc = "Avisar cuando aparece un centinela del vacío."
@@ -38,12 +38,12 @@ if L then
 	L.humanoid_next = "Humanoides (%d)"
 end
 
-L = BigWigs:NewBossLocale("Kalecgos", "esES")
+L = BigWigs:NewBossLocale("Kalecgos", "esMX")
 if L then
 
 end
 
-L = BigWigs:NewBossLocale("The Eredar Twins", "esES")
+L = BigWigs:NewBossLocale("The Eredar Twins", "esMX")
 if L then
 
 end

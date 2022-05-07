@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "koKR")
 if not L then return end
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "koKR")
@@ -29,16 +29,22 @@ end
 
 L = BigWigs:NewBossLocale("M'uru", "koKR")
 if L then
-	
+	L.sentinel = "공허의 파수병"
+	L.sentinel_desc = "공허의 파수병의 소환을 알립니다."
+	L.sentinel_next = "공허의 파수병(%d)"
+
+	L.humanoid = "타락한 엘프"
+	L.humanoid_desc = "타락한 엘프 등장을 알립니다."
+	L.humanoid_next = "타락한 엘프(%d)"
 end
 
 L = BigWigs:NewBossLocale("Kalecgos", "koKR")
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("The Eredar Twins", "koKR")
 if L then
-	
+
 end
 

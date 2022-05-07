@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "ruRU")
 if not L then return end
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "ruRU")
@@ -29,16 +29,22 @@ end
 
 L = BigWigs:NewBossLocale("M'uru", "ruRU")
 if L then
-	
+	L.sentinel = "Часовой бездны"
+	L.sentinel_desc = "Предупреждать о появлении Часового Бездны."
+	L.sentinel_next = "%d-й Часовой Бездны"
+
+	L.humanoid = "Воины клана Темного Меча"
+	L.humanoid_desc = "Предупреждать о приходе воинов клана Темного Меча."
+	L.humanoid_next = "Воины Темного Меча (%d)"
 end
 
 L = BigWigs:NewBossLocale("Kalecgos", "ruRU")
 if L then
-	
+
 end
 
 L = BigWigs:NewBossLocale("The Eredar Twins", "ruRU")
 if L then
-	
+
 end
 
