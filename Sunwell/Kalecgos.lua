@@ -272,7 +272,7 @@ do
 	local throttle = {
 		KalecgosCurse = 0, KaleCurseRemv = 0, -- throttle by sync+extra?
 		KalecgosMagicCast = 3, KalecgosMagicHit = 3, KaleBuffet = 3, KalecgosStrike = 3, KalecgosEnrage = 3,
-		KalecgosRealm = 12,
+		KalecgosRealm = 19,
 	}
 	local prev = {}
 
