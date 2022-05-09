@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("M'uru", 580, 1595)
 if not mod then return end
 mod:RegisterEnableMob(25741, 25840) -- M'uru, Entropius
 --mod:SetEncounterID(728) -- No boss frame for M'uru, just Entropius
-mod:SetRespawnTime(30)
+mod:SetRespawnTime(35)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -94,6 +94,7 @@ end
 function mod:ENCOUNTER_END(_, encounterId, _, _, _, status)
 	if encounterId == 728 then
 		if status == 0 then
+			self:SendMessage("BigWigs_EncounterEnd", self, nil, nil, nil, nil, 0) -- XXX temp? hack to force a respawn timer
 			self:Wipe()
 		else
 			self:Win()
