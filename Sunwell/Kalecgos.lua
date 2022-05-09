@@ -5,7 +5,6 @@
 local mod, CL = BigWigs:NewBoss("Kalecgos", 580, 1591)
 if not mod then return end
 mod:RegisterEnableMob(24850, 24892) -- Kalecgos, Sathrovarr
-mod:SetAllowWin(true)
 mod:SetEncounterID(724)
 mod:SetRespawnTime(30)
 
@@ -94,7 +93,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_BossComm")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:Log("SPELL_AURA_APPLIED", "CrazedRage", 44806)
 	self:Log("SPELL_AURA_APPLIED", "ArcaneBuffetApplied", 45018)
@@ -107,10 +105,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CurseOfBoundlessAgonyApplied", 45032, 45034)
 	self:Log("SPELL_AURA_REMOVED", "CurseOfBoundlessAgonyRemoved", 45032, 45034)
 
-	self:BossYell("Engage", L.engage_trigger)
 	self:Emote("CrazedRage", L.enrage_trigger)
-
-	self:Death("Win", 24882)
 end
 
 function mod:OnEngage()
@@ -243,7 +238,7 @@ function mod:UpdateInfoBox()
 			count = count + 1
 			if count > 10 then break end -- bit crowded in there, no?
 			local line = count > 5 and ((count - 5) * 2) or (count * 2 - 1) -- left side then right side
-			local text = ("|cffffffff[%d]|r %s"):format(subgroup, self:ColorName(player))
+			local text = ("[%d] %s"):format(subgroup, self:ColorName(player))
 			self:SetInfo("realm", line, text)
 		end
 	end
