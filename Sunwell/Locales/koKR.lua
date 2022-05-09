@@ -1,7 +1,28 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "koKR")
 if not L then return end
 if L then
+	L.bomb_cast = "잠시 후 큰 폭탄!"
+	L.bomb_nextbar = "~폭탄 가능"
+	L.bomb_warning = "약 10초 이내 폭탄 가능!"
 
+	L.orb = "보호의 구슬"
+	L.orb_desc = "보호의 구슬의 어둠 화살을 알립니다."
+	L.orb_shooting = "구슬 활동 - 어활 공격!"
+
+	L.shield_up = "푸른용의 보호막!"
+	L.deceiver_dies = "심복 #%d 처치"
+
+	L.blueorb = "푸른용군단의 수정구"
+	L.blueorb_desc = "푸른용군단의 수정구의 생성을 알립니다."
+	L.blueorb_message = "푸른용군단의 수정구 준비됨!"
+
+	L.kalec_yell = "수정구에 힘을 쏟겠습니다! 준비하세요!"
+	L.kalec_yell2 = "다른 수정구에 힘을 불어넣었습니다! 어서요!"
+	L.kalec_yell3 = "다른 수정구가 준비됐습니다! 서두르세요!"
+	L.kalec_yell4 = "모든 힘을 수정구에 실었습니다! 이제 그대들의 몫입니다!"
+	L.phase3_trigger = "나를 부정할 수는 없다! 이 세계는 멸망하리라!"
+	L.phase4_trigger = "헛된 꿈을 꾸고 있구나! 너흰 이길 수 없어!"
+	L.phase5_trigger = "으아! 태양샘의 마력이... 나를... 거부한다! 무슨 짓을 한 거지? 무슨 짓을 한 거냐???"
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "koKR")

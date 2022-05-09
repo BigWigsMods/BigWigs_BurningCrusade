@@ -1,7 +1,28 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "deDE")
 if not L then return end
 if L then
+	L.bomb_cast = "Eingehende Große Bombe!"
+	L.bomb_nextbar = "~Mögliche Bombe"
+	L.bomb_warning = "Mögliche Bombe in ~10sek"
 
+	L.orb = "Schildkugel"
+	L.orb_desc = "Warnt wenn eine Schildkugel Schattenblitze schleudert."
+	L.orb_shooting = "Kugel Lebend - Schiessen Leute!"
+
+	L.shield_up = "Schild ist Oben!"
+	L.deceiver_dies = "Betrüger #%d getötet"
+
+	L.blueorb = "Drachenkugel"
+	L.blueorb_desc = "Warnt wenn eine Blaue Drachenschwarm Kugel erscheint."
+	L.blueorb_message = "Blaue Drachenschwarm Kugel Bereit!"
+
+	L.kalec_yell = "I will channel my powers into the orbs! Be ready!"
+	L.kalec_yell2 = "I have empowered another orb! Use it quickly!"
+	L.kalec_yell3 = "Another orb is ready! Make haste!"
+	L.kalec_yell4 = "I have channeled all I can! The power is in your hands!"
+	L.phase3_trigger = "I will not be denied! This world shall fall!"
+	L.phase4_trigger = "Do not harbor false hope. You cannot win!"
+	L.phase5_trigger = "Ragh! The powers of the Sunwell turn against me! What have you done? What have you done?!"
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "deDE")

@@ -1,7 +1,28 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "ruRU")
 if not L then return end
 if L then
+	L.bomb_cast = "Скоро взрыв"
+	L.bomb_nextbar = "~ Возможен взрыв"
+	L.bomb_warning = "Возможен взрыв ~10 секунд"
 
+	L.orb = "Щитовая сфера"
+	L.orb_desc = "Предупреждение о залпе Стрел Тьмы из сферы"
+	L.orb_shooting = "Начат обстрел сферой"
+
+	L.shield_up = "Щит поднят!"
+	L.deceiver_dies = "Рука Искусителя #%d убита"
+
+	L.blueorb = "Сила Синих драконов"
+	L.blueorb_desc = "Предупреждают о появлении Силы Синих Драконов"
+	L.blueorb_message = "Сила Синих Драконов готова!"
+
+	L.kalec_yell = "Я направлю силу в сферы! Приготовься!"
+	L.kalec_yell2 = "Я наполнил силой еще одну сферу! Используй ее как можно скорее!"
+	L.kalec_yell3 = "Еще одна сфера готова! Торопись!"
+	L.kalec_yell4 = "Я отдал все, что мог! Энергия в твоих руках!"
+	L.phase3_trigger = "Меня не остановить! Этот мир падет!"
+	L.phase4_trigger = "Отбросьте напрасные надежды! Вам не победить!"
+	L.phase5_trigger = "Аххх… Сила Солнечного Колодца… обращается… против меня! Что это? Что ты наделала?!"
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "ruRU")

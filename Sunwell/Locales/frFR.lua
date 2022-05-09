@@ -1,7 +1,28 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "frFR")
 if not L then return end
 if L then
+	L.bomb_cast = "Ténèbres des mille âmes en incantation !"
+	L.bomb_nextbar = "~Bombe probable"
+	L.bomb_warning = "Bombe probable dans ~10 sec."
 
+	L.orb = "Orbe du bouclier"
+	L.orb_desc = "Prévient quand un Orbe du bouclier lance des Traits de l'ombre."
+	L.orb_shooting = "Orbe en vie - Bombardement de traits !"
+
+	L.shield_up = "Bouclier ACTIF !"
+	L.deceiver_dies = "Main du Trompeur #%d tué"
+
+	L.blueorb = "Orbe du Vol bleu"
+	L.blueorb_desc = "Prévient quand un Orbe du Vol bleu est prêt."
+	L.blueorb_message = "Orbe du Vol bleu prêt !"
+
+	L.kalec_yell = "Je vais canaliser mon énergie vers les orbes ! Préparez-vous !"
+	L.kalec_yell2 = "J'ai chargé un autre orbe ! Utilisez-le vite !"
+	L.kalec_yell3 = "Un autre orbe est prêt ! Hâtez-vous !"
+	L.kalec_yell4 = "J'ai envoyé tout ce que je pouvais ! La puissance est entre vos mains !"
+	L.phase3_trigger = "Rien ne m'arrêtera ! Ce monde va tomber !"
+	L.phase4_trigger = "Assez de faux espoirs ! Vous ne pouvez pas gagner !"
+	L.phase5_trigger = "Arggghhh ! Les pouvoirs du Puits de soleil… se retournent... contre moi ! Qu'avez-vous fait ? Qu'avez-vous fait ??"
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "frFR")

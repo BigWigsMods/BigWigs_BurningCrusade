@@ -6,7 +6,7 @@
 <Script file="Felmyst.lua"/>
 <Script file="Twins.lua"/>
 <Script file="Muru.lua"/>
-<!--<Script file="KilJaeden.lua"/>-->
+<Script file="KilJaeden.lua"/>
 
 <Include file="Options\options.xml"/>
 

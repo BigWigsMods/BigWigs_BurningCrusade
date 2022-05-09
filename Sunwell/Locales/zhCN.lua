@@ -1,7 +1,28 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "zhCN")
 if not L then return end
 if L then
+	L.bomb_cast = "即将 千魂之暗！"
+	L.bomb_nextbar = "<可能 千魂之暗>"
+	L.bomb_warning = "约10秒后，可能千魂之暗！"
 
+	L.orb = "护盾宝珠"
+	L.orb_desc = "当护盾宝珠施放暗影箭时发出警报。"
+	L.orb_shooting = "护盾宝珠 - 暗影箭！"
+
+	L.shield_up = ">蓝龙之盾< 启用！"
+	L.deceiver_dies = "已杀死基尔加丹之手#%d"
+
+	L.blueorb = "蓝龙宝珠"
+	L.blueorb_desc = "当蓝龙宝珠可用时发出警报。"
+	L.blueorb_message = "蓝龙宝珠已准备好！"
+
+	L.kalec_yell = "我会将我的力量导入宝珠中！准备好！"
+	L.kalec_yell2 = "我又将能量灌入了另一颗宝珠！快去使用它！"
+	L.kalec_yell3 = "又有一颗宝珠准备好了！快点行动！"
+	L.kalec_yell4 = "这是我所能做的一切了！力量现在掌握在你们的手中！"
+	L.phase3_trigger = "我是不会失败的！这个世界注定要毁灭！"
+	L.phase4_trigger = "别再抱有幻想了！你们不可能赢！"
+	L.phase5_trigger = "啊啊啊！太阳之井的能量……开始……对抗我！你们都做了些什么？你们都做了些什么？？"
 end
 
 L = BigWigs:NewBossLocale("Felmyst", "zhCN")
