@@ -40,7 +40,37 @@ end
 
 L = BigWigs:NewBossLocale("Kalecgos", "koKR")
 if L then
+	L.engage_trigger = "으아!! 난 이제 말리고스의 노예가 아니다! 덤벼라, 끝장을 내주마!"
+	L.enrage_trigger = "사스로바르가 칼렉고스를 억제할 수 없는 분노의 소용돌이에 빠뜨립니다!"
 
+	L.sathrovarr = "타락의 사스로바르"
+
+	L.portal = "차원문"
+	L.portal_message = "약 5초이내 차원문!"
+
+	L.realm_desc = "정신 세계에 들어간 플레이어를 알립니다."
+	L.realm_message = "정신 세계: %s (%d 파티)"
+	L.nobody = "아무도"
+
+	L.curse = "저주"
+
+	L.wild_magic_healing = "마법 폭주 (힐량 증가)"
+	L.wild_magic_healing_desc = "당신이 마법 폭주에 의해 힐량이 증가할때 알려줍니다."
+	L.wild_magic_healing_you = "마법 폭주 - 힐량 증가!"
+
+	L.wild_magic_casting = "마법 폭주 (시전시간 지연)"
+	L.wild_magic_casting_desc = "힐러가 마법 폭주에 의해 시전시간이 지연될때 알려줍니다."
+	L.wild_magic_casting_you = "마법 폭주 - 당신은 시전시간 지연!"
+	L.wild_magic_casting_other = "마법 폭주 - %s 시전시간 지연!"
+
+	L.wild_magic_hit = "마법 폭주 (적중률 감소)"
+	L.wild_magic_hit_desc = "탱커가 마법 폭주에 의해 적중률이 감소할때 알려줍니다."
+	L.wild_magic_hit_you = "마법 폭주 - 당신은 적중률 감소!"
+	L.wild_magic_hit_other = "마법 폭주 - %s 적중률 감소!"
+
+	L.wild_magic_threat = "마법 폭주 (위협수준 증가)"
+	L.wild_magic_threat_desc = "당신이 마법 폭주에 의해 위협수준이 증가할때 알려줍니다."
+	L.wild_magic_threat_you = "마법 폭주 - 위협 생성 증가!"
 end
 
 L = BigWigs:NewBossLocale("The Eredar Twins", "koKR")

@@ -40,7 +40,37 @@ end
 
 L = BigWigs:NewBossLocale("Kalecgos", "zhTW")
 if L then
+	L.engage_trigger = "啊!!我不再是瑪里苟斯的奴隸了!所有挑戰我的人都要被消滅!"
+	L.enrage_trigger = "塞斯諾瓦將卡雷苟斯逼入了瘋狂的暴怒中!"
 
+	-- L.sathrovarr = "Sathrovarr the Corruptor"
+
+	L.portal = "傳送門"
+	L.portal_message = "約 5 秒內出現傳送門!"
+
+	L.realm_desc = "提示你誰進入了鬼靈國度"
+	L.realm_message = "鬼靈國度: [%s] - 小隊 %d!"
+	L.nobody = "沒有人"
+
+	L.curse = "詛咒"
+
+	L.wild_magic_healing = "野性魔法 (治療加成)"
+	L.wild_magic_healing_desc = "當你獲得野性魔法 (治療加成) 時提示"
+	L.wild_magic_healing_you = "野性魔法 - 治療效果加成!"
+
+	L.wild_magic_casting = "野性魔法 (施法時間延長)"
+	L.wild_magic_casting_desc = "當治療職受到野性魔法 (施法時間延長) 時提示"
+	L.wild_magic_casting_you = "野性魔法 - 你的施法時間延長!"
+	L.wild_magic_casting_other = "野性魔法 - 施法時間延長: [%s]"
+
+	L.wild_magic_hit = "野性魔法 (命中下降)"
+	L.wild_magic_hit_desc = "當坦克受到野性魔法 (命中下降) 時提示"
+	L.wild_magic_hit_you = "野性魔法 - 你的命中率下降!"
+	L.wild_magic_hit_other = "野性魔法 - 命中率下降: [%s]"
+
+	L.wild_magic_threat = "野性魔法 (仇恨增加)"
+	L.wild_magic_threat_desc = "當你獲得野性魔法 (仇恨增加) 時提示"
+	L.wild_magic_threat_you = "野性魔法 - 你的仇恨值增加!"
 end
 
 L = BigWigs:NewBossLocale("The Eredar Twins", "zhTW")
