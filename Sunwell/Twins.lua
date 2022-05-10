@@ -10,6 +10,27 @@ mod:SetEncounterID(727)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local threatTable = {}
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.lady = "Sacrolash #3:"
+	L.lock = "Alythess #2:"
+
+	L.threat = "Threat"
+
+	L.custom_on_threat = "Threat InfoBox"
+	L.custom_on_threat_desc = "Show second on threat for Grand Warlock Alythess and third on threat for Lady Sacrolash."
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -20,6 +41,7 @@ function mod:GetOptions()
 		45248, -- Shadow Blades
 		{45342, "ICON", "SAY"}, -- Conflagration
 		{45329, "ICON", "SAY"}, -- Shadow Nova
+		"custom_on_threat",
 		"proximity",
 		"berserk",
 	}
@@ -40,11 +62,59 @@ end
 function mod:OnEngage()
 	self:Berserk(360)
 	self:OpenProximity("proximity", 10)
+	if self:GetOption("custom_on_threat") and not self:Solo() then
+		self:OpenInfo(false, L.threat)
+		self:UpdateInfoBox()
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:GetThreat(mobId, index)
+	local bossUnit = self:GetUnitIdByGUID(mobId)
+	if not bossUnit then
+		return nil
+	end
+
+	local count = 0
+	for unit in self:IterateGroup() do
+		count = count + 1
+		local _, _, scaledPercentage = UnitDetailedThreatSituation(unit, bossUnit)
+		if not threatTable[count] then threatTable[count] = {} end
+		threatTable[count][1] = unit
+		threatTable[count][2] = scaledPercentage or 0
+	end
+	for i = count + 1, #threatTable do
+		threatTable[i] = nil
+	end
+
+	sort(threatTable, function(a, b)
+		return a[2] > b[2]
+	end)
+
+	local player = threatTable[math.min(index, count)]
+	if not player then
+		return nil
+	end
+
+	return self:UnitName(player[1])
+end
+
+function mod:UpdateInfoBox()
+	if not _G.BigWigsInfoBox:IsShown() then return end
+
+	-- Lady Sacrolash
+	self:SetInfo(false, 1, ("|cffff7c0a%s|r"):format(L.lady)) -- orange for Conflag
+	self:SetInfo(false, 2, self:GetThreat(25165, 3) or "???")
+
+	-- Grand Warlock Alythess
+	self:SetInfo(false, 3, ("|cff8788ee%s|r"):format(L.lock)) -- purple for Shadow Nova
+	self:SetInfo(false, 4, self:GetThreat(25166, 2) or "???")
+
+	self:ScheduleTimer("UpdateInfoBox", 1)
+end
 
 function mod:Pyrogenics(args)
 	if self:MobId(args.destGUID) == 25166 then -- Grand Warlock Alythess

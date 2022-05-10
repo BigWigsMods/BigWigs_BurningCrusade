@@ -83,6 +83,12 @@ end
 
 L = BigWigs:NewBossLocale("The Eredar Twins", "itIT")
 if L then
+	L.lady = "Sacrolash #3:"
+	L.lock = "Alythess #2:"
 
+	L.threat = "Minaccia"
+
+	-- L.custom_on_threat = "Threat InfoBox"
+	-- L.custom_on_threat_desc = "Show second on threat for Grand Warlock Alythess and third on threat for Lady Sacrolash."
 end
 
