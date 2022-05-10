@@ -91,9 +91,11 @@ function mod:GetOptions()
 	}
 end
 
-function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_BossComm")
+function mod:VerifyEnable(unit)
+	return UnitCanAttack("player", unit)
+end
 
+function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CrazedRage", 44806)
 	self:Log("SPELL_AURA_APPLIED", "ArcaneBuffetApplied", 45018)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "ArcaneBuffetApplied", 45018)
@@ -106,6 +108,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "CurseOfBoundlessAgonyRemoved", 45032, 45034)
 
 	self:Emote("CrazedRage", L.enrage_trigger)
+	self:RegisterMessage("BigWigs_BossComm")
 end
 
 function mod:OnEngage()
@@ -116,8 +119,10 @@ function mod:OnEngage()
 	self:DelayedMessage(44866, 15, "orange", L.portal_message, false, "alert")
 
 	self:OpenProximity("proximity", 9) -- 8 yds for Spectral Blast
-	self:OpenInfo("realm", self:SpellName(46021)) -- Spectral Realm
-	self:UpdateInfoBox()
+	if not self:Solo() then
+		self:OpenInfo("realm", self:SpellName(46021), 4) -- Spectral Realm
+		self:UpdateInfoBox()
+	end
 
 	self:RegisterEvent("UNIT_HEALTH")
 end
@@ -231,26 +236,33 @@ function mod:UpdateInfoBox()
 	-- should probably add a way to install an OnUpdate function
 	if not _G.BigWigsInfoBox:IsShown() then return end
 
+	local t = GetTime()
 	local count = 0
 	for i = 1, GetNumGroupMembers() do
 		local player, _, subgroup = GetRaidRosterInfo(i)
-		if self:UnitDebuff(player, 46021) then -- Spectral Realm
+		local debuff, _, duration, expires = self:UnitDebuff(player, 46021) -- Spectral Realm
+		if debuff then
 			count = count + 1
-			if count > 10 then break end -- bit crowded in there, no?
-			local line = count > 5 and ((count - 5) * 2) or (count * 2 - 1) -- left side then right side
+			if count > 20 then break end -- bit crowded in there, eh?
+			local line = count * 2 - 1
 			local text = ("[%d] %s"):format(subgroup, self:ColorName(player))
+			local remaining = expires - t
 			self:SetInfo("realm", line, text)
+			self:SetInfo("realm", line + 1, math.ceil(remaining))
+			self:SetInfoBar("realm", line, remaining / duration)
 		end
 	end
-	for i = count + 1, 10 do
-		local line = i > 5 and ((i - 5) * 2) or (i * 2 - 1)
+	for i = count + 1, 20 do
+		local line = i * 2 - 1
 		self:SetInfo("realm", line, "")
+		self:SetInfo("realm", line + 1, "")
+		self:SetInfoBar("realm", line, 0)
 	end
 	if count == 0 then
 		self:SetInfo("realm", 1, ("|cff777777%s|r"):format(L.nobody))
 	end
 
-	self:ScheduleTimer("UpdateInfoBox", 2)
+	self:ScheduleTimer("UpdateInfoBox", 0.3)
 end
 
 function mod:CorruptingStrike(args)

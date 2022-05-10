@@ -5,6 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Felmyst", 580, 1593)
 if not mod then return end
 mod:RegisterEnableMob(25038)
+mod:SetEncounterID(726)
+mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -21,9 +23,11 @@ if L then
 	L.phase = "Phases"
 	L.phase_desc = "Warn for takeoff and landing phases."
 	L.phase_icon = 19879 -- inv_misc_head_dragon_01
+
 	L.airphase_trigger = "I am stronger than ever before!"
 	L.takeoff_bar = "Takeoff"
 	L.takeoff_message = "Taking off in 5sec!"
+
 	L.landing_bar = "Landing"
 	L.landing_message = "Landing in 10sec!"
 
@@ -53,11 +57,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_SUMMON", "SummonDemonicVapor", 45392)
 	self:Log("SPELL_DAMAGE", "Encapsulate", 45661) -- Doesn't function like a normal debuff
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
-
-	self:Death("Win", 25038)
 end
 
 function mod:OnEngage()

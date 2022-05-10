@@ -5,6 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Brutallus", 580, 1592)
 if not mod then return end
 mod:RegisterEnableMob(24882)
+mod:SetEncounterID(725)
+-- mod:SetRespawnTime(0) -- doesn't despawn
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -48,11 +50,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "BurnResist", 45141)
 	self:Log("SPELL_CAST_START", "Meteor", 45150)
 	self:Log("SPELL_CAST_SUCCESS", "Stomp", 45185)
-
-	self:BossYell("Engage", L.engage_trigger)
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	self:Death("Win", 24882)
 end
 
 function mod:OnEngage()
@@ -68,7 +65,7 @@ end
 --
 
 function mod:BurnApplied(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
+	self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 60, args.destName)
 	self:Bar(args.spellId, 20)
@@ -96,6 +93,7 @@ function mod:BurnResist(args)
 end
 
 function mod:Meteor(args)
+	self:MessageOld(args.spellId, "orange", "alert", CL.count:format(args.spellName, meteorCounter))
 	meteorCounter = meteorCounter + 1
 	self:Bar(args.spellId, 12, CL.count:format(args.spellName, meteorCounter))
 end

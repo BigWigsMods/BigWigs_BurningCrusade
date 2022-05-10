@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("M'uru", 580, 1595)
 if not mod then return end
 mod:RegisterEnableMob(25741, 25840) -- M'uru, Entropius
---mod:SetEncounterID(728) -- No boss frame for M'uru, just Entropius
+mod:SetEncounterID(728)
 mod:SetRespawnTime(35)
 
 --------------------------------------------------------------------------------
@@ -54,7 +53,6 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START") -- No boss frame for M'uru, just Entropius
-	self:RegisterEvent("ENCOUNTER_END")
 
 	-- Stage 1
 	self:Log("SPELL_AURA_APPLIED", "Darkness", 45996)
@@ -88,17 +86,6 @@ end
 function mod:ENCOUNTER_START(_, encounterId)
 	if encounterId == 728 then
 		self:Engage()
-	end
-end
-
-function mod:ENCOUNTER_END(_, encounterId, _, _, _, status)
-	if encounterId == 728 then
-		if status == 0 then
-			self:SendMessage("BigWigs_EncounterEnd", self, nil, nil, nil, nil, 0) -- XXX temp? hack to force a respawn timer
-			self:Wipe()
-		else
-			self:Win()
-		end
 	end
 end
 
@@ -152,5 +139,5 @@ end
 function mod:BlackHole(args)
 	self:Bar(args.spellId, 10, CL.spawning:format(args.spellName), "spell_nature_unrelentingstorm")
 	self:Bar(args.spellId, 15, args.spellName, "spell_nature_unrelentingstorm")
-	self:DelayedMessage(args.spellId, 5, "orange", CL.spawning:format(args.spellName))
+	self:DelayedMessage(args.spellId, 5, "orange", CL.spawning:format(args.spellName), false)
 end

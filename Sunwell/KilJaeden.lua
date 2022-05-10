@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -26,7 +25,7 @@ local L = mod:GetLocale()
 if L then
 	L.bomb_cast = "Incoming Big Bomb"
 	L.bomb_nextbar = "Possible Bomb"
-	L.bomb_warning = "Possible bomb in ~10sec"
+	L.bomb_warning = "Possible Bomb in ~10sec"
 
 	L.orb = "Shield Orb"
 	L.orb_desc = "Warn when a Shield Orb is shadowbolting."
@@ -75,6 +74,7 @@ end
 
 function mod:OnBossEnable()
 	handDeathCount = 0 -- Engage is a little slow
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
 	self:Log("SPELL_CAST_SUCCESS", "FelfirePortal", 46875) -- Hack to engage the module because ENCOUNTER_START doesn't fire until stage 2
 
 	self:Log("SPELL_CAST_SUCCESS", "SinisterReflection", 45892)
@@ -85,9 +85,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ShadowSpike", 45885)
 	self:Log("SPELL_CAST_START", "ShadowSpikeCast", 46680)
 
-	self:Death("HandOfTheDeceiverDeaths", 25588) -- Hand of the Deceiver
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
+	self:Death("HandOfTheDeceiverDeaths", 25588) -- Hand of the Deceiver
 end
 
 function mod:OnEngage()
@@ -95,10 +96,11 @@ function mod:OnEngage()
 	sinister1 = false
 	sinister2 = false
 	self:SetStage(1)
-	wipe(playerList)
+	table.wipe(playerList)
+
+	self:MessageOld("stages", "cyan", "info", CL.stage:format(1), false)
 
 	self:RegisterEvent("UNIT_HEALTH")
-	self:MessageOld("stages", "cyan", "info", CL.stage:format(1), false)
 end
 
 --------------------------------------------------------------------------------
@@ -171,9 +173,11 @@ function mod:UNIT_HEALTH(event, unit)
 		elseif not sinister2 and health > 56 and health <= 58 then
 			sinister2 = true
 			self:MessageOld(45892, "yellow", nil, CL.soon:format(self:SpellName(45892)), false)
-		elseif health > 26 and health <= 28 then
+		elseif health <= 28 then
+			if health > 26 then
+				self:MessageOld(45892, "yellow", nil, CL.soon:format(self:SpellName(45892)), false)
+			end
 			self:UnregisterEvent(event)
-			self:MessageOld(45892, "yellow", nil, CL.soon:format(self:SpellName(45892)), false)
 		end
 	end
 end
