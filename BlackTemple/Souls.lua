@@ -83,8 +83,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	wipe(playerList)
-	wipe(castCollector)
+	table.wipe(playerList)
+	castCollector = {}
 	self:CDBar(41305, 48) -- Frenzy
 	self:CDBar(41303, 21.6) -- Soul Drain
 end

@@ -110,8 +110,8 @@ function mod:OnEngage()
 	barrageCount = 0
 	inDemonPhase = false
 	isCaged = false
-	wipe(playerList)
-	wipe(fixateList)
+	table.wipe(playerList)
+	fixateList = {}
 
 	self:Berserk(1500)
 	self:RegisterTargetEvents("CheckForFixate")

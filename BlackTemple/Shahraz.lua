@@ -40,7 +40,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	wipe(playerList)
+	table.wipe(playerList)
 	self:Berserk(600)
 end
 
