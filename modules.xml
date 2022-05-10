@@ -20,7 +20,7 @@
 <Include file="BlackTemple\locales.xml"/>
 
 <Include file="Sunwell\modules.xml"/>
-<!--<Include file="Sunwell\locales.xml"/>-->
+<Include file="Sunwell\locales.xml"/>
 
 </Ui>
 
