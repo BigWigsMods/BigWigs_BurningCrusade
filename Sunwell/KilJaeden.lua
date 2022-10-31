@@ -7,6 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(25315, 25588) -- Kil'jaeden, Hand of the Deceiver
 mod:SetEncounterID(729)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals

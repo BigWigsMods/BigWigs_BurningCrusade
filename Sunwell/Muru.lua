@@ -7,6 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(25741, 25840) -- M'uru, Entropius
 mod:SetEncounterID(728)
 mod:SetRespawnTime(35)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
