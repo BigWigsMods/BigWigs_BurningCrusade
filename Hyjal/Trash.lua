@@ -107,17 +107,31 @@ function mod:BigWigs_OnBossWin(_, module)
 end
 
 function mod:GOSSIP_SHOW()
-	local mobId = self:MobId(self:UnitGUID("npc"))
-	local gossipTbl = self:GetGossipOptions()
+	if self:Classic() then
+		local mobId = self:MobId(self:UnitGUID("npc"))
+		local gossipTbl = self:GetGossipOptions()
 
-	if gossipTbl and (mobId == 17852 or mobId == 17772) then -- Thrall, Lady Jaina Proudmoore
-		if gossipTbl[1] == L.winterchillGossip then
+		if gossipTbl and (mobId == 17852 or mobId == 17772) then -- Thrall, Lady Jaina Proudmoore
+			if gossipTbl[1] == L.winterchillGossip then
+				self:Sync("SummitNext", "Rage") -- Rage Winterchill is next
+			elseif gossipTbl[1] == L.anetheronGossip then
+				self:Sync("SummitNext", "Anetheron") -- Anetheron is next
+			elseif gossipTbl[1] == L.kazrogalGossip then
+				self:Sync("SummitNext", "Kazrogal") -- Kaz'rogal is next
+			elseif gossipTbl[1] == L.azgalorGossip then
+				self:Sync("SummitNext", "Azgalor") -- Azgalor is next
+			end
+		end
+	else
+		if self:GetGossipID(32918) then -- "My companions and I are with you, Lady Proudmoore."
 			self:Sync("SummitNext", "Rage") -- Rage Winterchill is next
-		elseif gossipTbl[1] == L.anetheronGossip then
+		elseif self:GetGossipID(32919) then -- "We are ready for whatever Archimonde might send our way, Lady Proudmoore."
 			self:Sync("SummitNext", "Anetheron") -- Anetheron is next
-		elseif gossipTbl[1] == L.kazrogalGossip then
+		elseif self:GetGossipID(32920) then -- "Until we meet again, Lady Proudmoore."
 			self:Sync("SummitNext", "Kazrogal") -- Kaz'rogal is next
-		elseif gossipTbl[1] == L.azgalorGossip then
+		elseif self:GetGossipID(35378) then -- "I am with you, Thrall."
+			self:Sync("SummitNext", "Kazrogal") -- Kaz'rogal is next
+		elseif self:GetGossipID(35377) then -- "We have nothing to fear."
 			self:Sync("SummitNext", "Azgalor") -- Azgalor is next
 		end
 	end
