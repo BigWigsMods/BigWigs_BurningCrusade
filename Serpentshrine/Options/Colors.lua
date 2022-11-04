@@ -6,9 +6,10 @@ BigWigs:AddColors("Hydross the Unstable", {
 	["stance"] = "red",
 })
 
-BigWigs:AddColors("Fathom-Lord Karathress", {
-	[38330] = "red",
-	["totem"] = {"orange","yellow"},
+BigWigs:AddColors("The Lurker Below", {
+	[37478] = "yellow",
+	["dive"] = {"cyan","green","orange","yellow"},
+	["spout"] = {"red","yellow"},
 })
 
 BigWigs:AddColors("Leotheras the Blind", {
@@ -19,9 +20,9 @@ BigWigs:AddColors("Leotheras the Blind", {
 	["whisper"] = {"blue","yellow"},
 })
 
-BigWigs:AddColors("The Lurker Below", {
-	["dive"] = {"green","orange","yellow"},
-	["spout"] = {"red","yellow"},
+BigWigs:AddColors("Fathom-Lord Karathress", {
+	[38330] = "red",
+	["totem"] = {"orange","yellow"},
 })
 
 BigWigs:AddColors("Morogrim Tidewalker", {

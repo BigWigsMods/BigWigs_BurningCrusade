@@ -10,10 +10,30 @@ BigWigs:AddSounds("Kalecgos", {
 })
 
 BigWigs:AddSounds("Brutallus", {
-	[46394] = "alert",
+	[45150] = "alert",
+	[46394] = {"info","warning"},
 })
 
 BigWigs:AddSounds("Felmyst", {
 	[45402] = "alert",
 	[45661] = "alert",
+	[45866] = "warning",
+})
+
+BigWigs:AddSounds("The Eredar Twins", {
+	[45230] = "info",
+	[45329] = "long",
+	[45342] = "warning",
+})
+
+BigWigs:AddSounds("M'uru", {
+	[45996] = "long",
+})
+
+BigWigs:AddSounds("Kil'jaeden", {
+	[45641] = "warning",
+	[45848] = "info",
+	[46605] = "long",
+	["orb"] = "alert",
+	["stages"] = "info",
 })
