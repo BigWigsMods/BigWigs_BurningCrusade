@@ -42,7 +42,7 @@ function mod:GetOptions()
 end
 
 function mod:VerifyEnable(unit, mobId)
-	if mobId == 22841 or UnitHealth(unit) == UnitHealthMax(unit) then -- Enable if shade, or if Akama at 100% hp
+	if mobId == 22841 or self:GetHealth(unit) == 100 then -- Enable if shade, or if Akama at 100% hp
 		return true
 	end
 end
