@@ -38,7 +38,7 @@ function mod:GetOptions()
 
 		--[[ Essence of Suffering ]]--
 		41303, -- Soul Drain
-		41305, -- Frenzy
+		{41305, "CASTBAR"}, -- Frenzy
 		{41294, "ICON"}, -- Fixate
 
 		--[[ Essence of Desire ]]--

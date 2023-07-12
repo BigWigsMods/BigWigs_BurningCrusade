@@ -64,7 +64,7 @@ function mod:GetOptions()
 		"orb",
 		{45641, "SAY"}, -- Fire Bloom
 		fireBloomMarker,
-		45885, -- Shadow Spike
+		{45885, "CASTBAR"}, -- Shadow Spike
 		45737, -- Flame Dart
 		"blueorb",
 		46605, -- Darkness of a Thousand Souls

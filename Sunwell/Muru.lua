@@ -41,7 +41,7 @@ function mod:GetOptions()
 	return {
 		"stages",
 		"berserk",
-		45996, -- Darkness
+		{45996, "CASTBAR"}, -- Darkness
 		45934, -- Dark Fiend
 		"sentinel",
 		"humanoid",

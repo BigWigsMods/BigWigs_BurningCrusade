@@ -6,7 +6,28 @@ end
 
 L = BigWigs:NewBossLocale("High Astromancer Solarian", "ruRU")
 if L then
-	
+	--L.engage_trigger = "Tal anu'men no sin'dorei!"
+
+	--L.phase = "Phase"
+	--L.phase_desc = "Warn for phase changes."
+	--L.phase1_message = "Phase 1 - Split in ~50sec"
+	--L.phase2_warning = "Phase 2 Soon!"
+	--L.phase2_trigger = "^I become"
+	--L.phase2_message = "20% - Phase 2"
+
+	--L.wrath_other = "Wrath"
+
+	--L.split = "Split"
+	--L.split_desc = "Warn for split & add spawn."
+	--L.split_trigger1 = "I will crush your delusions of grandeur!"
+	--L.split_trigger2 = "You are hopelessly outmatched!"
+	--L.split_bar = "~Next Split"
+	--L.split_warning = "Split in ~7 sec"
+
+	--L.agent_warning = "Split! - Agents in 6 sec"
+	--L.agent_bar = "Agents"
+	--L.priest_warning = "Priests/Solarian in 3 sec"
+	--L.priest_bar = "Priests/Solarian"
 end
 
 L = BigWigs:NewBossLocale("Kael'thas Sunstrider", "ruRU")
