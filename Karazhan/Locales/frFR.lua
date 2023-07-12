@@ -90,9 +90,9 @@ if L then
 	L.phase = "Phases"
 	L.phase_desc = "Prévient quand la rencontre entre dans une nouvelle phase."
 	L.phase1_trigger = "Quel démon es-tu pour me tourmenter ainsi ?"
- 	L.phase1_message = "Acte I - Julianne"
+	L.phase1_message = "Acte I - Julianne"
 	L.phase2_trigger = "Tu veux donc me provoquer ? Eh bien, à toi, enfant."
- 	L.phase2_message = "Acte II - Romulo"
+	L.phase2_message = "Acte II - Romulo"
 	L.phase3_trigger = "Viens, gentille nuit ; rends-moi mon Romulo !"
 	L.phase3_message = "Acte III - Les deux"
 

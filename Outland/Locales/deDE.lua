@@ -31,14 +31,14 @@ if L then
 	L.engage_trigger = "Kommt und sterbt."
 	L.engage_message = "%s gepullt!"
 
-	L.grow = "Wachstum" 
-	L.grow_desc = "Warnt wenn Gruul Wachstum bekommt" 
+	L.grow = "Wachstum"
+	L.grow_desc = "Warnt wenn Gruul Wachstum bekommt"
 	L.grow_message = "Wachstum: (%d)"
 	L.grow_bar = "Wachstum (%d)"
 
 	L.grasp = "Griff des Gronnlords"
-	L.grasp_desc = "Griff des Gronnlords warnung und Zeitanzeige" 
-	L.grasp_message = "Erde ersch\195\188tert - Griff kommt" 
+	L.grasp_desc = "Griff des Gronnlords warnung und Zeitanzeige"
+	L.grasp_message = "Erde ersch\195\188tert - Griff kommt"
 	L.grasp_warning = "Erde ersch\195\188tern bald!"
 
 	L.silence_message = "AOE Stille"
