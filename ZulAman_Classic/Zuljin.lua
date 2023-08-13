@@ -28,7 +28,7 @@ function mod:GetOptions()
 	return {
 		"stages",
 		{43093, "ICON"}, -- Grievous Throw
-		43095, -- Creeping Paralysis
+		{43095, "CASTBAR"}, -- Creeping Paralysis
 		43150, -- Claw Rage
 	}, {
 		["stages"] = "general",
