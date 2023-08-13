@@ -6,8 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Reliquary of Souls", 564, 1587)
 if not mod then return end
 mod:RegisterEnableMob(23420, 23419, 23418) -- Essence of Anger, Essence of Desire, Essence of Suffering
-mod.engageId = 606
-mod.respawnTime = 11
+mod:SetEncounterID(606)
+mod:SetRespawnTime(11)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -83,7 +83,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	table.wipe(playerList)
+	playerList = self:NewTargetList()
 	castCollector = {}
 	self:CDBar(41305, 48) -- Frenzy
 	self:CDBar(41303, 21.6) -- Soul Drain
@@ -119,12 +119,12 @@ do
 					self:PrimaryIcon(41294) -- Fixate
 					self:StopBar(41305) -- Frenzy
 					self:StopBar(41303) -- Soul Drain
-					self:Bar("stages", 40, CL.intermission, 83601) -- spell_holy_borrowedtime / icon 237538
+					self:Bar("stages", 40, CL.intermission, "inv_misc_pocketwatch_01")
 				elseif msg == "Kill2" then
 					self:StopBar(41410) -- Deaden
 					self:StopBar(41431) -- Rune Shield
 					self:StopBar(L.zero_mana) -- Soul Drain
-					self:Bar("stages", 40, CL.intermission, 83601) -- spell_holy_borrowedtime / icon 237538
+					self:Bar("stages", 40, CL.intermission, "inv_misc_pocketwatch_01")
 				end
 			end
 		end

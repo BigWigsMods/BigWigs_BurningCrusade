@@ -6,8 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Shade of Akama", 564, 1584)
 if not mod then return end
 mod:RegisterEnableMob(23191, 22841) -- Akama, Shade of Akama
-mod.engageId = 603
-mod.respawnTime = 120
+mod:SetEncounterID(603)
+mod:SetRespawnTime(120)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -42,21 +42,26 @@ function mod:GetOptions()
 end
 
 function mod:VerifyEnable(unit, mobId)
+	if self:Classic() then
+		return false -- XXX fixme on classic
+	end
 	if mobId == 22841 or self:GetHealth(unit) == 100 then -- Enable if shade, or if Akama at 100% hp
 		return true
 	end
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_REMOVED", "StealthRemoved", 34189)
-	self:RegisterMessage("BigWigs_BossComm")
+	if not self:Classic() then
+		self:Log("SPELL_AURA_REMOVED", "StealthRemoved", 34189)
+		self:RegisterMessage("BigWigs_BossComm")
 
-	self:Log("SPELL_AURA_APPLIED", "RainOfFireDamage", 42023)
-	self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFireDamage", 42023)
-	self:Log("SPELL_PERIODIC_MISSED", "RainOfFireDamage", 42023)
+		self:Log("SPELL_AURA_APPLIED", "RainOfFireDamage", 42023)
+		self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFireDamage", 42023)
+		self:Log("SPELL_PERIODIC_MISSED", "RainOfFireDamage", 42023)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	end
 end
 
 function mod:OnEngage()
@@ -84,7 +89,7 @@ function mod:StealthRemoved(args)
 end
 
 function mod:BigWigs_BossComm(_, msg)
-	if msg == "Akama" and not self.isEngaged then
+	if msg == "Akama" and not self:IsEngaged() then
 		self:Engage()
 	end
 end

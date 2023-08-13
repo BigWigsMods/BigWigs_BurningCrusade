@@ -5,6 +5,9 @@
 local mod, CL = BigWigs:NewBoss("The Curator Raid", 532, 1557)
 if not mod then return end
 mod:RegisterEnableMob(15691)
+if mod:Classic() then
+	mod:SetEncounterID(656)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

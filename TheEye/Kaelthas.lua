@@ -6,6 +6,13 @@ local mod = BigWigs:NewBoss("Kael'thas Sunstrider", 550, 1576)
 if not mod then return end
 --Kael'thas Sunstrider, Thaladred the Darkener, Master Engineer Telonicus, Grand Astromancer Capernian, Lord Sanguinar
 mod:RegisterEnableMob(19622, 20064, 20063, 20062, 20060)
+if mod:Classic() then
+	mod:SetEncounterID(733)
+end
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local MCd = mod:NewTargetList()
 local phase = 1
@@ -219,7 +226,7 @@ function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	elseif msg == L["phase3_trigger"] then
 		phase = 3
 		self:MessageOld("phase", "green", nil, L["phase3_message"], false)
-		self:Bar("phase", 180, L["phase4_bar"], "Spell_ChargePositive")
+		self:Bar("phase", self:Classic() and 120 or 180, L["phase4_bar"], "Spell_ChargePositive")
 	elseif msg == L["phase4_trigger"] then
 		phase = 4
 		self:MessageOld("phase", "green", nil, L["phase4_message"], false)

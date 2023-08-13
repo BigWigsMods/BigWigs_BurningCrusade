@@ -5,6 +5,9 @@
 local mod, CL = BigWigs:NewBoss("Shade of Aran", 532, 1559)
 if not mod then return end
 mod:RegisterEnableMob(16524)
+if mod:Classic() then
+	mod:SetEncounterID(658)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

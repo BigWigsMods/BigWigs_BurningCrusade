@@ -5,6 +5,9 @@
 local mod, CL = BigWigs:NewBoss("The Lurker Below", 548, 1568)
 if not mod then return end
 mod:RegisterEnableMob(21217, 21873, 21865) --Lurker, Coilfang Guardian, Coilfang Ambusher
+if mod:Classic() then
+	mod:SetEncounterID(624)
+end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -60,7 +63,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Geyser", 37478)
 
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 
 	self:Death("Win", 21217)
@@ -74,6 +76,7 @@ end
 
 function mod:OnEngage()
 	phase = 1
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:CDBar(37478, 11) -- Geyser
 	self:CDBar(37660, 17) -- Whirl

@@ -5,6 +5,13 @@
 local mod = BigWigs:NewBoss("Netherspite", 532, 1561)
 if not mod then return end
 mod:RegisterEnableMob(15689)
+if mod:Classic() then
+	mod:SetEncounterID(659)
+end
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local voidcount = 1
 

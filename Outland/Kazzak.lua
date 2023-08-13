@@ -5,8 +5,14 @@
 local mod, CL = BigWigs:NewBoss("Doom Lord Kazzak", -100)
 if not mod then return end
 mod:RegisterEnableMob(18728)
+mod:SetAllowWin(true) -- No journal ID
 mod.worldBoss = 18728
-mod.otherMenu = -101
+if mod:Classic() then
+	mod.mapId = 1944
+	mod.otherMenu = -1945
+else
+	mod.otherMenu = -101
+end
 
 --------------------------------------------------------------------------------
 -- Localization

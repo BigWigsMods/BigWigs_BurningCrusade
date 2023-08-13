@@ -6,8 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Illidan Stormrage", 564, 1590)
 if not mod then return end
 mod:RegisterEnableMob(22917, 23089, 22997) -- Illidan Stormrage, Akama, Flame of Azzinoth
-mod.engageId = 609
-mod.respawnTime = 10
+mod:SetEncounterID(609)
+mod:SetRespawnTime(10)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -21,6 +21,7 @@ local inDemonPhase = false
 local isCaged = false
 local timer1, timer2 = nil, nil
 local fixateList = {}
+local castCollector = {}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -94,8 +95,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ShadowPrison", 40647)
 	self:Log("SPELL_AURA_REMOVED", "ShadowPrisonRemoved", 40647)
 	self:Log("SPELL_CAST_SUCCESS", "Frenzy", 40683)
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-	self:RegisterUnitEvent("UNIT_AURA", nil, "boss1")
+	if self:Classic() then
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+		self:RegisterEvent("UNIT_AURA")
+	else
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+		self:RegisterUnitEvent("UNIT_AURA", nil, "boss1")
+	end
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
@@ -110,8 +116,9 @@ function mod:OnEngage()
 	barrageCount = 0
 	inDemonPhase = false
 	isCaged = false
-	table.wipe(playerList)
+	playerList = self:NewTargetList()
 	fixateList = {}
+	castCollector = {}
 
 	self:Berserk(1500)
 	self:RegisterTargetEvents("CheckForFixate")
@@ -188,7 +195,7 @@ do
 	function mod:EyeBlast(args)
 		local t = GetTime()
 		if t-prev > 2 then
-			self:MessageOld(args.spellId, "yellow", "info", args.spellName, 224284) -- XXX temp until it has an icon
+			self:MessageOld(args.spellId, "yellow", "info", args.spellName, "spell_fire_felflamebolt") -- doesn't have an icon
 		end
 		prev = t -- Continually spams every 1s during the cast
 	end
@@ -244,49 +251,56 @@ function mod:Frenzy(args)
 	--self:Bar(args.spellId, ??) -- Frenzy
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 40693 then -- Cage Trap
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+	if spellId == 40693 and not castCollector[castGUID] then -- Cage Trap
+		castCollector[castGUID] = true
 		self:MessageOld(40695, "red", "info", CL.spawned:format(self:SpellName(spellId)), 199341) -- 199341: ability_hunter_traplauncher / icon 461122
 	end
 end
 
 function mod:UNIT_AURA(_, unit)
-	if self:UnitBuff(unit, self:SpellName(40506), 40506) then -- Demon Form
-		if not inDemonPhase then
-			inDemonPhase = true
-			burstCount = 0
-			self:Bar(41117, 25) -- Summon Shadow Demons
-			self:Bar(41126, 15) -- Flame Burst
-			self:MessageOld(40506, "red", "alarm") -- Demon Form
-			local demonFormOver = CL.over:format(self:SpellName(40506))
-			self:Bar(40506, 60, demonFormOver)
-			timer1 = self:ScheduleTimer("MessageOld", 60, 40506, "green", nil, demonFormOver) -- Demon Form
-			timer2 = self:ScheduleTimer("Bar", 60, 40506, 60) -- Demon Form
+	if self:MobId(self:UnitGUID(unit)) == 22917 then
+		if self:UnitBuff(unit, self:SpellName(40506), 40506) then -- Demon Form
+			if not inDemonPhase then
+				inDemonPhase = true
+				burstCount = 0
+				self:Bar(41117, 25) -- Summon Shadow Demons
+				self:Bar(41126, 15) -- Flame Burst
+				self:MessageOld(40506, "red", "alarm") -- Demon Form
+				local demonFormOver = CL.over:format(self:SpellName(40506))
+				self:Bar(40506, 60, demonFormOver)
+				timer1 = self:ScheduleTimer("MessageOld", 60, 40506, "green", nil, demonFormOver) -- Demon Form
+				timer2 = self:ScheduleTimer("Bar", 60, 40506, 60) -- Demon Form
+			end
+		elseif inDemonPhase then
+			inDemonPhase = false
+			self:CancelTimer(timer1)
+			self:CancelTimer(timer2)
+			timer1, timer2 = nil, nil
+			self:StopBar(CL.over:format(self:SpellName(40506))) -- Demon Form
+			self:StopBar(41117) -- Summon Shadow Demons
+			self:StopBar(41126) -- Flame Burst
 		end
-	elseif inDemonPhase then
-		inDemonPhase = false
-		self:CancelTimer(timer1)
-		self:CancelTimer(timer2)
-		timer1, timer2 = nil, nil
-		self:StopBar(CL.over:format(self:SpellName(40506))) -- Demon Form
-		self:StopBar(41117) -- Summon Shadow Demons
-		self:StopBar(41126) -- Flame Burst
-	end
 
-	if self:UnitDebuff(unit, self:SpellName(40695), 40695) then -- Caged
-		if not isCaged then
-			isCaged = true
-			self:MessageOld(40695, "green", "warning")
-			self:Bar(40695, 15)
+		if self:UnitDebuff(unit, self:SpellName(40695), 40695) then -- Caged
+			if not isCaged then
+				isCaged = true
+				self:MessageOld(40695, "green", "warning")
+				self:Bar(40695, 15)
+			end
+		elseif isCaged then
+			isCaged = false
 		end
-	elseif isCaged then
-		isCaged = false
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if msg == L.warmup_trigger then
-		self:Bar("warmup", 41.5, CL.active, "achievement_boss_illidan")
+		if self:Classic() then
+			self:Bar("warmup", 36, CL.active, "inv_weapon_glave_01")
+		else
+			self:Bar("warmup", 41.5, CL.active, "achievement_boss_illidan")
+		end
 	end
 end
 

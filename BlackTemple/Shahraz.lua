@@ -6,14 +6,15 @@
 local mod = BigWigs:NewBoss("Mother Shahraz", 564, 1588)
 if not mod then return end
 mod:RegisterEnableMob(22947)
-mod.engageId = 607
---mod.respawnTime = 0 -- Resets, doesn't respawn
+mod:SetEncounterID(607)
+--mod:SetRespawnTime(0) -- Resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local playerList = mod:NewTargetList()
+local castCollector = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -36,11 +37,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "FatalAttraction", 41001)
 	self:Log("SPELL_AURA_REMOVED", "FatalAttractionRemoved", 41001)
 
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	if self:Classic() then
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+	else
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	end
 end
 
 function mod:OnEngage()
-	table.wipe(playerList)
+	castCollector = {}
+	playerList = self:NewTargetList()
 	self:CDBar(41001, 25) -- Fatal Attraction
 	self:Berserk(600)
 end
@@ -78,8 +84,9 @@ do
 		[40882] = true, -- Prismatic Aura: Fire
 		[40896] = true, -- Prismatic Aura: Frost
 	}
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-		if spells[spellId] then
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+		if spells[spellId] and not castCollector[castGUID] then
+			castCollector[castGUID] = true
 			self:MessageOld(spellId, "yellow", "info") -- SetOption:40883,40891,40880,40897,40882,40896:::
 			self:Bar(spellId, 15) -- SetOption:40883,40891,40880,40897,40882,40896:::
 		end

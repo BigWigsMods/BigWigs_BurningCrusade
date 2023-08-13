@@ -5,6 +5,9 @@
 local mod, CL = BigWigs:NewBoss("Nightbane Raid", 532)
 if not mod then return end
 mod:RegisterEnableMob(17225)
+if mod:Classic() then
+	mod:SetEncounterID(662)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

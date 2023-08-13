@@ -5,6 +5,9 @@
 local mod = BigWigs:NewBoss("Void Reaver", 550, 1574)
 if not mod then return end
 mod:RegisterEnableMob(19516)
+if mod:Classic() then
+	mod:SetEncounterID(731)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

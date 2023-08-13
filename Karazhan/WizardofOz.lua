@@ -6,6 +6,9 @@ local mod = BigWigs:NewBoss("The Crone", 532)
 if not mod then return end
 --The Crone, Dorothee, Tito, Strawman, Tinhead, Roar
 mod:RegisterEnableMob(18168, 17535, 17548, 17543, 17547, 17546)
+if mod:Classic() then
+	mod:SetEncounterID(655)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

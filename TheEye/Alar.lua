@@ -5,6 +5,13 @@
 local mod, CL = BigWigs:NewBoss("Al'ar", 550, 1573)
 if not mod then return end
 mod:RegisterEnableMob(19514)
+if mod:Classic() then
+	mod:SetEncounterID(730)
+end
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local first = nil
 

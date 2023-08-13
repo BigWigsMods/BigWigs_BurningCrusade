@@ -45,11 +45,18 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage") -- you go into combat during the RP
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	self:Log("SPELL_AURA_APPLIED", "BurnApplied", 46394)
 	self:Log("SPELL_AURA_REMOVED", "BurnRemoved", 46394)
 	self:Log("SPELL_MISSED", "BurnResist", 45141)
 	self:Log("SPELL_CAST_START", "Meteor", 45150)
 	self:Log("SPELL_CAST_SUCCESS", "Stomp", 45185)
+
+	self:BossYell("Engage", L.engage_trigger)
+
+	self:Death("Win", 24882)
 end
 
 function mod:OnEngage()

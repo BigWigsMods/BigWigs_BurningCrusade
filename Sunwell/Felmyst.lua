@@ -33,7 +33,7 @@ if L then
 
 	L.breath = "Deep Breath"
 	L.breath_desc = "Deep Breath warnings."
-	L.breath_icon = 288050 -- ability_monk_jadeserpentbreath
+	L.breath_icon = 40508 -- spell_nature_acid_01
 end
 L = mod:GetLocale()
 
@@ -54,6 +54,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	self:Log("SPELL_CAST_START", "GasNova", 45855)
 	self:Log("SPELL_SUMMON", "SummonDemonicVapor", 45392)
 	self:Log("SPELL_DAMAGE", "Encapsulate", 45661) -- Doesn't function like a normal debuff
@@ -62,6 +65,8 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
+	self:Death("Win", 25038)
 end
 
 function mod:OnEngage()

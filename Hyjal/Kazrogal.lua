@@ -5,6 +5,13 @@
 local mod = BigWigs:NewBoss("Kaz'rogal", 534, 1579)
 if not mod then return end
 mod:RegisterEnableMob(17888)
+if mod:Classic() then
+	mod:SetEncounterID(620)
+end
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local count = 1
 
@@ -34,7 +41,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Mark", 31447)
 	self:Log("SPELL_AURA_REMOVED", "MarkRemoved", 31447)
 
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	if self:Classic() then
+		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	else
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	end
 	self:Death("Win", 17888)
 end
 

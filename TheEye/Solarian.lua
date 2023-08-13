@@ -5,6 +5,9 @@
 local mod = BigWigs:NewBoss("High Astromancer Solarian", 550, 1575)
 if not mod then return end
 mod:RegisterEnableMob(18805)
+if mod:Classic() then
+	mod:SetEncounterID(732)
+end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -48,8 +51,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Wrath", 42783)
-	self:Log("SPELL_AURA_REMOVED", "WrathRemove", 42783)
+	self:Log("SPELL_AURA_APPLIED", "Wrath", 42783, 33045)
+	self:Log("SPELL_AURA_REMOVED", "WrathRemove", 42783, 33045)
 
 	self:BossYell("Engage", L["engage_trigger"])
 	self:BossYell("Phase2", L["phase2_trigger"])
@@ -71,18 +74,18 @@ end
 --
 
 function mod:Wrath(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", nil, L["wrath_other"])
-	self:PrimaryIcon(args.spellId, args.destName)
-	self:TargetBar(args.spellId, 6, args.destName, L["wrath_other"])
+	self:TargetMessageOld(42783, args.destName, "yellow", nil, L["wrath_other"])
+	self:PrimaryIcon(42783, args.destName)
+	self:TargetBar(42783, args.spellId == 33045 and 8 or 6, args.destName, L["wrath_other"])
 	if self:Me(args.destGUID) then
-		self:OpenProximity(args.spellId, 10)
+		self:OpenProximity(42783, 10)
 	end
 end
 
 function mod:WrathRemove(args)
-	self:PrimaryIcon(args.spellId)
+	self:PrimaryIcon(42783)
 	if self:Me(args.destGUID) then
-		self:CloseProximity(args.spellId)
+		self:CloseProximity(42783)
 	end
 end
 

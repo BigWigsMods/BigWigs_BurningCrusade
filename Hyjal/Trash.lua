@@ -82,9 +82,14 @@ function mod:OnBossEnable()
 	self:RegisterMessage("BigWigs_OnBossWin")
 
 	self:RegisterEvent("GOSSIP_SHOW")
-	self:RegisterWidgetEvent(500, "UpdateEnemies")
-	self:RegisterWidgetEvent(528, "UpdateWaves")
 	self:RegisterMessage("BigWigs_BossComm")
+	if self:Classic() then
+		self:RegisterWidgetEvent(3093, "UpdateEnemies")
+		self:RegisterWidgetEvent(3121, "UpdateWaves")
+	else
+		self:RegisterWidgetEvent(500, "UpdateEnemies")
+		self:RegisterWidgetEvent(528, "UpdateWaves")
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -107,39 +112,35 @@ function mod:BigWigs_OnBossWin(_, module)
 end
 
 function mod:GOSSIP_SHOW()
-	if self:Classic() then
-		local mobId = self:MobId(self:UnitGUID("npc"))
-		local gossipTbl = self:GetGossipOptions()
-
-		if gossipTbl and (mobId == 17852 or mobId == 17772) then -- Thrall, Lady Jaina Proudmoore
-			if gossipTbl[1] == L.winterchillGossip then
-				self:Sync("SummitNext", "Rage") -- Rage Winterchill is next
-			elseif gossipTbl[1] == L.anetheronGossip then
-				self:Sync("SummitNext", "Anetheron") -- Anetheron is next
-			elseif gossipTbl[1] == L.kazrogalGossip then
-				self:Sync("SummitNext", "Kazrogal") -- Kaz'rogal is next
-			elseif gossipTbl[1] == L.azgalorGossip then
-				self:Sync("SummitNext", "Azgalor") -- Azgalor is next
-			end
-		end
+	if self:GetGossipID(32918) then -- "My companions and I are with you, Lady Proudmoore."
+		self:Sync("SummitNext", "Rage") -- Rage Winterchill is next
+	elseif self:GetGossipID(32919) then -- "We are ready for whatever Archimonde might send our way, Lady Proudmoore."
+		self:Sync("SummitNext", "Anetheron") -- Anetheron is next
+	elseif self:GetGossipID(32920) then -- "Until we meet again, Lady Proudmoore."
+		self:Sync("SummitNext", "Kazrogal") -- Kaz'rogal is next
+	elseif self:GetGossipID(35378) then -- "I am with you, Thrall."
+		self:Sync("SummitNext", "Kazrogal") -- Kaz'rogal is next
+	elseif self:GetGossipID(35377) then -- "We have nothing to fear."
+		self:Sync("SummitNext", "Azgalor") -- Azgalor is next
 	else
-		if self:GetGossipID(32918) then -- "My companions and I are with you, Lady Proudmoore."
-			self:Sync("SummitNext", "Rage") -- Rage Winterchill is next
-		elseif self:GetGossipID(32919) then -- "We are ready for whatever Archimonde might send our way, Lady Proudmoore."
-			self:Sync("SummitNext", "Anetheron") -- Anetheron is next
-		elseif self:GetGossipID(32920) then -- "Until we meet again, Lady Proudmoore."
-			self:Sync("SummitNext", "Kazrogal") -- Kaz'rogal is next
-		elseif self:GetGossipID(35378) then -- "I am with you, Thrall."
-			self:Sync("SummitNext", "Kazrogal") -- Kaz'rogal is next
-		elseif self:GetGossipID(35377) then -- "We have nothing to fear."
-			self:Sync("SummitNext", "Azgalor") -- Azgalor is next
+		local tbl = self:GetGossipOptions()
+		if tbl then
+			for i = 1, #tbl do
+				if tbl[i].name == "My companions and I are with you, Lady Proudmoore." or
+				tbl[i].name == "We are ready for whatever Archimonde might send our way, Lady Proudmoore." or
+				tbl[i].name == "Until we meet again, Lady Proudmoore." or
+				tbl[i].name == "I am with you, Thrall." or
+				tbl[i].name == "We have nothing to fear." then
+					BigWigs:Error("Unknown gossip ID ".. tostring(tbl[i].gossipOptionID) .." with name: ".. tostring(tbl[i].name))
+				end
+			end
 		end
 	end
 end
 
 local function Restart(self, saveNextBoss)
 	self:Reboot()
-	self:Bar("warmup", 300, CL.active, "achievement_bg_returnxflags_def_wsg")
+	self:Bar("warmup", 300, CL.active, "achievement_bg_returnxflags_def_wsg") -- XXX icon doesn't exist on classic
 	nextBoss = saveNextBoss
 end
 

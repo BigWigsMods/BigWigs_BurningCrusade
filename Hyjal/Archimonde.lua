@@ -5,6 +5,9 @@
 local mod, CL = BigWigs:NewBoss("ArchimondeHyjal", 534, 1581)
 if not mod then return end
 mod:RegisterEnableMob(17968)
+if mod:Classic() then
+	mod:SetEncounterID(622)
+end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -84,6 +87,6 @@ function mod:ProtectionOfElune()
 	self:PrimaryIcon(32014)
 	self:StopBar(31970) -- Fear
 	-- Use berserk instead of making a toggle option for this.
-	self:Bar("berserk", 36, L["killable"], 149144) -- "achievement_boss_archimonde-"
+	self:Bar("berserk", 36, L["killable"], 31984) -- 31984 = for finger of death spam
 end
 

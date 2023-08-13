@@ -6,8 +6,8 @@
 local mod = BigWigs:NewBoss("Teron Gorefiend", 564, 1585)
 if not mod then return end
 mod:RegisterEnableMob(22871)
-mod.engageId = 604
---mod.respawnTime = 0 -- Resets, doesn't respawn
+mod:SetEncounterID(604)
+--mod:SetRespawnTime(0) -- Resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,22 +40,27 @@ end
 --
 
 function mod:ShadowOfDeath(args)
-	self:Bar(args.spellId, 62)
+	if self:Classic() then
+		self:CDBar(args.spellId, 32) -- 32-40
+	else
+		self:Bar(args.spellId, 62)
+	end
 end
 
 function mod:ShadowOfDeathApplied(args)
 	self:TargetMessageOld(args.spellId, args.destName, "red", "warning")
 	-- Used to be 55s, wowhead says 55s, timewalking logs say 30s
-	self:TargetBar(args.spellId, 30, args.destName, 54224) -- 54224 = "Death" / ability_rogue_feigndeath / icon 132293
+	-- But its 55s on classic
+	self:TargetBar(args.spellId, self:Classic() and 55 or 30, args.destName, nil, "ability_rogue_feigndeath")
 	self:PrimaryIcon(args.spellId, args.destName)
 end
 
 function mod:ShadowOfDeathRemoved(args)
-	self:TargetBar(40251, 60, args.destName, 221641) -- 221641 = "Ghost" / achievement_halloween_ghost_01 / icon 236548
+	self:TargetBar(40251, 60, args.destName, nil, "ability_vanish")
 end
 
 function mod:CrushingShadows(args)
-	self:CDBar(args.spellId, 15.7) -- 15-21
+	self:CDBar(args.spellId, 15.7) -- 15-24
 end
 
 do

@@ -5,6 +5,9 @@
 local mod, CL = BigWigs:NewBoss("Terestian Illhoof", 532, 1560)
 if not mod then return end
 mod:RegisterEnableMob(15688)
+if mod:Classic() then
+	mod:SetEncounterID(657)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

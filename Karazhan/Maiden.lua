@@ -5,6 +5,9 @@
 local mod = BigWigs:NewBoss("Maiden of Virtue Raid", 532, 1555)
 if not mod then return end
 mod:RegisterEnableMob(16457)
+if mod:Classic() then
+	mod:SetEncounterID(654)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

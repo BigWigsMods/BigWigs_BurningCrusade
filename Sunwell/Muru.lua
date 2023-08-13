@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("M'uru", 580, 1595)
 if not mod then return end
 mod:RegisterEnableMob(25741, 25840) -- M'uru, Entropius
 mod:SetEncounterID(728)
-mod:SetRespawnTime(35)
+mod:SetRespawnTime(mod:Classic() and 30 or 35)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ if L then
 
 	L.humanoid = "Humanoid Adds"
 	L.humanoid_desc = "Warn when the Humanoid Adds spawn."
-	L.humanoid_icon = "achievement_character_bloodelf_female"
+	L.humanoid_icon = "spell_holy_prayerofhealing"
 	L.humanoid_next = "Humanoids (%d)"
 end
 
@@ -53,7 +53,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START") -- No boss frame for M'uru, just Entropius
+	if not mod:Classic() then
+		self:RegisterEvent("ENCOUNTER_START") -- No boss frame for M'uru, just Entropius
+	end
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	-- Stage 1
 	self:Log("SPELL_AURA_APPLIED", "Darkness", 45996)
@@ -62,6 +66,8 @@ function mod:OnBossEnable()
 	-- Stage 2
 	self:Log("SPELL_CAST_SUCCESS", "OpenAllPortals", 46177)
 	self:Log("SPELL_CAST_SUCCESS", "BlackHole", 46282)
+
+	self:Death("Win", 25840)
 end
 
 function mod:OnEngage()

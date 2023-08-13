@@ -5,6 +5,9 @@
 local mod = BigWigs:NewBoss("Romulo & Julianne", 532)
 if not mod then return end
 mod:RegisterEnableMob(17533, 17534) --Romulo, Julianne
+if mod:Classic() then
+	mod:SetEncounterID(655)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

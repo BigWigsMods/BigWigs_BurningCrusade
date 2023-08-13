@@ -96,6 +96,9 @@ function mod:VerifyEnable(unit)
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	self:Log("SPELL_AURA_APPLIED", "CrazedRage", 44806)
 	self:Log("SPELL_AURA_APPLIED", "ArcaneBuffetApplied", 45018)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "ArcaneBuffetApplied", 45018)
@@ -107,8 +110,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CurseOfBoundlessAgonyApplied", 45032, 45034)
 	self:Log("SPELL_AURA_REMOVED", "CurseOfBoundlessAgonyRemoved", 45032, 45034)
 
+	self:BossYell("Engage", L.engage_trigger)
 	self:Emote("CrazedRage", L.enrage_trigger)
 	self:RegisterMessage("BigWigs_BossComm")
+
+	self:Death("Win", 24892) -- Sathrovarr
 end
 
 function mod:OnEngage()

@@ -5,6 +5,13 @@
 local mod = BigWigs:NewBoss("Hydross the Unstable", 548, 1567)
 if not mod then return end
 mod:RegisterEnableMob(21216)
+if mod:Classic() then
+	mod:SetEncounterID(623)
+end
+
+--------------------------------------------------------------------------------
+-- Locals
+--
 
 local inTomb = mod:NewTargetList()
 local curPerc = 10

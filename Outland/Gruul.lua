@@ -5,6 +5,9 @@
 local mod, CL = BigWigs:NewBoss("Gruul the Dragonkiller", 565, 1565)
 if not mod then return end
 mod:RegisterEnableMob(19044)
+if mod:Classic() then
+	mod:SetEncounterID(650)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

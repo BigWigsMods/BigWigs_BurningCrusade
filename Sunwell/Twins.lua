@@ -6,12 +6,13 @@ local mod, CL = BigWigs:NewBoss("The Eredar Twins", 580, 1594)
 if not mod then return end
 mod:RegisterEnableMob(25166, 25165) -- Grand Warlock Alythess, Lady Sacrolash
 mod:SetEncounterID(727)
-mod:SetRespawnTime(30)
+mod:SetRespawnTime(mod:Classic() and 35 or 30)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
+local deaths = 0
 local threatTable = {}
 
 --------------------------------------------------------------------------------
@@ -47,6 +48,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+
 	self:Log("SPELL_AURA_APPLIED", "Pyrogenics", 45230)
 	self:Log("SPELL_DISPEL", "PyrogenicsDispelled", "*")
 	self:Log("SPELL_CAST_SUCCESS", "ConfoundingBlow", 45256)
@@ -56,9 +60,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "ConflagrationRemoved", 45342)
 	self:Log("SPELL_CAST_START", "ShadowNovaStart", 45329)
 	self:Log("SPELL_CAST_SUCCESS", "ShadowNovaSuccess", 45329)
+
+	self:Death("Deaths", 25166, 25165)
 end
 
 function mod:OnEngage()
+	deaths = 0
 	self:Berserk(360)
 	self:OpenProximity("proximity", 10)
 	if self:GetOption("custom_on_threat") and not self:Solo() then
@@ -70,6 +77,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Deaths()
+	deaths = deaths + 1
+	if deaths == 2 then
+		self:Win()
+	end
+end
 
 function mod:GetThreat(mobId, index)
 	local bossUnit = self:GetUnitIdByGUID(mobId)
