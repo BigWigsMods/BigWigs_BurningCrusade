@@ -11,6 +11,7 @@ A collection of BigWigs modules from the **Burning Crusade** era, including:
 * Tempest Keep: The Eye
 * Hellfire Peninsula: Doom Lord Kazzak
 * Shadowmoon Valley: Doomwalker
+* Zul'Aman *[TBC & WotLK WoW only]*
 
 ## Download
 <https://www.curseforge.com/wow/addons/bigwigs_burningcrusade>
