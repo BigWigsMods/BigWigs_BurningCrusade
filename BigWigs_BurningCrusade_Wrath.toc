@@ -33,6 +33,7 @@
 ## X-Website: https://github.com/BigWigsMods/BigWigs_BurningCrusade
 ## X-Curse-Project-ID: 50688
 ## X-WoWI-ID: 22096
+## X-Wago-ID: v63oQL6b
 ## X-BigWigs-LoadOn-InstanceId: 532, 534, 544, 548, 550, 564, 565, 580, 568
 ## X-BigWigs-ExtraMenu: -1945
 ## X-BigWigs-LoadOn-WorldBoss: -1944, 18728, -1948, 17711
