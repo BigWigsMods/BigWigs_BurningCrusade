@@ -59,3 +59,7 @@ if L then
 
 end
 
+L = BigWigs:NewBossLocale("Hyakiss the Lurker", "itIT")
+if L then
+	L.name = "Hyakiss il Guardingo"
+end

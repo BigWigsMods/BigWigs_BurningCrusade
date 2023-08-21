@@ -171,3 +171,7 @@ if L then
 	L.tito = "Tito"
 end
 
+L = BigWigs:NewBossLocale("Hyakiss the Lurker", "deDE")
+if L then
+	L.name = "Hyakiss der Lauerer"
+end
