@@ -1,4 +1,4 @@
-## Interface: 100105
+## Interface: 100107
 
 ## Title: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-zhCN: BigWigs [|cffeda55f燃烧的远征|r]
