@@ -105,8 +105,10 @@ function mod:OnBossEnable()
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
-	self:Log("SPELL_DAMAGE", "Damage", 40841, 40611, 40018, 40030) -- Flame Crash, Blaze, Eye Blast, Demon Fire (Eye Blast)
-	self:Log("SPELL_MISSED", "Damage", 40841, 40611, 40018, 40030) -- Flame Crash, Blaze, Eye Blast, Demon Fire (Eye Blast)
+	self:Log("SPELL_DAMAGE", "DemonFireDamage", 40030) -- Demon Fire (Eye Blast)
+	self:Log("SPELL_MISSED", "DemonFireDamage", 40030) -- Demon Fire (Eye Blast)
+	self:Log("SPELL_DAMAGE", "Damage", 40841, 40611, 40018) -- Flame Crash, Blaze, Eye Blast
+	self:Log("SPELL_MISSED", "Damage", 40841, 40611, 40018) -- Flame Crash, Blaze, Eye Blast
 end
 
 function mod:OnEngage()
@@ -306,10 +308,20 @@ end
 
 do
 	local prev = 0
+	function mod:DemonFireDamage(args) -- Demon Fire (Eye Blast)
+		if self:Me(args.destGUID) and args.time-prev > 1.5 then
+			prev = args.time
+			self:MessageOld(40018, "blue", "alert", CL.underyou:format(self:SpellName(40018)))
+		end
+	end
+end
+
+do
+	local prev = 0
 	function mod:Damage(args)
-		if self:Me(args.destGUID) and GetTime()-prev > 1.5 then
-			prev = GetTime()
-			self:MessageOld(args.spellId == 40030 and 40018 or args.spellId, "blue", "alert", CL.underyou:format(args.spellId == 40030 and self:SpellName(40018) or args.spellName))
+		if self:Me(args.destGUID) and args.time-prev > 1.5 then
+			prev = args.time
+			self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
 		end
 	end
 end

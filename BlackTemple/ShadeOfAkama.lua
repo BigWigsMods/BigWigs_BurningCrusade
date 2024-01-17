@@ -59,12 +59,12 @@ function mod:OnBossEnable()
 		self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFireDamage", 42023)
 		self:Log("SPELL_PERIODIC_MISSED", "RainOfFireDamage", 42023)
 
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	end
 end
 
 function mod:OnEngage()
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	self:MessageOld("stages", "cyan", "info", L.engaged, false)
 	self:Bar("stages", 13, L.defender, 159241) -- ability_parry / icon 132269
 	self:ScheduleTimer("Bar", 13, "stages", 32, L.defender, 159241)

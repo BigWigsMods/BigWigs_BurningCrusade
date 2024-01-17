@@ -135,7 +135,6 @@ if L then
 	--L.naga_bar = "~Naga"
 	--L.naga_soon_message = "Naga soon!"
 
-	--L.barrier = mod:SpellName(38112)
 	--L.barrier_desc = "Alert when the barriers go down."
 	--L.barrier_down_message = "Barrier %d/4 down!"
 end

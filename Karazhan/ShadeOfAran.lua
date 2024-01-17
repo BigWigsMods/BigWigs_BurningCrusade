@@ -86,7 +86,7 @@ do
 		inWreath[#inWreath + 1] = args.destName
 		if not scheduled then
 			scheduled = true
-			self:Bar(30004, 21, L["flame_bar"], args.spellId)
+			self:Bar(30004, 21, args.spellName, args.spellId)
 			self:ScheduleTimer(wreathWarn, 0.4, args.spellId)
 		end
 	end
