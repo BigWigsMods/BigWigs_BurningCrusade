@@ -120,8 +120,6 @@ function mod:GetThreat(mobId, index)
 end
 
 function mod:UpdateInfoBox()
-	if not _G.BigWigsInfoBox:IsShown() then return end
-
 	-- Lady Sacrolash
 	self:SetInfo(false, 1, ("|cffff7c0a%s|r"):format(L.lady)) -- orange for Conflag
 	self:SetInfo(false, 2, self:GetThreat(25165, 3) or "???")

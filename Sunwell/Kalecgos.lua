@@ -239,23 +239,22 @@ function mod:SpectralRealmRemoved(args)
 end
 
 function mod:UpdateInfoBox()
-	-- should probably add a way to install an OnUpdate function
-	if not _G.BigWigsInfoBox:IsShown() then return end
-
 	local t = GetTime()
 	local count = 0
-	for i = 1, GetNumGroupMembers() do
+	for i = 1, 40 do
 		local player, _, subgroup = GetRaidRosterInfo(i)
-		local debuff, _, duration, expires = self:UnitDebuff(player, 46021) -- Spectral Realm
-		if debuff then
-			count = count + 1
-			if count > 20 then break end -- bit crowded in there, eh?
-			local line = count * 2 - 1
-			local text = ("[%d] %s"):format(subgroup, self:ColorName(player))
-			local remaining = expires - t
-			self:SetInfo("realm", line, text)
-			self:SetInfo("realm", line + 1, math.ceil(remaining))
-			self:SetInfoBar("realm", line, remaining / duration)
+		if player then
+			local debuff, _, duration, expires = self:UnitDebuff(player, 46021) -- Spectral Realm
+			if debuff then
+				count = count + 1
+				if count > 20 then break end -- bit crowded in there, eh?
+				local line = count * 2 - 1
+				local text = ("[%d] %s"):format(subgroup, self:ColorName(player))
+				local remaining = expires - t
+				self:SetInfo("realm", line, text)
+				self:SetInfo("realm", line + 1, math.ceil(remaining))
+				self:SetInfoBar("realm", line, remaining / duration)
+			end
 		end
 	end
 	for i = count + 1, 20 do
@@ -295,7 +294,7 @@ do
 	local prev = {}
 
 	local function getGroup(player)
-		for i = 1, GetNumGroupMembers() do
+		for i = 1, 40 do
 			local name, _, subgroup = GetRaidRosterInfo(i)
 			if name == player then
 				return subgroup
