@@ -45,5 +45,3 @@ Karazhan\modules.xml
 TheEye\modules.xml
 BlackTemple\modules.xml
 Sunwell\modules.xml
-ZulAman_Classic\modules.xml
-
