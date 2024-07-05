@@ -134,7 +134,7 @@ function mod:CheckForFixate(_, unit, guid)
 	local mobId = self:MobId(guid)
 	if mobId == 23498 and not fixateList[guid] and self:Me(self:UnitGUID(unit.."target")) then -- Parasitic Shadowfiend
 		fixateList[guid] = true
-		self:Say(41917, 41951) -- 41951 = "Fixate"
+		self:Say(41917, CL.fixate, nil, "Fixate")
 		self:MessageOld(41917, "blue", "long", CL.you:format(self:SpellName(41951)), 41951)
 	end
 end
@@ -150,7 +150,7 @@ function mod:ParasiticShadowfiend(args)
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetBar(args.spellId, 10, args.destName, 36469, args.spellId) -- 36469 = "Parasite"
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId, 36469) -- 36469 = "Parasite"
+		self:Say(args.spellId, CL.parasite, nil, "Parasite")
 	end
 end
 
@@ -158,7 +158,7 @@ function mod:ParasiticShadowfiendFailure(args) -- The parasite reached someone n
 	self:TargetMessageOld(41917, args.destName, "yellow")
 	self:TargetBar(41917, 10, args.destName, 36469, 41917) -- 36469 = "Parasite"
 	if self:Me(args.destGUID) then
-		self:Say(41917, 36469) -- 36469 = "Parasite"
+		self:Say(41917, CL.parasite, nil, "Parasite")
 	end
 end
 

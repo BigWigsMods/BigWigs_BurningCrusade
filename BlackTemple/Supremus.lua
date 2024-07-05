@@ -88,7 +88,7 @@ function mod:FixateScan()
 	fixateTarget = target
 
 	if self:Me(self:UnitGUID(targetUnit)) then
-		self:Say("fixate", CL.fixate)
+		self:Say("fixate", CL.fixate, nil, "Fixate")
 	end
 	self:TargetMessageOld("fixate", target, "red", "warning", CL.fixate, L.fixate_icon)
 	self:PrimaryIcon("fixate", target)
@@ -96,7 +96,7 @@ end
 
 function mod:Fixate(args)
 	if self:Me(args.destGUID) then
-		self:Say("fixate", CL.fixate)
+		self:Say("fixate", CL.fixate, nil, "Fixate")
 	end
 	self:TargetMessageOld("fixate", args.destName, "red", "warning", L.fixate, L.fixate_icon)
 	self:PrimaryIcon("fixate", args.destName)

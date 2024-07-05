@@ -78,7 +78,7 @@ function mod:BurnApplied(args)
 	self:Bar(args.spellId, 20)
 	self:DelayedMessage(args.spellId, 16, "yellow", CL.soon:format(args.spellName))
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Burn")
 		sayTimer1 = self:ScheduleTimer("Say", 50, args.spellId, 10, true)
 		sayTimer2 = self:ScheduleTimer("Say", 55, args.spellId, 5, true)
 		self:OpenProximity(args.spellId, 5) -- spread distance is 2 yards

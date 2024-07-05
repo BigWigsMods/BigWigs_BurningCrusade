@@ -151,7 +151,7 @@ function mod:FireBloom(args)
 		self:ScheduleTimer("TargetMessageOld", 0.3, args.spellId, playerList, "red", "warning")
 	end
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Fire Bloom")
 	end
 	self:CustomIcon(fireBloomMarker, args.destName, #playerList)
 end

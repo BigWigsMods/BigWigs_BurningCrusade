@@ -71,7 +71,7 @@ function mod:FelRage(args)
 	self:StopBar(40508) -- Fel-Acid Breath
 
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Fel Rage")
 	end
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:TargetMessageOld(args.spellId, args.destName, "orange", "warning", nil, nil, true)
@@ -97,7 +97,7 @@ end
 do
 	local function printTarget(self, player, guid)
 		if self:Me(guid) then
-			self:Say(40508, 18609) -- 18609 = "Breath"
+			self:Say(40508, CL.breath, nil, "Breath")
 		end
 		self:TargetMessageOld(40508, player, "red", "alert")
 		self:PrimaryIcon(40508, player)

@@ -73,7 +73,7 @@ do
 		self:PrimaryIcon(32014, name)
 		self:ScheduleTimer("PrimaryIcon", 5, 32014)
 		if self:Me(guid) then
-			self:Say(32014)
+			self:Say(32014, nil, nil, "Air Burst")
 		end
 	end
 

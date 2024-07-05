@@ -61,7 +61,7 @@ function mod:Orb(args)
 	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert")
 	self:PrimaryIcon(args.spellId, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Arcane Orb")
 	end
 end
 

@@ -161,7 +161,7 @@ do
 		self:TargetMessageOld(45342, name, "yellow", "warning")
 		self:PrimaryIcon(45342, name)
 		if self:Me(guid) then
-			self:Say(45342)
+			self:Say(45342, nil, nil, "Conflagration")
 		end
 	end
 
@@ -184,7 +184,7 @@ do
 		self:TargetMessageOld(45329, name, "red", "long", nil, nil, true)
 		self:SecondaryIcon(45329, name)
 		if self:Me(guid) then
-			self:Say(45329)
+			self:Say(45329, nil, nil, "Shadow Nova")
 		end
 	end
 

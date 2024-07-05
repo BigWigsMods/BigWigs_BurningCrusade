@@ -59,7 +59,7 @@ function mod:FatalAttraction(args)
 	playerList[#playerList+1] = args.destName
 
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId)
+		self:Say(args.spellId, nil, nil, "Fatal Attraction")
 		self:OpenProximity(args.spellId, 15)
 	end
 
