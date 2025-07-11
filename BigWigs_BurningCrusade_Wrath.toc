@@ -1,4 +1,4 @@
-## Interface: 30404
+## Interface: 30405
 
 ## Title: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-zhCN: BigWigs [|cffeda55f燃烧的远征|r]
