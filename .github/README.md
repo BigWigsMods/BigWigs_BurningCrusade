@@ -15,3 +15,4 @@ A collection of BigWigs modules from the **Burning Crusade** era, including:
 
 ## Download
 <https://www.curseforge.com/wow/addons/bigwigs_burningcrusade>
+<https://addons.wago.io/addons/bigwigs-burningcrusade>
