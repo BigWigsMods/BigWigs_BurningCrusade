@@ -1,4 +1,4 @@
-## Interface: 110205, 110207, 110200
+## Interface: 120001, 110207, 120000
 
 ## Title: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-zhCN: BigWigs [|cffeda55f燃烧的远征|r]
