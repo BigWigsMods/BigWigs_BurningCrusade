@@ -2,10 +2,11 @@
 
 BigWigs:AddColors("Attumen the Huntsman Raid", {
 	[29833] = {"blue","yellow"},
-	["phase"] = "red",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Attumen the Huntsman Raid", {
+	["stages"] = "info",
 })
 
 BigWigs:AddColors("Hyakiss the Lurker", {
@@ -16,33 +17,37 @@ BigWigs:AddSounds("Hyakiss the Lurker", {
 })
 
 BigWigs:AddColors("Moroes Raid", {
-	[29448] = {"orange","yellow"},
-	[37023] = {"green","red"},
+	[29448] = "red",
+	[37023] = "orange",
 	[37066] = {"blue","yellow"},
 })
 
 BigWigs:AddSounds("Moroes Raid", {
-	[29448] = "alert",
-	[37023] = {"alarm","info"},
+	[29448] = "warning",
+	[37023] = "long",
+	[37066] = "alert",
 })
 
 BigWigs:AddColors("Maiden of Virtue Raid", {
-	[29511] = {"orange","red","yellow"},
-	[29522] = {"blue","red"},
+	[29511] = "red",
+	[29522] = {"blue","yellow"},
 })
 
 BigWigs:AddSounds("Maiden of Virtue Raid", {
-	[29511] = "alarm",
+	[29522] = "alert",
 })
 
 BigWigs:AddColors("Romulo & Julianne", {
+	[30822] = {"blue","yellow"},
+	[30878] = "orange",
 	["buff"] = "yellow",
-	["heal"] = "orange",
-	["phase"] = "green",
-	["poison"] = {"blue","red"},
+	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Romulo & Julianne", {
+	[30878] = "warning",
+	["buff"] = "info",
+	["stages"] = "long",
 })
 
 BigWigs:AddColors("The Big Bad Wolf", {
@@ -62,51 +67,53 @@ BigWigs:AddSounds("The Crone", {
 })
 
 BigWigs:AddColors("The Curator Raid", {
-	[30254] = {"green","orange","red","yellow"},
-	[30403] = {"green","red"},
+	[30254] = {"red","yellow"},
+	[30403] = "orange",
 })
 
 BigWigs:AddSounds("The Curator Raid", {
-	[30254] = "alarm",
+	[30254] = "warning",
+	[30403] = "long",
 })
 
 BigWigs:AddColors("Terestian Illhoof", {
-	[30115] = {"blue","orange","yellow"},
-	["weak"] = {"red","yellow"},
+	[30065] = {"green","red"},
+	[30115] = {"blue","yellow"},
 })
 
 BigWigs:AddSounds("Terestian Illhoof", {
-	["weak"] = {"alarm","info"},
+	[30065] = {"info","long"},
+	[30115] = "warning",
 })
 
 BigWigs:AddColors("Shade of Aran", {
-	[30004] = {"blue","red"},
-	["adds"] = {"orange","red"},
-	["blizzard"] = "yellow",
-	["drink"] = {"green","orange"},
+	[30004] = {"blue","red","yellow"},
+	["adds"] = "orange",
+	["blizzard"] = "orange",
+	["drink"] = {"cyan","orange"},
 	["pull"] = "yellow",
 })
 
 BigWigs:AddSounds("Shade of Aran", {
-	[30004] = {"alarm","long"},
-	["adds"] = "alert",
-	["drink"] = "alert",
+	[30004] = {"long","warning"},
 })
 
 BigWigs:AddColors("Netherspite", {
 	[37063] = "yellow",
 	[38523] = "orange",
-	["phase"] = "red",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Netherspite", {
+	[37063] = "info",
+	["stages"] = "long",
 })
 
 BigWigs:AddColors("Prince Malchezaar", {
-	[30843] = {"blue","orange","red","yellow"},
-	[30852] = {"red","yellow"},
-	["infernal"] = {"orange","red"},
-	["phase"] = "cyan",
+	[30843] = {"blue","red"},
+	[30852] = "yellow",
+	["infernal"] = "orange",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Prince Malchezaar", {
@@ -117,12 +124,14 @@ BigWigs:AddSounds("Prince Malchezaar", {
 
 BigWigs:AddColors("Nightbane Raid", {
 	[30129] = "blue",
-	[36922] = "green",
+	[36922] = "red",
 	[37098] = "orange",
-	["phase"] = {"red","yellow"},
+	["stages"] = {"cyan","yellow"},
 })
 
 BigWigs:AddSounds("Nightbane Raid", {
-	[30129] = "alarm",
-	["phase"] = {"info","long"},
+	[30129] = "underyou",
+	[36922] = "alert",
+	[37098] = "info",
+	["stages"] = "long",
 })
