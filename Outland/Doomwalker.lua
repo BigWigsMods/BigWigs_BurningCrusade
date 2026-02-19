@@ -83,7 +83,7 @@ do
 			prev = args.time
 			self:Message("overrun", "yellow", args.spellName, args.spellId)
 			self:CDBar("overrun", 30, args.spellName, args.spellId)
-			self:PlaySound(args.spellId, "alert")
+			self:PlaySound("overrun", "alert")
 		end
 	end
 end

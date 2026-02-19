@@ -33,7 +33,7 @@ end
 function mod:GetOptions()
 	return {
 		"stages",
-		36922, -- Bellowing Roar
+		{36922, "CASTBAR"}, -- Bellowing Roar
 		30129, -- Charred Earth
 		37098, -- Rain of Bones
 	},nil,{

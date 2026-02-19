@@ -136,14 +136,14 @@ end
 
 function mod:DarkMending(args)
 	self:Message("heal", "orange", L.heal_message, args.spellId)
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound("heal", "alarm")
 end
 
 function mod:ShadowCageApplied(args)
 	self:Message("banish", "red", L.banish_message, args.spellId)
 	self:Bar("banish", 10, L.banish_bar, args.spellId)
 	self:StopCastBar(30616) -- Blast Nova
-	self:PlaySound(args.spellId, "info")
+	self:PlaySound("banish", "info")
 end
 
 function mod:ShadowCageRemoved(args)

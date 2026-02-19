@@ -36,7 +36,7 @@ function mod:GetOptions()
 	return {
 		"stages",
 		37063, -- Void Zone
-		38523, -- Netherbreath
+		{38523, "CASTBAR"}, -- Netherbreath
 		"berserk",
 	}
 end
