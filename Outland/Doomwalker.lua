@@ -18,12 +18,11 @@ end
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.name = "Doomwalker"
 
 	L.engage_trigger = "Do not proceed. You will be eliminated."
-	L.engage_message = "Doomwalker engaged, Earthquake in ~30sec!"
 
 	L.overrun = mod:SpellName(32637)
 	L.overrun_desc = "Doomwalker will randomly charge someone, knocking them back. Doomwalker will also reset his threat table."
@@ -33,7 +32,6 @@ if L then
 	L.earthquake_desc = "Doomwalker channels an Earthquake doing 2000 damage every 2 seconds, lasting 8 seconds, and stunning players in his proximity."
 	L.earthquake_icon = 32686
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -41,7 +39,12 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"overrun", "earthquake", "proximity", 33653
+		"overrun",
+		{"earthquake", "EMPHASIZE"},
+		"proximity",
+		33653, -- Enrage / Frenzy
+	},nil,{
+		[33653] = CL.health_percent:format(20), -- Frenzy / Enrage (20% Health)
 	}
 end
 
@@ -50,23 +53,23 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Overrun", 32637)
-	self:Log("SPELL_CAST_SUCCESS", "Earthquake", 32686)
-	self:Log("SPELL_AURA_APPLIED", "Frenzy", 33653)
+	self:ScheduleTimer("CheckForEngage", 1)
 
-	self:BossYell("Engage", L["engage_trigger"])
 	self:Death("Win", 17711)
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
+	self:CheckForWipe()
+
+	self:Log("SPELL_CAST_START", "Overrun", 32637)
+	self:Log("SPELL_CAST_SUCCESS", "Earthquake", 32686)
+	self:Log("SPELL_AURA_APPLIED", "FrenzyEnrage", 33653)
+
+	self:RegisterEvent("UNIT_HEALTH")
 	self:OpenProximity("proximity", 10)
 
-	self:MessageOld("earthquake", "yellow", nil, L["engage_message"], false)
-	self:CDBar("earthquake", 30, 32686)
-
-	self:CDBar("overrun", 26, 32637)
-	self:DelayedMessage("overrun", 24, "yellow", CL["soon"]:format(L["overrun"]))
+	self:CDBar("earthquake", 30, 32686) -- Earthquake
+	self:CDBar("overrun", 26, 32637) -- Overrun
 end
 
 --------------------------------------------------------------------------------
@@ -76,33 +79,34 @@ end
 do
 	local prev = 0
 	function mod:Overrun(args)
-		local t = GetTime()
-		if (t-prev) > 20 then
-			prev = t
-			self:MessageOld("overrun", "red", nil, args.spellId)
-			self:CDBar("overrun", 30, args.spellId)
-			self:DelayedMessage("overrun", 28, "yellow", CL["soon"]:format(args.spellName))
+		if args.time - prev > 20 then
+			prev = args.time
+			self:Message("overrun", "yellow", args.spellName, args.spellId)
+			self:CDBar("overrun", 30, args.spellName, args.spellId)
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
 
 function mod:Earthquake(args)
-	self:MessageOld("earthquake", "red", nil, args.spellId)
-	self:DelayedMessage("overrun", 65, "yellow", CL["soon"]:format(args.spellName))
-	self:CDBar("earthquake", 70, args.spellId)
+	self:Message("earthquake", "red", args.spellName, args.spellId)
+	self:CDBar("earthquake", 70, args.spellName, args.spellId)
+	self:PlaySound("earthquake", "warning")
 end
 
-function mod:Frenzy(args)
-	self:MessageOld(args.spellId, "red", "alarm", "20% - "..args.spellName)
+function mod:FrenzyEnrage(args)
+	self:Message(args.spellId, "orange", CL.percent:format(20, args.spellName))
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) == 17711 then
 		local hp = self:GetHealth(unit)
-		if hp > 20 and hp < 27 then
-			self:MessageOld(33653, "orange", nil, CL["soon"]:format(self:SpellName(33653)), false) -- Frenzy
-			self:UnregisterUnitEvent(event, "target", "focus")
+		if hp < 27 then
+			self:UnregisterEvent(event)
+			if hp > 20 then
+				self:Message(33653, "orange", CL.soon:format(self:SpellName(33653)), false) -- Frenzy / Enrage
+			end
 		end
 	end
 end
-

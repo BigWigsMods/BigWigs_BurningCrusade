@@ -1,30 +1,8 @@
 local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "zhTW")
 if not L then return end
 if L then
-	L.phase = "階段警告"
-	L.phase_desc = "當進入下一個階段時發送警告"
 	L.phase2_trigger = "%s呼叫她的主人!"
-	L.phase2_message = "第二階段 - %s & 阿圖曼"
 	L.phase3_trigger = "來吧午夜，讓我們驅散這群小規模的烏合之眾!"
-	L.phase3_message = "第三階段"
-end
-
-L = BigWigs:NewBossLocale("The Curator Raid", "zhTW")
-if L then
-	L.engage_trigger = "展示廳是賓客專屬的。"
-
-	L.weaken_message = "喚醒 - 20 秒虛弱時間開始"
-	L.weaken_fade_message = "喚醒結束 - 準備擊殺小電球"
-	L.weaken_fade_warning = "喚醒將於 5 秒後結束"
-end
-
-L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "zhTW")
-if L then
-	L.engage_trigger = "你的行為不能被容忍。"
-	L.engage_message = "戰鬥開始！33 秒後懺悔！"
-
-	L.repentance_message = "懺悔！33 秒後下一次懺悔！"
-	L.repentance_warning = "懺悔即將來臨！"
 end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "zhTW")
@@ -48,37 +26,24 @@ if L then
 	L.infernal_trigger2 = "所有的空間對我來說都是開放的"
 end
 
-L = BigWigs:NewBossLocale("Moroes Raid", "zhTW")
-if L then
-	L.engage_trigger = "嗯，突然上門的訪客。一定要做好準備……"
-	L.engage_message = "%s 進入戰鬥 - 將於 35 秒後消失"
-end
-
 L = BigWigs:NewBossLocale("Netherspite", "zhTW")
 if L then
-	L.phase = "階段警告"
-	L.phase_desc = "當 尼德斯 進入下一階段時發送警告"
 	L.phase1_message = "撒退 - 第一階段光線門"
 	L.phase1_bar = "地獄吐息 - 撒退"
 	L.phase1_trigger = "%s大聲呼喊撤退，打開通往地獄的門。"
 	L.phase2_message = "狂怒 - 第二階段自我放逐"
 	L.phase2_bar = "地獄吐息 - 狂怒"
 	L.phase2_trigger = "%s陷入一陣狂怒!"
-
-	L.voidzone_warn = "虛空地區 (%d)"
 end
 
 L = BigWigs:NewBossLocale("Nightbane Raid", "zhTW")
 if L then
 	L.name = "夜禍"
 
-	L.phase = "階段警告"
-	L.phase_desc = "當 夜禍 進入下一階段時發送警告"
 	L.airphase_trigger = "悲慘的害蟲。我將讓你消失在空氣中!"
 	L.landphase_trigger1 = "夠了!我要親自挑戰你!"
 	L.landphase_trigger2 = "昆蟲!給你們近距離嚐嚐我的厲害!"
 	L.airphase_message = "昇空"
-	L.landphase_message = "降落"
 	L.summon_trigger = "一個古老的生物在遠處甦醒過來……"
 
 	L.engage_trigger = "真是蠢蛋!我會快點結束你的痛苦!"
@@ -133,18 +98,6 @@ if L then
 	L.pull_desc = "當埃蘭之影施放巨力磁力及魔爆術時發送警告"
 	L.pull_message = "魔爆術 - 立刻向外圍跑"
 	L.pull_bar = "魔爆術"
-end
-
-L = BigWigs:NewBossLocale("Terestian Illhoof", "zhTW")
-if L then
-	L.engage_trigger = "啊，你來的正好。儀式正要開始!"
-
-	L.weak = "虛弱提示"
-	L.weak_desc = "當泰瑞斯提安進入虛弱狀態時發送警告"
-	L.weak_message = "進入虛弱狀態 45 秒！"
-	L.weak_warning1 = "虛弱狀態 5 秒後結束！"
-	L.weak_warning2 = "虛弱狀態結束！"
-	L.weak_bar = "虛弱"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "zhTW")

@@ -4,17 +4,15 @@
 
 local mod = BigWigs:NewBoss("The Crone", 532, -655)
 if not mod then return end
---The Crone, Dorothee, Tito, Strawman, Tinhead, Roar
+-- The Crone, Dorothee, Tito, Strawman, Tinhead, Roar
 mod:RegisterEnableMob(18168, 17535, 17548, 17543, 17547, 17546)
-if mod:Classic() then
-	mod:SetEncounterID(655)
-end
+-- mod:SetEncounterID(655) -- Shared with 3 modules
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.name = "The Crone"
 
@@ -29,7 +27,6 @@ if L then
 	L.strawman = "Strawman"
 	L.tito = "Tito"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -37,7 +34,8 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"spawns", 32337
+		"spawns",
+		{32337, "CASTBAR"}, -- Chain Lightning
 	}
 end
 
@@ -46,12 +44,12 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
+	--self:RegisterEvent("ENCOUNTER_START")
+	self:RegisterEvent("ENCOUNTER_END")
+
 	self:Log("SPELL_CAST_START", "ChainLightning", 32337)
 
 	self:BossYell("Engage", L["engage_trigger"])
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	self:Death("Win", 18168)
 end
 
 function mod:OnEngage()
@@ -70,8 +68,24 @@ end
 -- Event Handlers
 --
 
-function mod:ChainLightning(args)
-	self:MessageOld(args.spellId, "orange")
-	self:Bar(args.spellId, 2, "<"..args.spellName..">")
+function mod:ENCOUNTER_START(_, encounterId)
+	if encounterId == 655 then
+		self:Engage()
+	end
 end
 
+function mod:ENCOUNTER_END(_, encounterId, _, _, _, status)
+	if encounterId == 655 then
+		if status == 0 then
+			-- delay slightly to avoid reregistering ENCOUNTER_END as part of Reboot during this ENCOUNTER_END dispatch
+			self:SimpleTimer(function() self:Wipe() end, 1)
+		else
+			self:Win()
+		end
+	end
+end
+
+function mod:ChainLightning(args)
+	self:Message(args.spellId, "orange")
+	self:CastBar(args.spellId, 2)
+end

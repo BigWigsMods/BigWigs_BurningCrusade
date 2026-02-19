@@ -2,37 +2,31 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Netherspite", 532, 1561)
+local mod, CL = BigWigs:NewBoss("Netherspite", 532, 1561)
 if not mod then return end
 mod:RegisterEnableMob(15689)
-if mod:Classic() then
-	mod:SetEncounterID(659)
-end
+mod:SetEncounterID(659)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local voidcount = 1
+local voidCount = 1
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
-	L.phase = "Phases"
-	L.phase_desc = "Warns when Netherspite changes from one phase to another."
 	L.phase1_message = "Withdrawal - Netherbreaths Over"
 	L.phase1_bar = "~Possible Withdrawal"
 	L.phase1_trigger = "%s cries out in withdrawal, opening gates to the nether."
 	L.phase2_message = "Rage - Incoming Netherbreaths!"
 	L.phase2_bar = "~Possible Rage"
 	L.phase2_trigger = "%s goes into a nether-fed rage!"
-
-	L.voidzone_warn = "Void Zone (%d)!"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -40,7 +34,10 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"phase", 37063, 38523, "berserk"
+		"stages",
+		37063, -- Void Zone
+		38523, -- Netherbreath
+		"berserk",
 	}
 end
 
@@ -48,19 +45,15 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "VoidZone", 37063)
 	self:Log("SPELL_CAST_START", "Netherbreath", 38523)
 
-	self:Emote("Phase1", L["phase1_trigger"])
-	self:Emote("Phase2", L["phase2_trigger"])
-
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	self:Death("Win", 15689)
+	self:Emote("Stage1Emote", L.phase1_trigger)
+	self:Emote("Stage2Emote", L.phase2_trigger)
 end
 
 function mod:OnEngage()
-	voidcount = 1
-	self:Bar("phase", 60, L["phase2_bar"], "Spell_ChargePositive")
-	self:Berserk(540)
+	voidCount = 1
+	self:SetStage(1)
+	self:CDBar("stages", 60, L.phase2_bar, "Spell_ChargePositive")
+	self:Berserk(540, true)
 end
 
 --------------------------------------------------------------------------------
@@ -68,23 +61,29 @@ end
 --
 
 function mod:VoidZone(args)
-	self:MessageOld(args.spellId, "yellow", nil, L["voidzone_warn"]:format(voidcount))
-	voidcount = voidcount + 1
+	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, voidCount))
+	voidCount = voidCount + 1
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:Netherbreath(args)
-	self:MessageOld(args.spellId, "orange")
-	self:Bar(args.spellId, 2.5, "<"..args.spellName..">")
+	self:Message(args.spellId, "orange")
+	self:CastBar(args.spellId, 2.5)
 end
 
-function mod:Phase1()
-	self:StopBar("<"..self:SpellName(38523)..">")
-	self:MessageOld("phase", "red", nil, L["phase1_message"], "Spell_ChargePositive")
-	self:Bar("phase", 58, L["phase2_bar"], "Spell_ChargePositive")
+function mod:Stage1Emote()
+	self:SetStage(1)
+	self:StopCastBar(38523) -- Netherbreath
+	self:StopBar(L.phase1_bar)
+	self:Message("stages", "cyan", L.phase1_message, "Spell_ChargePositive")
+	self:CDBar("stages", 58, L.phase2_bar, "Spell_ChargePositive")
+	self:PlaySound("stages", "long")
 end
 
-function mod:Phase2()
-	self:MessageOld("phase", "red", nil, L["phase2_message"], "Spell_ChargeNegative")
-	self:Bar("phase", 30, L["phase1_bar"], "Spell_ChargeNegative")
+function mod:Stage2Emote()
+	self:SetStage(2)
+	self:StopBar(L.phase2_bar)
+	self:Message("stages", "cyan", L.phase2_message, "Spell_ChargeNegative")
+	self:CDBar("stages", 30, L.phase1_bar, "Spell_ChargeNegative")
+	self:PlaySound("stages", "long")
 end
-

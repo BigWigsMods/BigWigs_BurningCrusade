@@ -10,18 +10,19 @@ mod:RegisterEnableMob(16179)
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.name = "Hyakiss the Lurker"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
-	return {29896}
+	return {
+		29896, -- Hyakiss' Web
+	}
 end
 
 function mod:OnRegister()
@@ -29,7 +30,7 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Web", 29896)
+	self:Log("SPELL_AURA_APPLIED", "HyakissWeb", 29896)
 
 	self:Death("Win", 16179)
 end
@@ -38,8 +39,7 @@ end
 -- Event Handlers
 --
 
-function mod:Web(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange")
+function mod:HyakissWeb(args)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:TargetBar(args.spellId, 10, args.destName)
 end
-

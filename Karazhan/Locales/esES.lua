@@ -1,30 +1,8 @@
 local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "esES")
 if not L then return end
 if L then
-	L.phase = "Fases"
-	L.phase_desc = "Avisar sobre cambios de fase."
 	L.phase2_trigger = "¡%s llama a su maestro!"
-	L.phase2_message = "Fase 2 - %s & Attumen"
 	L.phase3_trigger = "¡Ven, Medianoche, vamos a dispersar a estos pusilánimes!"
-	L.phase3_message = "Fase 3"
-end
-
-L = BigWigs:NewBossLocale("The Curator Raid", "esES")
-if L then
-	L.engage_trigger = "La colección es solo para los invitados."
-
-	L.weaken_message = "¡Evocación - Debilidad durante 20sec!"
-	L.weaken_fade_message = "¡Evocación Finalizada - Debilidad desaparecida!"
-	L.weaken_fade_warning = "¡Evocación en ~5 seg!"
-end
-
-L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "esES")
-if L then
-	L.engage_trigger = "No se tolerará tu comportamiento."
-	L.engage_message = "¡Doncella en combate! Arrepentimiento en ~33 seg"
-
-	L.repentance_message = "Sig. Arrepentimiento en ~33 seg"
-	L.repentance_warning = "¡Arrepentimiento en breve!"
 end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "esES")
@@ -48,37 +26,24 @@ if L then
 	L.infernal_trigger2 = "todas las dimensiones"
 end
 
-L = BigWigs:NewBossLocale("Moroes Raid", "esES")
-if L then
-	L.engage_trigger = "Mm, visita inesperada. Hay que hacer los preparativos..."
-	L.engage_message = "%s Activado - Desvanecer en ~35sec!"
-end
-
 L = BigWigs:NewBossLocale("Netherspite", "esES")
 if L then
-	L.phase = "Fases"
-	L.phase_desc = "Avisar cuando Rencor abisal cambia de fase."
 	L.phase1_message = "Retirada - Aliento abisal terminado"
 	L.phase1_bar = "~Retirada"
 	L.phase1_trigger = "%s grita en retirada, abriendo las puertas al vacío."
 	L.phase2_message = "Cólera - ¡Aliento abisal en breve!"
 	L.phase2_bar = "~Cólera"
 	L.phase2_trigger = "¡%s monta en cólera alimentada por el vacío!"
-
-	L.voidzone_warn = "¡Zona de vacío (%d)!"
 end
 
 L = BigWigs:NewBossLocale("Nightbane Raid", "esES")
 if L then
 	L.name = "Nocturno"
 
-	L.phase = "Fases"
-	L.phase_desc = "Avisa cuando Nocturno cambia de fase."
 	L.airphase_trigger = "Miserable alimaña. ¡Te exterminaré del aire!"
 	L.landphase_trigger1 = "¡Ya basta! Voy a aterrizar y a aplastarte yo mismo."
 	L.landphase_trigger2 = "¡Insectos! ¡Os enseñaré mi fuerza de cerca!"
 	L.airphase_message = "¡Volando!"
-	L.landphase_message = "¡Aterrizando!"
 	L.summon_trigger = "Un ser antiguo se despierta en la distancia..."
 
 	L.engage_trigger = "¡Necios! ¡Voy a acabar rápidamente con tu sufrimiento!"
@@ -133,18 +98,6 @@ if L then
 	L.pull_desc = "Avisar de la atracción y la Deflagración Arcana."
 	L.pull_message = "¡Deflagración Arcana!"
 	L.pull_bar = "Deflagración Arcana"
-end
-
-L = BigWigs:NewBossLocale("Terestian Illhoof", "esES")
-if L then
-	L.engage_trigger = "Ah, justo a tiempo. ¡Los rituales van a empezar!"
-
-	L.weak = "Debilidad"
-	L.weak_desc = "Avisa de estado de debilidad."
-	L.weak_message = "¡Debilidad durante ~45seg!"
-	L.weak_warning1 = "¡Debilidad finaliza en ~5seg!"
-	L.weak_warning2 = "¡Debilidad finalizada!"
-	L.weak_bar = "~Debilidad finaliza"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "esES")

@@ -1,30 +1,8 @@
 local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "ruRU")
 if not L then return end
 if L then
-	L.phase = "Фаза"
-	L.phase_desc = "Предупреждать о смене фаз."
 	L.phase2_trigger = "%s зовет своего господина!"
-	L.phase2_message = "Фаза 2 - %s и Аттумен"
 	L.phase3_trigger = "Давай, Полночь, разгоним этот сброд!"
-	L.phase3_message = "Фаза 3"
-end
-
-L = BigWigs:NewBossLocale("The Curator Raid", "ruRU")
-if L then
-	L.engage_trigger = "Галерея только для гостей."
-
-	L.weaken_message = "Прилив сил - Ослабление на 20сек!"
-	L.weaken_fade_message = "Прилив сил закончился - Ослабление рассеялось!"
-	L.weaken_fade_warning = "Прилив сил заканчивается через 5сек!"
-end
-
-L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "ruRU")
-if L then
-	L.engage_trigger = "Ваше поведение нестерпимо."
-	L.engage_message = "Контакт с Пресветлой девой! Покаяние за ~33сек"
-
-	L.repentance_message = "Покаяние! Следующее через ~33сек"
-	L.repentance_warning = "Покаяние перезарядилось - скоро будет!"
 end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "ruRU")
@@ -48,37 +26,24 @@ if L then
 	L.infernal_trigger2 = "Безумие привело вас сюда"
 end
 
-L = BigWigs:NewBossLocale("Moroes Raid", "ruRU")
-if L then
-	L.engage_trigger = "Хмм, неожиданные посетители. Нужно подготовиться…"
-	L.engage_message = "Контакт с %s - исчезновение за ~35 сек"
-end
-
 L = BigWigs:NewBossLocale("Netherspite", "ruRU")
 if L then
-	L.phase = "Фазы"
-	L.phase_desc = "Предупреждать о изменении фаз Пустогнева."
 	L.phase1_message = "Назад - Дыхания Хаоса закончилось"
 	L.phase1_bar = "~возможен отвод"
 	L.phase1_trigger = "%s издает крик, отступая, открывая путь Пустоте."
 	L.phase2_message = "Ярость - скоро Дыхание Хаоса!"
 	L.phase2_bar = "~возможная Ярость"
 	L.phase2_trigger = "%s впадает в предельную ярость!"
-
-	L.voidzone_warn = "Портал Бездны (%d)!"
 end
 
 L = BigWigs:NewBossLocale("Nightbane Raid", "ruRU")
 if L then
 	L.name = "Ночная Погибель"
 
-	L.phase = "Фазы"
-	L.phase_desc = "Предупреждает о переключениях фаз Ночной Погибели."
 	L.airphase_trigger = "Жалкий гнус! Я изгоню тебя из воздуха!"
 	L.landphase_trigger1 = "Довольно! Я сойду на землю и сам раздавлю тебя!"
 	L.landphase_trigger2 = "Ничтожества! Я вам покажу мою силу поближе!"
 	L.airphase_message = "Полет!"
-	L.landphase_message = "Приземление!"
 	L.summon_trigger = "Древнее существо пробуждается вдалеке…"
 
 	L.engage_trigger = "Ну и глупцы! Я быстро покончу с вашими страданиями!"
@@ -133,18 +98,6 @@ if L then
 	L.pull_desc = "Предупреждать о магнитном притягивании и Супер Волшебном взрыве."
 	L.pull_message = "Волшебный взрыв!"
 	L.pull_bar = "Волшебный взрыв"
-end
-
-L = BigWigs:NewBossLocale("Terestian Illhoof", "ruRU")
-if L then
-	L.engage_trigger = "^А, вы как раз вовремя!."
-
-	L.weak = "Ослабление"
-	L.weak_desc = "Предупреждение о Ослабление статов."
-	L.weak_message = "Ослабление на ~45сек!"
-	L.weak_warning1 = "Ослабление исчезнет через ~5сек!"
-	L.weak_warning2 = "Ослабление прошло!"
-	L.weak_bar = "~Ослабление исчезает"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "ruRU")

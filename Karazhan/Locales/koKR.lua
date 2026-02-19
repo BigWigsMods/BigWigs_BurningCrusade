@@ -1,30 +1,8 @@
 local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "koKR")
 if not L then return end
 if L then
-	L.phase = "단계"
-	L.phase_desc = "새로운 단계 진입 시 알립니다."
 	L.phase2_trigger = "%s|1이;가; 주인을 부릅니다!"
-	L.phase2_message = "2 단계 - %s & 어튜멘"
 	L.phase3_trigger = "이랴! 이 오합지졸을 데리고 실컷 놀아보자!"
-	L.phase3_message = "3 단계"
-end
-
-L = BigWigs:NewBossLocale("The Curator Raid", "koKR")
-if L then
-	L.engage_trigger = "박물관에는 초대받은 손님만 입장하실 수 있습니다."
-
-	L.weaken_message = "환기 - 20초간 약화!"
-	L.weaken_fade_message = "환기 종료 - 약화 종료!"
-	L.weaken_fade_warning = "5초 후 환기 종료!"
-end
-
-L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "koKR")
-if L then
-	L.engage_trigger = "너희의 행동은 그냥 넘길 수가 없다."
-	L.engage_message = "고결의 여신 전투 개시! 약 33초 후 참회"
-
-	L.repentance_message = "참회! 다음은 약 33초 후!"
-	L.repentance_warning = "참회 쿨다운 종료 - 잠시후 시전!"
 end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "koKR")
@@ -48,37 +26,24 @@ if L then
 	L.infernal_trigger2 = "모든 차원과 실체가 나를 향해 열려 있노라"
 end
 
-L = BigWigs:NewBossLocale("Moroes Raid", "koKR")
-if L then
-	L.engage_trigger = "음, 예상치 못한 손님들이군. 준비를 해야겠어..."
-	L.engage_message = "%s 전투 시작 - 약 35초 후 소멸!"
-end
-
 L = BigWigs:NewBossLocale("Netherspite", "koKR")
 if L then
-	L.phase = "단계"
-	L.phase_desc = "황천의 원령의 다음 단계로 변화 시 경고합니다."
 	L.phase1_message = "물러남 - 황천의 숨결 종료!"
 	L.phase1_bar = "~물러남 주의"
 	L.phase1_trigger = "%s|1이;가; 물러나며 고함을 지르더니 황천의 문을 엽니다."
 	L.phase2_message = "분노 - 황천의 숨결 시전!"
 	L.phase2_bar = "분노 주의"
 	L.phase2_trigger = "%s|1이;가; 황천의 기운을 받고 분노에 휩싸입니다!"
-
-	L.voidzone_warn = "공허의 지대 (%d)!"
 end
 
 L = BigWigs:NewBossLocale("Nightbane Raid", "koKR")
 if L then
 	L.name = "파멸의 어둠"
 
-	L.phase = "단계"
-	L.phase_desc = "파멸의 어둠의 단계 변경 시 알립니다."
 	L.airphase_trigger = "이 더러운 기생충들, 내가 하늘에서 너희의 씨를 말리리라!"
 	L.landphase_trigger1 = "그만! 내 친히 내려가서 너희를 짓이겨주마!"
 	L.landphase_trigger2 = "하루살이 같은 놈들! 나의 힘을 똑똑히 보여주겠다!"
 	L.airphase_message = "비행!"
-	L.landphase_message = "착지!"
 	L.summon_trigger = "멀리에서 고대의 존재가 깨어나고 있다..."
 
 	L.engage_trigger = "정말 멍청하군! 고통 없이 빨리 끝내주마!"
@@ -133,18 +98,6 @@ if L then
 	L.pull_desc = "전체 광역 신비한 폭발에 대한 경고입니다."
 	L.pull_message = "신비한 폭발!"
 	L.pull_bar = "신비한 폭발"
-end
-
-L = BigWigs:NewBossLocale("Terestian Illhoof", "koKR")
-if L then
-	L.engage_trigger = "^아, 때맞춰 와줬군."
-
-	L.weak = "약화"
-	L.weak_desc = "약화 상태에 대한 경고입니다."
-	L.weak_message = "약 45초간 약화!"
-	L.weak_warning1 = "약 5초 후 약화 종료!"
-	L.weak_warning2 = "약화 종료!"
-	L.weak_bar = "~약화 사라짐"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "koKR")

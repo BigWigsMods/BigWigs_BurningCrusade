@@ -2,59 +2,64 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Attumen the Huntsman Raid", 532, 1553)
+local mod, CL = BigWigs:NewBoss("Attumen the Huntsman Raid", 532, 1553)
 if not mod then return end
 mod:RegisterEnableMob(16152, 16151, 15550)
-if mod:Classic() then
-	mod:SetEncounterID(652)
-end
+mod:SetEncounterID(652)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
-	L.phase = "Phase"
-	L.phase_desc = "Warn when entering a new Phase."
 	L.phase2_trigger = "%s calls for her master!"
-	L.phase2_message = "Phase 2"
 	L.phase3_trigger = "Come Midnight, let's disperse this petty rabble!"
-	L.phase3_message = "Phase 3"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
-	return {"phase", 29833}
+	return {
+		"stages",
+		29833, -- Intangible Presence
+	},nil,{
+		[29833] = CL.curse, -- Intangible Presence (Curse)
+	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Curse", 29833)
-	self:BossYell("Phase3", L["phase3_trigger"])
+	self:Log("SPELL_AURA_APPLIED", "IntangiblePresence", 29833)
+	self:BossYell("Stage3Yell", L.phase3_trigger)
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
-	self:Death("Win", 15550)
+end
+
+function mod:OnEngage()
+	self:SetStage(1)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Curse(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow")
+function mod:IntangiblePresence(args)
+	self:TargetMessage(args.spellId, "yellow", args.destName, CL.curse)
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
-	if msg == L["phase2_trigger"] then
-		self:MessageOld("phase", "red", nil, L["phase2_message"], false)
+	if not self:IsSecret(msg) and msg == L.phase2_trigger then
+		self:SetStage(2)
+		self:Message("stages", "cyan", CL.stage:format(2), false)
+		self:PlaySound("stages", "info")
 	end
 end
 
-function mod:Phase3()
-	self:MessageOld("phase", "red", nil, L["phase3_message"], false)
+function mod:Stage3Yell()
+	self:SetStage(3)
+	self:Message("stages", "cyan", CL.stage:format(3), false)
+	self:PlaySound("stages", "info")
 end
-

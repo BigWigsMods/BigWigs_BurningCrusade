@@ -4,33 +4,33 @@
 
 local mod, CL = BigWigs:NewBoss("Magtheridon", 544, 1566)
 if not mod then return end
-mod:RegisterEnableMob(17257, 17256) --Magtheridon, Hellfire Channeler
-if mod:Classic() then
-	mod:SetEncounterID(651)
-end
+mod:RegisterEnableMob(17257, 17256) -- Magtheridon, Hellfire Channeler
+mod:SetEncounterID(651)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local abycount = 1
+local mindExhaustionList = {}
+local mindExhaustionDebuffTime = {}
+local UpdateInfoBoxList
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.escape = "Escape"
 	L.escape_desc = "Countdown until Magtheridon breaks free."
-	L.escape_icon = 20589
+	L.escape_icon = "ability_rogue_trip"
 	L.escape_trigger1 = "%%s's bonds begin to weaken!"
 	L.escape_trigger2 = "I... am... unleashed!"
 	L.escape_warning1 = "%s Engaged - Breaks free in 2min!"
 	L.escape_warning2 = "Breaks free in 1min!"
 	L.escape_warning3 = "Breaks free in 30sec!"
 	L.escape_warning4 = "Breaks free in 10sec!"
-	L.escape_warning5 = "Breaks free in 3sec!"
 	L.escape_bar = "Released..."
 	L.escape_message = "%s Released!"
 
@@ -51,15 +51,8 @@ if L then
 	L.banish_over_message = "Banish Fades!"
 	L.banish_bar = "<Banished>"
 
-	L.exhaust = mod:SpellName(44032)
-	L.exhaust_desc = "Timer bars for Mind Exhaustion on players."
-	L.exhaust_icon = 44032
-	L.exhaust_bar = "[%s] Exhausted"
-
 	L.debris_trigger = "Let the walls of this prison tremble"
-	L.debris_message = "30% - Incoming Debris!"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -67,45 +60,45 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"escape",
+		{"escape", "COUNTDOWN"},
 		"abyssal",
 		"heal",
-		30616, -- Blast Nova
+		{30616, "CASTBAR"}, -- Blast Nova
 		"banish",
 		36449, -- Debris
-		"exhaust",
-		"berserk"
+		{44032, "INFOBOX"}, -- Mind Exhaustion
+		"berserk",
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Exhaustion", 44032)
-	self:Log("SPELL_AURA_APPLIED", "Debris", 36449)
-	self:Log("SPELL_SUMMON", "Abyssal", 30511)
-	self:Log("SPELL_CAST_START", "Heal", 30528)
-	self:Log("SPELL_CAST_START", "Nova", 30616)
+	mindExhaustionList = {}
+	mindExhaustionDebuffTime = {}
+	self:Log("SPELL_AURA_APPLIED", "MindExhaustionApplied", 44032)
+	self:Log("SPELL_AURA_REMOVED", "MindExhaustionRemoved", 44032)
+	self:Log("SPELL_AURA_APPLIED", "DebrisApplied", 36449)
+	self:Log("SPELL_SUMMON", "BurningAbyssal", 30511)
+	self:Log("SPELL_CAST_START", "DarkMending", 30528)
+	self:Log("SPELL_CAST_START", "BlastNova", 30616)
 
-	self:Log("SPELL_AURA_APPLIED", "Banished", 30168)
-	self:Log("SPELL_AURA_REMOVED", "BanishRemoved", 30168)
+	self:Log("SPELL_AURA_APPLIED", "ShadowCageApplied", 30168)
+	self:Log("SPELL_AURA_REMOVED", "ShadowCageRemoved", 30168)
 
-	self:BossYell("Start", L["escape_trigger2"])
-	self:BossYell("DebrisInc", L["debris_trigger"])
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:BossYell("EscapeYell", L["escape_trigger2"])
+	self:BossYell("DebrisIncYell", L["debris_trigger"])
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
-
-	self:Death("Win", 17257)
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 	abycount = 1
+	mindExhaustionList = {}
+	mindExhaustionDebuffTime = {}
 
-	self:MessageOld("escape", "yellow", nil, L["escape_warning1"]:format(self.displayName), 20589)
-	self:Bar("escape", 120, L["escape_bar"], 20589)
-	self:DelayedMessage("escape", 60, "green", L["escape_warning2"])
-	self:DelayedMessage("escape", 90, "yellow", L["escape_warning3"])
-	self:DelayedMessage("escape", 110, "orange", L["escape_warning4"])
-	self:DelayedMessage("escape", 117, "orange", L["escape_warning5"], false, "long")
+	self:Message("escape", "yellow", L.escape_warning1:format(self.displayName), L.escape_icon)
+	self:Bar("escape", 120, L.escape_bar, L.escape_icon)
+	self:DelayedMessage("escape", 60, "yellow", L.escape_warning2)
+	self:DelayedMessage("escape", 90, "yellow", L.escape_warning3)
+	self:DelayedMessage("escape", 110, "yellow", L.escape_warning4)
 end
 
 --------------------------------------------------------------------------------
@@ -113,73 +106,116 @@ end
 --
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
-	if msg:find(L["escape_trigger1"]) then
+	if not self:IsSecret(msg) and (msg:find(L.escape_trigger1) or msg:find(L.escape_trigger1, nil, true) or msg == L.escape_trigger1) then
 		self:Engage()
 	end
 end
 
-function mod:Exhaustion(args)
-	self:Bar("exhaust", 30, L["exhaust_bar"]:format(args.destName), args.spellId)
+function mod:MindExhaustionApplied(args)
+	if not mindExhaustionList[1] then
+		self:OpenInfo(args.spellId, CL.other:format("BigWigs", "|T136222:0:0:0:0:64:64:4:60:4:60|t".. args.spellName), 5)
+		self:SimpleTimer(UpdateInfoBoxList, 0.1)
+	end
+	self:DeleteFromTable(mindExhaustionList, args.destName)
+	mindExhaustionList[#mindExhaustionList + 1] = args.destName
+	mindExhaustionDebuffTime[args.destName] = GetTime() + 30
 end
 
-function mod:Abyssal()
-	self:MessageOld("abyssal", "yellow", nil, L["abyssal_message"]:format(abycount), 30511)
-	abycount = abycount + 1
-end
-
-function mod:Heal(args)
-	self:MessageOld("heal", "orange", "alarm", L["heal_message"], args.spellId)
-	self:Bar("heal", 2, L["heal_message"], args.spellId)
-end
-
-function mod:Banished(args)
-	self:MessageOld("banish", "red", "info", L["banish_message"], args.spellId)
-	self:Bar("banish", 10, L["banish_bar"], args.spellId)
-	self:StopBar(CL["cast"]:format(self:SpellName(30616))) -- Blast Nova
-end
-
-function mod:BanishRemoved(args)
-	self:MessageOld("banish", "yellow", nil, L["banish_over_message"], args.spellId)
-	self:StopBar(L["banish_bar"])
-end
-
-function mod:Start()
-	self:CDBar(30616, 58) -- Nova
-	self:DelayedMessage(30616, 56, "orange", CL["soon"]:format(self:SpellName(30616))) -- Nova
-	self:Berserk(1200)
-
-	self:StopBar(L["escape_bar"])
-	self:CancelDelayedMessage(L["escape_warning2"])
-	self:CancelDelayedMessage(L["escape_warning3"])
-	self:CancelDelayedMessage(L["escape_warning4"])
-	self:CancelDelayedMessage(L["escape_warning5"])
-end
-
-function mod:Nova(args)
-	self:MessageOld(args.spellId, "green", "warning")
-	self:CDBar(args.spellId, 51)
-	self:Bar(args.spellId, 12, CL["cast"]:format(args.spellName))
-	self:DelayedMessage(args.spellId, 48, "orange", CL["soon"]:format(args.spellName))
-end
-
-function mod:Debris(args)
-	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "red", "alert", CL["you"]:format(args.spellName))
+function mod:MindExhaustionRemoved(args)
+	mindExhaustionDebuffTime[args.destName] = nil
+	self:DeleteFromTable(mindExhaustionList, args.destName)
+	if not mindExhaustionList[1] then
+		self:CloseInfo(args.spellId)
 	end
 end
 
-function mod:DebrisInc()
-	self:MessageOld(36449, "green", nil, L["debris_message"])
+function mod:BurningAbyssal(args)
+	self:Message("abyssal", "cyan", L.abyssal_message:format(abycount), args.spellId)
+	abycount = abycount + 1
+end
+
+function mod:DarkMending(args)
+	self:Message("heal", "orange", L.heal_message, args.spellId)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:ShadowCageApplied(args)
+	self:Message("banish", "red", L.banish_message, args.spellId)
+	self:Bar("banish", 10, L.banish_bar, args.spellId)
+	self:StopCastBar(30616) -- Blast Nova
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ShadowCageRemoved(args)
+	self:Message("banish", "green", L.banish_over_message, args.spellId)
+	self:StopBar(L.banish_bar)
+end
+
+function mod:EscapeYell()
+	self:RegisterEvent("UNIT_HEALTH")
+	self:CDBar(30616, 58) -- Blast Nova
+	self:Berserk(1200, true)
+
+	self:StopBar(L.escape_bar)
+	self:CancelDelayedMessage(L.escape_warning2)
+	self:CancelDelayedMessage(L.escape_warning3)
+	self:CancelDelayedMessage(L.escape_warning4)
+end
+
+function mod:BlastNova(args)
+	self:Message(args.spellId, "red")
+	self:CDBar(args.spellId, 51)
+	self:CastBar(args.spellId, 12)
+	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:DebrisApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
+function mod:DebrisIncYell()
+	self:Message(36449, "orange", CL.percent:format(30, CL.incoming:format(self:SpellName(36449))))
+	self:PlaySound(36449, "long")
 end
 
 function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) == 17257 then
 		local hp = self:GetHealth(unit)
-		if hp > 30 and hp < 37 then
-			local debris = self:SpellName(36449)
-			self:MessageOld(36449, "green", nil, CL["soon"]:format(debris), false)
-			self:UnregisterUnitEvent(event, "target", "focus")
+		if hp < 37 then
+			self:UnregisterEvent(event)
+			if hp > 30 then
+				self:Message(36449, "orange", CL.soon:format(self:SpellName(36449)), false) -- Debris
+			end
 		end
 	end
 end
 
+function UpdateInfoBoxList()
+	if not mod:IsEngaged() or not mindExhaustionList[1] then return end
+	mod:SimpleTimer(UpdateInfoBoxList, 0.1)
+
+	local t = GetTime()
+	local line = 1
+	for i = 1, 5 do
+		local player = mindExhaustionList[i]
+		if player then
+			local remaining = (mindExhaustionDebuffTime[player] or 0) - t
+			mod:SetInfo(44032, line, mod:ColorName(player))
+			if remaining > 0 then
+				mod:SetInfo(44032, line + 1, CL.seconds:format(remaining))
+				mod:SetInfoBar(44032, line, remaining / 30)
+			else
+				mod:SetInfo(44032, line + 1, "")
+				mod:SetInfoBar(44032, line, 0)
+			end
+		else
+			mod:SetInfo(44032, line, "")
+			mod:SetInfo(44032, line + 1, "")
+			mod:SetInfoBar(44032, line, 0)
+		end
+		line = line + 2
+	end
+end

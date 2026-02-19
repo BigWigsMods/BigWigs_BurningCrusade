@@ -5,15 +5,13 @@
 local mod, CL = BigWigs:NewBoss("Shade of Aran", 532, 1559)
 if not mod then return end
 mod:RegisterEnableMob(16524)
-if mod:Classic() then
-	mod:SetEncounterID(658)
-end
+mod:SetEncounterID(658)
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:NewLocale("enUS", true)
+local L = mod:GetLocale()
 if L then
 	L.adds = "Elementals"
 	L.adds_desc = "Warn about the water elemental adds spawning."
@@ -40,7 +38,6 @@ if L then
 	L.pull_message = "Arcane Explosion!"
 	L.pull_bar = "Arcane Explosion"
 end
-L = mod:GetLocale()
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -48,27 +45,26 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"adds", "drink", "blizzard", "pull", 30004
+		"adds",
+		"drink",
+		"blizzard",
+		"pull",
+		{30004, "CASTBAR"}, -- Flame Wreath
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FlameWreathStart", 30004)
-	self:Log("SPELL_AURA_APPLIED", "FlameWreath", 29946)
-	self:Log("SPELL_CAST_START", "Blizzard", 29969)
-	self:Log("SPELL_CAST_START", "Drinking", 29963) --Mass Polymorph
-	self:Log("SPELL_SUMMON", "Elementals", 29962)
-	self:Log("SPELL_CAST_SUCCESS", "Pull", 29979) --Arcane Explosion
-
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	self:Death("Win", 16524)
+	self:Log("SPELL_AURA_APPLIED", "FlameWreathApplied", 29946)
+	self:Log("SPELL_CAST_START", "SummonBlizzard", 29969)
+	self:Log("SPELL_CAST_START", "MassPolymorph", 29963) -- Drinking
+	self:Log("SPELL_SUMMON", "SummonWaterElementals", 29962)
+	self:Log("SPELL_CAST_SUCCESS", "MassiveMagneticPull", 29979) -- Pull + Arcane Explosion
 end
 
 function mod:OnEngage()
-	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "target", "focus")
-	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
+	self:RegisterEvent("UNIT_POWER_UPDATE")
+	self:RegisterEvent("UNIT_HEALTH")
 end
 
 --------------------------------------------------------------------------------
@@ -76,60 +72,61 @@ end
 --
 
 do
-	local scheduled = nil
-	local inWreath = mod:NewTargetList()
-	local function wreathWarn(spellId)
-		mod:TargetMessageOld(30004, inWreath, "red", "long", spellId)
-		scheduled = nil
-	end
-	function mod:FlameWreath(args)
-		inWreath[#inWreath + 1] = args.destName
-		if not scheduled then
-			scheduled = true
+	local playerList, prev = {}, 0
+	function mod:FlameWreathApplied(args)
+		if args.time - prev > 5 then
+			prev = args.time
+			playerList = {}
 			self:Bar(30004, 21, args.spellName, args.spellId)
-			self:ScheduleTimer(wreathWarn, 0.4, args.spellId)
+		end
+		playerList[#playerList+1] = args.destName
+		self:TargetsMessage(30004, "yellow", playerList, nil, nil, args.spellId)
+		if #playerList == 1 then
+			self:PlaySound(30004, "warning")
 		end
 	end
 end
 
 function mod:FlameWreathStart(args)
-	self:MessageOld(args.spellId, "red", "alarm", CL["cast"]:format(args.spellName))
-	self:Bar(args.spellId, 5, CL["cast"]:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:CastBar(args.spellId, 5)
+	self:PlaySound(args.spellId, "long")
 end
 
-function mod:Blizzard(args)
-	self:MessageOld("blizzard", "yellow", nil, L["blizzard_message"], args.spellId)
-	self:Bar("blizzard", 36, L["blizzard_message"], args.spellId)
+function mod:SummonBlizzard(args)
+	self:Message("blizzard", "orange", L.blizzard_message, args.spellId)
+	self:Bar("blizzard", 36, L.blizzard_message, args.spellId)
 end
 
-function mod:Drinking()
-	self:MessageOld("drink", "green", nil, L["drink_message"], L.drink_icon)
-	self:Bar("drink", 15, L["drink_bar"], 29978) --Pyroblast id
+function mod:MassPolymorph() -- Drinking
+	self:Message("drink", "cyan", L.drink_message, L.drink_icon)
+	self:Bar("drink", 15, L.drink_bar, 29978) --Pyroblast id
 end
 
-function mod:Elementals()
-	self:MessageOld("adds", "red", nil, L["adds_message"], L["adds_icon"])
-	self:Bar("adds", 90, L["adds_bar"], L["adds_icon"])
+function mod:SummonWaterElementals()
+	self:Message("adds", "orange", L.adds_message, L.adds_icon)
+	self:Bar("adds", 90, L.adds_bar, L.adds_icon)
 end
 
 do
-	local last = 0
-	function mod:Pull()
-		local time = GetTime()
-		if (time - last) > 5 then
-			last = time
-			self:MessageOld("pull", "yellow", nil, L["pull_message"], 29973)
-			self:Bar("pull", 12, L["pull_bar"], 29973)
+	local prev = 0
+	function mod:MassiveMagneticPull(args) -- Pull + Arcane Explosion
+		if args.time - prev > 5 then
+			prev = args.time
+			self:Message("pull", "yellow", L.pull_message, 29973)
+			self:Bar("pull", 12, L.pull_bar, 29973)
 		end
 	end
 end
 
-function mod:UNIT_POWER_FREQUENT(event, unit)
+function mod:UNIT_POWER_UPDATE(event, unit)
 	if self:MobId(self:UnitGUID(unit)) == 16524 then
 		local mana = UnitPower(unit)
-		if mana > 33000 and mana < 37000 then
-			self:MessageOld("drink", "orange", "alert", L["drink_warning"], false)
-			self:UnregisterUnitEvent(event, "target", "focus")
+		if mana < 37000 then
+			self:UnregisterEvent(event)
+			if mana > 33000 then
+				self:Message("drink", "orange", L.drink_warning, false)
+			end
 		end
 	end
 end
@@ -137,10 +134,11 @@ end
 function mod:UNIT_HEALTH(event, unit)
 	if self:MobId(self:UnitGUID(unit)) == 16524 then
 		local hp = self:GetHealth(unit)
-		if hp > 40 and hp < 46 then
-			self:MessageOld("adds", "orange", "alert", L["adds_warning"], false)
-			self:UnregisterUnitEvent(event, "target", "focus")
+		if hp < 46 then
+			self:UnregisterEvent(event)
+			if hp > 40 then
+				self:Message("adds", "orange", L.adds_warning, false)
+			end
 		end
 	end
 end
-

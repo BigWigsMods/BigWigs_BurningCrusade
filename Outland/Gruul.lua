@@ -5,36 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Gruul the Dragonkiller", 565, 1565)
 if not mod then return end
 mod:RegisterEnableMob(19044)
-if mod:Classic() then
-	mod:SetEncounterID(650)
-end
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:NewLocale("enUS", true)
-if L then
-	L.engage_trigger = "Come.... and die."
-	L.engage_message = "%s Engaged!"
-
-	L.grow = "Grow"
-	L.grow_desc = "Count and warn for Grull's grow."
-	L.grow_icon = 36300
-	L.grow_message = "Grows: (%d)"
-	L.grow_bar = "Grow (%d)"
-
-	L.grasp = "Grasp"
-	L.grasp_desc = "Grasp warnings and timers."
-	L.grasp_icon = 33525
-	L.grasp_message = "Ground Slam - Shatter in ~10sec!"
-	L.grasp_warning = "Ground Slam Soon"
-
-	L.silence_message = "AOE Silence"
-	L.silence_warning = "AOE Silence soon!"
-	L.silence_bar = "~Silence"
-end
-L = mod:GetLocale()
+mod:SetEncounterID(650)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -42,38 +13,31 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		"grasp", "grow", {36240, "FLASH"}, 36297, "proximity"
+		33525, -- Ground Slam
+		{33654, "COUNTDOWN"}, -- Shatter
+		36300, -- Growth
+		36240, -- Cave In
+		36297, -- Reverberation
+	},nil,{
+		[36297] = mod:SpellName(15487), -- Reverberation (Silence)
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Grow", 36300)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "Grow", 36300)
-
 	self:Log("SPELL_AURA_APPLIED", "CaveIn", 36240)
-	self:Log("SPELL_CAST_SUCCESS", "Silence", 36297)
+
+	self:Log("SPELL_AURA_APPLIED", "GrowthApplied", 36300)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "GrowthApplied", 36300)
+
+	self:Log("SPELL_CAST_SUCCESS", "Reverberation", 36297)
 	self:Log("SPELL_CAST_START", "Shatter", 33654)
-	self:Log("SPELL_CAST_START", "Slam", 33525)
-
-	self:BossYell("Engage", L["engage_trigger"])
-
-	self:Death("Win", 19044)
+	self:Log("SPELL_CAST_START", "GroundSlam", 33525)
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "StartWipeCheck")
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "StopWipeCheck")
-
-	self:OpenProximity("proximity", 15)
-
-	self:MessageOld("grasp", "yellow", nil, L["engage_message"]:format(self.displayName), false)
-	self:DelayedMessage("grasp", 30, "orange", L["grasp_warning"])
-	self:CDBar("grasp", 33, 33525) -- Ground Slam
-
-	self:DelayedMessage(36297, 97, "orange", L["silence_warning"])
-	self:Bar(36297, 102, L["silence_bar"])
-
-	self:Bar("grow", 30, L["grow_bar"]:format(1), 36300)
+	self:CDBar(33525, 33) -- Ground Slam
+	self:Bar(36297, 102, mod:SpellName(15487)) -- Reverberation (Silence)
+	self:Bar(36300, 30, CL.count:format(self:SpellName(36300), 1)) -- Growth
 end
 
 --------------------------------------------------------------------------------
@@ -82,37 +46,39 @@ end
 
 function mod:CaveIn(args)
 	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "alarm", CL["you"]:format(args.spellName))
-		self:Flash(args.spellId)
+		self:PersonalMessage(args.spellId, "aboveyou")
+		self:PlaySound(args.spellId, "underyou")
 	end
 end
 
-function mod:Grow(args)
+function mod:GrowthApplied(args)
 	local stack = args.amount or 1
-	self:MessageOld("grow", "red", nil, L["grow_message"]:format(stack), args.spellId)
+	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, stack))
 	stack = stack + 1
 	if stack < 31 then
-		self:Bar("grow", 30, L["grow_bar"]:format(stack), args.spellId)
+		self:Bar(args.spellId, 30, CL.count:format(args.spellName, stack))
 	else
 		stack = 1
-		self:Bar("grow", 300, L["grow_bar"]:format(stack), args.spellId)
+		self:Bar(args.spellId, 300, CL.count:format(args.spellName, stack))
 	end
+	self:PlaySound(args.spellId, "info")
 end
 
-function mod:Silence(args)
-	self:MessageOld(args.spellId, "yellow", nil, L["silence_message"])
-	self:DelayedMessage(args.spellId, 28, "orange", L["silence_warning"])
-	self:Bar(args.spellId, 31, L["silence_bar"])
+function mod:Reverberation(args)
+	self:Message(args.spellId, "yellow", self:SpellName(15487))
+	self:Bar(args.spellId, 31, self:SpellName(15487))
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Shatter(args)
-	self:MessageOld("grasp", "green", nil, args.spellId)
-	self:DelayedMessage("grasp", 56, "orange", L["grasp_warning"])
-	self:CDBar("grasp", 62, 33525)
+	self:Message(args.spellId, "red")
+	self:CDBar(33525, 62) -- Ground Slam
+	self:PlaySound(args.spellId, "warning")
 end
 
-function mod:Slam(args)
-	self:MessageOld("grasp", "yellow", nil, L["grasp_message"], args.spellId)
-	self:Bar("grasp", 10, 33654) -- Shatter
+function mod:GroundSlam(args)
+	self:StopBar(args.spellName)
+	self:Message(args.spellId, "orange", CL.other:format(args.spellName, CL.custom_sec:format(self:SpellName(33654), 10)), args.spellId)
+	self:Bar(33654, 10) -- Shatter
+	self:PlaySound(args.spellId, "long")
 end
-

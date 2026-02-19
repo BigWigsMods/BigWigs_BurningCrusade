@@ -1,30 +1,8 @@
 local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "ptBR")
 if not L then return end
 if L then
-	--L.phase = "Phase"
-	--L.phase_desc = "Warn when entering a new Phase."
 	--L.phase2_trigger = "%s calls for her master!"
-	--L.phase2_message = "Phase 2"
 	--L.phase3_trigger = "Come Midnight, let's disperse this petty rabble!"
-	--L.phase3_message = "Phase 3"
-end
-
-L = BigWigs:NewBossLocale("The Curator Raid", "ptBR")
-if L then
-	--L.engage_trigger = "The Menagerie is for guests only."
-
-	--L.weaken_message = "Evocation - Weakened for 20sec!"
-	--L.weaken_fade_message = "Evocation Finished - Weakened Gone!"
-	--L.weaken_fade_warning = "Evocation over in 5sec!"
-end
-
-L = BigWigs:NewBossLocale("Maiden of Virtue Raid", "ptBR")
-if L then
-	--L.engage_trigger = "Your behavior will not be tolerated."
-	--L.engage_message = "Maiden Engaged! Repentance in ~33sec"
-
-	--L.repentance_message = "Repentance! Next in ~33sec"
-	--L.repentance_warning = "Repentance Cooldown Over - Inc Soon!"
 end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "ptBR")
@@ -48,37 +26,24 @@ if L then
 	--L.infernal_trigger2 = "All realities"
 end
 
-L = BigWigs:NewBossLocale("Moroes Raid", "ptBR")
-if L then
-	--L.engage_trigger = "Hm, unannounced visitors. Preparations must be made..."
-	--L.engage_message = "%s Engaged - Vanish in ~35sec!"
-end
-
 L = BigWigs:NewBossLocale("Netherspite", "ptBR")
 if L then
-	--L.phase = "Phases"
-	--L.phase_desc = "Warns when Netherspite changes from one phase to another."
 	--L.phase1_message = "Withdrawal - Netherbreaths Over"
 	--L.phase1_bar = "~Possible Withdrawal"
 	--L.phase1_trigger = "%s cries out in withdrawal, opening gates to the nether."
 	--L.phase2_message = "Rage - Incoming Netherbreaths!"
 	--L.phase2_bar = "~Possible Rage"
 	--L.phase2_trigger = "%s goes into a nether-fed rage!"
-
-	--L.voidzone_warn = "Void Zone (%d)!"
 end
 
 L = BigWigs:NewBossLocale("Nightbane Raid", "ptBR")
 if L then
 	--L.name = "Nightbane"
 
-	--L.phase = "Phases"
-	--L.phase_desc = "Warn when Nightbane switches between phases."
 	--L.airphase_trigger = "Miserable vermin. I shall exterminate you from the air!"
 	--L.landphase_trigger1 = "Enough! I shall land and crush you myself!"
 	--L.landphase_trigger2 = "Insects! Let me show you my strength up close!"
 	--L.airphase_message = "Flying!"
-	--L.landphase_message = "Landing!"
 	--L.summon_trigger = "An ancient being awakens in the distance..."
 
 	--L.engage_trigger = "What fools! I shall bring a quick end to your suffering!"
@@ -133,18 +98,6 @@ if L then
 	--L.pull_desc = "Warn for the magnetic pull and Super Arcane Explosion."
 	--L.pull_message = "Arcane Explosion!"
 	--L.pull_bar = "Arcane Explosion"
-end
-
-L = BigWigs:NewBossLocale("Terestian Illhoof", "ptBR")
-if L then
-	--L.engage_trigger = "^Ah, you're just in time."
-
-	--L.weak = "Weakened"
-	--L.weak_desc = "Warn for weakened state."
-	--L.weak_message = "Weakened for ~45sec!"
-	--L.weak_warning1 = "Weakened over in ~5sec!"
-	--L.weak_warning2 = "Weakened over!"
-	--L.weak_bar = "~Weakened Fades"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "ptBR")
