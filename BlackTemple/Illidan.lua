@@ -98,9 +98,9 @@ function mod:OnBossEnable()
 	if self:Classic() then
 		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 		self:RegisterEvent("UNIT_AURA")
-	else
-		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
-		self:RegisterUnitEvent("UNIT_AURA", nil, "boss1")
+	--else
+		--self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+		--self:RegisterUnitEvent("UNIT_AURA", nil, "boss1")
 	end
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
@@ -297,7 +297,7 @@ function mod:UNIT_AURA(_, unit)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.warmup_trigger then
 		if self:Classic() then
 			self:Bar("warmup", 36, CL.active, "inv_weapon_glave_01")
 		else

@@ -41,7 +41,7 @@ function mod:OnBossEnable()
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L["start_trigger"] then
+	if not self:IsSecret(msg) and msg == L["start_trigger"] then
 		self:Engage() -- No boss frame to engage
 	end
 end
