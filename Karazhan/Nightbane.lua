@@ -60,7 +60,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(36922, 35) -- Bellowing Roar
+	self:CDBar(36922, 35, CL.fear, L["36922_icon"]) -- Bellowing Roar
 end
 
 --------------------------------------------------------------------------------
