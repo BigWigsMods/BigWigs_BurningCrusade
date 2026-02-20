@@ -2,7 +2,7 @@
 
 ## Title: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-zhCN: BigWigs [|cffeda55f燃烧的远征|r]
-## Title-zhTW: BigWigs [|cffeda55fBurning Crusade|r]
+## Title-zhTW: BigWigs [|cffeda55f燃燒的遠征|r]
 ## Title-deDE: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-frFR: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-itIT: BigWigs [|cffeda55fBurning Crusade|r]
@@ -13,7 +13,7 @@
 ## Title-esMX: BigWigs [|cffeda55fBurning Crusade|r]
 ## Notes: A collection of BigWigs modules from the Burning Crusade era.
 ## Notes-zhCN: BigWigs 燃烧的远征模块。
-## Notes-zhTW: A collection of BigWigs modules from the Burning Crusade era.
+## Notes-zhTW: BigWigs 燃燒的遠征模組。
 ## Notes-deDE: Eine Sammlung von BigWigs-Modulen aus der Ära Burning Crusade.
 ## Notes-frFR: Une collection de modules BigWigs de l'ère Burning Crusade.
 ## Notes-itIT: A collection of BigWigs modules from the Burning Crusade era.
