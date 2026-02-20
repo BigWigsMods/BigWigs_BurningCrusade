@@ -24,7 +24,7 @@ end
 
 function mod:GetOptions()
 	return {
-		{30753, "ICON"}, -- Red Riding Hood
+		{30753, "ICON", "SAY", "ME_ONLY_EMPHASIZE"}, -- Red Riding Hood
 	}
 end
 
@@ -36,6 +36,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("ENCOUNTER_END")
 	self:Log("SPELL_AURA_APPLIED", "RedRidingHoodApplied", 30753)
+	self:Log("SPELL_AURA_REMOVED", "RedRidingHoodRemoved", 30753)
 end
 
 --------------------------------------------------------------------------------
@@ -61,7 +62,20 @@ end
 
 function mod:RedRidingHoodApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PrimaryIcon(args.spellId, args.destName)
 	self:Bar(args.spellId, 20, L.riding_bar:format(args.destName))
+	self:PrimaryIcon(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, L.riding_bar:format(args.destName), true, ("%s Running"):format(args.destName))
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	end
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:RedRidingHoodRemoved(args)
+	self:StopBar(L.riding_bar:format(args.destName))
+	self:PrimaryIcon(args.spellId)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId, "removed")
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	end
 end
