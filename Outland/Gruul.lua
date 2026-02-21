@@ -53,15 +53,17 @@ end
 
 function mod:GrowthApplied(args)
 	local stack = args.amount or 1
-	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, stack))
 	stack = stack + 1
 	if stack < 31 then
 		self:Bar(args.spellId, 30, CL.count:format(args.spellName, stack))
+		if stack >= 7 then -- Trying to only show a message when it starts becoming important
+			self:Message(args.spellId, "cyan", CL.count:format(args.spellName, stack))
+			self:PlaySound(args.spellId, "info")
+		end
 	else
 		stack = 1
 		self:Bar(args.spellId, 300, CL.count:format(args.spellName, stack))
 	end
-	self:PlaySound(args.spellId, "info")
 end
 
 function mod:Reverberation(args)

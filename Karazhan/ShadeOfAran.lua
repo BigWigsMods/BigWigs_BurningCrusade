@@ -13,7 +13,6 @@ mod:SetEncounterID(658)
 
 local L = mod:GetLocale()
 if L then
-	L.adds = "Elementals"
 	L.adds_desc = "Warn about the water elemental adds spawning."
 	L.adds_icon = "spell_frost_summonwaterelemental_2"
 	L.adds_message = "Elementals Incoming!"
@@ -30,13 +29,6 @@ if L then
 	L.blizzard = "Blizzard"
 	L.blizzard_desc = "Warn when Blizzard is being cast."
 	L.blizzard_icon = 29969
-	L.blizzard_message = "Blizzard!"
-
-	L.pull = "Pull/Super AE"
-	L.pull_desc = "Warn for the magnetic pull and Super Arcane Explosion."
-	L.pull_icon = 29973
-	L.pull_message = "Arcane Explosion!"
-	L.pull_bar = "Arcane Explosion"
 end
 
 --------------------------------------------------------------------------------
@@ -48,8 +40,8 @@ function mod:GetOptions()
 		"adds",
 		"drink",
 		"blizzard",
-		"pull",
-		{30004, "CASTBAR"}, -- Flame Wreath
+		29973, -- Arcane Explosion
+		{30004, "CASTBAR", "COUNTDOWN", "ME_ONLY_EMPHASIZE"}, -- Flame Wreath
 	}
 end
 
@@ -59,7 +51,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SummonBlizzard", 29969)
 	self:Log("SPELL_CAST_START", "MassPolymorph", 29963) -- Drinking
 	self:Log("SPELL_SUMMON", "SummonWaterElementals", 29962)
-	self:Log("SPELL_CAST_SUCCESS", "MassiveMagneticPull", 29979) -- Pull + Arcane Explosion
+	self:Log("SPELL_CAST_SUCCESS", "MassiveMagneticPull", 29979)
+	self:Log("SPELL_CAST_START", "ArcaneExplosion", 29973)
 end
 
 function mod:OnEngage()
@@ -77,25 +70,25 @@ do
 		if args.time - prev > 5 then
 			prev = args.time
 			playerList = {}
-			self:Bar(30004, 21, args.spellName, args.spellId)
+			self:CastBar(30004, 21, args.spellName, args.spellId)
 		end
 		playerList[#playerList+1] = args.destName
 		self:TargetsMessage(30004, "yellow", playerList, nil, nil, args.spellId)
-		if #playerList == 1 then
-			self:PlaySound(30004, "warning")
+		if self:Me(args.destGUID) then
+			self:PlaySound(30004, "warning", nil, args.destName)
 		end
 	end
 end
 
 function mod:FlameWreathStart(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:CastBar(args.spellId, 5)
+	self:Bar(args.spellId, 5)
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:SummonBlizzard(args)
-	self:Message("blizzard", "orange", L.blizzard_message, args.spellId)
-	self:Bar("blizzard", 36, L.blizzard_message, args.spellId)
+	self:Message("blizzard", "orange", L.blizzard, args.spellId)
+	self:Bar("blizzard", 36, L.blizzard, args.spellId)
 end
 
 function mod:MassPolymorph() -- Drinking
@@ -104,19 +97,23 @@ function mod:MassPolymorph() -- Drinking
 end
 
 function mod:SummonWaterElementals()
-	self:Message("adds", "orange", L.adds_message, L.adds_icon)
+	self:Message("adds", "cyan", L.adds_message, L.adds_icon)
 	self:Bar("adds", 90, L.adds_bar, L.adds_icon)
 end
 
 do
 	local prev = 0
-	function mod:MassiveMagneticPull(args) -- Pull + Arcane Explosion
+	function mod:MassiveMagneticPull(args) -- Arcane Explosion pre warning
 		if args.time - prev > 5 then
 			prev = args.time
-			self:Message("pull", "yellow", L.pull_message, 29973)
-			self:Bar("pull", 12, L.pull_bar, 29973)
+			self:Message(29973, "yellow", self:SpellName(29973)) -- Arcane Explosion
+			self:PlaySound(29973, "info")
 		end
 	end
+end
+
+function mod:ArcaneExplosion(args)
+	self:Bar(args.spellId, 10)
 end
 
 function mod:UNIT_POWER_UPDATE(event, unit)

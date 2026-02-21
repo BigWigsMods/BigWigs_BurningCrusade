@@ -53,10 +53,8 @@ if L then
 	L.heal_message = "치유 시전!"
 
 	L.banish = "추방"
-	L.banish_desc = "마그테리돈 추방 시 알립니다."
-	L.banish_message = "약 10초 동안 추방됨"
-	L.banish_over_message = "추방 종료!"
-	L.banish_bar = "<추방됨>"
+	L["30168_desc"] = "마그테리돈 추방 시 알립니다."
+	L.banished = "추방됨"
 
 	L.debris_trigger = "그렇게 쉽게 당할 내가 아니다! 이 감옥의 벽이 흔들리고... 무너지리라!"
 end

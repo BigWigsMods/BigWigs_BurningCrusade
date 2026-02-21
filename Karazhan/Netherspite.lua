@@ -21,10 +21,10 @@ local voidCount = 1
 local L = mod:GetLocale()
 if L then
 	L.phase1_message = "Withdrawal - Netherbreaths Over"
-	L.phase1_bar = "~Possible Withdrawal"
+	L.phase1_bar = "Possible Withdrawal"
 	L.phase1_trigger = "%s cries out in withdrawal, opening gates to the nether."
 	L.phase2_message = "Rage - Incoming Netherbreaths!"
-	L.phase2_bar = "~Possible Rage"
+	L.phase2_bar = "Possible Rage"
 	L.phase2_trigger = "%s goes into a nether-fed rage!"
 end
 

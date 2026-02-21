@@ -29,10 +29,10 @@ end
 L = BigWigs:NewBossLocale("Netherspite", "frFR")
 if L then
 	L.phase1_message = "Retrait - Fin des Souffles du Néant"
-	L.phase1_bar = "~Retrait probable"
+	L.phase1_bar = "Retrait probable"
 	L.phase1_trigger = "%s se retire avec un cri en ouvrant un portail vers le Néant."
 	L.phase2_message = "Rage - Souffles de Néant imminent !"
-	L.phase2_bar = "~Rage probable"
+	L.phase2_bar = "Rage probable"
 	L.phase2_trigger = "%s entre dans une rage nourrie par le Néant !"
 end
 
@@ -78,7 +78,6 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "frFR")
 if L then
-	L.adds = "Elémentaires"
 	L.adds_desc = "Prévient quand les élémentaires d'eau apparaissent."
 	L.adds_message = "Arrivée des élémentaires !"
 	L.adds_warning = "Elémentaires imminent"
@@ -92,12 +91,6 @@ if L then
 
 	L.blizzard = "Blizzard"
 	L.blizzard_desc = "Prévient quand Blizzard est incanté."
-	L.blizzard_message = "Blizzard !"
-
-	L.pull = "Attraction/Sort de zone"
-	L.pull_desc = "Prévient de l'attraction magnétique et de l'explosion des arcanes."
-	L.pull_message = "Explosion des arcanes !"
-	L.pull_bar = "Explosion des arcanes"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "frFR")

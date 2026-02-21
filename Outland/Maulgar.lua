@@ -53,7 +53,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "GreaterPowerWordShield", 33147)
 	self:Log("SPELL_AURA_APPLIED", "SpellShield", 33054)
-	self:Log("SPELL_AURA_APPLIED", "Whirlwind", 33238)
+	self:Log("SPELL_AURA_APPLIED", "WhirlwindApplied", 33238)
+	self:Log("SPELL_AURA_REMOVED", "WhirlwindRemoved", 33238)
 	self:Log("SPELL_CAST_START", "SummonWildFelhunter", 33131)
 	self:Log("SPELL_CAST_START", "PrayerOfHealing", 33152)
 	self:Log("SPELL_CAST_SUCCESS", "ArcingSmash", 39144)
@@ -82,10 +83,18 @@ function mod:SpellShield(args)
 	end
 end
 
-function mod:Whirlwind(args)
+function mod:WhirlwindApplied(args)
+	self:StopBar(39144) -- Arcing Smash
 	self:Message(args.spellId, "red", L.whirlwind_message)
 	self:CastBar(args.spellId, 15)
 	self:CDBar(args.spellId, 60)
+end
+
+function mod:WhirlwindRemoved(args)
+	local unit = self:GetUnitIdByGUID(args.sourceGUID)
+	if unit and self:UnitWithinRange(unit, 20) then
+		self:CDBar(39144, 4) -- Arcing Smash
+	end
 end
 
 function mod:SummonWildFelhunter(args)
@@ -100,6 +109,7 @@ function mod:PrayerOfHealing(args)
 end
 
 function mod:ArcingSmash(args)
+	self:StopBar(args.spellName) -- Stop bar in case you get a bar and then go out of range
 	local unit = self:GetUnitIdByGUID(args.sourceGUID)
 	if unit and self:UnitWithinRange(unit, 10) then
 		self:CDBar(args.spellId, 10)

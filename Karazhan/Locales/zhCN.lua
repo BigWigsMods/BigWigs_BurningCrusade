@@ -78,7 +78,6 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "zhCN")
 if L then
-	L.adds = "水元素"
 	L.adds_desc = "当召唤水元素时发出警报。"
 	L.adds_message = "水元素 来临！"
 	L.adds_warning = "即将召唤 水元素！"
@@ -92,12 +91,6 @@ if L then
 
 	L.blizzard = "暴风雪"
 	L.blizzard_desc = "当暴风雪开始施放发出警报。"
-	L.blizzard_message = "暴风雪！"
-
-	L.pull = "魔爆术"
-	L.pull_desc = "当释放魔爆术时发出警报。"
-	L.pull_message = "魔爆术！"
-	L.pull_bar = "魔爆术"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "zhCN")

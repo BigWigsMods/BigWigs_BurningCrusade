@@ -53,11 +53,9 @@ if L then
 	--L.heal_desc = "Warn when a Hellfire Channeler starts to heal."
 	--L.heal_message = "Healing!"
 
-	--L.banish = "Banish"
-	--L.banish_desc = "Warn when you Banish Magtheridon."
-	--L.banish_message = "Banished for ~10sec"
-	--L.banish_over_message = "Banish Fades!"
-	--L.banish_bar = "<Banished>"
+	L.banish = "Esilio"
+	--L["30168_desc"] = "Warn when you Banish Magtheridon."
+	L.banished = "Esiliato"
 
 	--L.debris_trigger = "Let the walls of this prison tremble"
 end

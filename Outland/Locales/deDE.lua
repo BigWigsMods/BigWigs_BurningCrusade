@@ -52,11 +52,9 @@ if L then
 	L.heal_desc = "Warnt, wenn ein Kanalisierer anf\195\164ngt zu heilen"
 	L.heal_message = "Heilung!"
 
-	L.banish = "Verbannung"
-	L.banish_desc = "Warnt, wenn ihr Magtheridon verbannt"
-	L.banish_message = "Verbannt f\195\188r ~10sec"
-	L.banish_over_message = "Verbannen verblasst!"
-	L.banish_bar = "<Verbannt>"
+	L.banish = "Verbannen"
+	L["30168_desc"] = "Warnt, wenn ihr Magtheridon verbannt"
+	L.banished = "Verbannt"
 
 	L.debris_trigger = "Lasst die Mauern dieses Kerkers erzittern"
 end

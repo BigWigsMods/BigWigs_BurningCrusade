@@ -29,10 +29,10 @@ end
 L = BigWigs:NewBossLocale("Netherspite", "ruRU")
 if L then
 	L.phase1_message = "Назад - Дыхания Хаоса закончилось"
-	L.phase1_bar = "~возможен отвод"
+	L.phase1_bar = "возможен отвод"
 	L.phase1_trigger = "%s издает крик, отступая, открывая путь Пустоте."
 	L.phase2_message = "Ярость - скоро Дыхание Хаоса!"
-	L.phase2_bar = "~возможная Ярость"
+	L.phase2_bar = "возможная Ярость"
 	L.phase2_trigger = "%s впадает в предельную ярость!"
 end
 
@@ -78,7 +78,6 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "ruRU")
 if L then
-	L.adds = "Элементали"
 	L.adds_desc = "Предупреждать о появлении водных элементалей."
 	L.adds_message = "Надвигаются Элементали!"
 	L.adds_warning = "Скоро Элементали!"
@@ -92,12 +91,6 @@ if L then
 
 	L.blizzard = "Снежная буря"
 	L.blizzard_desc = "Предупреждать о начале появления снежной бури."
-	L.blizzard_message = "Снежная буря!"
-
-	L.pull = "Тяга/Супер ВВ"
-	L.pull_desc = "Предупреждать о магнитном притягивании и Супер Волшебном взрыве."
-	L.pull_message = "Волшебный взрыв!"
-	L.pull_bar = "Волшебный взрыв"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "ruRU")

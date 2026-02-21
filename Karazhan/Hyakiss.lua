@@ -21,7 +21,7 @@ end
 
 function mod:GetOptions()
 	return {
-		29896, -- Hyakiss' Web
+		{29896, "SAY"}, -- Hyakiss' Web
 	}
 end
 
@@ -42,4 +42,7 @@ end
 function mod:HyakissWeb(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:TargetBar(args.spellId, 10, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, nil, nil, "Hyakiss' Web")
+	end
 end

@@ -45,11 +45,8 @@ if L then
 	L.heal_message = "Healing!"
 
 	L.banish = "Banish"
-	L.banish_desc = "Warn when you Banish Magtheridon."
-	L.banish_icon = 30168
-	L.banish_message = "Banished for ~10sec"
-	L.banish_over_message = "Banish Fades!"
-	L.banish_bar = "<Banished>"
+	L["30168_desc"] = "Warn when you Banish Magtheridon."
+	L.banished = "Banished"
 
 	L.debris_trigger = "Let the walls of this prison tremble"
 end
@@ -63,11 +60,13 @@ function mod:GetOptions()
 		{"escape", "COUNTDOWN"},
 		"abyssal",
 		"heal",
-		{30616, "CASTBAR"}, -- Blast Nova
-		"banish",
+		{30616, "CASTBAR", "EMPHASIZE"}, -- Blast Nova
+		30168, -- Shadow Cage
 		36449, -- Debris
 		{44032, "INFOBOX"}, -- Mind Exhaustion
 		"berserk",
+	},nil,{
+		[30168] = L.banish, -- Shadow Cage (Banish)
 	}
 end
 
@@ -75,6 +74,7 @@ function mod:OnBossEnable()
 	mindExhaustionList = {}
 	mindExhaustionDebuffTime = {}
 	self:Log("SPELL_AURA_APPLIED", "MindExhaustionApplied", 44032)
+	self:Log("SPELL_AURA_REFRESH", "MindExhaustionApplied", 44032)
 	self:Log("SPELL_AURA_REMOVED", "MindExhaustionRemoved", 44032)
 	self:Log("SPELL_AURA_APPLIED", "DebrisApplied", 36449)
 	self:Log("SPELL_SUMMON", "BurningAbyssal", 30511)
@@ -113,8 +113,8 @@ end
 
 function mod:MindExhaustionApplied(args)
 	if not mindExhaustionList[1] then
-		self:OpenInfo(args.spellId, CL.other:format("BigWigs", "|T136222:0:0:0:0:64:64:4:60:4:60|t".. args.spellName), 5)
-		self:SimpleTimer(UpdateInfoBoxList, 0.1)
+		self:OpenInfo(args.spellId, CL.other:format("BigWigs", "|T136222:0:0:0:0:64:64:4:60:4:60|t".. self:SpellName(57723)), 5) -- 57723 = "Exhaustion"
+		self:SimpleTimer(UpdateInfoBoxList, 1)
 	end
 	self:DeleteFromTable(mindExhaustionList, args.destName)
 	mindExhaustionList[#mindExhaustionList + 1] = args.destName
@@ -139,16 +139,18 @@ function mod:DarkMending(args)
 	self:PlaySound("heal", "alarm")
 end
 
-function mod:ShadowCageApplied(args)
-	self:Message("banish", "red", L.banish_message, args.spellId)
-	self:Bar("banish", 10, L.banish_bar, args.spellId)
-	self:StopCastBar(30616) -- Blast Nova
-	self:PlaySound("banish", "info")
-end
+do
+	local appliedTime = 0
+	function mod:ShadowCageApplied(args)
+		appliedTime = args.time
+		self:StopCastBar(30616) -- Blast Nova
+		self:Message(args.spellId, "red", L.banished)
+		self:PlaySound(args.spellId, "info")
+	end
 
-function mod:ShadowCageRemoved(args)
-	self:Message("banish", "green", L.banish_over_message, args.spellId)
-	self:StopBar(L.banish_bar)
+	function mod:ShadowCageRemoved(args)
+		self:Message(args.spellId, "green", CL.removed_after:format(L.banish, args.time-appliedTime))
+	end
 end
 
 function mod:EscapeYell()

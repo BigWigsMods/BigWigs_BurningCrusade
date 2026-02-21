@@ -8,6 +8,12 @@ mod:RegisterEnableMob(17225)
 mod:SetEncounterID(662)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local stageHP = 100
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -56,11 +62,15 @@ function mod:OnBossEnable()
 	self:BossYell("AirStageYell", L["airphase_trigger"])
 	self:BossYell("LandStageYell", L["landphase_trigger1"], L["landphase_trigger2"])
 
-	self:BossYell("Engage", L["engage_trigger"])
+	-- Event order: Use item to summon
+	-- ENCOUNTER_START fires, enables and engages this module > landing bar
+	-- Boss lands > boss yell > EngageYell() > shows fear bar
+	self:BossYell("EngageYell", L["engage_trigger"])
 end
 
 function mod:OnEngage()
-	self:CDBar(36922, 35, CL.fear, L["36922_icon"]) -- Bellowing Roar
+	stageHP = 100
+	self:Bar("stages", 34, CL.landing, "INV_Misc_Head_Dragon_01")
 end
 
 --------------------------------------------------------------------------------
@@ -87,16 +97,11 @@ function mod:RainOfBones(args)
 	self:PlaySound(args.spellId, "info")
 end
 
-function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
-	if not self:IsSecret(msg) and msg == L.summon_trigger then
-		self:Bar("stages", 34, CL.landing, "INV_Misc_Head_Dragon_01")
-	end
-end
-
 function mod:AirStageYell()
-	self:StopBar(CL.fear)
+	stageHP = stageHP - 25
+	self:StopBar(CL.fear) -- Bellowing Roar
 
-	self:Message("stages", "yellow", L.airphase_message, "INV_Misc_Head_Dragon_01")
+	self:Message("stages", "yellow", CL.percent:format(stageHP, L.airphase_message), "INV_Misc_Head_Dragon_01")
 	self:Bar("stages", 57, CL.landing, "INV_Misc_Head_Dragon_01")
 	self:PlaySound("stages", "long")
 end
@@ -104,5 +109,10 @@ end
 function mod:LandStageYell()
 	self:Message("stages", "cyan", CL.boss_landing:format(L.name), "INV_Misc_Head_Dragon_01")
 	self:Bar("stages", 17, CL.landing, "INV_Misc_Head_Dragon_01")
+	self:CDBar(36922, 77, CL.fear, L["36922_icon"]) -- Bellowing Roar
 	self:PlaySound("stages", "long")
+end
+
+function mod:EngageYell()
+	self:CDBar(36922, 35, CL.fear, L["36922_icon"]) -- Bellowing Roar
 end

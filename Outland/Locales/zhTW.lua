@@ -52,11 +52,9 @@ if L then
 	L.heal_desc = "當地獄火導魔師開始治療時發出警報"
 	L.heal_message = "黑暗治療 - 快中斷!"
 
-	L.banish = "驅逐"
-	L.banish_desc = "當你驅逐 瑪瑟里頓."
-	L.banish_message = "驅逐成功 - 衝擊新星巳中斷"
-	L.banish_over_message = "驅逐效果消失!"
-	L.banish_bar = "<驅逐中>"
+	L.banish = "放逐術"
+	L["30168_desc"] = "當你驅逐 瑪瑟里頓."
+	L.banished = "被放逐"
 
 	L.debris_trigger = "我不會這麼輕易就被擊敗!讓這座監獄的牆壁震顫……然後崩塌!"
 end

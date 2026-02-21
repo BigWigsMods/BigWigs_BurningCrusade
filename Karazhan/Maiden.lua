@@ -40,4 +40,5 @@ function mod:Repentance(args)
 	self:Message(args.spellId, "red")
 	self:CastBar(args.spellId, 12)
 	self:CDBar(args.spellId, 33)
+	self:PlaySound(args.spellId, "warning")
 end

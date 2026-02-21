@@ -79,7 +79,6 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "deDE")
 if L then
-	L.adds = "Wasserelementare"
 	L.adds_desc = "Warnt vor den Wasserelementaren bei 40%."
 	L.adds_message = "Elementare!"
 	L.adds_warning = "Elementare in K\195\188rze!"
@@ -93,12 +92,6 @@ if L then
 
 	L.blizzard = "Blizzard"
 	L.blizzard_desc = "Warnt vor dem Blizzard."
-	L.blizzard_message = "Wirkt Blizzard!"
-
-	L.pull = "Magnet/Super-AE"
-	L.pull_desc = "Warnt vor dem Magnetpull und der Arkanen Explosion."
-	L.pull_message = "Arkane Explosion wird gewirkt!"
-	L.pull_bar = "Arkane Explosion"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "deDE")

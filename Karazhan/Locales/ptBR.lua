@@ -29,10 +29,10 @@ end
 L = BigWigs:NewBossLocale("Netherspite", "ptBR")
 if L then
 	--L.phase1_message = "Withdrawal - Netherbreaths Over"
-	--L.phase1_bar = "~Possible Withdrawal"
+	--L.phase1_bar = "Possible Withdrawal"
 	--L.phase1_trigger = "%s cries out in withdrawal, opening gates to the nether."
 	--L.phase2_message = "Rage - Incoming Netherbreaths!"
-	--L.phase2_bar = "~Possible Rage"
+	--L.phase2_bar = "Possible Rage"
 	--L.phase2_trigger = "%s goes into a nether-fed rage!"
 end
 
@@ -78,7 +78,6 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "ptBR")
 if L then
-	--L.adds = "Elementals"
 	--L.adds_desc = "Warn about the water elemental adds spawning."
 	--L.adds_message = "Elementals Incoming!"
 	--L.adds_warning = "Elementals Soon"
@@ -92,12 +91,6 @@ if L then
 
 	--L.blizzard = "Blizzard"
 	--L.blizzard_desc = "Warn when Blizzard is being cast."
-	--L.blizzard_message = "Blizzard!"
-
-	--L.pull = "Pull/Super AE"
-	--L.pull_desc = "Warn for the magnetic pull and Super Arcane Explosion."
-	--L.pull_message = "Arcane Explosion!"
-	--L.pull_bar = "Arcane Explosion"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "ptBR")

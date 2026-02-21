@@ -53,10 +53,8 @@ if L then
 	L.heal_message = "Исцеление!"
 
 	L.banish = "Изгнание"
-	L.banish_desc = "Предупреждать о Изгнании Магтеридона."
-	L.banish_message = "Изгнан на ~10сек"
-	L.banish_over_message = "Изгнание рассеялось!"
-	L.banish_bar = "<Изгнан>"
+	L["30168_desc"] = "Предупреждать о Изгнании Магтеридона."
+	L.banished = "Изгнание"
 
 	L.debris_trigger = "Пусть стены темницы содрогнутся"
 end

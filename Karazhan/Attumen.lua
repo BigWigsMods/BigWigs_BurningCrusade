@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Attumen the Huntsman Raid", 532, 1553)
 if not mod then return end
-mod:RegisterEnableMob(16152, 16151, 15550)
+mod:RegisterEnableMob(16151, 15550, 16152) -- Midnight, Attumen, Attumen (Mounted)
 mod:SetEncounterID(652)
 mod:SetStage(1)
 
@@ -32,10 +32,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "IntangiblePresence", 29833)
-	self:BossYell("Stage3Yell", L.phase3_trigger)
-
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
+	self:Log("SPELL_CAST_SUCCESS", "IntangiblePresence", 29833)
+	self:Log("SPELL_CAST_SUCCESS", "SummonAttumen", 29714)
+	self:Log("SPELL_CAST_SUCCESS", "Mount", 29770)
 end
 
 function mod:OnEngage()
@@ -47,18 +46,17 @@ end
 --
 
 function mod:IntangiblePresence(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName, CL.curse)
+	self:Message(args.spellId, "yellow", CL.on_group:format(CL.curse))
+	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
-	if not self:IsSecret(msg) and msg == L.phase2_trigger then
-		self:SetStage(2)
-		self:Message("stages", "cyan", CL.stage:format(2), false)
-		self:PlaySound("stages", "info")
-	end
+function mod:SummonAttumen() -- Stage 2
+	self:SetStage(2)
+	self:Message("stages", "cyan", CL.stage:format(2), false)
+	self:PlaySound("stages", "info")
 end
 
-function mod:Stage3Yell()
+function mod:Mount() -- Stage 3
 	self:SetStage(3)
 	self:Message("stages", "cyan", CL.stage:format(3), false)
 	self:PlaySound("stages", "info")

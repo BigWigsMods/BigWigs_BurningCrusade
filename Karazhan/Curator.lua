@@ -13,7 +13,7 @@ mod:SetEncounterID(656)
 
 function mod:GetOptions()
 	return {
-		{30254, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Evocation
+		30254, -- Evocation
 		30403, -- Arcane Infusion
 		"berserk",
 	},nil,{
@@ -29,11 +29,7 @@ end
 function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH")
 	self:Berserk(600, true)
-	local evocation = self:SpellName(30254)
-	self:CDBar(30254, 109, evocation) -- Evocation
-	self:DelayedMessage(30254, 39, "yellow", CL.custom_sec:format(evocation, 70))
-	self:DelayedMessage(30254, 79, "yellow", CL.custom_sec:format(evocation, 30))
-	self:DelayedMessage(30254, 99, "yellow", CL.custom_sec:format(evocation, 10))
+	self:CDBar(30254, 114) -- Evocation
 end
 
 --------------------------------------------------------------------------------
@@ -42,19 +38,15 @@ end
 
 function mod:Evocation(args)
 	self:Message(args.spellId, "red", CL.other:format(args.spellName, CL.weakened))
-	self:CastBar(args.spellId, 20)
+	self:Bar(args.spellId, 20, CL.weakened)
 
 	self:Bar(args.spellId, 115)
-	self:DelayedMessage(args.spellId, 45, "yellow", CL.custom_sec:format(args.spellName, 70))
-	self:DelayedMessage(args.spellId, 85, "yellow", CL.custom_sec:format(args.spellName, 30))
-	self:DelayedMessage(args.spellId, 105, "yellow", CL.custom_sec:format(args.spellName, 10))
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:ArcaneInfusion(args)
-	self:CancelAllTimers()
 	self:StopBar(30254) -- Evocation
-	self:StopCastBar(30254) -- Evocation
+	self:StopBar(CL.weakened) -- Evocation (Cast)
 
 	self:Message(args.spellId, "orange", CL.percent:format(15, args.spellName))
 	self:PlaySound(args.spellId, "long")

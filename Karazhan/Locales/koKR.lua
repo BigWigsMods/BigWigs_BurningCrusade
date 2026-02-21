@@ -29,7 +29,7 @@ end
 L = BigWigs:NewBossLocale("Netherspite", "koKR")
 if L then
 	L.phase1_message = "물러남 - 황천의 숨결 종료!"
-	L.phase1_bar = "~물러남 주의"
+	L.phase1_bar = "물러남 주의"
 	L.phase1_trigger = "%s|1이;가; 물러나며 고함을 지르더니 황천의 문을 엽니다."
 	L.phase2_message = "분노 - 황천의 숨결 시전!"
 	L.phase2_bar = "분노 주의"
@@ -78,7 +78,6 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "koKR")
 if L then
-	L.adds = "물의 정령"
 	L.adds_desc = "물의 정령 소환에 대한 경고입니다."
 	L.adds_message = "정령 소환!"
 	L.adds_warning = "곧 정령 소환"
@@ -92,12 +91,6 @@ if L then
 
 	L.blizzard = "눈보라"
 	L.blizzard_desc = "눈보라 시전 시 경고합니다."
-	L.blizzard_message = "눈보라!"
-
-	L.pull = "전체 광역"
-	L.pull_desc = "전체 광역 신비한 폭발에 대한 경고입니다."
-	L.pull_message = "신비한 폭발!"
-	L.pull_bar = "신비한 폭발"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "koKR")

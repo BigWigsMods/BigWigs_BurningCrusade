@@ -11,10 +11,12 @@ mod:SetEncounterID(657)
 -- Initialization
 --
 
+local demonChainsMarker = mod:AddMarkerOption(true, "npc", 8, 30115, 8) -- Sacrifice
 function mod:GetOptions()
 	return {
-		{30065, "COUNTDOWN"}, -- Broken Pact
-		{30115, "ICON"}, -- Sacrifice
+		30065, -- Broken Pact
+		{30115, "SAY"}, -- Sacrifice
+		demonChainsMarker,
 		"berserk",
 	},nil,{
 		[30065] = CL.weakened, -- Broken Pact (Weakened)
@@ -37,17 +39,29 @@ end
 -- Event Handlers
 --
 
+function mod:MarkDemonChains(_, unit, guid)
+	if self:MobId(guid) == 17248 then -- Demon Chains
+		self:CustomIcon(demonChainsMarker, unit, 8)
+		self:UnregisterTargetEvents()
+	end
+end
+
 function mod:SacrificeApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 30, args.destName)
 	self:CDBar(args.spellId, 42)
-	self:PrimaryIcon(args.spellId, args.destName)
+	-- Register events to auto-mark Demon Chains
+	if self:GetOption(demonChainsMarker) then
+		self:RegisterTargetEvents("MarkDemonChains")
+	end
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, nil, nil, "Sacrifice")
+	end
 	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end
 
 function mod:SacrificeRemoved(args)
 	self:StopBar(args.spellName, args.destName)
-	self:PrimaryIcon(args.spellId)
 end
 
 function mod:BrokenPactApplied(args)

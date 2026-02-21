@@ -29,10 +29,10 @@ end
 L = BigWigs:NewBossLocale("Netherspite", "esES")
 if L then
 	L.phase1_message = "Retirada - Aliento abisal terminado"
-	L.phase1_bar = "~Retirada"
+	L.phase1_bar = "Retirada"
 	L.phase1_trigger = "%s grita en retirada, abriendo las puertas al vacío."
 	L.phase2_message = "Cólera - ¡Aliento abisal en breve!"
-	L.phase2_bar = "~Cólera"
+	L.phase2_bar = "Cólera"
 	L.phase2_trigger = "¡%s monta en cólera alimentada por el vacío!"
 end
 
@@ -78,7 +78,6 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "esES")
 if L then
-	L.adds = "Elementales"
 	L.adds_desc = "Avisa de la aparación de los elementales de agua."
 	L.adds_message = "¡Llegada de Elementales!"
 	L.adds_warning = "Elementales Pronto"
@@ -92,12 +91,6 @@ if L then
 
 	L.blizzard = "Ventisca"
 	L.blizzard_desc = "Avisa de cuando ventisca está siendo lanzada."
-	L.blizzard_message = "¡Ventisca!"
-
-	L.pull = "Atracción/Deflagración Arcana"
-	L.pull_desc = "Avisar de la atracción y la Deflagración Arcana."
-	L.pull_message = "¡Deflagración Arcana!"
-	L.pull_bar = "Deflagración Arcana"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "esES")

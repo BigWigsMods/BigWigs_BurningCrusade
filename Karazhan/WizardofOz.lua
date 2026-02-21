@@ -88,4 +88,5 @@ end
 function mod:ChainLightning(args)
 	self:Message(args.spellId, "orange")
 	self:CastBar(args.spellId, 2)
+	self:PlaySound(args.spellId, "info")
 end

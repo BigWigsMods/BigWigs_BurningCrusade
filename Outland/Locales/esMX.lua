@@ -52,11 +52,9 @@ if L then
 	L.heal_desc = "Avisar cuando Canalizador Fuego Infernal empieza a curar."
 	L.heal_message = "¡Curando!"
 
-	L.banish = "Desterrar (Banish)"
-	L.banish_desc = "Avisar cuando destierras a Magtheridon."
-	L.banish_message = "Desterrado por ~10seg"
-	L.banish_over_message = "¡Desterrar se desvanece!"
-	L.banish_bar = "<Desterrado>"
+	L.banish = "Desterrar"
+	L["30168_desc"] = "Avisar cuando destierras a Magtheridon."
+	L.banished = "Desterrado"
 
 	L.debris_trigger = "¡Que tiemblen las paredes de esta prisión"
 end

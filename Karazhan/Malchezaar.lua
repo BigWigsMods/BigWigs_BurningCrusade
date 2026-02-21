@@ -42,7 +42,7 @@ end
 function mod:GetOptions()
 	return {
 		"stages",
-		{30843, "CASTBAR"}, -- Enfeeble
+		{30843, "CASTBAR", "ME_ONLY_EMPHASIZE"}, -- Enfeeble
 		{30852, "CASTBAR"}, -- Shadow Nova
 		"infernal",
 	}
@@ -60,12 +60,15 @@ function mod:OnBossEnable()
 
 	self:BossYell("Stage2Yell", L["phase2_trigger"])
 	self:BossYell("Stage3Yell", L["phase3_trigger"])
+
+	self:BossYell("Engage", L["phase1_trigger"]) -- ENCOUNTER_END bugged on wipe
 end
 
 function mod:OnEngage()
 	self:SetStage(1)
+	self:CheckForWipe() -- ENCOUNTER_END bugged on wipe
 
-	self:Bar(30843, 30) -- Enfeeble
+	self:CDBar(30843, 30) -- Enfeeble
 	self:CDBar(30852, 33.5) -- Shadow Nova
 end
 
@@ -75,15 +78,13 @@ end
 
 function mod:Enfeeble(args)
 	self:Message(args.spellId, "red")
-	self:Bar(args.spellId, 30)
+	self:CDBar(args.spellId, 30)
 	self:CastBar(args.spellId, 9)
 end
 
 function mod:EnfeebleApplied(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId)
-		self:StopCastBar(args.spellName)
-		self:TargetBar(args.spellId, 9, args.destName)
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end

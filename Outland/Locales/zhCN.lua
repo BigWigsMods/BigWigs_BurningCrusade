@@ -53,10 +53,8 @@ if L then
 	L.heal_message = "黑暗愈合！"
 
 	L.banish = "放逐术"
-	L.banish_desc = "当你放逐玛瑟里顿时发出警报。"
-	L.banish_message = "放逐成功！约10秒。"
-	L.banish_over_message = "放逐消失！"
-	L.banish_bar = "放逐中"
+	L["30168_desc"] = "当你放逐玛瑟里顿时发出警报。"
+	L.banished = "驱逐"
 
 	L.debris_trigger = "我是不会轻易倒下的！让这座牢狱的墙壁颤抖并崩塌吧！"
 end

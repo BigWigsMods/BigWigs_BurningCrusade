@@ -68,7 +68,6 @@ function mod:RedRidingHoodApplied(args)
 		self:Say(args.spellId, L.riding_bar:format(args.destName), true, ("%s Running"):format(args.destName))
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
-	self:PlaySound(args.spellId, "long")
 end
 
 function mod:RedRidingHoodRemoved(args)

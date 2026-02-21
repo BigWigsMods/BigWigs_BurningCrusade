@@ -53,10 +53,8 @@ if L then
 	L.heal_message = "Se soigne !"
 
 	L.banish = "Bannir"
-	L.banish_desc = "Prévient quand vous bannissez Magtheridon."
-	L.banish_message = "Banni pendant ~10 sec."
-	L.banish_over_message = "Fin du ban !"
-	L.banish_bar = "<Banni>"
+	L["30168_desc"] = "Prévient quand vous bannissez Magtheridon."
+	L.banished = "Banni"
 
 	L.debris_trigger = "Que les murs de cette prison tremblent"
 end
