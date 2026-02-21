@@ -39,18 +39,18 @@ BigWigs:AddSounds("Doom Lord Kazzak", {
 })
 
 BigWigs:AddColors("Magtheridon", {
+	[30168] = {"green","red"},
 	[30616] = "red",
 	[36449] = {"blue","orange"},
 	["abyssal"] = "cyan",
-	["banish"] = {"green","red"},
 	["escape"] = "yellow",
 	["heal"] = "orange",
 })
 
 BigWigs:AddSounds("Magtheridon", {
+	[30168] = "info",
 	[30616] = "warning",
 	[36449] = {"alert","long"},
-	["banish"] = "info",
 	["heal"] = "alarm",
 })
 
