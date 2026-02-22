@@ -114,7 +114,7 @@ end
 
 function mod:MindExhaustionApplied(args)
 	if not mindExhaustionList[1] then
-		self:OpenInfo(args.spellId, CL.other:format("BigWigs", "|T136222:0:0:0:0:64:64:4:60:4:60|t".. self:SpellName(57723)), 5) -- 57723 = "Exhaustion"
+		self:OpenInfo(args.spellId, "|T136222:0:0:0:0:64:64:4:60:4:60|t".. args.spellName, 5)
 		self:SimpleTimer(UpdateInfoBoxList, 1)
 	end
 	self:DeleteFromTable(mindExhaustionList, args.destName)
