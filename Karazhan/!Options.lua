@@ -18,13 +18,15 @@ BigWigs:AddSounds("Hyakiss the Lurker", {
 })
 
 BigWigs:AddColors("Moroes Raid", {
-	[29448] = "red",
+	[29425] = {"blue","red"},
+	[29448] = "orange",
 	[37023] = "orange",
 	[37066] = {"blue","yellow"},
 })
 
 BigWigs:AddSounds("Moroes Raid", {
-	[29448] = "warning",
+	[29425] = "warning",
+	[29448] = "info",
 	[37023] = "long",
 	[37066] = "alert",
 })
