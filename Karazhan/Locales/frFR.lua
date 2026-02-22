@@ -44,22 +44,14 @@ if L then
 	L.landphase_trigger1 = "Assez ! Je vais atterrir et vous écraser moi-même !"
 	L.landphase_trigger2 = "Insectes ! Je vais vous montrer de quel bois je me chauffe !"
 	L.airphase_message = "Décollage !"
-	L.summon_trigger = "Dans le lointain, un être ancien s'éveille…"
-
-	L.engage_trigger = "Fous ! Je vais mettre un terme rapide à vos souffrances !"
 end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "frFR")
 if L then
 	L.name = "Romulo & Julianne"
 
-	L.phase = "Phases"
-	L.phase_desc = "Prévient quand la rencontre entre dans une nouvelle phase."
-	L.phase1_trigger = "Quel démon es-tu pour me tourmenter ainsi ?"
 	L.phase1_message = "Acte I - Julianne"
-	L.phase2_trigger = "Tu veux donc me provoquer ? Eh bien, à toi, enfant."
 	L.phase2_message = "Acte II - Romulo"
-	L.phase3_trigger = "Viens, gentille nuit ; rends-moi mon Romulo !"
 	L.phase3_message = "Acte III - Les deux"
 
 	L.poison = "Poison"
@@ -79,8 +71,6 @@ end
 L = BigWigs:NewBossLocale("Shade of Aran", "frFR")
 if L then
 	L.adds_desc = "Prévient quand les élémentaires d'eau apparaissent."
-	L.adds_message = "Arrivée des élémentaires !"
-	L.adds_warning = "Elémentaires imminent"
 	L.adds_bar = "Fin des élémentaires"
 
 	L.drink = "Boisson"

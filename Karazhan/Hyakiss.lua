@@ -30,9 +30,14 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
+	self:ScheduleTimer("CheckForEngage", 1)
 	self:Log("SPELL_AURA_APPLIED", "HyakissWeb", 29896)
 
 	self:Death("Win", 16179)
+end
+
+function mod:OnEngage()
+	self:CheckForWipe()
 end
 
 --------------------------------------------------------------------------------

@@ -5,7 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Romulo & Julianne", 532, -655)
 if not mod then return end
 mod:RegisterEnableMob(17533, 17534) -- Romulo, Julianne
---mod:SetEncounterID(655) -- Shared with 3 modules
+--mod:SetEncounterID(655) -- Shared with 3 modules and fires way before starting the encounters
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -15,13 +16,8 @@ local L = mod:GetLocale()
 if L then
 	L.name = "Romulo & Julianne"
 
-	L.phase = "Phases"
-	L.phase_desc = "Warn when entering a new Phase."
-	L.phase1_trigger = "What devil art thou, that dost torment me thus?"
 	L.phase1_message = "Act I - Julianne"
-	L.phase2_trigger = "Wilt thou provoke me? Then have at thee, boy!"
 	L.phase2_message = "Act II - Romulo"
-	L.phase3_trigger = "Come, gentle night; and give me back my Romulo!"
 	L.phase3_message = "Act III - Both"
 
 	L.poison = "Poison"
@@ -62,7 +58,6 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("ENCOUNTER_END")
 
 	self:Log("SPELL_AURA_APPLIED", "PoisonedThrustApplied", 30822)
@@ -74,25 +69,26 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Daring", 30841)
 	self:Log("SPELL_AURA_REMOVED", "DaringRemoved", 30841)
 
-	self:BossYell("YellAct1", L.phase1_trigger)
-	self:BossYell("YellAct2", L.phase2_trigger)
-	self:BossYell("YellAct3", L.phase3_trigger)
+	self:Death("JulianneDeath", 17534)
+	self:Log("SPELL_CAST_START", "UndyingLove", 30951)
+
+	self:CheckForEngage()
+end
+
+function mod:OnEngage()
+	self:SetStage(1)
+	self:Message("stages", "cyan", L.phase1_message, false)
+	self:PlaySound("stages", "long")
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:ENCOUNTER_START(_, encounterId)
-	if encounterId == 655 then
-		self:Engage()
-	end
-end
-
 function mod:ENCOUNTER_END(_, encounterId, _, _, _, status)
 	if encounterId == 655 then
 		if status == 0 then
-			-- delay slightly to avoid reregistering ENCOUNTER_END as part of Reboot during this ENCOUNTER_END dispatch
+			-- Delay slightly to avoid re-registering ENCOUNTER_END as part of :Reboot() during this ENCOUNTER_END dispatch
 			self:SimpleTimer(function() self:Wipe() end, 1)
 		else
 			self:Win()
@@ -137,17 +133,18 @@ function mod:DaringRemoved(args)
 	end
 end
 
-function mod:YellAct1()
-	self:Message("stages", "cyan", L.phase1_message, false)
-	self:PlaySound("stages", "long")
+function mod:JulianneDeath() -- Stage 2
+	if self:GetStage() == 1 then
+		self:SetStage(2)
+		self:Message("stages", "cyan", L.phase2_message, false)
+		self:PlaySound("stages", "long")
+	else
+		self:Bar("stages", 11.2, CL.door_open, "Inv_crate_05")
+	end
 end
 
-function mod:YellAct2()
-	self:Message("stages", "cyan", L.phase2_message, false)
-	self:PlaySound("stages", "long")
-end
-
-function mod:YellAct3()
+function mod:UndyingLove() -- Stage 3
+	self:SetStage(3)
 	self:Message("stages", "cyan", L.phase3_message, false)
 	self:PlaySound("stages", "long")
 end

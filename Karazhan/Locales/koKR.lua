@@ -44,22 +44,14 @@ if L then
 	L.landphase_trigger1 = "그만! 내 친히 내려가서 너희를 짓이겨주마!"
 	L.landphase_trigger2 = "하루살이 같은 놈들! 나의 힘을 똑똑히 보여주겠다!"
 	L.airphase_message = "비행!"
-	L.summon_trigger = "멀리에서 고대의 존재가 깨어나고 있다..."
-
-	L.engage_trigger = "정말 멍청하군! 고통 없이 빨리 끝내주마!"
 end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "koKR")
 if L then
 	L.name = "로밀로 & 줄리엔"
 
-	L.phase = "단계"
-	L.phase_desc = "새로운 단계 진입 시 알립니다."
-	L.phase1_trigger = "당신들은 대체 누구시기에 절 이리도 괴롭히나요?"
 	L.phase1_message = "1 단계 - 줄리엔"
-	L.phase2_trigger = "기어코 나를 화나게 하는구나. 그렇다면 받아라, 애송이!"
 	L.phase2_message = "2 단계 - 로밀로"
-	L.phase3_trigger = "정다운 밤이시여, 어서 와서 나의 로밀로를 돌려주소서!"
 	L.phase3_message = "3 단계 - 모두"
 
 	L.poison = "독"
@@ -79,8 +71,6 @@ end
 L = BigWigs:NewBossLocale("Shade of Aran", "koKR")
 if L then
 	L.adds_desc = "물의 정령 소환에 대한 경고입니다."
-	L.adds_message = "정령 소환!"
-	L.adds_warning = "곧 정령 소환"
 	L.adds_bar = "물의 정령"
 
 	L.drink = "음료 마시기"

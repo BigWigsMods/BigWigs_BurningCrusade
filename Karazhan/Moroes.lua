@@ -18,6 +18,7 @@ function mod:GetOptions()
 		29448, -- Vanish
 		37066, -- Garrote
 		37023, -- Frenzy / Enrage
+		{29425, "SAY"}, -- Gouge
 	}
 end
 
@@ -25,6 +26,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Garrote", 37066)
 	self:Log("SPELL_AURA_APPLIED", "FrenzyEnrage", 37023)
 	self:Log("SPELL_AURA_APPLIED", "Vanish", 29448)
+	self:Log("SPELL_AURA_APPLIED", "GougeApplied", 29425)
+	self:Log("SPELL_AURA_REMOVED", "GougeRemoved", 29425)
 end
 
 function mod:OnEngage()
@@ -43,14 +46,28 @@ function mod:Garrote(args)
 end
 
 function mod:FrenzyEnrage(args)
+	self:RemoveLog("SPELL_AURA_APPLIED", args.spellId) -- He keeps casting it every time he comes back out of stealth
 	self:Message(args.spellId, "orange", CL.percent:format(30, args.spellName))
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:Vanish(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "orange")
 	self:CDBar(args.spellId, 35)
-	self:PlaySound(args.spellId, "warning")
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:GougeApplied(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:TargetBar(args.spellId, 6, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, nil, nil, "Gouge")
+	end
+	self:PlaySound(args.spellId, "warning", nil, args.destName)
+end
+
+function mod:GougeRemoved(args)
+	self:StopBar(args.spellName, args.destName)
 end
 
 function mod:UNIT_HEALTH(event, unit)

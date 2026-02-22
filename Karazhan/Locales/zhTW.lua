@@ -44,22 +44,14 @@ if L then
 	L.landphase_trigger1 = "夠了!我要親自挑戰你!"
 	L.landphase_trigger2 = "昆蟲!給你們近距離嚐嚐我的厲害!"
 	L.airphase_message = "昇空"
-	L.summon_trigger = "一個古老的生物在遠處甦醒過來……"
-
-	L.engage_trigger = "真是蠢蛋!我會快點結束你的痛苦!"
 end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "zhTW")
 if L then
 	L.name = "羅慕歐與茱麗葉"
 
-	L.phase = "階段提示"
-	L.phase_desc = "當戰鬥進入下一個階段時發送警告"
-	L.phase1_trigger = "你是什麼樣的惡魔，讓我這樣的痛苦?"
 	L.phase1_message = "Act I - 茱麗葉"
-	L.phase2_trigger = "你想挑釁我嗎?下一個就輪到你了，小子!"
 	L.phase2_message = "Act II - 羅慕歐"
-	L.phase3_trigger = "來吧，溫和的夜晚；把我的羅慕歐還給我!"
 	L.phase3_message = "Act III - 羅慕歐與茱麗葉"
 
 	L.poison = "中毒警告"
@@ -79,8 +71,6 @@ end
 L = BigWigs:NewBossLocale("Shade of Aran", "zhTW")
 if L then
 	L.adds_desc = "當埃蘭之影召喚水元素時發送警告"
-	L.adds_message = "召喚水元素"
-	L.adds_warning = "埃蘭之影即將召喚水元素"
 	L.adds_bar = "召喚水元素"
 
 	L.drink = "群體變羊"

@@ -44,22 +44,14 @@ if L then
 	--L.landphase_trigger1 = "Enough! I shall land and crush you myself!"
 	--L.landphase_trigger2 = "Insects! Let me show you my strength up close!"
 	--L.airphase_message = "Flying!"
-	--L.summon_trigger = "An ancient being awakens in the distance..."
-
-	--L.engage_trigger = "What fools! I shall bring a quick end to your suffering!"
 end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "itIT")
 if L then
 	--L.name = "Romulo & Julianne"
 
-	--L.phase = "Phases"
-	--L.phase_desc = "Warn when entering a new Phase."
-	--L.phase1_trigger = "What devil art thou, that dost torment me thus?"
 	--L.phase1_message = "Act I - Julianne"
-	--L.phase2_trigger = "Wilt thou provoke me? Then have at thee, boy!"
 	--L.phase2_message = "Act II - Romulo"
-	--L.phase3_trigger = "Come, gentle night; and give me back my Romulo!"
 	--L.phase3_message = "Act III - Both"
 
 	--L.poison = "Poison"
@@ -79,8 +71,6 @@ end
 L = BigWigs:NewBossLocale("Shade of Aran", "itIT")
 if L then
 	--L.adds_desc = "Warn about the water elemental adds spawning."
-	--L.adds_message = "Elementals Incoming!"
-	--L.adds_warning = "Elementals Soon"
 	--L.adds_bar = "Elementals despawn"
 
 	--L.drink = "Drinking"

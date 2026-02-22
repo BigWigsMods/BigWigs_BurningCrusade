@@ -44,22 +44,14 @@ if L then
 	L.landphase_trigger1 = "¡Ya basta! Voy a aterrizar y a aplastarte yo mismo."
 	L.landphase_trigger2 = "¡Insectos! ¡Os enseñaré mi fuerza de cerca!"
 	L.airphase_message = "¡Volando!"
-	L.summon_trigger = "Un ser antiguo se despierta en la distancia..."
-
-	L.engage_trigger = "¡Necios! ¡Voy a acabar rápidamente con tu sufrimiento!"
 end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "esMX")
 if L then
 	L.name = "Romulo & Julianne"
 
-	L.phase = "Fases"
-	L.phase_desc = "Avisa cuando entra en una nueva fase."
-	L.phase1_trigger = "¿Qué demonio sois que me atormentáis de questa manera?"
 	L.phase1_message = "Acto I - Julianne"
-	L.phase2_trigger = "¿Me provocáis? ¡Mi carga recibiréis pues!"
 	L.phase2_message = "Acto II - Romulo"
-	L.phase3_trigger = "Adelante, gentil noche, ¡devuélveme a mi Romulo!"
 	L.phase3_message = "Acto III - Ambos"
 
 	L.poison = "Veneno"
@@ -79,8 +71,6 @@ end
 L = BigWigs:NewBossLocale("Shade of Aran", "esMX")
 if L then
 	L.adds_desc = "Avisa de la aparación de los elementales de agua."
-	L.adds_message = "¡Llegada de Elementales!"
-	L.adds_warning = "Elementales Pronto"
 	L.adds_bar = "Elementales"
 
 	L.drink = "Beber"

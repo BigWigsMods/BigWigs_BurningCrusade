@@ -44,22 +44,14 @@ if L then
 	L.landphase_trigger1 = "够了！我要落下来把你们打得粉碎！"
 	L.landphase_trigger2 = "没用的虫子！让你们见识一下我的力量吧！"
 	L.airphase_message = "升空"
-	L.summon_trigger = "一个远古的生物在远处被唤醒了……"
-
-	L.engage_trigger = "愚蠢的家伙！我会很快终结你们的痛苦！"
 end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "zhCN")
 if L then
 	L.name = "罗密欧和朱丽叶"
 
-	L.phase = "阶段警报"
-	L.phase_desc = "当进入下阶段发出警报。"
-	L.phase1_trigger = "你是个什么魔鬼，这样煎熬着我？"
 	L.phase1_message = "第 I 幕 - 朱丽叶"
-	L.phase2_trigger = "你要激怒我吗？那就来吧！"
 	L.phase2_message = "第 II 幕 - 罗密欧"
-	L.phase3_trigger = "来吧，可爱的黑颜的夜，把我的罗密欧给我！"
 	L.phase3_message = "第 III 幕 - 同时出场"
 
 	L.poison = "中毒"
@@ -79,8 +71,6 @@ end
 L = BigWigs:NewBossLocale("Shade of Aran", "zhCN")
 if L then
 	L.adds_desc = "当召唤水元素时发出警报。"
-	L.adds_message = "水元素 来临！"
-	L.adds_warning = "即将召唤 水元素！"
 	L.adds_bar = "召唤水元素"
 
 	L.drink = "群体变形"

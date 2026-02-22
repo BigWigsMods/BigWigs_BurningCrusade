@@ -51,12 +51,21 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Blindeye the Seer (Priest)
+	self:Log("SPELL_CAST_START", "PrayerOfHealing", 33152)
 	self:Log("SPELL_AURA_APPLIED", "GreaterPowerWordShield", 33147)
+
+	-- Krosh Firehand (Mage)
 	self:Log("SPELL_AURA_APPLIED", "SpellShield", 33054)
+	self:Death("KroshDeath", 18832)
+
+	-- Olm the Summoner (Warlock)
+	self:Log("SPELL_CAST_START", "SummonWildFelhunter", 33131)
+	self:Death("OlmDeath", 18834)
+
+	-- High King Maulgar
 	self:Log("SPELL_AURA_APPLIED", "WhirlwindApplied", 33238)
 	self:Log("SPELL_AURA_REMOVED", "WhirlwindRemoved", 33238)
-	self:Log("SPELL_CAST_START", "SummonWildFelhunter", 33131)
-	self:Log("SPELL_CAST_START", "PrayerOfHealing", 33152)
 	self:Log("SPELL_CAST_SUCCESS", "ArcingSmash", 39144)
 	self:Log("SPELL_CAST_SUCCESS", "Flurry", 33232)
 end
@@ -71,10 +80,17 @@ end
 -- Event Handlers
 --
 
+-- Blindeye the Seer (Priest)
+function mod:PrayerOfHealing(args)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
+end
+
 function mod:GreaterPowerWordShield(args)
 	self:Message(args.spellId, "orange", L.shield_message)
 end
 
+-- Krosh Firehand (Mage)
 function mod:SpellShield(args)
 	if self:MobId(args.destGUID) == 18832 then
 		self:Message(args.spellId, "yellow", L.spellshield_message)
@@ -83,29 +99,40 @@ function mod:SpellShield(args)
 	end
 end
 
-function mod:WhirlwindApplied(args)
-	self:StopBar(39144) -- Arcing Smash
-	self:Message(args.spellId, "red", L.whirlwind_message)
-	self:CastBar(args.spellId, 15)
-	self:CDBar(args.spellId, 60)
+function mod:KroshDeath(args)
+	self:StopBar(33054) -- Spell Shield
 end
 
-function mod:WhirlwindRemoved(args)
-	local unit = self:GetUnitIdByGUID(args.sourceGUID)
-	if unit and self:UnitWithinRange(unit, 20) then
-		self:CDBar(39144, 4) -- Arcing Smash
-	end
-end
-
+-- Olm the Summoner (Warlock)
 function mod:SummonWildFelhunter(args)
 	self:Message(args.spellId, "yellow", L.summon_message)
 	self:Bar(args.spellId, 50, L.summon_bar)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:PrayerOfHealing(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+function mod:OlmDeath(args)
+	self:StopBar(L.summon_bar)
+end
+
+-- High King Maulgar
+do
+	local prev = 0
+	function mod:WhirlwindApplied(args)
+		prev = args.time
+		self:StopBar(39144) -- Arcing Smash
+		self:Message(args.spellId, "red", L.whirlwind_message)
+		self:CastBar(args.spellId, 15)
+	end
+
+	function mod:WhirlwindRemoved(args)
+		self:StopCastBar(args.spellName)
+		local duration = 60-(args.time-prev)
+		self:CDBar(args.spellId, duration > 0 and duration or 45) -- Fallback for safety (60-15)
+		local unit = self:GetUnitIdByGUID(args.sourceGUID)
+		if unit and self:UnitWithinRange(unit, 20) then
+			self:CDBar(39144, 4) -- Arcing Smash
+		end
+	end
 end
 
 function mod:ArcingSmash(args)

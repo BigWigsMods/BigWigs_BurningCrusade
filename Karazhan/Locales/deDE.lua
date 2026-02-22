@@ -45,22 +45,14 @@ if L then
 	L.landphase_trigger1 = "Genug! Ich werde landen und mich h\195\182chst pers\195\182nlich um Euch k\195\188mmern!"
 	L.landphase_trigger2 = "Insekten! Lasst mich Euch meine Kraft aus n\195\164chster N\195\164he demonstrieren!"
 	L.airphase_message = "Flug!"
-	L.summon_trigger = "Etwas Uraltes erwacht in der Ferne..."
-
-	L.engage_trigger = "Narren! Ich werde Eurem Leiden ein schnelles Ende setzen!"
 end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "deDE")
 if L then
 	L.name = "Romulo & Julianne"
 
-	L.phase = "Phase"
-	L.phase_desc = "Warnt wenn eine neue Phase beginnt"
-	L.phase1_trigger = "Welch' Teufel bist du, dass du mich so folterst?"
 	L.phase1_message = "Akt I - Julianne"
-	L.phase2_trigger = "Willst du mich zwingen? Knabe, sieh dich vor!"
 	L.phase2_message = "Akt II - Romulo"
-	L.phase3_trigger = "Komm, milde, liebevolle Nacht! Komm, gibt mir meinen Romulo zur\195\188ck!"
 	L.phase3_message = "Akt III - Beide"
 
 	L.poison = "Gift"
@@ -80,8 +72,6 @@ end
 L = BigWigs:NewBossLocale("Shade of Aran", "deDE")
 if L then
 	L.adds_desc = "Warnt vor den Wasserelementaren bei 40%."
-	L.adds_message = "Elementare!"
-	L.adds_warning = "Elementare in K\195\188rze!"
 	L.adds_bar = "Elementare verschwinden"
 
 	L.drink = "Trinken"

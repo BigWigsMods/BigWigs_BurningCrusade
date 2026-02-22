@@ -5,7 +5,7 @@
 local mod = BigWigs:NewBoss("The Big Bad Wolf", 532, -655)
 if not mod then return end
 mod:RegisterEnableMob(17521, 17603) -- The Big Bad Wolf, Grandmother
---mod:SetEncounterID(655) -- Shared with 3 modules
+--mod:SetEncounterID(655) -- Shared with 3 modules and fires way before starting the encounters
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -33,26 +33,20 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("ENCOUNTER_END")
 	self:Log("SPELL_AURA_APPLIED", "RedRidingHoodApplied", 30753)
 	self:Log("SPELL_AURA_REMOVED", "RedRidingHoodRemoved", 30753)
+	self:CheckForEngage()
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:ENCOUNTER_START(_, encounterId)
-	if encounterId == 655 then
-		self:Engage()
-	end
-end
-
 function mod:ENCOUNTER_END(_, encounterId, _, _, _, status)
 	if encounterId == 655 then
 		if status == 0 then
-			-- delay slightly to avoid reregistering ENCOUNTER_END as part of Reboot during this ENCOUNTER_END dispatch
+			-- Delay slightly to avoid re-registering ENCOUNTER_END as part of :Reboot() during this ENCOUNTER_END dispatch
 			self:SimpleTimer(function() self:Wipe() end, 1)
 		else
 			self:Win()

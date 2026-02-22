@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Magtheridon", 544, 1566)
 if not mod then return end
 mod:RegisterEnableMob(17257, 17256) -- Magtheridon, Hellfire Channeler
 mod:SetEncounterID(651)
+mod:SetRespawnTime(28)
 
 --------------------------------------------------------------------------------
 -- Locals

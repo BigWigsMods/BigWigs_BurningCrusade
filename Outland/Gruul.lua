@@ -36,7 +36,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(33525, 33) -- Ground Slam
-	self:Bar(36297, 102, mod:SpellName(15487)) -- Reverberation (Silence)
+	self:CDBar(36297, 102, mod:SpellName(15487)) -- Reverberation (Silence)
 	self:Bar(36300, 30, CL.count:format(self:SpellName(36300), 1)) -- Growth
 end
 
@@ -67,8 +67,8 @@ function mod:GrowthApplied(args)
 end
 
 function mod:Reverberation(args)
-	self:Message(args.spellId, "yellow", self:SpellName(15487))
-	self:Bar(args.spellId, 31, self:SpellName(15487))
+	self:Message(args.spellId, "yellow", self:SpellName(15487)) -- Silence
+	self:CDBar(args.spellId, 31, self:SpellName(15487))
 	self:PlaySound(args.spellId, "alarm")
 end
 

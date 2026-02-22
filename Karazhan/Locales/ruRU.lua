@@ -44,22 +44,14 @@ if L then
 	L.landphase_trigger1 = "Довольно! Я сойду на землю и сам раздавлю тебя!"
 	L.landphase_trigger2 = "Ничтожества! Я вам покажу мою силу поближе!"
 	L.airphase_message = "Полет!"
-	L.summon_trigger = "Древнее существо пробуждается вдалеке…"
-
-	L.engage_trigger = "Ну и глупцы! Я быстро покончу с вашими страданиями!"
 end
 
 L = BigWigs:NewBossLocale("Romulo & Julianne", "ruRU")
 if L then
 	L.name = "Ромуло и Джулианна"
 
-	L.phase = "Фазы"
-	L.phase_desc = "Предупреждать о начале новой фазы."
-	L.phase1_trigger = "Что же за демон ты есмь, коий мучает меня так?"
 	L.phase1_message = "Акт I - Джулианна"
-	L.phase2_trigger = "Твоя меня дразнить – твоя получать, малявка!"
 	L.phase2_message = "Акт II - Ромуло"
-	L.phase3_trigger = "Ночь, добрая и строгая, приди! Верни мне моего Ромуло!"
 	L.phase3_message = "Акт III - Вместе"
 
 	L.poison = "Яд"
@@ -79,8 +71,6 @@ end
 L = BigWigs:NewBossLocale("Shade of Aran", "ruRU")
 if L then
 	L.adds_desc = "Предупреждать о появлении водных элементалей."
-	L.adds_message = "Надвигаются Элементали!"
-	L.adds_warning = "Скоро Элементали!"
 	L.adds_bar = "Исчезновение Элементалей"
 
 	L.drink = "Выпивание"

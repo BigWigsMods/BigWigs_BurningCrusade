@@ -15,8 +15,6 @@ local L = mod:GetLocale()
 if L then
 	L.adds_desc = "Warn about the water elemental adds spawning."
 	L.adds_icon = "spell_frost_summonwaterelemental_2"
-	L.adds_message = "Elementals Incoming!"
-	L.adds_warning = "Elementals Soon"
 	L.adds_bar = "Elementals despawn"
 
 	L.drink = "Drinking"
@@ -41,7 +39,7 @@ function mod:GetOptions()
 		"drink",
 		"blizzard",
 		29973, -- Arcane Explosion
-		{30004, "CASTBAR", "COUNTDOWN", "ME_ONLY_EMPHASIZE"}, -- Flame Wreath
+		{30004, "CASTBAR", "COUNTDOWN", "ME_ONLY_EMPHASIZE", "SAY"}, -- Flame Wreath
 	}
 end
 
@@ -75,6 +73,7 @@ do
 		playerList[#playerList+1] = args.destName
 		self:TargetsMessage(30004, "yellow", playerList, nil, nil, args.spellId)
 		if self:Me(args.destGUID) then
+			self:Say(30004, nil, nil, "Flame Wreath")
 			self:PlaySound(30004, "warning", nil, args.destName)
 		end
 	end
@@ -97,7 +96,7 @@ function mod:MassPolymorph() -- Drinking
 end
 
 function mod:SummonWaterElementals()
-	self:Message("adds", "cyan", L.adds_message, L.adds_icon)
+	self:Message("adds", "cyan", CL.percent:format(40, CL.adds), L.adds_icon)
 	self:Bar("adds", 90, L.adds_bar, L.adds_icon)
 end
 
@@ -134,7 +133,7 @@ function mod:UNIT_HEALTH(event, unit)
 		if hp < 46 then
 			self:UnregisterEvent(event)
 			if hp > 40 then
-				self:Message("adds", "orange", L.adds_warning, false)
+				self:Message("adds", "orange", CL.soon:format(CL.adds), false)
 			end
 		end
 	end
