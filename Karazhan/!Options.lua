@@ -92,14 +92,15 @@ BigWigs:AddSounds("Terestian Illhoof", {
 })
 
 BigWigs:AddColors("Shade of Aran", {
+	[29951] = {"blue","orange"},
+	[29962] = "cyan",
 	[29973] = "yellow",
 	[30004] = {"blue","red","yellow"},
-	["adds"] = {"cyan","orange"},
-	["blizzard"] = "orange",
 	["drink"] = {"cyan","orange"},
 })
 
 BigWigs:AddSounds("Shade of Aran", {
+	[29951] = "underyou",
 	[29973] = "info",
 	[30004] = {"long","warning"},
 })
@@ -126,6 +127,7 @@ BigWigs:AddSounds("Prince Malchezaar", {
 	[30843] = "warning",
 	[30852] = "alarm",
 	["infernal"] = {"alert","info"},
+	["stages"] = "long",
 })
 
 BigWigs:AddColors("Nightbane Raid", {
