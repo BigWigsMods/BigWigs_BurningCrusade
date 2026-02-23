@@ -7,16 +7,9 @@ end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "koKR")
 if L then
-	L.wipe_bar = "재생성 시간"
-
-	L.phase = "단계"
-	L.phase_desc = "단계 변화 시 알립니다."
 	L.phase1_trigger = "여기까지 오다니 정신이 나간 놈들이 분명하구나. 소원이라면 파멸을 시켜주마!"
 	L.phase2_trigger = "바보 같으니! 시간은 너의 몸을 태우는 불길이 되리라!"
 	L.phase3_trigger = "어찌 감히 이렇게 압도적인 힘에 맞서기를 꿈꾸느냐?"
-	L.phase1_message = "1 단계 - 약 40초 후 불지옥!"
-	L.phase2_message = "60% - 2 단계"
-	L.phase3_message = "30% - 3 단계"
 
 	L.infernal = "불지옥"
 	L.infernal_desc = "불지옥 소환에 대한 재사용 대기시간을 표시합니다."
@@ -70,17 +63,14 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "koKR")
 if L then
-	L.adds_desc = "물의 정령 소환에 대한 경고입니다."
 	L.adds_bar = "물의 정령"
+	L.conjured_elemental = "창조된 정령"
 
 	L.drink = "음료 마시기"
 	L.drink_desc = "아란의 망령의 음료 마시기 시작 시 알립니다."
 	L.drink_warning = "마나 낮음 - 잠시 후 음료 마시기!"
 	L.drink_message = "음료 마시기 - 광역 변이!"
 	L.drink_bar = "불덩이 작열 시전"
-
-	L.blizzard = "눈보라"
-	L.blizzard_desc = "눈보라 시전 시 경고합니다."
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "koKR")

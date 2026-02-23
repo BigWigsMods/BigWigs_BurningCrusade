@@ -13,9 +13,9 @@ mod:SetEncounterID(658)
 
 local L = mod:GetLocale()
 if L then
-	L.adds_desc = "Warn about the water elemental adds spawning."
-	L.adds_icon = "spell_frost_summonwaterelemental_2"
+	L["29962_icon"] = "spell_frost_summonwaterelemental_2"
 	L.adds_bar = "Elementals despawn"
+	L.conjured_elemental = "Conjured Elemental"
 
 	L.drink = "Drinking"
 	L.drink_desc = "Warn when Aran starts to drink."
@@ -23,32 +23,42 @@ if L then
 	L.drink_warning = "Low Mana - Drinking Soon!"
 	L.drink_message = "Drinking - AoE Polymorph!"
 	L.drink_bar = "Super Pyroblast Incoming"
-
-	L.blizzard = "Blizzard"
-	L.blizzard_desc = "Warn when Blizzard is being cast."
-	L.blizzard_icon = 29969
 end
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
+local elementalsMarker = mod:AddMarkerOption(true, "npc", 1, "conjured_elemental", 1, 2, 3, 4) -- Conjured Elemental
 function mod:GetOptions()
 	return {
-		"adds",
+		29962, -- Summon Water Elementals
+		elementalsMarker,
 		"drink",
-		"blizzard",
+		29951, -- Blizzard
 		29973, -- Arcane Explosion
 		{30004, "CASTBAR", "COUNTDOWN", "ME_ONLY_EMPHASIZE", "SAY"}, -- Flame Wreath
+	},nil,{
+		[29962] = CL.adds, -- Summon Water Elementals (Adds)
 	}
+end
+
+function mod:OnRegister()
+	elementalsMarker = mod:AddMarkerOption(true, "npc", 1, "conjured_elemental", 1, 2, 3, 4) -- Conjured Elemental
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FlameWreathStart", 30004)
 	self:Log("SPELL_AURA_APPLIED", "FlameWreathApplied", 29946)
+
 	self:Log("SPELL_CAST_START", "SummonBlizzard", 29969)
+	self:Log("SPELL_AURA_APPLIED", "BlizzardDamage", 29951)
+	self:Log("SPELL_PERIODIC_DAMAGE", "BlizzardDamage", 29951)
+	self:Log("SPELL_PERIODIC_MISSED", "BlizzardDamage", 29951)
+
 	self:Log("SPELL_CAST_START", "MassPolymorph", 29963) -- Drinking
-	self:Log("SPELL_SUMMON", "SummonWaterElementals", 29962)
+	self:Log("SPELL_CAST_SUCCESS", "SummonWaterElementalsSuccess", 29962)
+	self:Log("SPELL_SUMMON", "SummonWaterElementals", 29962, 37051, 37053, 37052)
 	self:Log("SPELL_CAST_SUCCESS", "MassiveMagneticPull", 29979)
 	self:Log("SPELL_CAST_START", "ArcaneExplosion", 29973)
 end
@@ -85,9 +95,20 @@ function mod:FlameWreathStart(args)
 	self:PlaySound(args.spellId, "long")
 end
 
-function mod:SummonBlizzard(args)
-	self:Message("blizzard", "orange", L.blizzard, args.spellId)
-	self:Bar("blizzard", 36, L.blizzard, args.spellId)
+function mod:SummonBlizzard()
+	self:Message(29951, "orange", CL.incoming:format(self:SpellName(29951)))
+	self:Bar(29951, 36)
+end
+
+do
+	local prev = 0
+	function mod:BlizzardDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 3 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "aboveyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
 end
 
 function mod:MassPolymorph() -- Drinking
@@ -95,9 +116,36 @@ function mod:MassPolymorph() -- Drinking
 	self:Bar("drink", 15, L.drink_bar, 29978) --Pyroblast id
 end
 
-function mod:SummonWaterElementals()
-	self:Message("adds", "cyan", CL.percent:format(40, CL.adds), L.adds_icon)
-	self:Bar("adds", 90, L.adds_bar, L.adds_icon)
+do
+	local mobCollector, markIcon = {}, 0
+	function mod:SummonWaterElementalsSuccess(args)
+		mobCollector, markIcon = {}, 0
+		self:Message(args.spellId, "cyan", CL.percent:format(40, CL.adds), L["29962_icon"])
+		self:Bar(args.spellId, 90, L.adds_bar, L["29962_icon"])
+	end
+
+	function mod:ElementalMarking(_, unit, guid)
+		if mobCollector[guid] then
+			self:CustomIcon(elementalsMarker, unit, mobCollector[guid])
+			mobCollector[guid] = nil
+			if not next(mobCollector) then
+				self:UnregisterTargetEvents()
+			end
+		end
+	end
+
+	function mod:SummonWaterElementals(args)
+		markIcon = markIcon + 1
+		if self:GetOption(elementalsMarker) then
+			local unit = self:GetUnitIdByGUID(args.destGUID)
+			if unit then
+				self:CustomIcon(elementalsMarker, unit, markIcon)
+			else
+				mobCollector[args.destGUID] = markIcon
+				self:RegisterTargetEvents("ElementalMarking")
+			end
+		end
+	end
 end
 
 do
@@ -133,7 +181,7 @@ function mod:UNIT_HEALTH(event, unit)
 		if hp < 46 then
 			self:UnregisterEvent(event)
 			if hp > 40 then
-				self:Message("adds", "orange", CL.soon:format(CL.adds), false)
+				self:Message(29962, "orange", CL.soon:format(CL.adds), false)
 			end
 		end
 	end

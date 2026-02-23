@@ -7,16 +7,9 @@ end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "zhCN")
 if L then
-	L.wipe_bar = "重置计时器"
-
-	L.phase = "阶段提示"
-	L.phase_desc = "进入战斗及每阶段的提示。"
 	L.phase1_trigger = "疯狂将你们带到我的面前，而我将以死亡终结你们！"
 	L.phase2_trigger = "愚蠢的家伙！时间就是吞噬你躯体的烈焰！"
 	L.phase3_trigger = "你如何抵挡这无坚不摧的力量？"
-	L.phase1_message = "第一阶段 - 约40秒后，地狱火！"
-	L.phase2_message = "60% - 第二阶段！"
-	L.phase3_message = "30% - 第三阶段！"
 
 	L.infernal = "地狱火警报"
 	L.infernal_desc = "显示召唤地狱火冷却时间计时条。"
@@ -70,17 +63,14 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "zhCN")
 if L then
-	L.adds_desc = "当召唤水元素时发出警报。"
 	L.adds_bar = "召唤水元素"
+	L.conjured_elemental = "被召唤的元素"
 
 	L.drink = "群体变形"
 	L.drink_desc = "当即将施放回魔时发出警报。"
 	L.drink_warning = "低法力  即将回魔！"
 	L.drink_message = "回魔  群体变形！"
 	L.drink_bar = "群体变形术"
-
-	L.blizzard = "暴风雪"
-	L.blizzard_desc = "当暴风雪开始施放发出警报。"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "zhCN")

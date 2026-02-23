@@ -7,16 +7,9 @@ end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "zhTW")
 if L then
-	L.wipe_bar = "重生計時"
-
-	L.phase = "階段提示"
-	L.phase_desc = "進入戰鬥及每一階段時發送警告"
 	L.phase1_trigger = "瘋狂把你帶到我的面前。我會成為你失敗的原因!"
 	L.phase2_trigger = "頭腦簡單的笨蛋!你在燃燒的是時間的火焰!"
 	L.phase3_trigger = "你怎能期望抵抗這樣勢不可擋的力量?"
-	L.phase1_message = "第一階段 - 地獄火將在 40 秒後召喚"
-	L.phase2_message = "60% - 第二階段"
-	L.phase3_message = "30% - 第三階段"
 
 	L.infernal = "地獄火警告"
 	L.infernal_desc = "顯示召喚地獄火計時條"
@@ -70,17 +63,14 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "zhTW")
 if L then
-	L.adds_desc = "當埃蘭之影召喚水元素時發送警告"
 	L.adds_bar = "召喚水元素"
+	L.conjured_elemental = "召喚的元素"
 
 	L.drink = "群體變羊"
 	L.drink_desc = "當 埃蘭之影 開始回魔時發送警告"
 	L.drink_warning = "埃蘭之影魔力太低"
 	L.drink_message = "群體變羊術 - 埃蘭之影開始回魔"
 	L.drink_bar = "群體變羊術"
-
-	L.blizzard = "暴風雪警告"
-	L.blizzard_desc = "當埃蘭之影施放暴風雪時發送警告"
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "zhTW")

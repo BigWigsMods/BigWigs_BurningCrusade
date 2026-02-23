@@ -7,16 +7,9 @@ end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "esES")
 if L then
-	L.wipe_bar = "Reaparición"
-
-	L.phase = "Fases"
-	L.phase_desc = "Avisar cambios de fase."
 	L.phase1_trigger = "La locura os ha traído ante mi. ¡Seré vuestro fin!"
 	L.phase2_trigger = "¡Estúpidos! El tiempo es el fuego en el que arderéis!"
 	L.phase3_trigger = "¿Cómo podéis esperar rebelaros ante un poder tan aplastante?"
-	L.phase1_message = "¡Fase 1 - Infernal en ~40seg!"
-	L.phase2_message = "60% - Fase 2"
-	L.phase3_message = "30% - Fase 3 "
 
 	L.infernal = "Infernales"
 	L.infernal_desc = "Muestra temporizadores para la invocación de Infernales."
@@ -70,17 +63,14 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "esES")
 if L then
-	L.adds_desc = "Avisa de la aparación de los elementales de agua."
 	L.adds_bar = "Elementales"
+	L.conjured_elemental = "Elemental conjurado"
 
 	L.drink = "Beber"
 	L.drink_desc = "Avisa de cuando Aran comienza a beber."
 	L.drink_warning = "¡Maná bajo - Beber pronto!"
 	L.drink_message = "¡Bebiendo - Polimorfia de área!"
 	L.drink_bar = "~Piroexplosión"
-
-	L.blizzard = "Ventisca"
-	L.blizzard_desc = "Avisa de cuando ventisca está siendo lanzada."
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "esES")

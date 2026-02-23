@@ -7,16 +7,9 @@ end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "ptBR")
 if L then
-	--L.wipe_bar = "Respawn"
-
-	--L.phase = "Engage"
-	--L.phase_desc = "Alert when changing phases."
 	--L.phase1_trigger = "Madness has brought you here to me. I shall be your undoing!"
 	--L.phase2_trigger = "Simple fools! Time is the fire in which you'll burn!"
 	--L.phase3_trigger = "How can you hope to stand against such overwhelming power?"
-	--L.phase1_message = "Phase 1 - Infernal in ~40sec!"
-	--L.phase2_message = "60% - Phase 2"
-	--L.phase3_message = "30% - Phase 3 "
 
 	--L.infernal = "Infernals"
 	--L.infernal_desc = "Show cooldown timer for Infernal summons."
@@ -70,17 +63,14 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "ptBR")
 if L then
-	--L.adds_desc = "Warn about the water elemental adds spawning."
 	--L.adds_bar = "Elementals despawn"
+	L.conjured_elemental = "Elemental Conjurado"
 
 	--L.drink = "Drinking"
 	--L.drink_desc = "Warn when Aran starts to drink."
 	--L.drink_warning = "Low Mana - Drinking Soon!"
 	--L.drink_message = "Drinking - AoE Polymorph!"
 	--L.drink_bar = "Super Pyroblast Incoming"
-
-	--L.blizzard = "Blizzard"
-	--L.blizzard_desc = "Warn when Blizzard is being cast."
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "ptBR")

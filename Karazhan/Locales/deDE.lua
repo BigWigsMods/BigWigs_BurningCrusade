@@ -7,17 +7,9 @@ end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "deDE")
 if L then
-	L.wipe_bar = "Wiederbeleben"
-
-	L.phase = "Engage"
-	L.phase_desc = "Warnt wenn eine neue Phase beginnt"
-
 	L.phase1_trigger = "Der Wahnsinn f\195\188hrte Euch zu mir. Ich werde Euch das Genick brechen!"
 	L.phase2_trigger = "Dummk\195\182pfe! Zeit ist das Feuer, in dem Ihr brennen werdet!"
 	L.phase3_trigger = "Wie k\195\182nnt Ihr hoffen, einer so \195\188berw\195\164ltigenden Macht gewachsen zu sein?"
-	L.phase1_message = "Phase 1 - Infernos in ~40 Sek!"
-	L.phase2_message = "60% - Phase 2"
-	L.phase3_message = "30% - Phase 3 "
 
 	L.infernal = "Infernos"
 	L.infernal_desc = "Zeige Timerbalken f\195\188r Infernos"
@@ -71,17 +63,14 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "deDE")
 if L then
-	L.adds_desc = "Warnt vor den Wasserelementaren bei 40%."
 	L.adds_bar = "Elementare verschwinden"
+	L.conjured_elemental = "Herbeigezauberter Elementar"
 
 	L.drink = "Trinken"
 	L.drink_desc = "Warnt, wenn Arans Schemen zu trinken beginnt."
 	L.drink_warning = "Wenig Mana - trinkt gleich!"
 	L.drink_message = "Trinkt - AoE Polymorph!"
 	L.drink_bar = "Super-Pyroblast kommt!"
-
-	L.blizzard = "Blizzard"
-	L.blizzard_desc = "Warnt vor dem Blizzard."
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "deDE")

@@ -7,16 +7,9 @@ end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "ruRU")
 if L then
-	L.wipe_bar = "Возрождение"
-
-	L.phase = "Контакт"
-	L.phase_desc = "Сообщать о смене фаз."
 	L.phase1_trigger = "Безумие привело вас сюда, ко мне. Я стану вашей погибелью!"
 	L.phase2_trigger = "Простофили! Время – это пламя, в котором вы сгорите!"
 	L.phase3_trigger = "Как ты можешь надеяться выстоять против такой ошеломляющей мощи?"
-	L.phase1_message = "Фаза 1 - Инфернал через ~40сек!"
-	L.phase2_message = "60% - Фаза 2"
-	L.phase3_message = "30% - Фаза 3 "
 
 	L.infernal = "Инферналы"
 	L.infernal_desc = "Показывает таймеры призыва Инферналов."
@@ -70,17 +63,14 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "ruRU")
 if L then
-	L.adds_desc = "Предупреждать о появлении водных элементалей."
 	L.adds_bar = "Исчезновение Элементалей"
+	L.conjured_elemental = "Сотворенный элементаль"
 
 	L.drink = "Выпивание"
 	L.drink_desc = "Предупреждать когда Аран начинает Выпивание."
 	L.drink_warning = "Мало маны - Скоро Выпивание!"
 	L.drink_message = "Выпивание - Масс Превращение"
 	L.drink_bar = "Надвигается Огненная глыба"
-
-	L.blizzard = "Снежная буря"
-	L.blizzard_desc = "Предупреждать о начале появления снежной бури."
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "ruRU")

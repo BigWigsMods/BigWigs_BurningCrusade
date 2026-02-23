@@ -15,16 +15,9 @@ mod:SetStage(1)
 
 local L = mod:GetLocale()
 if L then
-	L.wipe_bar = "Respawn"
-
-	L.phase = "Engage"
-	L.phase_desc = "Alert when changing phases."
 	L.phase1_trigger = "Madness has brought you here to me. I shall be your undoing!"
 	L.phase2_trigger = "Simple fools! Time is the fire in which you'll burn!"
 	L.phase3_trigger = "How can you hope to stand against such overwhelming power?"
-	L.phase1_message = "Phase 1 - Infernal in ~40sec!"
-	L.phase2_message = "60% - Phase 2"
-	L.phase3_message = "30% - Phase 3 "
 
 	L.infernal = "Infernals"
 	L.infernal_desc = "Show cooldown timer for Infernal summons."
@@ -66,7 +59,7 @@ end
 
 function mod:OnEngage()
 	self:SetStage(1)
-	self:CheckForWipe() -- ENCOUNTER_END bugged on wipe
+	self:ScheduleTimer("CheckForWipe", 5) -- ENCOUNTER_END bugged on wipe
 
 	self:CDBar(30843, 30) -- Enfeeble
 	self:CDBar(30852, 33.5) -- Shadow Nova
@@ -100,15 +93,14 @@ function mod:ShadowNova(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:Infernal()
-	if self:Classic() then
-		self:Message("infernal", "orange", CL.custom_sec:format(L.infernal_bar, 20), L.infernal_icon)
-		self:DelayedMessage("infernal", 15, "orange", L.infernal_message, false, "alert")
-		self:Bar("infernal", 20, L.infernal_bar, L.infernal_icon)
-		self:PlaySound("infernal", "info")
-	else
+do
+	local function DelayInfernal()
+		mod:Message("infernal", "orange", L.infernal_message, L.infernal_icon)
+		mod:PlaySound("infernal", "alert")
+	end
+	function mod:Infernal()
+		self:ScheduleTimer(DelayInfernal, 12)
 		self:Message("infernal", "orange", CL.custom_sec:format(L.infernal_bar, 17), L.infernal_icon)
-		self:DelayedMessage("infernal", 12, "orange", L.infernal_message, false, "alert")
 		self:Bar("infernal", 17, L.infernal_bar, L.infernal_icon)
 		self:PlaySound("infernal", "info")
 	end
@@ -117,6 +109,7 @@ end
 function mod:Stage2Yell()
 	self:SetStage(2)
 	self:Message("stages", "cyan", CL.percent:format(60, CL.stage:format(2)), false)
+	self:PlaySound("stages", "long")
 end
 
 function mod:Stage3Yell()
@@ -124,4 +117,5 @@ function mod:Stage3Yell()
 	self:StopBar(30843) -- Enfeeble
 	self:StopBar(30852) -- Shadow Nova
 	self:Message("stages", "cyan", CL.percent:format(30, CL.stage:format(3)), false)
+	self:PlaySound("stages", "long")
 end

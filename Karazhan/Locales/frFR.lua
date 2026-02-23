@@ -7,16 +7,9 @@ end
 
 L = BigWigs:NewBossLocale("Prince Malchezaar", "frFR")
 if L then
-	L.wipe_bar = "Réapparition"
-
-	L.phase = "Engagement"
-	L.phase_desc = "Prévient quand la rencontre entre dans une nouvelle phase."
 	L.phase1_trigger = "La folie vous a fait venir ici, devant moi. Et je serai votre perte !"
 	L.phase2_trigger = "Imbéciles heureux ! Le temps est le brasier dans lequel vous brûlerez !"
 	L.phase3_trigger = "Comment pouvez-vous espérer résister devant un tel pouvoir ?"
-	L.phase1_message = "Phase 1 - Infernal dans ~40 sec. !"
-	L.phase2_message = "60% - Phase 2"
-	L.phase3_message = "30% - Phase 3 "
 
 	L.infernal = "Infernaux"
 	L.infernal_desc = "Affiche le temps de recharge des invocations d'infernaux."
@@ -70,17 +63,14 @@ end
 
 L = BigWigs:NewBossLocale("Shade of Aran", "frFR")
 if L then
-	L.adds_desc = "Prévient quand les élémentaires d'eau apparaissent."
 	L.adds_bar = "Fin des élémentaires"
+	L.conjured_elemental = "Elémentaire conjuré"
 
 	L.drink = "Boisson"
 	L.drink_desc = "Prévient quand l'Ombre d'Aran commence à boire."
 	L.drink_warning = "Mana faible - Boisson imminente !"
 	L.drink_message = "Boisson - Polymorphisme de zone !"
 	L.drink_bar = "Super Explosion pyro."
-
-	L.blizzard = "Blizzard"
-	L.blizzard_desc = "Prévient quand Blizzard est incanté."
 end
 
 L = BigWigs:NewBossLocale("The Big Bad Wolf", "frFR")
