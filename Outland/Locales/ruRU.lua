@@ -33,17 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Magtheridon", "ruRU")
 if L then
-	L.escape = "Бегство"
-	L.escape_desc = "Отсчёт времени до освобождения Магтеридона."
-	L.escape_trigger1 = "начинает ослабевать!"
-	L.escape_trigger2 = "Я… освобожден!"
-	L.escape_warning1 = "Контакт с %sом - Освободится через 2мин!"
-	L.escape_warning2 = "Освободится через 1мин!"
-	L.escape_warning3 = "Освободится через 30сек!"
-	L.escape_warning4 = "Освободится через 10сек!"
-	L.escape_bar = "Освободился..."
-	L.escape_message = "%s освободился!"
-
 	L.abyssal = "Горящий дух Бездны"
 	L.abyssal_desc = "Предупреждать о создании Горящего духа Бездны."
 	L.abyssal_message = "Горящий дух Бездны (%d)"

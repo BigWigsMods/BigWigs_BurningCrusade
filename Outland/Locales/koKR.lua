@@ -33,17 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Magtheridon", "koKR")
 if L then
-	L.escape = "탈출"
-	L.escape_desc = "마그테리돈 속박 해제까지 카운트다운합니다."
-	L.escape_trigger1 = "%%s의 속박이 약해지기 시작합니다"
-	L.escape_trigger2 = "내가... 풀려났도다!"
-	L.escape_warning1 = "%s 전투 개시 - 2분 이내 속박 해제!"
-	L.escape_warning2 = "속박 해제 1분 전!"
-	L.escape_warning3 = "속박 해제 30초 전!"
-	L.escape_warning4 = "속박 해제 10초 전!"
-	L.escape_bar = "풀려남..."
-	L.escape_message = "%s 풀려남!"
-
 	L.abyssal = "불타는 심연"
 	L.abyssal_desc = "불타는 심연 생성 시 경고합니다."
 	L.abyssal_message = "불타는 심연 생성 (%d)"

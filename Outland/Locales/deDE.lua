@@ -33,17 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Magtheridon", "deDE")
 if L then
-	L.escape = "Ausbruch"
-	L.escape_desc = "Countdown bis Magtheridon ausbricht"
-	L.escape_trigger1 = "Die Fesseln von %%s werden schw\195\164cher!"
-	L.escape_trigger2 = " Ich... bin... frei!"
-	L.escape_warning1 = "%s angegriffen - Ausbruch in 2min!"
-	L.escape_warning2 = "Ausbruch in 1min!"
-	L.escape_warning3 = "Ausbruch in 30sec!"
-	L.escape_warning4 = "Ausbruch in 10sec!"
-	L.escape_bar = "Frei..."
-	L.escape_message = "%s frei!"
-
 	L.abyssal = "Brennender Schlund"
 	L.abyssal_desc = "Warnt, wenn ein Brennender Schlund gespawned wird"
 	L.abyssal_message = "Brennender Schlund gespawned (%d)"
@@ -58,4 +47,3 @@ if L then
 
 	L.debris_trigger = "Lasst die Mauern dieses Kerkers erzittern"
 end
-

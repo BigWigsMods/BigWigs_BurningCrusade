@@ -33,18 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Magtheridon", "itIT")
 if L then
-	--L.escape = "Escape"
-	--L.escape_desc = "Countdown until Magtheridon breaks free."
-	--L.escape_icon = "ability_rogue_trip"
-	--L.escape_trigger1 = "%%s's bonds begin to weaken!"
-	--L.escape_trigger2 = "I... am... unleashed!"
-	--L.escape_warning1 = "%s Engaged - Breaks free in 2min!"
-	--L.escape_warning2 = "Breaks free in 1min!"
-	--L.escape_warning3 = "Breaks free in 30sec!"
-	--L.escape_warning4 = "Breaks free in 10sec!"
-	--L.escape_bar = "Released..."
-	--L.escape_message = "%s Released!"
-
 	--L.abyssal = "Burning Abyssal"
 	--L.abyssal_desc = "Warn when a Burning Abyssal is created."
 	--L.abyssal_message = "Burning Abyssal Created (%d)"

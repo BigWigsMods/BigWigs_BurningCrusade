@@ -33,17 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Magtheridon", "zhTW")
 if L then
-	L.escape = "釋放"
-	L.escape_desc = "倒數計時，直到 瑪瑟里頓 獲得自由"
-	L.escape_trigger1 = "束縛開始變弱"
-	L.escape_trigger2 = "我……被……釋放了!"
-	L.escape_warning1 = "與 %s 進入戰鬥 - 2 分鐘後獲得自由!"
-	L.escape_warning2 = "1 分鐘後獲得自由!"
-	L.escape_warning3 = "30 秒後獲得自由!"
-	L.escape_warning4 = "10 秒後獲得自由!"
-	L.escape_bar = "被釋放"
-	L.escape_message = "%s 被釋放了!"
-
 	L.abyssal = "燃燒的冥淵火"
 	L.abyssal_desc = "當地獄火導魔師創造燃燒的冥淵火時發出警報"
 	L.abyssal_message = "燃燒的冥淵火已創造 (%d)"

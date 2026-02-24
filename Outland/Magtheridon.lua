@@ -6,7 +6,8 @@ local mod, CL = BigWigs:NewBoss("Magtheridon", 544, 1566)
 if not mod then return end
 mod:RegisterEnableMob(17257, 17256) -- Magtheridon, Hellfire Channeler
 mod:SetEncounterID(651)
-mod:SetRespawnTime(28)
+mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -23,17 +24,7 @@ local UpdateInfoBoxList
 
 local L = mod:GetLocale()
 if L then
-	L.escape = "Escape"
-	L.escape_desc = "Countdown until Magtheridon breaks free."
-	L.escape_icon = "ability_rogue_trip"
-	L.escape_trigger1 = "%%s's bonds begin to weaken!"
-	L.escape_trigger2 = "I... am... unleashed!"
-	L.escape_warning1 = "%s Engaged - Breaks free in 2min!"
-	L.escape_warning2 = "Breaks free in 1min!"
-	L.escape_warning3 = "Breaks free in 30sec!"
-	L.escape_warning4 = "Breaks free in 10sec!"
-	L.escape_bar = "Released..."
-	L.escape_message = "%s Released!"
+	L.stages_icon = "ability_rogue_trip"
 
 	L.abyssal = "Burning Abyssal"
 	L.abyssal_desc = "Warn when a Burning Abyssal is created."
@@ -58,7 +49,7 @@ end
 
 function mod:GetOptions()
 	return {
-		{"escape", "COUNTDOWN"},
+		{"stages", "COUNTDOWN"},
 		"abyssal",
 		"heal",
 		{30616, "CASTBAR", "EMPHASIZE"}, -- Blast Nova
@@ -72,8 +63,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	mindExhaustionList = {}
-	mindExhaustionDebuffTime = {}
+	self:Log("SPELL_AURA_REMOVED", "InitialShadowCageRemoved", 30205)
 	self:Log("SPELL_AURA_APPLIED", "MindExhaustionApplied", 44032)
 	self:Log("SPELL_AURA_REFRESH", "MindExhaustionApplied", 44032)
 	self:Log("SPELL_AURA_REMOVED", "MindExhaustionRemoved", 44032)
@@ -85,37 +75,40 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ShadowCageApplied", 30168)
 	self:Log("SPELL_AURA_REMOVED", "ShadowCageRemoved", 30168)
 
-	self:BossYell("EscapeYell", L["escape_trigger2"])
 	self:BossYell("DebrisIncYell", L["debris_trigger"])
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 end
 
 function mod:OnEngage()
 	abycount = 1
 	mindExhaustionList = {}
 	mindExhaustionDebuffTime = {}
+	self:SetStage(1)
 
-	self:Message("escape", "yellow", L.escape_warning1:format(self.displayName), L.escape_icon)
-	self:Bar("escape", 120, L.escape_bar, L.escape_icon)
-	self:DelayedMessage("escape", 60, "yellow", L.escape_warning2)
-	self:DelayedMessage("escape", 90, "yellow", L.escape_warning3)
-	self:DelayedMessage("escape", 110, "yellow", L.escape_warning4)
+	self:Message("stages", "cyan", CL.stage:format(1), false)
+	self:Bar("stages", 120, CL.stage:format(2), L.stages_icon)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
-	if not self:IsSecret(msg) and (msg:find(L.escape_trigger1) or msg:find(L.escape_trigger1, nil, true) or msg == L.escape_trigger1) then
-		self:Engage()
-	end
+function mod:InitialShadowCageRemoved() -- Stage 2
+	self:SetStage(2)
+
+	self:StopBar(CL.stage:format(2))
+
+	self:RegisterEvent("UNIT_HEALTH")
+	self:CDBar(30616, 58) -- Blast Nova
+	self:Berserk(1200, true)
+
+	self:Message("stages", "cyan", CL.stage:format(2), false)
+	self:PlaySound("stages", "long")
 end
 
 function mod:MindExhaustionApplied(args)
 	if not mindExhaustionList[1] then
 		self:OpenInfo(args.spellId, "|T136222:0:0:0:0:64:64:4:60:4:60|t".. args.spellName, 5)
-		self:SimpleTimer(UpdateInfoBoxList, 1)
+		self:SimpleTimer(UpdateInfoBoxList, 0.2)
 	end
 	self:DeleteFromTable(mindExhaustionList, args.destName)
 	mindExhaustionList[#mindExhaustionList + 1] = args.destName
@@ -154,17 +147,6 @@ do
 	end
 end
 
-function mod:EscapeYell()
-	self:RegisterEvent("UNIT_HEALTH")
-	self:CDBar(30616, 58) -- Blast Nova
-	self:Berserk(1200, true)
-
-	self:StopBar(L.escape_bar)
-	self:CancelDelayedMessage(L.escape_warning2)
-	self:CancelDelayedMessage(L.escape_warning3)
-	self:CancelDelayedMessage(L.escape_warning4)
-end
-
 function mod:BlastNova(args)
 	self:Message(args.spellId, "red")
 	self:CDBar(args.spellId, 51)
@@ -180,6 +162,7 @@ function mod:DebrisApplied(args)
 end
 
 function mod:DebrisIncYell()
+	self:SetStage(3)
 	self:Message(36449, "orange", CL.percent:format(30, CL.incoming:format(self:SpellName(36449))))
 	self:PlaySound(36449, "long")
 end
