@@ -43,8 +43,8 @@ BigWigs:AddColors("Magtheridon", {
 	[30616] = "red",
 	[36449] = {"blue","orange"},
 	["abyssal"] = "cyan",
-	["escape"] = "yellow",
 	["heal"] = "orange",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Magtheridon", {
@@ -52,6 +52,7 @@ BigWigs:AddSounds("Magtheridon", {
 	[30616] = "warning",
 	[36449] = {"alert","long"},
 	["heal"] = "alarm",
+	["stages"] = "long",
 })
 
 BigWigs:AddColors("High King Maulgar", {
