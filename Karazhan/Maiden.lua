@@ -24,7 +24,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(29511, 33) -- Repentance
+	self:CDBar(29511, 29.7) -- Repentance, timer can vary by insane amounts
 end
 
 --------------------------------------------------------------------------------
