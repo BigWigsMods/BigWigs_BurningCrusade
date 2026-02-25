@@ -42,6 +42,7 @@ function mod:GetOptions()
 		37098, -- Rain of Bones
 	},nil,{
 		[36922] = CL.fear, -- Bellowing Roar (Fear)
+		[37098] = CL.adds_spawning, -- Rain of Bones (Adds spawning)
 	}
 end
 
@@ -97,7 +98,7 @@ function mod:BellowingRoar(args)
 end
 
 function mod:RainOfBones(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.extra:format(args.spellName, CL.adds_spawning))
 	self:Bar(args.spellId, 11)
 	self:PlaySound(args.spellId, "info")
 end
