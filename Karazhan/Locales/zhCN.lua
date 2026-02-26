@@ -1,11 +1,5 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "zhCN")
+local L = BigWigs:NewBossLocale("Prince Malchezaar", "zhCN")
 if not L then return end
-if L then
-	L.phase2_trigger = "%s呼喊着她的主人！"
-	L.phase3_trigger = "来吧，午夜，让我们解决这群乌合之众！"
-end
-
-L = BigWigs:NewBossLocale("Prince Malchezaar", "zhCN")
 if L then
 	L.phase1_trigger = "疯狂将你们带到我的面前，而我将以死亡终结你们！"
 	L.phase2_trigger = "愚蠢的家伙！时间就是吞噬你躯体的烈焰！"
@@ -34,8 +28,6 @@ if L then
 	L.name = "夜之魇"
 
 	L.airphase_trigger = "可怜的渣滓。我要腾空而起，让你尝尝毁灭的滋味！"
-	L.landphase_trigger1 = "够了！我要落下来把你们打得粉碎！"
-	L.landphase_trigger2 = "没用的虫子！让你们见识一下我的力量吧！"
 	L.airphase_message = "升空"
 end
 

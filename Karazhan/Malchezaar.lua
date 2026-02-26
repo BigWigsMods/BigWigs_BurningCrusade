@@ -10,6 +10,12 @@ mod:SetRespawnTime(60)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local enfeebleTimer = nil
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -44,7 +50,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Enfeeble", 30843)
 	self:Log("SPELL_AURA_APPLIED", "EnfeebleApplied", 30843)
-	self:Log("SPELL_CAST_START", "ShadowNova", 30852)
+	self:Log("SPELL_CAST_START", "ShadowNovaStart", 30852)
+	self:Log("SPELL_CAST_SUCCESS", "ShadowNova", 30852)
 	if self:Classic() then
 		self:BossYell("Infernal", L["infernal_trigger1"], L["infernal_trigger2"])
 	else
@@ -58,6 +65,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	enfeebleTimer = nil
 	self:SetStage(1)
 	self:ScheduleTimer("CheckForWipe", 5) -- ENCOUNTER_END bugged on wipe
 
@@ -69,10 +77,17 @@ end
 -- Event Handlers
 --
 
-function mod:Enfeeble(args)
-	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 30)
-	self:CastBar(args.spellId, 9)
+do
+	local function DelayEnfeeble()
+		enfeebleTimer = nil
+		mod:CDBar(30843, 21) -- 30-9
+	end
+	function mod:Enfeeble(args)
+		self:StopBar(args.spellName)
+		self:Message(args.spellId, "red")
+		self:CastBar(args.spellId, 9)
+		enfeebleTimer = self:ScheduleTimer(DelayEnfeeble, 9)
+	end
 end
 
 function mod:EnfeebleApplied(args)
@@ -82,15 +97,19 @@ function mod:EnfeebleApplied(args)
 	end
 end
 
-function mod:ShadowNova(args)
+function mod:ShadowNovaStart(args)
+	self:StopBar(args.spellName)
 	self:Message(args.spellId, "yellow")
 	self:CastBar(args.spellId, 2)
-	if self:GetStage() == 3 then
-		self:CDBar(args.spellId, 18)
-	else
-		self:CDBar(args.spellId, 31)
-	end
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:ShadowNova(args)
+	if self:GetStage() == 3 then
+		self:CDBar(args.spellId, 16) -- 18-2
+	else
+		self:CDBar(args.spellId, 29) -- 31-2
+	end
 end
 
 do
@@ -115,7 +134,11 @@ end
 function mod:Stage3Yell()
 	self:SetStage(3)
 	self:StopBar(30843) -- Enfeeble
-	self:StopBar(30852) -- Shadow Nova
+	if enfeebleTimer then
+		self:CancelTimer(enfeebleTimer)
+		enfeebleTimer = nil
+	end
+	self:CDBar(30852, 17) -- Shadow Nova
 	self:Message("stages", "cyan", CL.percent:format(30, CL.stage:format(3)), false)
 	self:PlaySound("stages", "long")
 end

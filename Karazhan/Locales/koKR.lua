@@ -1,11 +1,5 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "koKR")
+local L = BigWigs:NewBossLocale("Prince Malchezaar", "koKR")
 if not L then return end
-if L then
-	L.phase2_trigger = "%s|1이;가; 주인을 부릅니다!"
-	L.phase3_trigger = "이랴! 이 오합지졸을 데리고 실컷 놀아보자!"
-end
-
-L = BigWigs:NewBossLocale("Prince Malchezaar", "koKR")
 if L then
 	L.phase1_trigger = "여기까지 오다니 정신이 나간 놈들이 분명하구나. 소원이라면 파멸을 시켜주마!"
 	L.phase2_trigger = "바보 같으니! 시간은 너의 몸을 태우는 불길이 되리라!"
@@ -34,8 +28,6 @@ if L then
 	L.name = "파멸의 어둠"
 
 	L.airphase_trigger = "이 더러운 기생충들, 내가 하늘에서 너희의 씨를 말리리라!"
-	L.landphase_trigger1 = "그만! 내 친히 내려가서 너희를 짓이겨주마!"
-	L.landphase_trigger2 = "하루살이 같은 놈들! 나의 힘을 똑똑히 보여주겠다!"
 	L.airphase_message = "비행!"
 end
 

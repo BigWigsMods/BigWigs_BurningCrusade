@@ -1,11 +1,5 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "ptBR")
+local L = BigWigs:NewBossLocale("Prince Malchezaar", "ptBR")
 if not L then return end
-if L then
-	--L.phase2_trigger = "%s calls for her master!"
-	--L.phase3_trigger = "Come Midnight, let's disperse this petty rabble!"
-end
-
-L = BigWigs:NewBossLocale("Prince Malchezaar", "ptBR")
 if L then
 	--L.phase1_trigger = "Madness has brought you here to me. I shall be your undoing!"
 	--L.phase2_trigger = "Simple fools! Time is the fire in which you'll burn!"
@@ -34,8 +28,6 @@ if L then
 	--L.name = "Nightbane"
 
 	--L.airphase_trigger = "Miserable vermin. I shall exterminate you from the air!"
-	--L.landphase_trigger1 = "Enough! I shall land and crush you myself!"
-	--L.landphase_trigger2 = "Insects! Let me show you my strength up close!"
 	--L.airphase_message = "Flying!"
 end
 

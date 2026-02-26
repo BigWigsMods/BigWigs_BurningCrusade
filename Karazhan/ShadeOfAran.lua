@@ -35,7 +35,7 @@ function mod:GetOptions()
 		29962, -- Summon Water Elementals
 		elementalsMarker,
 		"drink",
-		29951, -- Blizzard
+		{29951, "CASTBAR"}, -- Blizzard
 		29973, -- Arcane Explosion
 		{30004, "CASTBAR", "COUNTDOWN", "ME_ONLY_EMPHASIZE", "SAY"}, -- Flame Wreath
 	},nil,{
@@ -66,6 +66,7 @@ end
 function mod:OnEngage()
 	self:RegisterEvent("UNIT_POWER_UPDATE")
 	self:RegisterEvent("UNIT_HEALTH")
+	self:CDBar(self:CheckOption(29951, "BAR") and 29951 or self:CheckOption(29973, "BAR") and 29973 or 30004, 5.2, CL.next_ability, "INV_Misc_QuestionMark")
 end
 
 --------------------------------------------------------------------------------
@@ -92,12 +93,14 @@ end
 function mod:FlameWreathStart(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 5)
+	self:CDBar(self:CheckOption(29951, "BAR") and 29951 or self:CheckOption(29973, "BAR") and 29973 or 30004, 30.6, CL.next_ability, "INV_Misc_QuestionMark")
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:SummonBlizzard()
 	self:Message(29951, "orange", CL.incoming:format(self:SpellName(29951)))
-	self:Bar(29951, 36)
+	self:CastBar(29951, 36)
+	self:CDBar(self:CheckOption(29951, "BAR") and 29951 or self:CheckOption(29973, "BAR") and 29973 or 30004, 30.6, CL.next_ability, "INV_Misc_QuestionMark")
 end
 
 do
@@ -113,7 +116,7 @@ end
 
 function mod:MassPolymorph() -- Drinking
 	self:Message("drink", "cyan", L.drink_message, L.drink_icon)
-	self:Bar("drink", 15, L.drink_bar, 29978) --Pyroblast id
+	self:Bar("drink", 15, L.drink_bar, 29978) -- Pyroblast ID
 end
 
 do
@@ -154,6 +157,7 @@ do
 		if args.time - prev > 5 then
 			prev = args.time
 			self:Message(29973, "yellow", self:SpellName(29973)) -- Arcane Explosion
+			self:CDBar(self:CheckOption(29951, "BAR") and 29951 or self:CheckOption(29973, "BAR") and 29973 or 30004, 30.6, CL.next_ability, "INV_Misc_QuestionMark")
 			self:PlaySound(29973, "info")
 		end
 	end

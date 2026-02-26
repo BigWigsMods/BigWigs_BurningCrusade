@@ -23,8 +23,6 @@ if L then
 	L.name = "Nightbane"
 
 	L.airphase_trigger = "Miserable vermin. I shall exterminate you from the air!"
-	L.landphase_trigger1 = "Enough! I shall land and crush you myself!"
-	L.landphase_trigger2 = "Insects! Let me show you my strength up close!"
 	L.airphase_message = "Flying!"
 
 	L["36922_icon"] = "spell_shadow_psychicscream"

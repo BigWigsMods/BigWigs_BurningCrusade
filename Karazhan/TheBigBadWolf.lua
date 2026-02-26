@@ -54,21 +54,27 @@ function mod:ENCOUNTER_END(_, encounterId, _, _, _, status)
 	end
 end
 
-function mod:RedRidingHoodApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:Bar(args.spellId, 20, L.riding_bar:format(args.destName))
-	self:PrimaryIcon(args.spellId, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, L.riding_bar:format(args.destName), true, ("%s Running"):format(args.destName))
-		self:PlaySound(args.spellId, "warning", nil, args.destName)
+do
+	local prev = 0
+	function mod:RedRidingHoodApplied(args)
+		prev = args.time
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:Bar(args.spellId, 20, L.riding_bar:format(args.destName))
+		self:PrimaryIcon(args.spellId, args.destName)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId, L.riding_bar:format(args.destName), true, ("%s Running"):format(args.destName))
+			self:PlaySound(args.spellId, "warning", nil, args.destName)
+		end
 	end
-end
 
-function mod:RedRidingHoodRemoved(args)
-	self:StopBar(L.riding_bar:format(args.destName))
-	self:PrimaryIcon(args.spellId)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "removed")
-		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	function mod:RedRidingHoodRemoved(args)
+		self:StopBar(L.riding_bar:format(args.destName))
+		self:PrimaryIcon(args.spellId)
+		local duration = 30-(args.time-prev)
+		self:CDBar(args.spellId, duration > 0 and duration or 10) -- Fallback for safety (30-20)
+		if self:Me(args.destGUID) then
+			self:PersonalMessage(args.spellId, "removed")
+			self:PlaySound(args.spellId, "warning", nil, args.destName)
+		end
 	end
 end

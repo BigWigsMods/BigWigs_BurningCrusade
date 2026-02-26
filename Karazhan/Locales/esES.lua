@@ -1,11 +1,5 @@
-local L = BigWigs:NewBossLocale("Attumen the Huntsman Raid", "esES")
+local L = BigWigs:NewBossLocale("Prince Malchezaar", "esES")
 if not L then return end
-if L then
-	L.phase2_trigger = "¡%s llama a su maestro!"
-	L.phase3_trigger = "¡Ven, Medianoche, vamos a dispersar a estos pusilánimes!"
-end
-
-L = BigWigs:NewBossLocale("Prince Malchezaar", "esES")
 if L then
 	L.phase1_trigger = "La locura os ha traído ante mi. ¡Seré vuestro fin!"
 	L.phase2_trigger = "¡Estúpidos! El tiempo es el fuego en el que arderéis!"
@@ -34,8 +28,6 @@ if L then
 	L.name = "Nocturno"
 
 	L.airphase_trigger = "Miserable alimaña. ¡Te exterminaré del aire!"
-	L.landphase_trigger1 = "¡Ya basta! Voy a aterrizar y a aplastarte yo mismo."
-	L.landphase_trigger2 = "¡Insectos! ¡Os enseñaré mi fuerza de cerca!"
 	L.airphase_message = "¡Volando!"
 end
 

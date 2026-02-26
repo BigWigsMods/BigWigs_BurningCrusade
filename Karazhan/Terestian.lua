@@ -24,6 +24,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_START", "Sacrifice", 30115)
 	self:Log("SPELL_AURA_APPLIED", "SacrificeApplied", 30115)
 	self:Log("SPELL_AURA_REMOVED", "SacrificeRemoved", 30115)
 
@@ -32,6 +33,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:CDBar(30115, 30.5) -- Sacrifice
 	self:Berserk(600, true)
 end
 
@@ -46,18 +48,26 @@ function mod:MarkDemonChains(_, unit, guid)
 	end
 end
 
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(30115, "yellow", player)
+		if self:Me(guid) then
+			self:Say(30115, nil, nil, "Sacrifice")
+		end
+		self:PlaySound(30115, "warning", nil, player)
+	end
+	function mod:Sacrifice(args)
+		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+		self:CDBar(args.spellId, 42)
+		-- Register events to auto-mark Demon Chains
+		if self:GetOption(demonChainsMarker) then
+			self:RegisterTargetEvents("MarkDemonChains")
+		end
+	end
+end
+
 function mod:SacrificeApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 30, args.destName)
-	self:CDBar(args.spellId, 42)
-	-- Register events to auto-mark Demon Chains
-	if self:GetOption(demonChainsMarker) then
-		self:RegisterTargetEvents("MarkDemonChains")
-	end
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Sacrifice")
-	end
-	self:PlaySound(args.spellId, "warning", nil, args.destName)
 end
 
 function mod:SacrificeRemoved(args)
@@ -66,7 +76,7 @@ end
 
 function mod:BrokenPactApplied(args)
 	self:Message(args.spellId, "green", CL.weakened)
-	self:Bar(args.spellId, 45, CL.weakened)
+	self:Bar(args.spellId, 41, CL.weakened)
 	self:PlaySound(args.spellId, "long")
 end
 

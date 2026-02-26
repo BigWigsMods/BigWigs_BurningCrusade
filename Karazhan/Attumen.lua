@@ -9,16 +9,6 @@ mod:SetEncounterID(652)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.phase2_trigger = "%s calls for her master!"
-	L.phase3_trigger = "Come Midnight, let's disperse this petty rabble!"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
