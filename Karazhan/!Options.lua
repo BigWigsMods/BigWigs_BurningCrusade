@@ -106,12 +106,14 @@ BigWigs:AddSounds("Shade of Aran", {
 })
 
 BigWigs:AddColors("Netherspite", {
+	[30466] = {"blue","purple"},
 	[37063] = "yellow",
 	[38523] = "orange",
 	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Netherspite", {
+	[30466] = "warning",
 	[37063] = "info",
 	["stages"] = "long",
 })
