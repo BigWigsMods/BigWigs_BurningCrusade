@@ -5,9 +5,7 @@
 local mod, CL = BigWigs:NewBoss("The Lurker Below", 548, 1568)
 if not mod then return end
 mod:RegisterEnableMob(21217, 21873, 21865) --Lurker, Coilfang Guardian, Coilfang Ambusher
-if mod:Classic() then
-	mod:SetEncounterID(624)
-end
+mod:SetEncounterID(624)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -53,7 +51,6 @@ function mod:GetOptions()
 		"spout",
 		37660, -- Whirl
 		37478, -- Geyser
-		"proximity",
 	}
 end
 
@@ -62,16 +59,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "Whirl", 37363)
 	self:Log("SPELL_CAST_SUCCESS", "Geyser", 37478)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-
-	self:Death("Win", 21217)
-
-	-- For the first pull, you can go in to combat
-	-- with the boss before the module enables
-	if InCombatLockdown() then
-		self:CheckForEngage()
-	end
+	self:RegisterEvent("RAID_BOSS_EMOTE")
 end
 
 function mod:OnEngage()
@@ -93,8 +81,6 @@ function mod:OnEngage()
 	self:Bar("dive", 90, L["dive_bar"], "Spell_Frost_ArcticWinds")
 
 	self:ScheduleTimer("ScanForLurker", 85)
-
-	self:OpenProximity("proximity", 10)
 end
 
 --------------------------------------------------------------------------------
@@ -117,7 +103,7 @@ function mod:Geyser(args)
 	self:Bar(args.spellId, 11)
 end
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, sender)
+function mod:RAID_BOSS_EMOTE(_, _, sender)
 	if sender == self.displayName then
 		self:Bar("spout", 20, L["spout_message"], "Spell_Frost_ChillingBlast")
 		self:Bar("spout", 50, L["spout_bar"], "Spell_Frost_ChillingBlast")
@@ -160,7 +146,6 @@ do
 end
 
 function mod:LurkerDown()
-	self:CloseProximity()
 	self:StopBar(L["dive_bar"])
 	self:StopBar(L["spout_bar"])
 	self:StopBar(37660) -- Whirl
@@ -191,6 +176,4 @@ function mod:LurkerUp()
 	self:Bar("dive", 90, L["dive_bar"], "Spell_Frost_ArcticWinds")
 
 	self:MessageOld("spout", "yellow", nil, CL.soon:format(L["spout"]), false)
-
-	self:OpenProximity("proximity", 10)
 end
