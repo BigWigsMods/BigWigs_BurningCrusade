@@ -24,7 +24,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "Sacrifice", 30115)
+	self:Log("SPELL_CAST_START", "SacrificeStart", 30115)
+	self:Log("SPELL_CAST_SUCCESS", "Sacrifice", 30115)
 	self:Log("SPELL_AURA_APPLIED", "SacrificeApplied", 30115)
 	self:Log("SPELL_AURA_REMOVED", "SacrificeRemoved", 30115)
 
@@ -49,29 +50,50 @@ function mod:MarkDemonChains(_, unit, guid)
 end
 
 do
-	local function printTarget(self, player, guid)
-		self:TargetMessage(30115, "yellow", player)
-		if self:Me(guid) then
-			self:Say(30115, nil, nil, "Sacrifice")
+	local prev = 0
+	local found = true
+	do
+		local function printTarget(self, player, guid)
+			self:TargetMessage(30115, "yellow", player)
+			if self:Me(guid) then
+				self:Say(30115, nil, nil, "Sacrifice")
+			end
+			self:PlaySound(30115, "warning", nil, player)
 		end
-		self:PlaySound(30115, "warning", nil, player)
-	end
-	function mod:Sacrifice(args)
-		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
-		self:CDBar(args.spellId, 42)
-		-- Register events to auto-mark Demon Chains
-		if self:GetOption(demonChainsMarker) then
-			self:RegisterTargetEvents("MarkDemonChains")
+		function mod:SacrificeStart(args)
+			prev = args.time
+			found = false
+			self:StopBar(args.spellName)
+			self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+			-- Register events to auto-mark Demon Chains
+			if self:GetOption(demonChainsMarker) then
+				self:RegisterTargetEvents("MarkDemonChains")
+			end
 		end
 	end
-end
 
-function mod:SacrificeApplied(args)
-	self:TargetBar(args.spellId, 30, args.destName)
-end
+	do
+		local function DelayBackupBar()
+			if not found then
+				found = true
+				mod:CDBar(30115, 40) -- 41-1
+			end
+		end
+		function mod:Sacrifice(args)
+			self:ScheduleTimer(DelayBackupBar, 1)
+		end
+	end
 
-function mod:SacrificeRemoved(args)
-	self:StopBar(args.spellName, args.destName)
+	function mod:SacrificeApplied(args)
+		found = true
+		self:TargetBar(args.spellId, 30, args.destName)
+	end
+
+	function mod:SacrificeRemoved(args)
+		self:StopBar(args.spellName, args.destName)
+		local duration = 41-(args.time-prev)
+		self:CDBar(args.spellId, duration > 0 and duration or 11) -- Fallback for safety (41-30)
+	end
 end
 
 function mod:BrokenPactApplied(args)

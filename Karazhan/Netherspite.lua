@@ -136,7 +136,7 @@ end
 function mod:NetherPortalDominanceApplied(args) -- Blue
 	if not blueList[1] and not greenList[1] and not redList[1] then
 		self:OpenInfo("infobox", self:SpellName(38637), 5) -- 38637 = "Nether Exhaustion"
-		self:SimpleTimer(UpdateInfoBoxList, 0.1)
+		self:SimpleTimer(UpdateInfoBoxList, 0.2)
 	end
 	self:DeleteFromTable(blueList, args.destName)
 	blueList[#blueList + 1] = args.destName
@@ -155,7 +155,7 @@ end
 function mod:NetherPortalSerenityApplied(args) -- Green
 	if not blueList[1] and not greenList[1] and not redList[1] then
 		self:OpenInfo("infobox", self:SpellName(38637), 5) -- 38637 = "Nether Exhaustion"
-		self:SimpleTimer(UpdateInfoBoxList, 0.1)
+		self:SimpleTimer(UpdateInfoBoxList, 0.2)
 	end
 	self:DeleteFromTable(greenList, args.destName)
 	greenList[#greenList + 1] = args.destName
@@ -174,7 +174,7 @@ end
 function mod:NetherPortalPerseverenceApplied(args) -- Red
 	if not blueList[1] and not greenList[1] and not redList[1] then
 		self:OpenInfo("infobox", self:SpellName(38637), 5) -- 38637 = "Nether Exhaustion"
-		self:SimpleTimer(UpdateInfoBoxList, 0.1)
+		self:SimpleTimer(UpdateInfoBoxList, 0.2)
 	end
 	self:DeleteFromTable(redList, args.destName)
 	redList[#redList + 1] = args.destName
@@ -195,7 +195,7 @@ do
 	local greenText = "|T134397:0:0:0:0:64:64:4:60:4:60|t".. CL.count
 	local redText = "|T134396:0:0:0:0:64:64:4:60:4:60|t".. CL.count
 	function UpdateInfoBoxList()
-		if not mod:IsEngaged() or mod:GetStage() == 2 or (not blueList[1] and not greenList[1] and not redList[1]) then return end
+		if not mod:IsEngaged() or (not blueList[1] and not greenList[1] and not redList[1]) then return end
 		mod:SimpleTimer(UpdateInfoBoxList, 0.1)
 
 		local t = GetTime()

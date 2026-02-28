@@ -58,6 +58,7 @@ do
 	local prev = 0
 	function mod:RedRidingHoodApplied(args)
 		prev = args.time
+		self:StopBar(args.spellName)
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:Bar(args.spellId, 20, L.riding_bar:format(args.destName))
 		self:PrimaryIcon(args.spellId, args.destName)

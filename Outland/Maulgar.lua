@@ -120,6 +120,7 @@ do
 	function mod:WhirlwindApplied(args)
 		prev = args.time
 		self:StopBar(39144) -- Arcing Smash
+		self:StopBar(args.spellName)
 		self:Message(args.spellId, "red", L.whirlwind_message)
 		self:CastBar(args.spellId, 15)
 	end
