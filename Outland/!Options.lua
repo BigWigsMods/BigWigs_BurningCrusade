@@ -43,6 +43,7 @@ BigWigs:AddColors("Magtheridon", {
 	[30616] = "red",
 	[36449] = {"blue","orange"},
 	["abyssal"] = "cyan",
+	["berserk"] = {"orange","red"},
 	["heal"] = "orange",
 	["stages"] = "cyan",
 })
@@ -51,6 +52,7 @@ BigWigs:AddSounds("Magtheridon", {
 	[30168] = "info",
 	[30616] = "warning",
 	[36449] = {"alert","long"},
+	["berserk"] = "alarm",
 	["heal"] = "alarm",
 	["stages"] = "long",
 })

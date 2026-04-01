@@ -4,22 +4,26 @@ BigWigs:AddColors("Al'ar", {
 	[35181] = {"orange","red"},
 	[35383] = "blue",
 	[35410] = {"blue","red"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Al'ar", {
 	[35181] = "alert",
 	[35383] = "alarm",
 	[35410] = "long",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Void Reaver", {
 	[25778] = {"blue","green"},
 	[34172] = {"blue","yellow"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Void Reaver", {
 	[25778] = "alarm",
 	[34172] = "alert",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("High Astromancer Solarian", {

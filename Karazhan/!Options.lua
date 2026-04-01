@@ -74,21 +74,25 @@ BigWigs:AddSounds("The Crone", {
 BigWigs:AddColors("The Curator Raid", {
 	[30254] = "red",
 	[30403] = "orange",
+	["berserk"] = {"orange","red"},
 })
 
 BigWigs:AddSounds("The Curator Raid", {
 	[30254] = "warning",
 	[30403] = "long",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Terestian Illhoof", {
 	[30065] = {"green","red"},
 	[30115] = {"blue","yellow"},
+	["berserk"] = {"orange","red"},
 })
 
 BigWigs:AddSounds("Terestian Illhoof", {
 	[30065] = {"info","long"},
 	[30115] = "warning",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Shade of Aran", {
@@ -109,12 +113,14 @@ BigWigs:AddColors("Netherspite", {
 	[30466] = {"blue","purple"},
 	[37063] = "yellow",
 	[38523] = "orange",
+	["berserk"] = {"orange","red"},
 	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Netherspite", {
 	[30466] = "warning",
 	[37063] = "info",
+	["berserk"] = "alarm",
 	["stages"] = "long",
 })
 

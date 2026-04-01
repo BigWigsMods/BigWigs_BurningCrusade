@@ -26,12 +26,14 @@ BigWigs:AddColors("Brutallus", {
 	[45150] = "orange",
 	[45185] = {"blue","orange","yellow"},
 	[46394] = {"blue","green","red","yellow"},
+	["berserk"] = {"orange","red","yellow"},
 	["burnresist"] = "green",
 })
 
 BigWigs:AddSounds("Brutallus", {
 	[45150] = "alert",
 	[46394] = {"info","warning"},
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Felmyst", {
@@ -39,6 +41,7 @@ BigWigs:AddColors("Felmyst", {
 	[45661] = {"blue","red","yellow"},
 	[45855] = "yellow",
 	[45866] = {"blue","purple"},
+	["berserk"] = {"orange","red","yellow"},
 	["breath"] = "yellow",
 	["phase"] = "yellow",
 })
@@ -47,24 +50,28 @@ BigWigs:AddSounds("Felmyst", {
 	[45402] = "alert",
 	[45661] = "alert",
 	[45866] = "warning",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("The Eredar Twins", {
 	[45230] = {"blue","green","orange"},
 	[45329] = {"blue","red"},
 	[45342] = {"blue","yellow"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("The Eredar Twins", {
 	[45230] = "info",
 	[45329] = "long",
 	[45342] = "warning",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("M'uru", {
 	[45934] = "red",
 	[45996] = "orange",
 	[46282] = "orange",
+	["berserk"] = {"orange","red","yellow"},
 	["humanoid"] = "orange",
 	["sentinel"] = "yellow",
 	["stages"] = "cyan",
@@ -72,6 +79,7 @@ BigWigs:AddColors("M'uru", {
 
 BigWigs:AddSounds("M'uru", {
 	[45996] = "long",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Kil'jaeden", {

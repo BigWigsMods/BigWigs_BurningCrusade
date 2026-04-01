@@ -3,11 +3,13 @@
 BigWigs:AddColors("Hydross the Unstable", {
 	[38235] = {"blue","yellow"},
 	[38246] = {"blue","yellow"},
+	["berserk"] = {"orange","red","yellow"},
 	["mark"] = "red",
 	["stance"] = "red",
 })
 
 BigWigs:AddSounds("Hydross the Unstable", {
+	["berserk"] = "alarm",
 	["mark"] = "alert",
 })
 
@@ -24,6 +26,7 @@ BigWigs:AddSounds("The Lurker Below", {
 
 BigWigs:AddColors("Leotheras the Blind", {
 	[37640] = {"red","yellow"},
+	["berserk"] = {"orange","red","yellow"},
 	["image"] = {"orange","red"},
 	["mindcontrol"] = {"blue","orange"},
 	["phase"] = {"orange","red","yellow"},
@@ -32,16 +35,19 @@ BigWigs:AddColors("Leotheras the Blind", {
 
 BigWigs:AddSounds("Leotheras the Blind", {
 	[37640] = "alert",
+	["berserk"] = "alarm",
 	["mindcontrol"] = "alert",
 })
 
 BigWigs:AddColors("Fathom-Lord Karathress", {
 	[38330] = "red",
+	["berserk"] = {"orange","red","yellow"},
 	["totem"] = {"orange","yellow"},
 })
 
 BigWigs:AddSounds("Fathom-Lord Karathress", {
 	[38330] = "long",
+	["berserk"] = "alarm",
 	["totem"] = "alarm",
 })
 
@@ -61,6 +67,7 @@ BigWigs:AddSounds("Morogrim Tidewalker", {
 BigWigs:AddColors("Lady Vashj", {
 	[38280] = {"blue","red"},
 	["barrier"] = "yellow",
+	["berserk"] = {"orange","red"},
 	["elemental"] = "red",
 	["naga"] = "yellow",
 	["phase"] = {"red","yellow"},
@@ -69,5 +76,6 @@ BigWigs:AddColors("Lady Vashj", {
 
 BigWigs:AddSounds("Lady Vashj", {
 	[38280] = "alert",
+	["berserk"] = "alarm",
 	["phase"] = "alarm",
 })

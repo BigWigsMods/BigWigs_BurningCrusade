@@ -3,22 +3,26 @@
 BigWigs:AddColors("High Warlord Naj'entus", {
 	[39837] = {"blue","red"},
 	[39872] = {"green","red","yellow"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("High Warlord Naj'entus", {
 	[39837] = "warning",
 	[39872] = "alert",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Supremus", {
 	[40126] = "yellow",
 	[40265] = "blue",
+	["berserk"] = {"orange","red","yellow"},
 	["fixate"] = {"blue","red"},
 	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Supremus", {
 	[40265] = "alert",
+	["berserk"] = "alarm",
 	["fixate"] = "warning",
 	["stages"] = "info",
 })
@@ -36,11 +40,13 @@ BigWigs:AddSounds("Shade of Akama", {
 BigWigs:AddColors("Teron Gorefiend", {
 	[40243] = {"blue","orange"},
 	[40251] = {"blue","red"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Teron Gorefiend", {
 	[40243] = "alert",
 	[40251] = "warning",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Gurtogg Bloodboil", {
@@ -49,6 +55,7 @@ BigWigs:AddColors("Gurtogg Bloodboil", {
 	[40508] = {"blue","red"},
 	[40604] = {"blue","cyan","orange"},
 	[42005] = "yellow",
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Gurtogg Bloodboil", {
@@ -57,6 +64,7 @@ BigWigs:AddSounds("Gurtogg Bloodboil", {
 	[40508] = "alert",
 	[40604] = {"info","warning"},
 	[42005] = "info",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Reliquary of Souls", {
@@ -88,6 +96,7 @@ BigWigs:AddColors("Mother Shahraz", {
 	[40896] = "yellow",
 	[40897] = "yellow",
 	[41001] = {"blue","orange"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Mother Shahraz", {
@@ -98,6 +107,7 @@ BigWigs:AddSounds("Mother Shahraz", {
 	[40896] = "info",
 	[40897] = "info",
 	[41001] = "alert",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("The Illidari Council", {
@@ -110,6 +120,7 @@ BigWigs:AddColors("The Illidari Council", {
 	[41481] = "blue",
 	[41482] = "blue",
 	[41485] = {"blue","red"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("The Illidari Council", {
@@ -121,6 +132,7 @@ BigWigs:AddSounds("The Illidari Council", {
 	[41481] = "alarm",
 	[41482] = "alarm",
 	[41485] = "alarm",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Illidan Stormrage", {
@@ -137,6 +149,7 @@ BigWigs:AddColors("Illidan Stormrage", {
 	[41117] = "red",
 	[41126] = "red",
 	[41917] = {"blue","yellow"},
+	["berserk"] = {"orange","red","yellow"},
 	["stages"] = "cyan",
 })
 
@@ -154,5 +167,6 @@ BigWigs:AddSounds("Illidan Stormrage", {
 	[41117] = "alert",
 	[41126] = "alert",
 	[41917] = "long",
+	["berserk"] = "alarm",
 	["stages"] = "alarm",
 })

@@ -3,22 +3,26 @@
 BigWigs:AddColors("Rage Winterchill", {
 	[31249] = {"blue","red"},
 	[31258] = "blue",
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Rage Winterchill", {
 	[31249] = "alert",
 	[31258] = "alarm",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Anetheron", {
 	[31298] = "orange",
 	[31299] = {"blue","green","red"},
 	[31306] = "yellow",
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Anetheron", {
 	[31298] = "alert",
 	[31299] = "alert",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Kaz'rogal", {
@@ -32,22 +36,26 @@ BigWigs:AddColors("Azgalor", {
 	[31340] = "orange",
 	[31344] = "red",
 	[31347] = {"blue","yellow"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Azgalor", {
 	[31340] = "alarm",
 	[31347] = "alert",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("ArchimondeHyjal", {
 	[31970] = {"orange","red"},
 	[31972] = {"blue","yellow"},
 	[32014] = {"blue","red"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("ArchimondeHyjal", {
 	[31972] = "alert",
 	[32014] = "long",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Hyjal Summit Trash", {

@@ -2,31 +2,37 @@
 
 BigWigs:AddColors("Akil'zon", {
 	[43648] = {"blue","red"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Akil'zon", {
 	[43648] = "alert",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Nalorakk", {
 	[42398] = {"blue","yellow"},
+	["berserk"] = {"orange","red","yellow"},
 	["stages"] = "red",
 })
 
 BigWigs:AddSounds("Nalorakk", {
 	[42398] = "info",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Jan'alai", {
 	[42630] = "orange",
 	[43140] = {"blue","red"},
 	[43962] = "yellow",
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Jan'alai", {
 	[42630] = "info",
 	[43140] = "alert",
 	[43962] = "long",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Halazzi", {
