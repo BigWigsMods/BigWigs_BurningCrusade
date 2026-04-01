@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Doomwalker", -104)
 if not mod then return end
 mod:RegisterEnableMob(17711)
 mod:SetAllowWin(true) -- No journal ID
-mod.worldBoss = 17711
+mod:SetWorldModule(true)
 if mod:Classic() then
 	mod.mapId = 1948
 	mod.otherMenu = -1945
