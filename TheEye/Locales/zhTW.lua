@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Void Reaver", "zhTW")
-if not L then return end
 if L then
 	L.engage_trigger = "警告!你已經被標記為消滅的對象。"
 end
@@ -85,4 +84,3 @@ if L then
 	L.telonicus = "工程大師泰隆尼卡斯"
 	L.thaladred = "扭曲預言家薩拉瑞德"
 end
-

@@ -15,7 +15,6 @@
 <Script file="Malchezaar.lua"/>
 <Script file="Nightbane.lua"/>
 
-<Include file="Locales\locales.xml"/>
 <Script file="!Options.lua"/>
 
 </Ui>

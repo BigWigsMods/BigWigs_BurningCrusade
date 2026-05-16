@@ -6,7 +6,6 @@
 <Script file="Solarian.lua"/>
 <Script file="Kaelthas.lua"/>
 
-<Include file="Locales\locales.xml"/>
 <Script file="!Options.lua"/>
 
 </Ui>

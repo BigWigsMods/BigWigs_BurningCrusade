@@ -8,7 +8,6 @@
 <Script file="Morogrim.lua"/>
 <Script file="Vashj.lua"/>
 
-<Include file="Locales\locales.xml"/>
 <Script file="!Options.lua"/>
 
 </Ui>

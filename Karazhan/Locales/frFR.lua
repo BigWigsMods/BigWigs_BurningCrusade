@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Prince Malchezaar", "frFR")
-if not L then return end
 if L then
 	L.phase1_trigger = "La folie vous a fait venir ici, devant moi. Et je serai votre perte !"
 	L.phase2_trigger = "Imbéciles heureux ! Le temps est le brasier dans lequel vous brûlerez !"

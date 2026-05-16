@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Void Reaver", "deDE")
-if not L then return end
 if L then
 	L.engage_trigger = "Alarm! Eliminierung eingeleitet!"
 end
@@ -85,4 +84,3 @@ if L then
 	L.telonicus = "Meisteringenieur Telonicus"
 	L.thaladred = "Thaladred der Verfinsterer"
 end
-

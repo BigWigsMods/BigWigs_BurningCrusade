@@ -8,7 +8,6 @@
 <Script file="Malacrass.lua"/>
 <Script file="Zuljin.lua"/>
 
-<Include file="Locales\locales.xml"/>
 <Script file="!Options.lua"/>
 
 </Ui>

@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Hydross the Unstable", "koKR")
-if not L then return end
 if L then
 	L.start_trigger = "방해하도록 놔두지 않겠습니다!"
 
@@ -136,4 +135,3 @@ if L then
 	L.barrier_desc = "보호막 손실 시 알립니다."
 	L.barrier_down_message = "보호막 %d/4 손실!"
 end
-

@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Hydross the Unstable", "frFR")
-if not L then return end
 if L then
 	L.start_trigger = "Je ne peux pas vous laisser nous gêner !"
 
@@ -135,4 +134,3 @@ if L then
 	L.barrier_desc = "Prévient quand les barrières se dissipent."
 	L.barrier_down_message = "Barrière %d/4 dissipée !"
 end
-

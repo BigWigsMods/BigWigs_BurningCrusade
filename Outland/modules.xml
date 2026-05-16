@@ -7,7 +7,6 @@
 <Script file="Magtheridon.lua"/>
 <Script file="Maulgar.lua"/>
 
-<Include file="Locales\locales.xml"/>
 <Script file="!Options.lua"/>
 
 </Ui>

@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Hydross the Unstable", "ruRU")
-if not L then return end
 if L then
 
 end
@@ -85,4 +84,3 @@ if L then
 	L.barrier_desc = "Предупреждать о разрушении барьеров."
 	L.barrier_down_message = "Барьер %d/4 разрушен!"
 end
-

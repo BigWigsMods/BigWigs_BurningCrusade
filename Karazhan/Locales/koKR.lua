@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Prince Malchezaar", "koKR")
-if not L then return end
 if L then
 	L.phase1_trigger = "여기까지 오다니 정신이 나간 놈들이 분명하구나. 소원이라면 파멸을 시켜주마!"
 	L.phase2_trigger = "바보 같으니! 시간은 너의 몸을 태우는 불길이 되리라!"

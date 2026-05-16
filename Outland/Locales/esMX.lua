@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Doomwalker", "esMX")
-if not L then return end
 if L then
 	L.name = "Caminante del Destino"
 

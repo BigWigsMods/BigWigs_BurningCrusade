@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Hydross the Unstable", "ptBR")
-if not L then return end
 if L then
 	--L.start_trigger = "I cannot allow you to interfere!"
 
@@ -138,4 +137,3 @@ if L then
 	--L.barrier_desc = "Alert when the barriers go down."
 	--L.barrier_down_message = "Barrier %d/4 down!"
 end
-

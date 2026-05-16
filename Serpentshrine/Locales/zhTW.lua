@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Hydross the Unstable", "zhTW")
-if not L then return end
 if L then
 	L.start_trigger = "我不准你涉入這件事!"
 
@@ -135,4 +134,3 @@ if L then
 	L.barrier_desc = "當瓦許女士的魔法屏障消失時警示"
 	L.barrier_down_message = "魔法屏障 %d/4 解除!"
 end
-

@@ -11,8 +11,6 @@
 <Script file="Council.lua"/>
 <Script file="Illidan.lua"/>
 
-<Include file="Locales\locales.xml"/>
 <Script file="!Options.lua"/>
 
 </Ui>
-

@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Doomwalker", "koKR")
-if not L then return end
 if L then
 	L.name = "파멸의 절단기"
 

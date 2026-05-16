@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Prince Malchezaar", "zhCN")
-if not L then return end
 if L then
 	L.phase1_trigger = "疯狂将你们带到我的面前，而我将以死亡终结你们！"
 	L.phase2_trigger = "愚蠢的家伙！时间就是吞噬你躯体的烈焰！"
