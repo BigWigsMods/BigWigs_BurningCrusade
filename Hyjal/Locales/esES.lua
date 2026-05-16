@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("ArchimondeHyjal", "esES")
-if not L then return end
 if L then
 	L.engage_trigger = "Vuestra resistencia es insignificante."
 	L.grip_other = "Apretón"

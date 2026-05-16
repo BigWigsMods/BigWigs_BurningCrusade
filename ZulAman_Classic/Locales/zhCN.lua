@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Zul'jin", "zhCN")
-if not L then return end
 if L then
 	L[42594] = "野熊之形" -- short form for "Essence of the Bear"
 	L[42607] = "山猫之形"

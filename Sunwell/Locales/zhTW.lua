@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "zhTW")
-if not L then return end
 if L then
 	L.bomb_cast = "即將施放千魂之暗"
 	L.bomb_nextbar = "可能施放千魂之暗"
@@ -104,4 +103,3 @@ if L then
 	-- L.custom_on_threat = "Threat InfoBox"
 	-- L.custom_on_threat_desc = "Show second on threat for Grand Warlock Alythess and third on threat for Lady Sacrolash."
 end
-

@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Hydross the Unstable", "deDE")
-if not L then return end
 if L then
 	L.start_trigger = "Ich kann nicht zulassen, dass Ihr Euch einmischt!"
 
@@ -135,4 +134,3 @@ if L then
 	L.barrier_desc = "Alarmiert, wenn die Barrieren in Phase 2 zerstört werden."
 	L.barrier_down_message = "Barriere %d/4 zerstört!"
 end
-

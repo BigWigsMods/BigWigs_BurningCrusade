@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("High Warlord Naj'entus", "zhCN")
-if not L then return end
 if L then
 	L.start_trigger = "以瓦丝琪女王的名义，去死吧！"
 end

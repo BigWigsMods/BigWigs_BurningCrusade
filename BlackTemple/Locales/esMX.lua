@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("High Warlord Naj'entus", "esMX")
-if not L then return end
 if L then
 	L.start_trigger = "¡Moriréis en el nombre de Lady Vashj!"
 end

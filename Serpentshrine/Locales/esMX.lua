@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Hydross the Unstable", "esMX")
-if not L then return end
 if L then
 	L.start_trigger = "¡No puedo permitir que interferáis!"
 
@@ -135,4 +134,3 @@ if L then
 	L.barrier_desc = "Avisar cuand caen las Barreras mágicas."
 	L.barrier_down_message = "¡Barrera %d/4 caída!"
 end
-

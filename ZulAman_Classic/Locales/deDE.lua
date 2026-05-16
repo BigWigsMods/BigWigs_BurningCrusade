@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Zul'jin", "deDE")
-if not L then return end
 if L then
 	L[42594] = "Bärenform" -- short form for "Essence of the Bear"
 	L[42607] = "Fuchsform"

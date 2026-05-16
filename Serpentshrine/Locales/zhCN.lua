@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Hydross the Unstable", "zhCN")
-if not L then return end
 if L then
 	L.start_trigger = "我不能允许你们介入！"
 
@@ -135,4 +134,3 @@ if L then
 	L.barrier_desc = "当护盾击碎发出警报。"
 	L.barrier_down_message = "护盾 - %d/4 击碎！"
 end
-

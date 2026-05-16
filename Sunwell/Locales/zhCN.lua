@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Kil'jaeden", "zhCN")
-if not L then return end
 if L then
 	L.bomb_cast = "即将 千魂之暗！"
 	L.bomb_nextbar = "可能 千魂之暗"
@@ -104,4 +103,3 @@ if L then
 	L.custom_on_threat = "仇恨信息框"
 	L.custom_on_threat_desc = "奥蕾塞丝的仇恨显示在第2，萨洛拉丝显示在第3."
 end
-

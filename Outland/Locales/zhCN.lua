@@ -1,5 +1,4 @@
 local L = BigWigs:NewBossLocale("Doomwalker", "zhCN")
-if not L then return end
 if L then
 	L.name = "末日行者"
 
