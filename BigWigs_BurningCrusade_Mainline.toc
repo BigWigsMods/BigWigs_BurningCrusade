@@ -39,17 +39,61 @@
 ## X-BigWigs-LoadOn-WorldBoss: -104, 17711, -100, 18728
 ## X-BigWigs-Minimum: 412
 
-Hyjal\modules.xml
+Hyjal\Winterchill.lua
+Hyjal\Anetheron.lua
+Hyjal\Kazrogal.lua
+Hyjal\Azgalor.lua
+Hyjal\Archimonde.lua
+Hyjal\Trash.lua
 Hyjal\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-Serpentshrine\modules.xml
+Serpentshrine\Hydross.lua
+Serpentshrine\Lurker.lua
+Serpentshrine\Leotheras.lua
+Serpentshrine\Karathress.lua
+Serpentshrine\Morogrim.lua
+Serpentshrine\Vashj.lua
 Serpentshrine\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-Outland\modules.xml
+Outland\Doomwalker.lua
+Outland\Gruul.lua
+Outland\Kazzak.lua
+Outland\Magtheridon.lua
+Outland\Maulgar.lua
 Outland\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-Karazhan\modules.xml
+Karazhan\Attumen.lua
+Karazhan\Hyakiss.lua
+Karazhan\Moroes.lua
+Karazhan\Maiden.lua
+Karazhan\RomuloJulianne.lua
+Karazhan\TheBigBadWolf.lua
+Karazhan\WizardofOz.lua
+Karazhan\Curator.lua
+Karazhan\Terestian.lua
+Karazhan\ShadeOfAran.lua
+Karazhan\Netherspite.lua
+Karazhan\Malchezaar.lua
+Karazhan\Nightbane.lua
 Karazhan\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-TheEye\modules.xml
+TheEye\Alar.lua
+TheEye\Reaver.lua
+TheEye\Solarian.lua
+TheEye\Kaelthas.lua
 TheEye\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-BlackTemple\modules.xml
+BlackTemple\Najentus.lua
+BlackTemple\Supremus.lua
+BlackTemple\ShadeOfAkama.lua
+BlackTemple\Teron.lua
+BlackTemple\Gurtogg.lua
+BlackTemple\Souls.lua
+BlackTemple\Shahraz.lua
+BlackTemple\Council.lua
+BlackTemple\Illidan.lua
 BlackTemple\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-Sunwell\modules.xml
+Sunwell\Kalecgos.lua
+Sunwell\Brutallus.lua
+Sunwell\Felmyst.lua
+Sunwell\Twins.lua
+Sunwell\Muru.lua
+Sunwell\KilJaeden.lua
 Sunwell\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+
+!Options.lua
