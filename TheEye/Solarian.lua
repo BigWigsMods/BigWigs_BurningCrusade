@@ -46,7 +46,7 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{42783, "ICON", "PROXIMITY"}, "phase", "split"
+		{42783, "ICON"}, "phase", "split"
 	}
 end
 
@@ -78,15 +78,12 @@ function mod:Wrath(args)
 	self:PrimaryIcon(42783, args.destName)
 	self:TargetBar(42783, args.spellId == 33045 and 8 or 6, args.destName, L["wrath_other"])
 	if self:Me(args.destGUID) then
-		self:OpenProximity(42783, 10)
+		self:PlaySound(42783, "warning", nil, args.destName)
 	end
 end
 
 function mod:WrathRemove(args)
 	self:PrimaryIcon(42783)
-	if self:Me(args.destGUID) then
-		self:CloseProximity(42783)
-	end
 end
 
 function mod:UNIT_HEALTH(event, unit)
