@@ -45,20 +45,17 @@ Hyjal\Kazrogal.lua
 Hyjal\Azgalor.lua
 Hyjal\Archimonde.lua
 Hyjal\Trash.lua
-Hyjal\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 Serpentshrine\Hydross.lua
 Serpentshrine\Lurker.lua
 Serpentshrine\Leotheras.lua
 Serpentshrine\Karathress.lua
 Serpentshrine\Morogrim.lua
 Serpentshrine\Vashj.lua
-Serpentshrine\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 Outland\Doomwalker.lua
 Outland\Gruul.lua
 Outland\Kazzak.lua
 Outland\Magtheridon.lua
 Outland\Maulgar.lua
-Outland\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 Karazhan\Attumen.lua
 Karazhan\Hyakiss.lua
 Karazhan\Moroes.lua
@@ -72,12 +69,10 @@ Karazhan\ShadeOfAran.lua
 Karazhan\Netherspite.lua
 Karazhan\Malchezaar.lua
 Karazhan\Nightbane.lua
-Karazhan\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 TheEye\Alar.lua
 TheEye\Reaver.lua
 TheEye\Solarian.lua
 TheEye\Kaelthas.lua
-TheEye\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 BlackTemple\Najentus.lua
 BlackTemple\Supremus.lua
 BlackTemple\ShadeOfAkama.lua
@@ -87,13 +82,12 @@ BlackTemple\Souls.lua
 BlackTemple\Shahraz.lua
 BlackTemple\Council.lua
 BlackTemple\Illidan.lua
-BlackTemple\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 Sunwell\Kalecgos.lua
 Sunwell\Brutallus.lua
 Sunwell\Felmyst.lua
 Sunwell\Twins.lua
 Sunwell\Muru.lua
 Sunwell\KilJaeden.lua
-Sunwell\Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 
+!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 !Options.lua
