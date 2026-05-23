@@ -65,8 +65,8 @@ end
 
 L = BigWigs:NewBossLocale("Azgalor", "koKR")
 if L then
-	L. howl_bar = "~침묵 대기시간"
-	L. howl_message = "광역 침묵"
+	L.howl_bar = "~침묵 대기시간"
+	L.howl_message = "광역 침묵"
 end
 
 L = BigWigs:NewBossLocale("Kaz'rogal", "koKR")
@@ -315,7 +315,6 @@ if L then
 
 	L.dive = "잠수"
 	L.dive_desc = "심연의 잠복꾼 잠수 시 타이머입니다."
-
 	L.dive_warning = "%d초 이내 잠수!"
 	L.dive_bar = "~잠수"
 	L.dive_message = "잠수 - 60초 이내 출현"
@@ -420,9 +419,11 @@ L = BigWigs:NewBossLocale("Felmyst", "koKR")
 if L then
 	L.phase = "단계"
 	L.phase_desc = "이륙과 착지 단계에 대해 알립니다."
+
 	L.airphase_trigger = "나는 어느 때보다도 강하다!"
 	L.takeoff_bar = "이륙"
 	L.takeoff_message = "5초 이내 이륙!"
+
 	L.landing_bar = "착지"
 	L.landing_message = "10초 이내 착지!"
 

@@ -419,9 +419,11 @@ L = BigWigs:NewBossLocale("Felmyst", "zhCN")
 if L then
 	L.phase = "阶段警报"
 	L.phase_desc = "当升空或降落阶段时发出警报。"
+
 	L.airphase_trigger = "我比以前更强大了！"
 	L.takeoff_bar = "升空"
 	L.takeoff_message = "5秒后，升空！"
+
 	L.landing_bar = "降落"
 	L.landing_message = "10秒后，降落！"
 

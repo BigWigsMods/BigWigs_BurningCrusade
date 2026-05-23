@@ -419,9 +419,11 @@ L = BigWigs:NewBossLocale("Felmyst", "esES")
 if L then
 	L.phase = "Fases"
 	L.phase_desc = "Avisar sobre las fases de suelo y aire."
+
 	L.airphase_trigger = "¡Soy más fuerte que nunca!"
 	L.takeoff_bar = "Vuela"
 	L.takeoff_message = "¡Vuela en 5 Seg!"
+
 	L.landing_bar = "Aterriza"
 	L.landing_message = "¡Aterriza en 10 Seg!"
 
