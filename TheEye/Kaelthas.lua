@@ -6,9 +6,7 @@ local mod = BigWigs:NewBoss("Kael'thas Sunstrider", 550, 1576)
 if not mod then return end
 --Kael'thas Sunstrider, Thaladred the Darkener, Master Engineer Telonicus, Grand Astromancer Capernian, Lord Sanguinar
 mod:RegisterEnableMob(19622, 20064, 20063, 20062, 20060)
-if mod:Classic() then
-	mod:SetEncounterID(733)
-end
+mod:SetEncounterID(733)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -102,7 +100,6 @@ function mod:OnBossEnable()
 
 	self:BossYell("Engage", L["engage_trigger"])
 	self:Emote("Pyro", L["pyro_trigger"])
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
