@@ -2,12 +2,10 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Void Reaver", 550, 1574)
+local mod, CL = BigWigs:NewBoss("Void Reaver", 550, 1574)
 if not mod then return end
 mod:RegisterEnableMob(19516)
-if mod:Classic() then
-	mod:SetEncounterID(731)
-end
+mod:SetEncounterID(731)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -25,19 +23,22 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{34172, "ICON", "SAY"}, 25778, 34162, "berserk"
+		{34172, "ICON", "SAY", "ME_ONLY"}, -- Arcane Orb
+		25778, -- Knock Away
+		34162, -- Pounding
+		"berserk",
+	},nil,{
+		[36297] = CL.orb, -- Arcane Orb (Orb)
+		[25778] = CL.tank_knockback, -- Knock Away (Tank Knockback)
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "KnockAway", 25778)
 	self:Log("SPELL_CAST_SUCCESS", "Pounding", 34162)
-	self:Log("SPELL_CAST_SUCCESS", "Orb", 34172)
+	self:Log("SPELL_CAST_SUCCESS", "ArcaneOrb", 34172)
 
 	self:BossYell("Engage", L["engage_trigger"])
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	self:Death("Win", 19516)
 end
 
 function mod:OnEngage()
@@ -48,20 +49,25 @@ end
 -- Event Handlers
 --
 
-function mod:KnockAway(args)
-	self:TargetMessageOld(args.spellId, args.destName, "green", "alarm")
-	self:CDBar(args.spellId, 20)
-end
-
-function mod:Pounding(args)
-	self:CDBar(args.spellId, 13)
-end
-
-function mod:Orb(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert")
-	self:PrimaryIcon(args.spellId, args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Arcane Orb")
+function mod:KnockAway(args) -- Tank Knockback
+	self:TargetMessage(args.spellId, "purple", args.destName, CL.tank_knockback)
+	self:CDBar(args.spellId, 20, CL.tank_knockback)
+	if self:Tank() then
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	end
 end
 
+function mod:Pounding(args) -- Pounding
+	self:CDBar(args.spellId, 13)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ArcaneOrb(args) -- Orb
+	self:TargetMessage(args.spellId, "yellow", args.destName, CL.orb)
+	self:PrimaryIcon(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, CL.orb, nil, "Orb")
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	end
+end
