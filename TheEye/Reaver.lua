@@ -28,7 +28,7 @@ function mod:GetOptions()
 		34162, -- Pounding
 		"berserk",
 	},nil,{
-		[36297] = CL.orb, -- Arcane Orb (Orb)
+		[34172] = CL.orb, -- Arcane Orb (Orb)
 		[25778] = CL.tank_knockback, -- Knock Away (Tank Knockback)
 	}
 end
