@@ -385,14 +385,16 @@ BigWigs:AddSounds("Al'ar", {
 })
 
 BigWigs:AddColors("Void Reaver", {
-	[25778] = {"blue","green"},
+	[25778] = {"blue","purple"},
+	[34162] = "red",
 	[34172] = {"blue","yellow"},
 	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Void Reaver", {
-	[25778] = "alarm",
-	[34172] = "alert",
+	[25778] = "warning",
+	[34162] = "info",
+	[34172] = "warning",
 	["berserk"] = "alarm",
 })
 
