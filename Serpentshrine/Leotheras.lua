@@ -5,9 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Leotheras the Blind", 548, 1569)
 if not mod then return end
 mod:RegisterEnableMob(21215)
-if mod:Classic() then
-	mod:SetEncounterID(625)
-end
+mod:SetEncounterID(625)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -74,13 +72,22 @@ function mod:OnBossEnable()
 	self:BossYell("Image", L["image_trigger"])
 	self:BossYell("Phase", L["phase_trigger"])
 
-	self:BossYell("Engage", L["enrage_trigger"])
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:BossYell("EngageLeotheras", L["enrage_trigger"])
 
 	self:Death("Win", 21215)
 end
 
 function mod:OnEngage()
+	demonTimer = nil
+end
+
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
+
+function mod:EngageLeotheras()
+	if not self:IsEngaged() then self:Engage() end -- Should never happen, ENCOUNTER_START should have triggered when the adds were engaged
+
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "target", "focus")
 	demonTimer = nil
 
@@ -89,10 +96,6 @@ function mod:OnEngage()
 	self:Berserk(600)
 	self:WhirlwindBar()
 end
-
---------------------------------------------------------------------------------
--- Event Handlers
---
 
 do
 	local scheduled = nil
