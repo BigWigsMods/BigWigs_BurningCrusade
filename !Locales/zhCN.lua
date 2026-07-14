@@ -325,7 +325,7 @@ if L then
 	L.spout_warning = "约3秒后，可能喷涌！"
 	L.spout_bar = "可能喷涌"
 
-	L.emerge_warning = "%秒后，出现！"
+	L.emerge_warning = "%d秒后，出现！"
 	L.emerge_message = "出现！90秒后，再次下潜！"
 	L.emerge_bar = "出现"
 end
