@@ -94,6 +94,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+	if self:IsSecret(spellId) then return end
 	if spellId == 28819 then -- Submerge Visual
 		if not next(castCollector) then -- Kill first
 			castCollector[castGUID] = true
