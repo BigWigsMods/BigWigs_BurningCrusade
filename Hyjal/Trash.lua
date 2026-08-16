@@ -79,7 +79,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:RegisterMessage("BigWigs_BossComm")
 	if self:Classic() then
-		self:RegisterWidgetEvent(3093, "UpdateEnemies")
+		self:RegisterWidgetEvent(3093, "UpdateEnemies", true)
 		self:RegisterWidgetEvent(3121, "UpdateWaves")
 	else
 		self:RegisterWidgetEvent(500, "UpdateEnemies")
@@ -92,16 +92,21 @@ end
 --
 
 function mod:BigWigs_OnBossWin(_, module)
-	if module.moduleName == "Rage Winterchill" then
+	local journalID = module:GetJournalID()
+	if journalID == 1577 then -- Rage Winterchill
 		nextBoss = self:BossName(1578) -- Anetheron
 		self:StopBar(CL.active) -- Boss kill triggers a Trash module reboot
-	elseif module.moduleName == "Anetheron" then
+		BigWigs:Print("Next boss will be: " .. tostring(nextBoss))
+	elseif journalID == 1578 then -- Anetheron
 		nextBoss = self:BossName(1579) -- Kaz'rogal
 		self:StopBar(CL.active)
-	elseif module.moduleName == "Kaz'rogal" then
+		BigWigs:Print("Next boss will be: " .. tostring(nextBoss))
+	elseif journalID == 1579 then -- Kaz'rogal
 		nextBoss = self:BossName(1580) -- Azgalor
 		self:StopBar(CL.active)
-	elseif module.moduleName == "Azgalor" then
+		BigWigs:Print("Next boss will be: " .. tostring(nextBoss))
+	elseif journalID == 1580 then -- Azgalor
+		BigWigs:Print("Next boss will be: " .. tostring(self:BossName(1580)))
 		self:Disable()
 	end
 end
@@ -118,16 +123,11 @@ function mod:GOSSIP_SHOW()
 	elseif self:GetGossipID(35377) then -- "We have nothing to fear."
 		self:Sync("SummitNext", "Azgalor") -- Azgalor is next
 	else
-		local tbl = self:GetGossipOptions()
-		if tbl then
+		local mobId = self:MobId(self:UnitGUID("npc"))
+		local tbl = C_GossipInfo.GetOptions()
+		if tbl and tbl[1] and (mobId == 17852 or mobId == 17772) then -- Thrall or Lady Jaina Proudmoore
 			for i = 1, #tbl do
-				if tbl[i].name == "My companions and I are with you, Lady Proudmoore." or
-				tbl[i].name == "We are ready for whatever Archimonde might send our way, Lady Proudmoore." or
-				tbl[i].name == "Until we meet again, Lady Proudmoore." or
-				tbl[i].name == "I am with you, Thrall." or
-				tbl[i].name == "We have nothing to fear." then
-					BigWigs:Error("Unknown gossip ID ".. tostring(tbl[i].gossipOptionID) .." with name: ".. tostring(tbl[i].name))
-				end
+				self:Sync("Summit?", tostring(tbl[i].gossipOptionID) .. ": " .. tostring(tbl[i].name))
 			end
 		end
 	end
@@ -165,6 +165,7 @@ function mod:UpdateWaves(_, text)
 
 			if nextBoss == "" then
 				self:Sync("SummitNext", "None")
+				self:MessageOld("waves", "cyan", nil, fmt(L.waveInc, wave), false)
 				return
 			end
 
@@ -312,6 +313,8 @@ do
 					end
 				end
 			end
+		elseif msg == "Summit?" and data then
+			BigWigs:Error("Unknown gossip ID ".. data)
 		end
 	end
 end
