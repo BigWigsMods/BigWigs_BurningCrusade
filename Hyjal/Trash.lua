@@ -112,9 +112,9 @@ function mod:BigWigs_OnBossWin(_, module)
 end
 
 function mod:GOSSIP_SHOW()
-	if self:GetGossipID(32918) then -- "My companions and I are with you, Lady Proudmoore."
+	if self:GetGossipID(32918) or self:GetGossipID(118270) then -- "My companions and I are with you, Lady Proudmoore."
 		self:Sync("SummitNext", "Rage") -- Rage Winterchill is next
-	elseif self:GetGossipID(32919) then -- "We are ready for whatever Archimonde might send our way, Lady Proudmoore."
+	elseif self:GetGossipID(32919) or self:GetGossipID(118269) then -- "We are ready for whatever Archimonde might send our way, Lady Proudmoore."
 		self:Sync("SummitNext", "Anetheron") -- Anetheron is next
 	elseif self:GetGossipID(32920) then -- "Until we meet again, Lady Proudmoore."
 		self:Sync("SummitNext", "Kazrogal") -- Kaz'rogal is next
@@ -124,7 +124,7 @@ function mod:GOSSIP_SHOW()
 		self:Sync("SummitNext", "Azgalor") -- Azgalor is next
 	else
 		local mobId = self:MobId(self:UnitGUID("npc"))
-		local tbl = C_GossipInfo.GetOptions()
+		local tbl = self:GetGossipOptions()
 		if tbl and tbl[1] and (mobId == 17852 or mobId == 17772) then -- Thrall or Lady Jaina Proudmoore
 			for i = 1, #tbl do
 				self:Sync("Summit?", tostring(tbl[i].gossipOptionID) .. ": " .. tostring(tbl[i].name))
