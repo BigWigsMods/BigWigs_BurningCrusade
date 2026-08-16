@@ -5,9 +5,7 @@
 local mod = BigWigs:NewBoss("Rage Winterchill", 534, 1577)
 if not mod then return end
 mod:RegisterEnableMob(17767)
-if mod:Classic() then
-	mod:SetEncounterID(620)
-end
+mod:SetEncounterID(620)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -15,21 +13,17 @@ end
 
 function mod:GetOptions()
 	return {
-		{31258, "FLASH"}, {31249, "ICON"}, "berserk"
+		{31249, "SAY"}, -- Icebolt
+		31258, -- Death & Decay
+		"berserk",
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Icebolt", 31249)
-	self:Log("SPELL_AURA_APPLIED", "DeathAndDecay", 31258)
-
-	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	else
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	end
-	self:Death("Win", 17767)
+	self:Log("SPELL_AURA_APPLIED", "DeathAndDecayDamage", 31258)
+	self:Log("SPELL_PERIODIC_DAMAGE", "DeathAndDecayDamage", 31258)
+	self:Log("SPELL_PERIODIC_MISSED", "DeathAndDecayDamage", 31258)
 end
 
 function mod:OnEngage()
@@ -41,14 +35,20 @@ end
 --
 
 function mod:Icebolt(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
-	self:PrimaryIcon(args.spellId, args.destName)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	if self:Me(args.destGUID) then
+		self:Say(args.spellId, nil, nil, "Icebolt")
+	end
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
 
-function mod:DeathAndDecay(args)
-	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "blue", "alarm")
-		self:Flash(args.spellId)
+do
+	local prev = 0
+	function mod:DeathAndDecayDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
 	end
 end
-
