@@ -40,7 +40,6 @@ if L then
 	L.zerevor = "제레보르: %s"
 
 	L.circle_heal_message = "치유됨! - 다음은 약 20초 후"
-	L.circle_fail_message = "%s 시전 방해! - 다음은 약 12초 후"
 
 	L.magical_immunity = "마법 공격에 면역!"
 	L.physical_immunity = "물리 공격에 면역!"

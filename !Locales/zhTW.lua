@@ -40,7 +40,6 @@ if L then
 	L.zerevor = "高等虛空術士札瑞佛：%s"
 
 	L.circle_heal_message = "治療成功！約20秒後再次使用。"
-	L.circle_fail_message = "%s打斷了！約12秒後再次使用。"
 
 	L.magical_immunity = "魔法免疫！"
 	L.physical_immunity = "物理免疫！"

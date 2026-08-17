@@ -40,7 +40,6 @@ if L then
 	--L.zerevor = "Zerevor: %s"
 
 	--L.circle_heal_message = "Healed! - Next in ~20sec"
-	--L.circle_fail_message = "%s Interrupted! - Next in ~12sec"
 
 	--L.magical_immunity = "Immune to magical!"
 	--L.physical_immunity = "Immune to physical!"
