@@ -5,9 +5,7 @@
 local mod, CL = BigWigs:NewBoss("ArchimondeHyjal", 534, 1581)
 if not mod then return end
 mod:RegisterEnableMob(17968)
-if mod:Classic() then
-	mod:SetEncounterID(622)
-end
+mod:SetEncounterID(622)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -40,10 +38,7 @@ function mod:OnBossEnable()
 
 	self:Log("SPELL_CAST_SUCCESS", "ProtectionOfElune", 38528)
 
-	self:BossYell("Engage", L["engage_trigger"])
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	self:Death("Win", 17968)
+	--self:BossYell("Engage", L["engage_trigger"])
 end
 
 function mod:OnEngage()

@@ -5,9 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Azgalor", 534, 1580)
 if not mod then return end
 mod:RegisterEnableMob(17842)
-if mod:Classic() then
-	mod:SetEncounterID(621)
-end
+mod:SetEncounterID(621)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -34,14 +32,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RainOfFire", 31340)
 	self:Log("SPELL_CAST_SUCCESS", "Howl", 31344)
 	self:Log("SPELL_AURA_APPLIED", "Doom", 31347)
-
-	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	else
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	end
-	self:Death("Win", 17842)
 end
 
 function mod:OnEngage()

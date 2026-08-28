@@ -5,9 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Anetheron", 534, 1578)
 if not mod then return end
 mod:RegisterEnableMob(17808)
-if mod:Classic() then
-	mod:SetEncounterID(619)
-end
+mod:SetEncounterID(619)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -26,14 +24,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Sleep", 31298)
 	self:Log("SPELL_CAST_SUCCESS", "Swarm", 31306)
 	self:Log("SPELL_CAST_START", "Inferno", 31299)
-
-	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-	else
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	end
-	self:Death("Win", 17808)
 end
 
 function mod:OnEngage()
