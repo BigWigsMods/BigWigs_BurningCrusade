@@ -19,10 +19,6 @@ if L then
 	L.wipe_trigger = "아직은! 안돼!"
 	L.defender = "수호병" -- Ashtongue Defender
 	L.sorcerer = "사술사" -- Ashtongue Sorcerer
-	L.adds_right = "몹 추가 (오른쪽)"
-	L.adds_left = "몹 추가 (왼쪽)"
-
-	L.engaged = "아카마의 망령 전투 시작"
 end
 
 L = BigWigs:NewBossLocale("Reliquary of Souls", "koKR")
@@ -93,7 +89,6 @@ if L then
 	L.three = "%d번째 공격! %d %s, %d %s, %d %s"
 	L.four = "%d번째 공격! %d %s, %d %s, %d %s, %d %s"
 	L.five = "%d번째 공격! %d %s, %d %s, %d %s, %d %s, %d %s"
-	L.barWave = "%d번째 공격 등장"
 
 	L.waveInc = "%d번째 공격 시작!"
 	L.message = "%s 약 %d초 이내!"

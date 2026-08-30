@@ -51,7 +51,13 @@ function mod:OnBossEnable()
 		self:Log("SPELL_AURA_APPLIED", "Fixate", 41951)
 		self:Log("SPELL_AURA_REMOVED", "FixateRemoved", 41951)
 	end
-	self:Log("SPELL_CAST_SUCCESS", "MoltenPunch", 40126)
+
+	if self:Classic() then
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+		self:RegisterMessage("BigWigs_BossComm")
+	else
+		self:Log("SPELL_CAST_SUCCESS", "MoltenPunch", 40126)
+	end
 
 	self:Log("SPELL_DAMAGE", "MoltenFlameDamage", 40265)
 	self:Log("SPELL_MISSED", "MoltenFlameDamage", 40265) -- Not firing?
@@ -106,18 +112,39 @@ function mod:FixateRemoved(args)
 	self:PrimaryIcon("fixate")
 end
 
+do
+	local prev = 0
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- Hidden on classic
+		if spellId == 40126 and GetTime() - prev > 5 then -- Molten Punch
+			prev = GetTime()
+			self:Sync("Punch")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:BigWigs_BossComm(_, msg)
+		if msg == "Punch" and self:IsEngaged() and (GetTime() - prev > 5) then
+			prev = GetTime()
+			self:Message(40126, "yellow")
+			self:CDBar(40126, 16) -- 16-20
+		end
+	end
+end
+
 function mod:MoltenPunch(args)
-	self:MessageOld(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 16) -- 16-20
 end
 
 do
 	local prev = 0
 	function mod:MoltenFlameDamage(args)
-		local t = GetTime()
-		if self:Me(args.destGUID) and t-prev > 1.5 then
-			prev = t
-			self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end

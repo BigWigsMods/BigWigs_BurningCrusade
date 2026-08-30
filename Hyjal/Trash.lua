@@ -51,7 +51,6 @@ if L then
 	L.three = "Wave %d! %d %s, %d %s, %d %s"
 	L.four = "Wave %d! %d %s, %d %s, %d %s, %d %s"
 	L.five = "Wave %d! %d %s, %d %s, %d %s, %d %s, %d %s"
-	L.barWave = "Wave %d spawn"
 
 	L.waveInc = "Wave %d incoming!"
 	L.message = "%s in ~%d sec!"
@@ -182,7 +181,9 @@ function mod:UpdateEnemies(_, text)
 		local remaining = tonumber(enemiesStr)
 		if remaining then
 			enemies = remaining
+			self:Debug(":UpdateEnemies", remaining, currentWave)
 			if remaining == 0 and currentWave == 0 then
+				self:Debug(":UpdateEnemies", "Restart")
 				Restart(self) -- 0 enemies on wave 0? It's a wipe
 			end
 		end
@@ -193,8 +194,10 @@ function mod:UpdateWaves(_, text)
 	local waveStr = text:match("%d")
 	if waveStr then
 		local wave = tonumber(waveStr)
+		self:Debug(":UpdateWaves", enemies, wave)
 		if wave and wave > currentWave then
 			currentWave = wave
+			self:Debug(":UpdateWaves", "++", enemies, wave)
 			self:StopBar(CL.active) -- Starting at Thrall can fire with a 0 just before wave 1
 
 			if nextBoss == "" then
@@ -294,14 +297,16 @@ function mod:UpdateWaves(_, text)
 				self:CDBar("waves", waveTime, waveBar, "Spell_Fire_FelImmolation")
 			else
 				self:DelayedMessage("waves", waveTime - 30, "orange", fmt(L.waveMessage, wave + 1, 30))
-				waveBar = fmt(L.barWave, wave + 1)
+				waveBar = fmt(CL.wave, wave + 1)
 				self:CDBar("waves", waveTime, waveBar, "Spell_Holy_Crusade")
 			end
 		elseif wave and wave == 0 then
 			currentWave = wave
 			if enemies == 0 then -- It's a wipe
+				self:Debug(":UpdateWaves", "Restart")
 				Restart(self)
 			else -- Boss spawned
+				self:Debug(":UpdateWaves", "BossInc")
 				self:CancelDelayedMessage(fmt(L.message, nextBoss, 30))
 				self:StopBar(waveBar)
 			end

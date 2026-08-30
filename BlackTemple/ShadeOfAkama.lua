@@ -25,10 +25,6 @@ if L then
 	L.wipe_trigger = "No! Not yet!"
 	L.defender = "Defender" -- Ashtongue Defender
 	L.sorcerer = "Sorcerer" -- Ashtongue Sorcerer
-	L.adds_right = "Adds (Right)"
-	L.adds_left = "Adds (Left)"
-
-	L.engaged = "Shade of Akama Engaged"
 end
 
 --------------------------------------------------------------------------------
@@ -50,6 +46,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "StealthRemoved", 34189)
+	self:RegisterEvent("GOSSIP_CONFIRM_CANCEL")
 	self:RegisterMessage("BigWigs_BossComm")
 
 	self:Log("SPELL_AURA_APPLIED", "RainOfFireDamage", 42023)
@@ -68,7 +65,6 @@ function mod:OnEngage()
 	if not self:Classic() then
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	end
-	self:Message("stages", "cyan", L.engaged, false)
 	self:Bar("stages", 32, L.defender, "ability_parry")
 	self:RepeaterSorcerer()
 	self:RepeaterAddsRight()
@@ -92,13 +88,31 @@ end
 
 do
 	local prev = 0
+	function mod:GOSSIP_CONFIRM_CANCEL()
+		if self:MobId(self:UnitGUID("npc")) == 23191 and (GetTime() - prev > 2) then -- Akama
+			prev = GetTime()
+			self:Sync("AkamaG")
+		end
+	end
+end
+
+do
+	local prev = 0
 	function mod:BigWigs_BossComm(_, msg)
 		if msg == "Akama" and not self:IsEngaged() and (GetTime() - prev > 2) then
 			prev = GetTime()
+			self:Message("stages", "cyan", "-", false)
 			self:Bar("stages", 13, L.defender, "ability_parry")
 			self:Bar("stages", 13, L.sorcerer, "spell_shadow_siphonmana")
-			self:Bar("stages", 13, L.adds_right, "misc_arrowright")
-			self:Bar("stages", 28, L.adds_left, "misc_arrowleft")
+			self:Bar("stages", 13, CL.extra:format(CL.adds, CL.right), "misc_arrowright")
+			self:Bar("stages", 28, CL.extra:format(CL.adds, CL.left), "misc_arrowleft")
+		elseif msg == "AkamaG" and not self:IsEngaged() and (GetTime() - prev > 2) then
+			prev = GetTime()
+			self:Message("stages", "cyan", "+", false)
+			self:Bar("stages", 13, L.defender, "ability_parry")
+			self:Bar("stages", 13, L.sorcerer, "spell_shadow_siphonmana")
+			self:Bar("stages", 13, CL.extra:format(CL.adds, CL.right), "misc_arrowright")
+			self:Bar("stages", 28, CL.extra:format(CL.adds, CL.left), "misc_arrowleft")
 		end
 	end
 end
@@ -114,12 +128,12 @@ function mod:RepeaterSorcerer()
 end
 
 function mod:RepeaterAddsRight()
-	self:Bar("stages", 45, L.adds_right, "misc_arrowright")
+	self:Bar("stages", 45, CL.extra:format(CL.adds, CL.right), "misc_arrowright")
 	right = self:ScheduleTimer("RepeaterAddsRight", 45)
 end
 
 function mod:RepeaterAddsLeft()
-	self:Bar("stages", 52, L.adds_left, "misc_arrowleft")
+	self:Bar("stages", 52, CL.extra:format(CL.adds, CL.left), "misc_arrowleft")
 	left = self:ScheduleTimer("RepeaterAddsLeft", 52)
 end
 
@@ -145,8 +159,8 @@ do
 			defender, sorcerer, left, right = nil, nil, nil, nil
 			self:StopBar(L.defender)
 			self:StopBar(L.sorcerer)
-			self:StopBar(L.adds_right)
-			self:StopBar(L.adds_left)
+			self:StopBar(CL.extra:format(CL.adds, CL.right))
+			self:StopBar(CL.extra:format(CL.adds, CL.left))
 			self:Message("stages", "cyan", CL.stage:format(2), false)
 			self:PlaySound("stages", "info")
 		end

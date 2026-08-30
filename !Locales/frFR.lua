@@ -19,10 +19,6 @@ if L then
 	--L.wipe_trigger = "No! Not yet!"
 	--L.defender = "Defender" -- Ashtongue Defender
 	--L.sorcerer = "Sorcerer" -- Ashtongue Sorcerer
-	--L.adds_right = "Adds (Right)"
-	--L.adds_left = "Adds (Left)"
-
-	--L.engaged = "Shade of Akama Engaged"
 end
 
 L = BigWigs:NewBossLocale("Reliquary of Souls", "frFR")
@@ -93,7 +89,6 @@ if L then
 	L.three = "%d|4ère:ème; vague ! %d %s, %d %s, %d %s"
 	L.four = "%d|4ère:ème; vague ! %d %s, %d %s, %d %s, %d %s"
 	L.five = "%d|4ère:ème; vague ! %d %s, %d %s, %d %s, %d %s, %d %s"
-	L.barWave = "Arrivée %d|4ère:ème; vague"
 
 	L.waveInc = "Arrivée de la %d|4ère:ème; vague !"
 	L.message = "%s dans ~%d sec. !"

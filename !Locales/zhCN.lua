@@ -19,10 +19,6 @@ if L then
 	L.wipe_trigger = "不！我不能死！"
 	L.defender = "防御者" -- Ashtongue Defender
 	L.sorcerer = "巫师" -- Ashtongue Sorcerer
-	L.adds_right = "增援（右侧）"
-	L.adds_left = "增援（左侧）"
-
-	L.engaged = "阿卡玛之影激活"
 end
 
 L = BigWigs:NewBossLocale("Reliquary of Souls", "zhCN")
@@ -93,7 +89,6 @@ if L then
 	L.three = "第%d波：%d个%s，%d个%s，%d个%s！"
 	L.four = "第%d波：%d个%s，%d个%s，%d个%s，%d个%s！"
 	L.five = "第%d波：%d个%s，%d个%s，%d个%s，%d个%s，%d个%s！"
-	L.barWave = "第%d波 出现！"
 
 	L.waveInc = "第%d波 来临！"
 	L.message = "%s 在约%d秒后来临！"
