@@ -167,8 +167,7 @@ do
 	end
 
 	function mod:SwingDamage(args) -- Classic
-		local destCreatureID = self:MobId(args.destGUID)
-		if destCreatureID == 23191 or destCreatureID == 22841 then -- Akama, Shade of Akama
+		if self:MobId(args.sourceGUID) == 22841 or self:MobId(args.destGUID) == 22841 then
 			self:RemoveLog("SWING_DAMAGE", "*")
 			GoStage2(self)
 		end
