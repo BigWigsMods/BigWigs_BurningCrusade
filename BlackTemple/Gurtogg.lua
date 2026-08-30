@@ -70,7 +70,7 @@ end
 
 function mod:FelRage(args)
 	self:StopBar(args.spellName) -- Fel Rage
-	self:StopBar(CL.count:format(args.spellName, bloodCount)) -- Bloodboil
+	self:StopBar(CL.count:format(self:SpellName(42005), bloodCount)) -- Bloodboil
 	self:StopBar(40508) -- Fel-Acid Breath
 
 	if self:Me(args.destGUID) then
