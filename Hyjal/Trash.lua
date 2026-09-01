@@ -173,8 +173,8 @@ do
 		for i = 1, #widgetsToCheckForWipe do
 			local widgetID = widgetsToCheckForWipe[i]
 			local infoTable = self:GetWidgetInfo("iconandtext", widgetID)
-			self:Debug(":CheckForWipe", widgetID, infoTable, infoTable and infoTable.shownState or "nil")
-			if infoTable and infoTable.shownState and infoTable.shownState > 0 then
+			self:Debug("CheckForWipe()", widgetID, infoTable, infoTable and infoTable.state or "nil")
+			if infoTable and infoTable.state and infoTable.state > 0 then
 				return -- There is an active widget, don't reboot
 			end
 		end
