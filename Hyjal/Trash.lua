@@ -23,10 +23,15 @@ local hordeWaveTimes = {135, 190, 190, 195, 140, 165, 195, 225}
 
 local nextBoss = ""
 local waveBar = ""
-local currentWave = 0
-local enemies = 0
 local prevWipe = 0
 local fmt = string.format
+
+local widgetsToCheckForWipe
+if mod:Classic() then
+	widgetsToCheckForWipe = {3121, 3092, 3093} -- Waves, Invading Enemies (Alliance), Invading Enemies (Horde)
+else
+	widgetsToCheckForWipe = {528, 500} -- Waves, Invading Enemies (?)
+end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -70,8 +75,6 @@ end
 
 function mod:OnBossEnable()
 	waveBar = ""
-	currentWave = 0
-	enemies = 0
 
 	self:RegisterMessage("BigWigs_OnBossWin")
 	self:RegisterMessage("BigWigs_OnBossWipe")
@@ -82,11 +85,9 @@ function mod:OnBossEnable()
 	local respawn = 300
 	if self:Classic() then
 		respawn = 240
-		self:RegisterWidgetEvent(3093, "UpdateEnemies")
-		self:RegisterWidgetEvent(3121, "UpdateWaves")
+		self:RegisterWidgetEvent(3121, "UpdateWaves", true)
 	else
-		self:RegisterWidgetEvent(500, "UpdateEnemies")
-		self:RegisterWidgetEvent(528, "UpdateWaves")
+		self:RegisterWidgetEvent(528, "UpdateWaves", true)
 	end
 
 	local elapsed = GetTime() - prevWipe
@@ -103,13 +104,13 @@ function mod:BigWigs_OnBossWin(_, module)
 	local journalID = module:GetJournalID()
 	if journalID == 1577 then -- Rage Winterchill
 		nextBoss = self:BossName(1578) -- Anetheron
-		self:StopBar(CL.active) -- Boss kill triggers a Trash module reboot
+		waveBar = ""
 	elseif journalID == 1578 then -- Anetheron
 		nextBoss = self:BossName(1579) -- Kaz'rogal
-		self:StopBar(CL.active)
+		waveBar = ""
 	elseif journalID == 1579 then -- Kaz'rogal
 		nextBoss = self:BossName(1580) -- Azgalor
-		self:StopBar(CL.active)
+		waveBar = ""
 	end
 end
 
@@ -117,7 +118,7 @@ function mod:BigWigs_OnBossWipe(_, module)
 	local journalID = module:GetJournalID()
 	if journalID == 1577 or journalID == 1578 or journalID == 1579 or journalID == 1580 then -- Rage Winterchill, Anetheron, Kaz'rogal, Azgalor
 		prevWipe = GetTime()
-		self:Reboot()
+		self:SimpleTimer(function() self:Reboot() end, 0)
 	end
 end
 
@@ -167,148 +168,138 @@ do
 	end
 end
 
-local function Restart(self)
-	-- Delay to prevent re-registering UPDATE_UI_WIDGET during the same event
-	self:SimpleTimer(function()
-		prevWipe = GetTime()
-		self:Reboot()
-	end, 0)
-end
-
-function mod:UpdateEnemies(_, text)
-	local enemiesStr = text:match("%d")
-	if enemiesStr then
-		local remaining = tonumber(enemiesStr)
-		if remaining then
-			enemies = remaining
-			self:Debug(":UpdateEnemies", remaining, currentWave)
-			if remaining == 0 and currentWave == 0 then
-				self:Debug(":UpdateEnemies", "Restart")
-				Restart(self) -- 0 enemies on wave 0? It's a wipe
+do
+	local function CheckForWipe(self, wipeTime)
+		for i = 1, #widgetsToCheckForWipe do
+			local widgetID = widgetsToCheckForWipe[i]
+			local infoTable = self:GetWidgetInfo("iconandtext", widgetID)
+			if infoTable and infoTable.shownState and infoTable.shownState > 0 then
+				return -- There is an active widget, don't reboot
 			end
 		end
+		prevWipe = wipeTime
+		if self:IsEnabled() then -- If we released spirit the module would already have disabled itself
+			self:Reboot()
+		end
 	end
-end
+	local prevWave = 0
+	function mod:UpdateWaves(_, text)
+		local waveStr = text:match("%d")
+		if waveStr then
+			local wave = tonumber(waveStr)
+			if wave then
+				local t = GetTime()
+				self:SimpleTimer(function() CheckForWipe(self, t) end, 2)
+				if wave > 0 then
+					if wave == prevWave then
+						return
+					end
+					prevWave = wave
 
-function mod:UpdateWaves(_, text)
-	local waveStr = text:match("%d")
-	if waveStr then
-		local wave = tonumber(waveStr)
-		self:Debug(":UpdateWaves", enemies, wave)
-		if wave and wave > currentWave then
-			currentWave = wave
-			self:Debug(":UpdateWaves", "++", enemies, wave)
-			self:StopBar(CL.active) -- Starting at Thrall can fire with a 0 just before wave 1
+					if nextBoss == "" then
+						self:Sync("SummitNext", "None")
+						self:Message("waves", "cyan", fmt(L.waveInc, wave), false, nil, 5)
+						return
+					end
 
-			if nextBoss == "" then
-				self:Sync("SummitNext", "None")
-				self:Message("waves", "cyan", fmt(L.waveInc, wave), false, nil, 5)
-				return
-			end
+					local waveTime = 0
+					if nextBoss == self:BossName(1577) then -- Rage Winterchill
+						waveTime = RWCwaveTimes[wave]
+						if wave == 1 then
+							self:Message("waves", "cyan", fmt(L.one, wave, 10, L.ghoul), false, nil, 5)
+						elseif wave == 2 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 10, L.ghoul, 2, L.fiend), false, nil, 5)
+						elseif wave == 3 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 6, L.ghoul, 6, L.fiend), false, nil, 5)
+						elseif wave == 4 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 6, L.ghoul, 4, L.fiend, 2, L.necro), false, nil, 5)
+						elseif wave == 5 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 2, L.ghoul, 6, L.fiend, 4, L.necro), false, nil, 5)
+						elseif wave == 6 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 6, L.ghoul, 6, L.abom), false, nil, 5)
+						elseif wave == 7 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 4, L.ghoul, 4, L.necro, 4, L.abom), false, nil, 5)
+						elseif wave == 8 then
+							self:Message("waves", "cyan", fmt(L.four, wave, 6, L.ghoul, 4, L.fiend, 2, L.abom, 2, L.necro), false, nil, 5)
+						end
+					elseif nextBoss == self:BossName(1578) then -- Anetheron
+						waveTime = allianceWaveTimes[wave]
+						if wave == 1 then
+							self:Message("waves", "cyan", fmt(L.one, wave, 10, L.ghoul), false, nil, 5)
+						elseif wave == 2 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 4, L.abom, 8, L.ghoul), false, nil, 5)
+						elseif wave == 3 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 4, L.necro, 4, L.fiend, 4, L.ghoul), false, nil, 5)
+						elseif wave == 4 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 2, L.banshee, 6, L.fiend, 4, L.necro), false, nil, 5)
+						elseif wave == 5 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 6, L.ghoul, 2, L.necro, 4, L.banshee), false, nil, 5)
+						elseif wave == 6 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 2, L.abom, 4, L.necro, 6, L.ghoul), false, nil, 5)
+						elseif wave == 7 then
+							self:Message("waves", "cyan", fmt(L.four, wave, 4, L.abom, 4, L.fiend, 2, L.banshee, 2, L.ghoul), false, nil, 5)
+						elseif wave == 8 then
+							self:Message("waves", "cyan", fmt(L.five, wave, 4, L.abom, 3, L.fiend, 2, L.banshee, 2, L.necro, 3, L.ghoul), false, nil, 5)
+						end
+					elseif nextBoss == self:BossName(1579) then -- Kaz'rogal
+						waveTime = KRwaveTimes[wave]
+						if wave == 1 then
+							self:Message("waves", "cyan", fmt(L.four, wave, 4, L.abom, 2, L.banshee, 4, L.ghoul, 2, L.necro), false, nil, 5)
+						elseif wave == 2 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 4, L.ghoul, 10, L.garg), false, nil, 5)
+						elseif wave == 3 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 6, L.fiend, 2, L.necro, 6, L.ghoul), false, nil, 5)
+						elseif wave == 4 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 6, L.garg, 6, L.fiend, 2, L.necro), false, nil, 5)
+						elseif wave == 5 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 4, L.ghoul, 4, L.necro, 6, L.abom), false, nil, 5)
+						elseif wave == 6 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 8, L.garg, 1, L.wyrm), false, nil, 5)
+						elseif wave == 7 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 6, L.ghoul, 4, L.abom, 1, L.wyrm), false, nil, 5)
+						elseif wave == 8 then
+							self:Message("waves", "cyan", fmt(L.five, wave, 6, L.ghoul, 2, L.fiend, 2, L.necro, 4, L.abom, 2, L.banshee), false, nil, 5)
+						end
+					elseif nextBoss == self:BossName(1580) then -- Azgalor
+						waveTime = hordeWaveTimes[wave]
+						if wave == 1 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 6, L.abom, 6, L.necro), false, nil, 5)
+						elseif wave == 2 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 5, L.ghoul, 8, L.garg, 1, L.wyrm), false, nil, 5)
+						elseif wave == 3 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 6, L.ghoul, 8, L.infernal), false, nil, 5)
+						elseif wave == 4 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 6, L.fel, 8, L.infernal), false, nil, 5)
+						elseif wave == 5 then
+							self:Message("waves", "cyan", fmt(L.three, wave, 4, L.abom, 6, L.fel, 4, L.necro), false, nil, 5)
+						elseif wave == 6 then
+							self:Message("waves", "cyan", fmt(L.two, wave, 6, L.necro, 6, L.banshee), false, nil, 5)
+						elseif wave == 7 then
+							self:Message("waves", "cyan", fmt(L.four, wave, 2, L.ghoul, 2, L.fiend, 2, L.fel, 8, L.infernal), false, nil, 5)
+						elseif wave == 8 then
+							self:Message("waves", "cyan", fmt(L.five, wave, 4, L.fiend, 2, L.necro, 4, L.abom, 2, L.banshee, 4, L.fel), false, nil, 5)
+						end
+					else
+						self:Message("waves", "cyan", fmt(L.waveInc, wave), false, nil, 5)
+					end
 
-			local waveTime = 0
-			if nextBoss == self:BossName(1577) then -- Rage Winterchill
-				waveTime = RWCwaveTimes[wave]
-				if wave == 1 then
-					self:Message("waves", "cyan", fmt(L.one, wave, 10, L.ghoul), false, nil, 5)
-				elseif wave == 2 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 10, L.ghoul, 2, L.fiend), false, nil, 5)
-				elseif wave == 3 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 6, L.ghoul, 6, L.fiend), false, nil, 5)
-				elseif wave == 4 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 6, L.ghoul, 4, L.fiend, 2, L.necro), false, nil, 5)
-				elseif wave == 5 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 2, L.ghoul, 6, L.fiend, 4, L.necro), false, nil, 5)
-				elseif wave == 6 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 6, L.ghoul, 6, L.abom), false, nil, 5)
-				elseif wave == 7 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 4, L.ghoul, 4, L.necro, 4, L.abom), false, nil, 5)
-				elseif wave == 8 then
-					self:Message("waves", "cyan", fmt(L.four, wave, 6, L.ghoul, 4, L.fiend, 2, L.abom, 2, L.necro), false, nil, 5)
+					self:CancelDelayedMessage(fmt(L.message, nextBoss, 30))
+					self:CancelDelayedMessage(fmt(L.waveMessage, wave, 30))
+					self:StopBar(waveBar)
+
+					if wave == 8 then
+						self:DelayedMessage("waves", waveTime - 30, "orange", fmt(L.message, nextBoss, 30))
+						waveBar = fmt(CL.incoming, nextBoss)
+						self:CDBar("waves", waveTime, waveBar, "Spell_Fire_FelImmolation")
+					else
+						self:DelayedMessage("waves", waveTime - 30, "orange", fmt(L.waveMessage, wave + 1, 30))
+						waveBar = fmt(CL.wave, wave + 1)
+						self:CDBar("waves", waveTime, waveBar, "Spell_Holy_Crusade")
+					end
+				else -- Wave 0 should mainly be when the boss spawns
+					self:CancelDelayedMessage(fmt(L.message, nextBoss, 30))
+					self:StopBar(waveBar)
 				end
-			elseif nextBoss == self:BossName(1578) then -- Anetheron
-				waveTime = allianceWaveTimes[wave]
-				if wave == 1 then
-					self:Message("waves", "cyan", fmt(L.one, wave, 10, L.ghoul), false, nil, 5)
-				elseif wave == 2 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 4, L.abom, 8, L.ghoul), false, nil, 5)
-				elseif wave == 3 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 4, L.necro, 4, L.fiend, 4, L.ghoul), false, nil, 5)
-				elseif wave == 4 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 2, L.banshee, 6, L.fiend, 4, L.necro), false, nil, 5)
-				elseif wave == 5 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 6, L.ghoul, 2, L.necro, 4, L.banshee), false, nil, 5)
-				elseif wave == 6 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 2, L.abom, 4, L.necro, 6, L.ghoul), false, nil, 5)
-				elseif wave == 7 then
-					self:Message("waves", "cyan", fmt(L.four, wave, 4, L.abom, 4, L.fiend, 2, L.banshee, 2, L.ghoul), false, nil, 5)
-				elseif wave == 8 then
-					self:Message("waves", "cyan", fmt(L.five, wave, 4, L.abom, 3, L.fiend, 2, L.banshee, 2, L.necro, 3, L.ghoul), false, nil, 5)
-				end
-			elseif nextBoss == self:BossName(1579) then -- Kaz'rogal
-				waveTime = KRwaveTimes[wave]
-				if wave == 1 then
-					self:Message("waves", "cyan", fmt(L.four, wave, 4, L.abom, 2, L.banshee, 4, L.ghoul, 2, L.necro), false, nil, 5)
-				elseif wave == 2 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 4, L.ghoul, 10, L.garg), false, nil, 5)
-				elseif wave == 3 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 6, L.fiend, 2, L.necro, 6, L.ghoul), false, nil, 5)
-				elseif wave == 4 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 6, L.garg, 6, L.fiend, 2, L.necro), false, nil, 5)
-				elseif wave == 5 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 4, L.ghoul, 4, L.necro, 6, L.abom), false, nil, 5)
-				elseif wave == 6 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 8, L.garg, 1, L.wyrm), false, nil, 5)
-				elseif wave == 7 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 6, L.ghoul, 4, L.abom, 1, L.wyrm), false, nil, 5)
-				elseif wave == 8 then
-					self:Message("waves", "cyan", fmt(L.five, wave, 6, L.ghoul, 2, L.fiend, 2, L.necro, 4, L.abom, 2, L.banshee), false, nil, 5)
-				end
-			elseif nextBoss == self:BossName(1580) then -- Azgalor
-				waveTime = hordeWaveTimes[wave]
-				if wave == 1 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 6, L.abom, 6, L.necro), false, nil, 5)
-				elseif wave == 2 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 5, L.ghoul, 8, L.garg, 1, L.wyrm), false, nil, 5)
-				elseif wave == 3 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 6, L.ghoul, 8, L.infernal), false, nil, 5)
-				elseif wave == 4 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 6, L.fel, 8, L.infernal), false, nil, 5)
-				elseif wave == 5 then
-					self:Message("waves", "cyan", fmt(L.three, wave, 4, L.abom, 6, L.fel, 4, L.necro), false, nil, 5)
-				elseif wave == 6 then
-					self:Message("waves", "cyan", fmt(L.two, wave, 6, L.necro, 6, L.banshee), false, nil, 5)
-				elseif wave == 7 then
-					self:Message("waves", "cyan", fmt(L.four, wave, 2, L.ghoul, 2, L.fiend, 2, L.fel, 8, L.infernal), false, nil, 5)
-				elseif wave == 8 then
-					self:Message("waves", "cyan", fmt(L.five, wave, 4, L.fiend, 2, L.necro, 4, L.abom, 2, L.banshee, 4, L.fel), false, nil, 5)
-				end
-			else
-				self:Message("waves", "cyan", fmt(L.waveInc, wave), false, nil, 5)
-			end
-
-			self:CancelDelayedMessage(fmt(L.message, nextBoss, 30))
-			self:CancelDelayedMessage(fmt(L.waveMessage, wave, 30))
-			self:StopBar(waveBar)
-
-			if wave == 8 then
-				self:DelayedMessage("waves", waveTime - 30, "orange", fmt(L.message, nextBoss, 30))
-				waveBar = fmt(CL.incoming, nextBoss)
-				self:CDBar("waves", waveTime, waveBar, "Spell_Fire_FelImmolation")
-			else
-				self:DelayedMessage("waves", waveTime - 30, "orange", fmt(L.waveMessage, wave + 1, 30))
-				waveBar = fmt(CL.wave, wave + 1)
-				self:CDBar("waves", waveTime, waveBar, "Spell_Holy_Crusade")
-			end
-		elseif wave and wave == 0 then
-			currentWave = wave
-			if enemies == 0 then -- It's a wipe
-				self:Debug(":UpdateWaves", "Restart")
-				Restart(self)
-			else -- Boss spawned
-				self:Debug(":UpdateWaves", "BossInc")
-				self:CancelDelayedMessage(fmt(L.message, nextBoss, 30))
-				self:StopBar(waveBar)
 			end
 		end
 	end
