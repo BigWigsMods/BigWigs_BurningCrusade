@@ -5,9 +5,7 @@
 local mod = BigWigs:NewBoss("Lady Vashj", 548, 1572)
 if not mod then return end
 mod:RegisterEnableMob(21212, 22055, 22056, 22009) --Vashj, Coilfang Elite, Coilfang Strider, Tainted Elemental
-if mod:Classic() then
-	mod:SetEncounterID(628)
-end
+mod:SetEncounterID(628)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -87,11 +85,8 @@ function mod:OnBossEnable()
 
 	self:BossYell("Phase2", L["phase2_trigger"])
 	self:BossYell("Phase3", L["phase3_trigger"])
-	self:BossYell("Engage", L["engage_trigger1"], L["engage_trigger2"], L["engage_trigger3"], L["engage_trigger4"], L["engage_trigger5"])
+	--self:BossYell("Engage", L["engage_trigger1"], L["engage_trigger2"], L["engage_trigger3"], L["engage_trigger4"], L["engage_trigger5"])
 
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	self:Death("Win", 21212)
 	self:Death("ElementalDeath", 22009) -- Tainted Elemental
 end
 
