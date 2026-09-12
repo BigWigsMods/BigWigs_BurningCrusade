@@ -24,6 +24,7 @@ local timer1, timer2 = nil, nil
 local fixateList = {}
 local castCollector = {}
 local yellTracker = 0
+local darkBarrageInProgress = false
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -127,6 +128,7 @@ function mod:OnEngage()
 	fixateList = {}
 	castCollector = {}
 	yellTracker = 0
+	darkBarrageInProgress = false
 
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:Berserk(1500)
@@ -183,19 +185,6 @@ function mod:ThrowGlaive() -- Stage 2
 	self:MessageOld("stages", "cyan", nil, CL.stage:format(2), false)
 end
 
-function mod:DarkBarrage(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
-	self:PrimaryIcon(args.spellId, args.destName)
-	barrageCount = barrageCount + 1
-	self:CDBar(args.spellId, 50) -- Varies between 50 and 70 depending on Eye Blast
-	self:TargetBar(args.spellId, 10, args.destName, L.barrage_bar)
-end
-
-function mod:DarkBarrageRemoved(args)
-	self:PrimaryIcon(args.spellId)
-	self:StopBar(L.barrage_bar, args.destName)
-end
-
 function mod:UncagedWrath(args)
 	self:MessageOld(args.spellId, "orange", "warning")
 end
@@ -211,10 +200,17 @@ do
 	end
 end
 
---[[ Stage Three: The Demon Within ]]--
-function mod:FlameDeath() -- Stage 3
-	flamesDead = flamesDead + 1
-	if flamesDead == 2 then
+function mod:DarkBarrage(args)
+	darkBarrageInProgress = true
+	self:TargetMessageOld(args.spellId, args.destName, "red", "alert")
+	self:PrimaryIcon(args.spellId, args.destName)
+	barrageCount = barrageCount + 1
+	self:CDBar(args.spellId, 50) -- Varies between 50 and 70 depending on Eye Blast
+	self:TargetBar(args.spellId, 10, args.destName, L.barrage_bar)
+end
+
+do
+	local function IntermissionIntoStage3(self)
 		self:SetStage(2.5)
 		self:StopBar(40585) -- Dark Barrage
 		self:Bar("stages", 14, CL.intermission, "inv_weapon_glave_01")
@@ -225,8 +221,25 @@ function mod:FlameDeath() -- Stage 3
 			self:PlaySound("stages", "alarm")
 		end, 14)
 	end
+
+	function mod:DarkBarrageRemoved(args)
+		darkBarrageInProgress = false
+		self:PrimaryIcon(args.spellId)
+		self:StopBar(L.barrage_bar, args.destName)
+		if flamesDead == 2 then
+			IntermissionIntoStage3(self)
+		end
+	end
+
+	function mod:FlameDeath() -- Intermission into Stage 3
+		flamesDead = flamesDead + 1
+		if flamesDead == 2 and not darkBarrageInProgress then
+			IntermissionIntoStage3(self)
+		end
+	end
 end
 
+--[[ Stage Three: The Demon Within ]]--
 function mod:AgonizingFlames(args)
 	playerList[#playerList+1] = args.destName
 	if #playerList == 1 then
@@ -333,9 +346,10 @@ end
 do
 	local prev = 0
 	function mod:DemonFireDamage(args) -- Demon Fire (Eye Blast)
-		if self:Me(args.destGUID) and args.time-prev > 1.5 then
+		if self:Me(args.destGUID) and args.time - prev > 2 then
 			prev = args.time
-			self:MessageOld(40018, "blue", "alert", CL.underyou:format(self:SpellName(40018)))
+			self:PersonalMessage(40018, "underyou")
+			self:PlaySound(40018, "underyou")
 		end
 	end
 end
@@ -343,9 +357,10 @@ end
 do
 	local prev = 0
 	function mod:Damage(args)
-		if self:Me(args.destGUID) and args.time-prev > 1.5 then
+		if self:Me(args.destGUID) and args.time - prev > 2 then
 			prev = args.time
-			self:MessageOld(args.spellId, "blue", "alert", CL.underyou:format(args.spellName))
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end

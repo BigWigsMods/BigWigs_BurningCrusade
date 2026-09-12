@@ -24,12 +24,17 @@ L = mod:GetLocale()
 
 function mod:GetOptions()
 	return {
-		{31347, "ICON", "FLASH"}, 31344, 31340, "berserk"
+		{31347, "ICON", "FLASH"}, -- Doom
+		31344, -- Howl of Azgalor
+		31340, -- Rain of Fire
+		"berserk",
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "RainOfFire", 31340)
+	self:Log("SPELL_AURA_APPLIED", "RainOfFireDamage", 31340)
+	self:Log("SPELL_PERIODIC_DAMAGE", "RainOfFireDamage", 31340)
+	self:Log("SPELL_PERIODIC_MISSED", "RainOfFireDamage", 31340)
 	self:Log("SPELL_CAST_SUCCESS", "Howl", 31344)
 	self:Log("SPELL_AURA_APPLIED", "Doom", 31347)
 end
@@ -42,9 +47,14 @@ end
 -- Event Handlers
 --
 
-function mod:RainOfFire(args)
-	if self:Me(args.destGUID) then
-		self:MessageOld(args.spellId, "orange", "alarm", CL["you"]:format(args.spellName))
+do
+	local prev = 0
+	function mod:RainOfFireDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "aboveyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
 	end
 end
 

@@ -5,9 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Al'ar", 550, 1573)
 if not mod then return end
 mod:RegisterEnableMob(19514)
-if mod:Classic() then
-	mod:SetEncounterID(730)
-end
+mod:SetEncounterID(730)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -28,11 +26,6 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "FlamePatch", 35383)
 	self:Log("SPELL_AURA_APPLIED", "Armor", 35410)
-
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
-
-	self:Death("Win", 19514)
 end
 
 function mod:OnEngage()
