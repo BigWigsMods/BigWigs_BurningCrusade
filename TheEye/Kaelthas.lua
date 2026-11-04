@@ -187,6 +187,7 @@ function mod:Pyro()
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg, _, _, _, player)
+	if self:IsSecret(msg) then return end
 	if msg:find(L["gaze_trigger"]) then
 		self:TargetBar("gaze", 9, player, L["gaze"], "Spell_Shadow_EvilEye")
 		self:TargetMessageOld("gaze", player, "red", nil, L["gaze"], "Spell_Shadow_EvilEye")
@@ -196,6 +197,7 @@ function mod:CHAT_MSG_MONSTER_EMOTE(_, msg, _, _, _, player)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L["thaladred_inc_trigger"] then
 		self:MessageOld("phase", "green", nil, L["thaladred"], false)
 	elseif msg == L["sanguinar_inc_trigger"] then
