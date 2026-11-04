@@ -1,4 +1,5 @@
 ## Interface: 11508, 11509, 20505, 20506, 30405, 38002, 40402, 50503, 50504, 120100, 120105, 120107
+## AllowLoadGameType: tbc, wrath, cata, mists, standard
 
 ## Title: BigWigs [|cffeda55fBurning Crusade|r]
 ## Title-zhCN: BigWigs [|cffeda55f燃烧的远征|r]
@@ -34,9 +35,12 @@
 ## X-Curse-Project-ID: 50688
 ## X-WoWI-ID: 22096
 ## X-Wago-ID: v63oQL6b
-## X-BigWigs-LoadOn-InstanceId: 532, 534, 544, 548, 550, 564, 565, 580
-## X-BigWigs-ExtraMenu: -101
-## X-BigWigs-LoadOn-WorldBoss: -104, 17711, -100, 18728
+## X-BigWigs-LoadOn-InstanceId: 532, 534, 544, 548, 550, 564, 565, 580 [AllowLoadGameType standard]
+## X-BigWigs-ExtraMenu: -101 [AllowLoadGameType standard]
+## X-BigWigs-LoadOn-WorldBoss: -104, 17711, -100, 18728 [AllowLoadGameType standard]
+## X-BigWigs-LoadOn-InstanceId: 532, 534, 544, 548, 550, 564, 565, 580, 568 [AllowLoadGameType tbc, wrath, cata, mists]
+## X-BigWigs-ExtraMenu: -1945 [AllowLoadGameType tbc, wrath, cata, mists]
+## X-BigWigs-LoadOn-WorldBoss: -1944, 18728, -1948, 17711 [AllowLoadGameType tbc, wrath, cata, mists]
 ## X-BigWigs-Minimum: 417
 
 Hyjal\Winterchill.lua
@@ -88,6 +92,13 @@ Sunwell\Felmyst.lua
 Sunwell\Twins.lua
 Sunwell\Muru.lua
 Sunwell\KilJaeden.lua
+ZulAman_Classic\Akilzon.lua [AllowLoadGameType tbc, wrath]
+ZulAman_Classic\Nalorakk.lua [AllowLoadGameType tbc, wrath]
+ZulAman_Classic\Janalai.lua [AllowLoadGameType tbc, wrath]
+ZulAman_Classic\Halazzi.lua [AllowLoadGameType tbc, wrath]
+ZulAman_Classic\Malacrass.lua [AllowLoadGameType tbc, wrath]
+ZulAman_Classic\Zuljin.lua [AllowLoadGameType tbc, wrath]
 
 !Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+!Locales\[TextLocale]_TBC.lua [AllowLoadGameType tbc, wrath][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 !Options.lua
