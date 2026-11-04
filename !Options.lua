@@ -8,7 +8,7 @@ BigWigs:AddColors("Rage Winterchill", {
 
 BigWigs:AddSounds("Rage Winterchill", {
 	[31249] = "alert",
-	[31258] = "alarm",
+	[31258] = "underyou",
 	["berserk"] = "alarm",
 })
 
@@ -33,14 +33,14 @@ BigWigs:AddSounds("Kaz'rogal", {
 })
 
 BigWigs:AddColors("Azgalor", {
-	[31340] = "orange",
+	[31340] = "blue",
 	[31344] = "red",
 	[31347] = {"blue","yellow"},
 	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Azgalor", {
-	[31340] = "alarm",
+	[31340] = "underyou",
 	[31347] = "alert",
 	["berserk"] = "alarm",
 })
@@ -59,7 +59,7 @@ BigWigs:AddSounds("ArchimondeHyjal", {
 })
 
 BigWigs:AddColors("Hyjal Summit Trash", {
-	["waves"] = {"cyan","orange","yellow"},
+	["waves"] = {"cyan","orange"},
 })
 
 BigWigs:AddSounds("Hyjal Summit Trash", {
@@ -444,7 +444,7 @@ BigWigs:AddColors("Supremus", {
 })
 
 BigWigs:AddSounds("Supremus", {
-	[40265] = "alert",
+	[40265] = "underyou",
 	["berserk"] = "alarm",
 	["fixate"] = "warning",
 	["stages"] = "info",
@@ -456,7 +456,7 @@ BigWigs:AddColors("Shade of Akama", {
 })
 
 BigWigs:AddSounds("Shade of Akama", {
-	[42023] = "alert",
+	[42023] = "underyou",
 	["stages"] = "info",
 })
 
@@ -543,6 +543,7 @@ BigWigs:AddColors("The Illidari Council", {
 	[41481] = "blue",
 	[41482] = "blue",
 	[41485] = {"blue","red"},
+	[41541] = "blue",
 	["berserk"] = {"orange","red","yellow"},
 })
 
@@ -552,9 +553,10 @@ BigWigs:AddSounds("The Illidari Council", {
 	[41455] = "warning",
 	[41475] = "long",
 	[41476] = "alert",
-	[41481] = "alarm",
-	[41482] = "alarm",
+	[41481] = "underyou",
+	[41482] = "underyou",
 	[41485] = "alarm",
+	[41541] = "underyou",
 	["berserk"] = "alarm",
 })
 
@@ -578,13 +580,13 @@ BigWigs:AddColors("Illidan Stormrage", {
 
 BigWigs:AddSounds("Illidan Stormrage", {
 	[39869] = "warning",
-	[40018] = {"alert","info"},
+	[40018] = {"info","underyou"},
 	[40506] = "alarm",
 	[40585] = "alert",
-	[40611] = "alert",
+	[40611] = "underyou",
 	[40683] = "long",
 	[40695] = {"info","warning"},
-	[40841] = "alert",
+	[40841] = "underyou",
 	[40932] = "alert",
 	[41032] = "alert",
 	[41117] = "alert",
@@ -693,4 +695,84 @@ BigWigs:AddSounds("Kil'jaeden", {
 	[46605] = "long",
 	["orb"] = "alert",
 	["stages"] = "info",
+})
+
+BigWigs:AddColors("Akil'zon", {
+	[43648] = {"blue","red"},
+	["berserk"] = {"orange","red","yellow"},
+})
+
+BigWigs:AddSounds("Akil'zon", {
+	[43648] = "alert",
+	["berserk"] = "alarm",
+})
+
+BigWigs:AddColors("Nalorakk", {
+	[42398] = {"blue","yellow"},
+	["berserk"] = {"orange","red","yellow"},
+	["stages"] = "red",
+})
+
+BigWigs:AddSounds("Nalorakk", {
+	[42398] = "info",
+	["berserk"] = "alarm",
+})
+
+BigWigs:AddColors("Jan'alai", {
+	[42630] = "orange",
+	[43140] = {"blue","red"},
+	[43962] = "yellow",
+	["berserk"] = {"orange","red","yellow"},
+})
+
+BigWigs:AddSounds("Jan'alai", {
+	[42630] = "info",
+	[43140] = "alert",
+	[43962] = "long",
+	["berserk"] = "alarm",
+})
+
+BigWigs:AddColors("Halazzi", {
+	[43139] = "red",
+	[43302] = "orange",
+	[43303] = {"blue","yellow"},
+	["stages"] = "green",
+})
+
+BigWigs:AddSounds("Halazzi", {
+	[43302] = "alert",
+	[43303] = "alarm",
+})
+
+BigWigs:AddColors("Hex Lord Malacrass", {
+	[43383] = "red",
+	[43421] = {"blue","orange"},
+	[43429] = "red",
+	[43431] = "orange",
+	[43436] = "yellow",
+	[43451] = "orange",
+	[43501] = {"blue","yellow"},
+	[43548] = "orange",
+})
+
+BigWigs:AddSounds("Hex Lord Malacrass", {
+	[43421] = "alarm",
+	[43429] = "info",
+	[43431] = "alarm",
+	[43436] = "alert",
+	[43451] = "alarm",
+	[43548] = "alarm",
+})
+
+BigWigs:AddColors("Zul'jin", {
+	[43093] = {"blue","yellow"},
+	[43095] = "yellow",
+	[43150] = {"blue","red"},
+	["stages"] = "red",
+})
+
+BigWigs:AddSounds("Zul'jin", {
+	[43093] = "alarm",
+	[43095] = "warning",
+	[43150] = "alert",
 })
